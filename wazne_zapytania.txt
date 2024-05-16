@@ -1,0 +1,59 @@
+-- wyciąganie dnia tygodnia ...
+select id, date(date), date(current_timestamp), to_char(date(date), 'Day') from tab_reports;
+
+---- update table tab_hospital_report
+update tab_hospital_report
+set statea_1 = T1.statea
+from tab_hospital_report T1
+where tab_hospital_report.hospital_report_id = T1.hospital_report_id
+
+---- v_hospital_view
+select r.hospital_report_id, b.name as oddzial, c.name as powiat, r.report_id, r.statea, r.statea_1, r.stateb, r.stateb_1, r.statec, r.statec_1, 
+h.name as szpital, r.update_date
+from tab_hospital_report r
+left join tab_hospital_config hc on(r.hospital_config_id = hc.hospital_config_id) 
+left join tab_branch b on (hc.branch_id = b.id)
+left join tab_hospital h on(hc.hospital_id = h.hospital_id)
+left join tab_hospital_county c on (h.hospital_county_id = c.hospital_county_id);
+
+---- v_hospital_wkrm
+select 
+r.hospital_config_id, 
+hc.hospital_config_description,
+hc.number_of_beds,
+hc.number_of_beds_locked,
+hc.branch_id,
+hc.hospital_id,
+hc.description,
+hc.email,
+hc.fax,
+hc.phone,
+r.hospital_report_id,
+r.report_id,
+h.name as szpital,
+b.name as oddzial,
+r.statea,
+r.statea_1,
+r.stateb,
+r.stateb_1,
+r.statec,
+r.statec_1,
+r.doctora,
+r.update_date,
+c.name as powiat
+from tab_hospital_report r
+left join tab_hospital_config hc on(r.hospital_config_id = hc.hospital_config_id)
+left join tab_branch b on (hc.branch_id = b.id)
+left join tab_hospital h on(hc.hospital_id = h.hospital_id)
+left join tab_hospital_county c on (h.hospital_county_id = c.hospital_county_id)
+
+
+--- update tab_hospital_report
+update tab_hospital_report h
+set hospital_id = c.hospital_id
+from tab_hospital_config c
+where
+h.hospital_config_id = c.hospital_config_id
+
+
+

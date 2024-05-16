@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" xmlns:sd="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.w3.org/1999/xhtml"
+      th:replace="~{/orm/fragments/layout2::layout(~{::.container-fluid})}">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="/srb/css/bootstrap-datepicker.css" th:href="@{/srb/css/bootstrap-datepicker.css}">
+  <script src="/srb/js/bootstrap-datepicker.js" th:src="@{/srb/js/bootstrap-datepicker.js}"></script>
+</head>
+<body>
+<div class="container-fluid" style="padding-top: 120px">
+    <div class="container">
+ <div class="panel panel-success">
+   <div class="panel-heading">Analiza</div>
+   <div class="panel-body">
+       <form class="col-sm-12 datepicker">
+           <div class="col-sm-4">
+               <label for="nameDataOd"> Data początkowa analizy</label>
+               <div class="input-group date" id="nameDataOd">
+                   <input class="form-inline form-control" data-provide="datepicker" type="text" id="dataOd">
+<!--                   <div class="input-group-append">-->
+                       <label class="input-group-btn" for="dataOd">
+                           <span class="btn btn-default"><i class="fa-solid fa-calendar"></i></span>
+                       </label>
+
+<!--                   </div>-->
+               </div>
+           </div>
+           <div class="col-sm-4">
+               <label for="nameDataDo"> Data końcowa analizy</label>
+               <div class="input-group date" id="nameDataDo">
+                   <input class="form-inline form-control" data-provide="datepicker" type="text" id="dataDo">
+                   <!--                   <div class="input-group-append">-->
+                   <label class="input-group-btn" for="dataDo">
+                       <span class="btn btn-default"><i class="fa-solid fa-calendar"></i></span>
+                   </label>
+
+                   <!--                   </div>-->
+               </div>
+           </div>
+           <div class="col-sm-4" style="padding-top: 25px">
+               <div class="button-group">
+                   <button class="btn btn-warning"><i class="fa-solid fa-magnifying-glass-chart"></i> Analizuj </button>
+               </div>
+           </div>
+       </form>
+<!--       <div class="container col-sm-6">-->
+<!--           <div class="row">-->
+<!--               <div class="input-group datepicker">-->
+<!--                   <input id="dataOd" type="text" class="form-control date-input"/>-->
+<!--                   <label class="input-group-btn" for="dataOd">-->
+<!--                       <span class="btn btn-default">-->
+<!--                           <span class="fa-solid fa-calendar"></span>-->
+<!--                       </span>-->
+<!--                   </label>-->
+<!--               </div>-->
+<!--           </div>-->
+<!--       </div>-->
+<!--     <div class="row">-->
+<!--     <div class="input-group">-->
+<!--       <div class="datepicker date input-group">-->
+<!--         <input type="text" placeholder="Wybierz datę początkową" class="form-control" id="dataOd">-->
+<!--&lt;!&ndash;         <div class="input-group-append">&ndash;&gt;-->
+<!--             <span class="input-group-text input-group-append">-->
+<!--                 <i class="fa-solid fa-calendar"></i>-->
+<!--             </span>-->
+<!--&lt;!&ndash;         </div>&ndash;&gt;-->
+<!--       </div>-->
+<!--     </div>-->
+<!--&lt;!&ndash;     </div>&ndash;&gt;-->
+<!--&lt;!&ndash;     <div class="row">&ndash;&gt;-->
+<!--     <div class="input">-->
+<!--       <div class="datepicker date input-group">-->
+<!--         <input type="text" placeholder="Wybierz datę końcową" class="form-control" id="dataDo">-->
+<!--&lt;!&ndash;         <div class="input-group-append">&ndash;&gt;-->
+<!--             <span class="input-group-text">-->
+<!--                 <i class="fa-solid fa-calendar"></i>-->
+<!--             </span>-->
+<!--&lt;!&ndash;         </div>&ndash;&gt;-->
+<!--       </div>-->
+<!--     </div>-->
+<!--     </div>-->
+   </div>
+ </div>
+    </div>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+  $(function (){
+    $('#dataOd').datepicker({
+      language: "pl",
+        today: true,
+      autoclose: true,
+      showOtherMonths: true,
+      selectOtherMonths: true,
+      changeMonth: true,
+      changeYear: true,
+      format: "yyyy-mm-dd",
+        orientation: "bottom auto"
+    });
+  });
+  $(function (){
+      $('#dataDo').datepicker({
+          language: "pl",
+          today: true,
+          autoclose: true,
+          showOtherMonths: true,
+          selectOtherMonths: true,
+          changeMonth: true,
+          changeYear: true,
+          format: "yyyy-mm-dd",
+          orientation: "bottom auto"
+      });
+  });
+</script>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Title</title>-->
+</head>
+<body>
+<form class="form" th:object="${announcement}" th:action="@{/saveAnnouncement}" method="post">
+  <div class="col-sm-11">
+    <label for="typ"> Typ komunikatu</label>
+    <br>
+    <select class="form-control" id="typ" required></select>
+    <input th:field="*{message.messageTypeId}" id="typeId" hidden>
+  </div>
+  <div class="col-sm-11">
+    <label> Temat komunikatu *</label>
+    <input type="text" class="form-control" th:field="*{title}" placeholder="Wprowadź temat komunikatu">
+  </div>
+  <div class="col-sm-11">
+    <label for="opis"> Treść komunikatu</label>
+    <textarea class="form-control" id="opis" th:field="*{content}"></textarea>
+  </div>
+  <div class="col-sm-11">
+    <label for="dataOd"> Data aktywacji komunikatu</label>
+    <input type="text" id="dataOd" th:field="*{addDate}">
+  </div>
+  <div class="col-sm-11">
+    <label for="dataDo"> Data zakończenia komunikatu</label>
+    <input type="text" id="dataDo" th:field="*{endDate}">
+  </div>
+</form>
+</body>
+</html>
+<script type="text/javascript">
+  $(function (){
+    $('#typ').select2({
+      language: "pl",
+      placeholder: "Wybierz typ",
+      theme: "bootstrap4",
+      selectionCssClass: 'form-control',
+      ajax: {
+        url: "/admin/api/AnnouncementType/v1",
+        dataType: 'json',
+        type: 'GET',
+        data: function (){
+
+        },
+        processResults(data){
+          return {
+            results: $.mao(data, function (item){
+              return {
+                text: item.typeName,
+                id: item.typeId
+              }
+            })
+          }
+        }
+      }
+    });
+    $('#typ').on('change', function (){
+      $('#typeId').val($(this).val());
+    });
+  })
+</script>

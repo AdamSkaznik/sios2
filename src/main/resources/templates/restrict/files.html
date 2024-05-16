@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" xmlns:sd="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.w3.org/1999/xhtml"
+      th:replace="~{/fragments/layout::layout(~{::.container-fluid})}">
+<head>
+  <meta charset="UTF-8">
+</head>
+<body>
+<div class="container-fluid" >
+  <div class="container-fluid" style="max-width: 600px; margin: 0 auto;">
+    <h2 class="text-center">List of Files</h2>
+
+    <div th:if="${files.size() > 0}">
+      <table class="table table-hover">
+        <thead class="thead-light">
+        <tr>
+          <th scope="col">File Name</th>
+          <th scope="col">Link</th>
+          <th scope="col">Adres</th>
+          <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="file : ${files}">
+          <td>[[${file.name}]]</td>
+          <td><a th:href="@{${file.url}}">Download</a></td>
+          <td>[[${file.url}]]</td>
+          <td>
+            <a th:href="@{'/restrict/files/delete/' + ${file.name}}" th:fileName="${file.name}" id="btnDelete"
+               title="Delete this file" class="fa-regular fa-trash-can icon-dark btn-delete"></a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div th:unless="${files.size() > 0}">
+      <span>No files found!</span>
+    </div>
+  </div>
+
+  <div class="modal fade text-center" id="confirmModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Delete Confirmation</h5>
+          <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <span id="confirmText"></span>
+        </div>
+
+        <div class="modal-footer">
+          <a type="button" id="yesBtn" class="btn btn-danger">Yes</a>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+  $(document).ready(function () {
+    $(".btn-delete").on("click", function (e) {
+      e.preventDefault();
+      link = $(this);
+
+      fileName = link.attr("fileName");
+      $("#yesBtn").attr("href", link.attr("href"));
+      $("#confirmText").html("Do you want to delete the File: \<strong\>" + fileName + "\<\/strong\>?");
+      $("#confirmModal").modal();
+    });
+  });
+</script>

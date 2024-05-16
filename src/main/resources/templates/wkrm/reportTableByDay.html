@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Title</title>-->
+</head>
+<body>
+<table id="glowna" class="table table-striped table-bordered table-responsive">
+  <thead>
+  <tr>
+    <th>Lp</th>
+    <th>Nazwa powiatu</th>
+    <th>Nazwa szpitala</th>
+    <th>Nazwa oddziału</th>
+    <th>Deklarowana ilość łóżek</th>
+    <th>Ilość łóżek w rezerwacji</th>
+    <th>Stan na godz. 6:00</th>
+    <th>Stan na godz. 14:00</th>
+    <th>Stan na godz. 22:00</th>
+    <th>Zadeklarowanych lekarzy</th>
+    <th>Data i czas aktualizacji</th>
+    <th>Akcje</th>
+  </tr>
+  </thead>
+  <tbody>
+
+  </tbody>
+  <tfoot>
+  <tr>
+    <th>Lp</th>
+    <th>Nazwa powiatu</th>
+    <th>Nazwa szpitala</th>
+    <th>Nazwa oddziału</th>
+    <th>Deklarowana ilość łóżek</th>
+    <th>Ilość łóżek w rezerwacji</th>
+    <th>Stan na godz. 6:00</th>
+    <th>Stan na godz. 14:00</th>
+    <th>Stan na godz. 22:00</th>
+    <th> Zadeklarowanych lekarzy</th>
+    <!--            <th>Ilość łóżek w rezerwacji</th>-->
+    <th>Data i czas aktualizacji</th>
+    <th>Akcje</th>
+  </tr>
+  </tfoot>
+</table>
+</body>
+</html>
+<script type="text/javascript">
+  $(document).ready(function (){
+    // new DataTable('#glowna');
+    let table = $('#glowna').DataTable({
+      "bAutoWidth": true,
+      "sAjaxSource" : "/api/viewsWkrm/v1",
+      "sAjaxDataProp": "",
+      "aoColumns": [
+        {"mData": "reportId"},
+        {"mData": "powiat"},
+        {"mData": "szpital"},
+        {"mData": "oddzial"},
+        {"mData": "numberOfBeds"},
+        {"mData": "numberOfBedsLocked"},
+        {"mData":"statea"},
+        {"mData": "stateb"},
+        {"mData": "statec"},
+        {"mData": "doctora"},
+        {"mData": "update_date"},
+        {"mData": null},
+      ],
+      "order": [
+        [1, 'asc'],
+        [2, 'asc']
+      ],
+      "rowGroup": {
+        dataSrc: ['powiat', 'szpital']
+      },
+      "columnDefs": [
+        {"orderable": false, "targets": [0,3,4,5,6,7,8,9,10,11]},
+        {"targets": 10,
+          "render": function (data, type, row, meta){
+            return moment(data).local().format('YYYY-MM-DD HH:mm:ss');
+          }
+        },
+        // {
+        //     "targets": [4,5,6],
+        //     "render": function(data, type, row){
+        //         let color = 'white';
+        //         if (data < 0){
+        //             color = 'red';
+        //         }
+        //         if (data >= 0){
+        //             color = 'grey';
+        //         }
+        //         if (data > 2){
+        //             color = "green";
+        //         }
+        //         return '<span style = "color:'+color+'; font-weight: bold; ">'+ data +'</span>';
+        //     }
+        // },
+        {"visible": false, "targets": [0,1,2]}
+      ],
+      "fixedHeader": {
+        "header": true,
+        "footer": true,
+        "headerOffset": 5,
+        "footerOffset": 12
+      },
+      "language": {
+        "processing": "Przetwarzanie...",
+        "search": "Szukaj:",
+        "lengthMenu": "Pokaż _MENU_ pozycji",
+        "info": "Pozycje od _START_ do _END_ z _TOTAL_ łącznie",
+        "infoEmpty": "Pozycji 0 z 0 dostępnych",
+        "infoFiltered": "(filtrowanie spośród _MAX_ dostępnych pozycji)",
+        "infoPostFix": "",
+        "loadingRecords": "Wczytywanie...",
+        "zeroRecords": "Nie znaleziono pasujących pozycji",
+        "emptyTable": "Nie znaleziono rekordów",
+        "paginate": {
+          "first": "Pierwsza",
+          "previous": "Poprzednia",
+          "next": "Następna",
+          "last": "Ostatnia"
+        },
+        "aria": {
+          "sortAscending": ": aktywuj, by posortować kolumnę rosnąco",
+          "sortDescending": ": aktywuj, by posortować kolumnę malejąco"
+        }}
+    }).draw();
+  });
+
+</script>

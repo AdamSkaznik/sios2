@@ -1,0 +1,10 @@
+/*!
+ * Copyright (c) 2023. Adam Skaźnik for SOL PPL Chopin Airport
+ * All rights reserved.
+ */
+
+// Screen Readers
+// -------------------------
+
+.sr-only { @include sr-only(); }
+.sr-only-focusable { @include sr-only-focusable(); }

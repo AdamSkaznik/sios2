@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" xmlns:sd="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.w3.org/1999/xhtml"
+      th:replace="~{/fragments/layout::layout(~{::.container-fluid})}">
+<head>
+    <meta charset="UTF-8">
+    <!--    <title>Title</title>-->
+</head>
+<body>
+<div class="container-fluid" style="padding-top: 10px">
+<!--    <input th:value="${session.mess}" id="mess" hidden>-->
+<!--    <input th:value="${session.tick}" id="tick" hidden>-->
+    <div sec:authorize="isAuthenticated()" style="padding-bottom: 5px">
+        <a href="#" class="btn btn-success"><span class="fa-solid fa-plus-circle"></span> Nowy komunikat </a>
+    </div>
+    <div class="container" id="komunikat" style="padding-bottom: 5px"></div>
+    <table id="glowna" class="table table-striped table-bordered table-responsive">
+        <thead>
+        <tr>
+            <th>Lp</th>
+            <th>Nazwa szpitala</th>
+            <th>Nazwa oddziału</th>
+            <th>Miejscowość</th>
+            <th>Ogólna ilość łóżek</th>
+            <th>Ilość wolnych łóżek</th>
+            <th>Ilość łóżek w rezerwacji</th>
+            <th>Data i czas aktualizacji</th>
+            <th>Akcje</th>
+        </tr>
+        </thead>
+    </table>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+    $(document).ready(function (){
+        // new DataTable('#glowna');
+        let table = $('#glowna').DataTable({
+            "bAutoWidth": true,
+            "sAjaxSource" : "/api/users/v1",
+            "sAjaxDataProp": "",
+            "aoColumns": [
+                {"mData": "id"},
+                {"mData": "active"},
+                {"mData": "email"},
+                {"mData": "name"},
+                {"mData": "password"},
+                {"mData": "userName"},
+                {"mData": null},
+                {"mData": null},
+                {"mData": null},// {"mData": null},
+                // {"mData": null},
+                // {"mData": null},
+
+            ],
+            "columnDefs": [
+                {"orderable": false, "targets": 0},
+                {"orderable": false, "targets": 8}
+            ],
+            "language": {
+                "processing": "Przetwarzanie...",
+                "search": "Szukaj:",
+                "lengthMenu": "Pokaż _MENU_ pozycji",
+                "info": "Pozycje od _START_ do _END_ z _TOTAL_ łącznie",
+                "infoEmpty": "Pozycji 0 z 0 dostępnych",
+                "infoFiltered": "(filtrowanie spośród _MAX_ dostępnych pozycji)",
+                "infoPostFix": "",
+                "loadingRecords": "Wczytywanie...",
+                "zeroRecords": "Nie znaleziono pasujących pozycji",
+                "emptyTable": "Nie znaleziono rekordów",
+                "paginate": {
+                    "first": "Pierwsza",
+                    "previous": "Poprzednia",
+                    "next": "Następna",
+                    "last": "Ostatnia"
+                },
+                "aria": {
+                    "sortAscending": ": aktywuj, by posortować kolumnę rosnąco",
+                    "sortDescending": ": aktywuj, by posortować kolumnę malejąco"
+                }}
+        }).draw();
+    })
+</script>

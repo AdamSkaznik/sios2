@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+<!--    <title>Title</title>-->
+</head>
+<body>
+<!--<h3> Tutaj będą szczegóły (jeszcze nie wiem jakie)....</h3>-->
+<div class="card" th:object="${hospitalReport}" method="GET">
+    <div class="card-body">
+        <table class="table table-bordered">
+            <tr>
+                <td colspan="2">Dane główne</td>
+            </tr>
+            <tr>
+                <td> Nazwa placówki</td>
+                <td><td><span style="color: #0c0c0c; font-weight: bold" th:text="*{hospitalConfig.hospitalConfigId}"></span></td>
+            </tr>
+<!--            <tr>-->
+<!--                <td> Adres placówki</td>-->
+<!--                <td><td><span style="color: #0c0c0c; font-weight: bold" th:text="*{hospital}"></span></td>-->
+<!--            </tr>-->
+        </table>
+    </div>
+</div>
+</body>
+</html>

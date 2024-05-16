@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Title</title>-->
+</head>
+<body>
+<div class="card">
+    <div class="card-header">Dodanie konfiguracji oddziału</div>
+    <div class="card-body">
+        <form class="form" th:object="${hospitalConfig}" th:action="@{/hospital/saveHospitalConfig}" method="post">
+            <div class="panel panel-danger">
+                <div class="panel-body">
+                    <div class="col-sm-12">
+                        <label>Ilość deklarowanych łóżek na Oddziele</label>
+                        <input type="text" inputmode="numeric" class="form-control" id="1">
+                    </div>
+                    <div class="col-sm-12">
+                        <label>Ilość łóżek zarezerowanych przez Kierownictwo (OIOM, Oper.)</label>
+                        <input type="number" class="form-control" >
+                    </div>
+                    <div class="col-sm-12">
+                        <label>Dodatkowe informacje</label>
+                        <textarea class="form-control" rows="5"></textarea>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div>
+        <button type="submit" id="save" class="btn btn-primary pull-right" style="margin-left: 10px; margin-right: 10px; margin-top: 10px"><i class="fa-solid fa-save"></i> Zapisz </button>
+        <button type="button" class="btn btn-danger pull-right" style="margin-top: 10px" formnovalidate onclick="location.href='/hospital/hospitalConfig'"><i class="fa-solid fa-remove"></i> Anuluj</button>
+    </div>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+    // function onlyNumber(id){
+    //     var DataVal = document.getElementById(id).value;
+    //     document.getElementById(id).value = DataVal.replace(/[^0-9]/g,'');
+    // }
+    // $('#d1').keypress(function (){
+    //     return (/[0123456789,.]/.test(String.fromCharCode(Event.which) ))
+    // })
+    // $('#d1').keypress(function (evt){
+    //     var theEvent = evt || window.event;
+    //     var key = theEvent.keyCode || theEvent.which;
+    //     key = String.fromCharCode( key );
+    //     var regex = /[-\d\.]/; // dowolna liczba (+- ,.) :)
+    //     var objRegex = /^-?\d*[\.]?\d*$/;
+    //     var val = $(evt.target).val();
+    //     if(!regex.test(key) || !objRegex.test(val+key) ||
+    //         !theEvent.keyCode == 46 || !theEvent.keyCode == 8) {
+    //         theEvent.returnValue = false;
+    //         if(theEvent.preventDefault) theEvent.preventDefault();
+    //     };
+    // });
+    // function validate(evt) {
+    //     var theEvent = evt || window.event;
+    //
+    //     // Handle paste
+    //     if (theEvent.type === 'paste') {
+    //         key = event.clipboardData.getData('text/plain');
+    //     } else {
+    //         // Handle key press
+    //         var key = theEvent.keyCode || theEvent.which;
+    //         key = String.fromCharCode(key);
+    //     }
+    //     var regex = /[0-9]|\.|\-/;
+    //     if( !regex.test(key) ) {
+    //         theEvent.returnValue = false;
+    //         if(theEvent.preventDefault) theEvent.preventDefault();
+    //     }
+    // }
+</script>

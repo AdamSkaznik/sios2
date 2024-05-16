@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<link href="https://nightly.datatables.net/css/jquery.dataTables.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="/srb/css/bootstrap.css">
+<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="https://nightly.datatables.net/js/jquery.dataTables.js"></script>
+<script src="/srb/js/bootstrap.js"></script>
+<body>
+<h4> Test</h4>
+<br>
+<div class="container-fluid">
+    <button id="get-selected">Get checked rows</button><br>
+    <input type="checkbox" name='select-all' value="checks">Select All<br>
+<!--    <input type="checkbox" name='select-col' value="col0">Select All Col0<br>-->
+<!--    <input type="checkbox" name='select-col' value="col1">Select All Col1<br>-->
+    <table id="example" class="table table-bordered table-striped" width="100%">
+        <thead>
+        <tr>
+            <th></th>
+            <th>ID</th>
+            <th>Powiat</th>
+            <th>Szpital</th>
+        </tr>
+        </thead>
+    </table>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+    $(document).ready(function() {
+        let table = $('#example').DataTable( {
+            "bAutoWidth": true,
+            "sAjaxSource" : "/api/hospitalChoice/v1",
+            "sAjaxDataProp": "",
+            "aoColumns": [
+                {"mData": null,
+                "defaultContent": '<input type="checkbox" name="chkbx" value="col0">',
+                "className" : 'checks col0'
+                },
+                {"mData": "hospitalId",
+                "visible": false},
+                // {"mData": null,
+                //     "defaultContent": '<input type="checkbox" name="chkbx" value="col1">',
+                //     "className" : 'checks col1'
+                // },
+                {"mData": "powiat",
+                    "visible": false},
+                {"mData": "szpital"},
+            ]
+        });
+        // Return checked checkboxes from an array of checkboxes
+        function checkedTargets(checkboxes) {
+            return checkboxes.filter(function (index) {
+                return $(checkboxes[index]).prop('checked');
+            });
+        }
+
+        // Return checked checkboxes from an array of table cells
+        function checkedCells(cells) {
+            return cells.filter(function (cell) {
+                // Get array of checkboxes from the cell and find the checked checkboxes
+                return checkedTargets($(cell).find('input[type=checkbox]')).length;
+            })
+        }
+
+        // Check or uncheck all checkboxes in columnSelector column(s)
+        function checkAll(columnSelector, checked) {
+            table.cells(null, columnSelector).every( function () {
+                var cell = this.node();
+                $(cell).find('input[type=checkbox][name=chkbx]').prop('checked', checked);
+            } );
+        }
+
+        $('#get-selected').on('click', function () {
+            // Get rows with checked checkboxes
+            var rows = table
+                .rows( function ( idx, data, node ) {
+                    // Get all the checkboxes in the row
+                    var cells = $(node).find('input[type="checkbox"]');
+                    // Keep the rows with checked checkboxes
+                    return checkedTargets(cells).length;
+                } );
+
+            // Get the row's `id` object
+            var rowIds = rows.data().pluck('hospitalId').toArray();
+            console.log(rowIds);
+        });
+
+
+
+        // Process select all
+        $('input[name=select-all]').on('click', function (e) {
+
+            var checked = $(this).prop('checked');
+            var className = '.' + $(this).val();
+
+            // Set Select All Col checkboxes to appropriate state
+            $('input[name=select-col]').prop('checked', checked);
+            $('input[name=select-col]').prop('indeterminate', false);
+
+            checkAll(className, checked);
+        });
+
+        // Process select all column
+        $('input[name=select-col]').on('click', function (e) {
+
+            var checked = $(this).prop('checked');
+            var col = $(this).val();
+            var className = '.' + col;
+
+            // Are both select-all-col checkboxes checked = all chekcboxes in table checked
+            var allColChecked = checkedTargets($('input[name=select-col]')).length === 2;
+
+            // Set Select All and Select All Col checkboxes to appropriate state.
+            $('input[name=select-all][value=checks]').prop('checked', allColChecked);
+            $('input[name=select-col][value=' + col + ']').prop('indeterminate', false);
+
+            checkAll(className, checked);
+        });
+
+
+        // Set intermediate state
+
+
+        $('#example').on('click', 'input[type=checkbox][name=chkbx]', function () {
+
+            var col = $(this).val();
+            var cells = table.cells(null, '.' + col).nodes();  // Get cell nodes for column
+            var numChecked = checkedCells(cells).length;  // Get number of checked checkboxes
+            var checkbox = $('input[name=select-col][value=' + col + ']');  // Get select-all-col checkbox
+
+            if (numChecked === 0) {  // Nothing checked
+                checkbox.prop('checked', false);
+                checkbox.prop('indeterminate', false);
+            } else if ( numChecked === table.rows().count() ) {  // All rows checked
+                checkbox.prop('checked', true);
+                checkbox.prop('indeterminate', false);
+            } else {  // Some rows checked
+                checkbox.prop('indeterminate', true);
+            }
+
+        })
+
+    } );
+
+</script>

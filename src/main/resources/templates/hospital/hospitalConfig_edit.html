@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Title</title>-->
+</head>
+<body>
+<div class="card">
+    <div class="card-header">Edycja oddziału</div>
+    <div class="card-body">
+        <form class="form" th:object="${hospitalConfig}" th:action="@{/hospital/updateHospitalConfig}" method="post">
+            <div class="panel panel-danger">
+                <div class="panel-body">
+                    <div class="col-sm-12">
+                        <label>Ilość deklarowanych łóżek na Oddziele</label>
+                        <input type="number" class="form-control" th:field="*{}">
+                    </div>
+                    <div class="col-sm-12">
+                        <label>Ilość łóżek zarezerowanych przez Kierownictwo (OIOM, Oper.)</label>
+                        <input type="number" class="form-control" th:field="*{}">
+                    </div>
+                    <div class="col-sm-12">
+                        <label>Dodatkowe informacje</label>
+                        <textarea class="form-control" rows="5"></textarea>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

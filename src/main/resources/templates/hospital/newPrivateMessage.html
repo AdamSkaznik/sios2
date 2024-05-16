@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script th:src="@{/srb/js/moment.js}"></script>
+</head>
+<body>
+<div class="container">
+    <div class="panel panel-info">
+        <div class="panel-heading"> Nowa prywatna wiadomość</div>
+        <div class="panel-body">
+            <form class="form" th:object="${privateMessage}" th:action="@{'/restrict/read'}">
+                <table class="table table-striped table-bordered">
+                    <tr>
+                        <td><label>Wiadomość utworzona przez: </label></td>
+                        <td><span style="color: #0d6efd" th:text="test"></span> </td>
+                    </tr>
+                    <tr>
+                        <td><label> Temat wiadmości</label></td>
+                        <td><span style="color: red" th:text="*{title}"></span></td>
+                    </tr>
+                    <tr>
+                        <td><label> Data utworzenia</label></td>
+<!--                        <td> <span style="color: darkblue; font-weight: bold" th:text="*{#temporals.format(addDate, 'yyyy-MM-dd HH:mm:ss')}"></span></td>-->
+                        <td> <span style="color: darkblue; font-weight: bold" th:text="*{addDate}"></span></td>
+                    </tr>
+                    <tr>
+                        <td><label> Treść wiadomości :</label></td>
+                        <td><textarea class="form-control" style="resize: none" rows="5" th:text="*{content}"></textarea></td>
+                    </tr>
+                </table>
+                <input th:field="*{privateMessageId}">
+                <center><button class="btn btn-primary" type="submit">Przeczytano</button></center>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

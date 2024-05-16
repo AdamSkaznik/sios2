@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+<!--    <title>Title</title>-->
+</head>
+<body>
+<nav th:fragment="navbar" class="navbar navbar-fixed-top" style="background-color: #454545; color: white">
+  <div class="container-fluid">
+    <ul class="navbar navbar-nav" style="padding-left: 20px">
+      <table>
+        <tr>
+          <td> Jesteś zalogowany jako:</td>
+        </tr>
+        <tr>
+          <td>
+            <b><center><span style="justify-content: center" th:text="${#authentication.getPrincipal().getUsername()}"></span></center></b>
+          </td>
+        </tr>
+      </table>
+    </ul>
+    <div> PANEL ADMINA</div>
+    <ul class="nav navbar-nav">
+      <li>
+        <a href="/admin/hospitalCounty" th:href="@{/admin/hospitalCounty}" style="color: #0c0c0c"><span class="fa-solid fa-keyboard-o"></span> Powiaty </a>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav">
+      <li>
+        <a href="/admin/hospitalCategory" th:href="@{/admin/hospitalCategory}" style="color: #0c0c0c"><span class="fa-solid fa-keyboard-o"></span> Kategorie szpitali </a>
+      </li>
+      <li>
+        <a href="/hospital/address">
+          <button class="btn btn-primary" style="background-color: transparent"><i class="fa-solid fa-home"></i> Adres </button> </a>
+      </li>
+    </ul>
+<!--    <ul class="nav navbar-nav">-->
+<!--      <li><a href="/admin/hospitalCounty" th:href="@{/admin/hospitalCounty}" style="color: #0c0c0c"><span class="fa-solid fa-keyboard-o"></span> Powiaty </a></li>-->
+<!--    </ul>-->
+    <ul class="nav navbar-nav navbar-right" style="padding-right: 20px">
+      <li><a href="#" th:href="@{../logout}" style="color: #0c0c0c"><span class="fa-solid fa-right-from-bracket" style="color: #0c0c0c"></span> Wyloguj </a> </li>
+    </ul>
+  </div>
+</nav>
+</body>
+</html>

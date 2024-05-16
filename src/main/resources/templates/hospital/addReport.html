@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" xmlns:sd="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.w3.org/1999/xhtml"
+      th:replace="~{/hospital/fragments/layout2::layout(~{::.container-fluid})}">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<div class="container-fluid" style="padding-top: 70px">
+<!--<div class="container-fluid pull-right">-->
+<!--    <button class="btn btn-info"> Powrót</button>-->
+<!--</div>-->
+<!--  <form th:action="@{/hospital/saveReport}" th:object="${hospitalReport}">-->
+<!--  <form>-->
+      <div class="panel">
+          <div class="panel-heading"> Nowy raport</div>
+          <div class="panel-body">
+<!--              <div class="col-sm-12">-->
+<!--                  <label for="branchName"> Nazwa Oddziału</label>-->
+<!--                  <select class="form-control" id="branchName" name="branchName" placeholder="Wybierz Oddział z listy"></select>-->
+<!--                  <input type="text" id="branchdId" name="branchId" hidden>-->
+<!--              </div>-->
+              <br>
+              <table class="table table-bordered table-striped">
+                  <tr>
+                      <th> Nazwa Oddziału</th>
+                      <th> Stan na godzinę 06:00</th>
+                      <th> Stan na godzinę 14:00</th>
+                      <th> Stan na godzinę 22:00</th>
+                  </tr>
+                  <tr th:each="branch : ${branches}">
+                      <td th:text="${branch.name}"></td>
+                       <td><input class="stan1"></td>
+<!--                      <td><input id="stan2"></td>-->
+                      <td><input class="stan2"></td>
+                      <td><input id="stan3" class="stan3"></td>
+                  </tr>
+              </table>
+<!--              <div class="col-sm-4">-->
+<!--                  <label for="stan1"> Stan na godzinę 06:00</label>-->
+<!--                  <input type="text" id="stan1" name="stan1">-->
+<!--              </div>-->
+<!--              <div class="col-sm-4">-->
+<!--                  <label for="stan2"> Stan na godzinę 14:00</label>-->
+<!--                  <input type="text" id="stan2">-->
+<!--              </div>-->
+<!--              <div class="col-sm-4">-->
+<!--                  <label for="stan3"> Stan na godzinę 22:00</label>-->
+<!--                  <input type="text" id="stan3">-->
+<!--              </div>-->
+          </div>
+      </div>
+<!--  </form>-->
+</div>
+</body>
+</html>
+<script type="text/javascript">
+    // window.onload = function newReport();
+    document.addEventListener("DOMContentLoaded", newReport);
+    function newReport(){
+        const now = new Date();
+        let hour = now.getHours().toString();
+        let min = now.getMinutes().toString();
+        let sec = now.getSeconds().toString();
+         let stan1_input = document.getElementsByClassName(".stan1")
+        // let stan1_input = document.getElementsByName('stan1');
+        // let stan2_input = document.getElementById("stan2");
+        let stan2_input = document.getElementsByClassName(".stan2");
+        // let stan3_input = document.getElementById("stan3");
+        let stan3_input = document.getElementsByClassName(".stan3");
+        console.log("Hour : " + hour);
+        console.log("Min: " + min);
+        if(hour >= 0 && hour <=9){
+            hour = 0+hour;
+        }
+        if(min >=0 && min <=9){
+            min = 0+min;
+        }
+        if(sec >= 0 && sec <= 9){
+            sec = 0 + sec;
+        }
+        let testTime = hour+":"+min+":"+sec;
+        console.log("testTime: " + testTime );
+        let blocked = null;
+        if ((testTime  >= '22:00:01') && (testTime <= '06:00:00')){
+          blocked = 1;
+          stan2_input.readOnly = true;
+          stan2_input.style.backgroundColor = "#d3d3d3";
+          stan3_input.readOnly = true;
+          stan3_input.style.backgroundColor = "#d3d3d3";
+          // document.getElementById("stan2").readOnly = true;
+          // document.getElementById("stan3").readOnly = true;
+        }
+        if ((testTime  >= '06:00:01') && (testTime <= '14:00:00')){
+            blocked = 2;
+            stan1_input.readOnly = true;
+            stan1_input.style.backgroundColor = "grey";
+            stan3_input.readOnly = true;
+            stan3_input.style.backgroundColor = "grey";
+            // document.getElementById("stan1").readOnly = true;
+            // document.getElementById("stan3").readOnly = true;
+        }
+        if ((testTime  >= '14:00:01') && (testTime <= '22:00:00')){
+            blocked = 3;
+            stan1_input.readOnly = true;
+            stan1_input.style.backgroundColor = "grey";
+            stan2_input.readOnly = true;
+            stan3_input.style.backgroundColor = "grey";
+            // document.getElementById("stan1").readOnly = true;
+            // document.getElementById("stan2").readOnly = true;
+        }
+        console.log("Blocked wynosi: " + blocked);
+    };
+    // $(function (){
+    //     $('#branchName').select2({
+    //         language: "pl",
+    //         placeholder: "Wybierz...",
+    //         theme: "bootstrap4",
+    //         selectionCssClass: "form-control",
+    //         ajax: {
+    //             url: "/api/hospitalConfig/search/v1",
+    //             dataType: 'json',
+    //             type: 'GET',
+    //             data: function (params){
+    //                 console.log(params)
+    //                 return {
+    //                     term: params.term,
+    //                     page: params.page || 1,
+    //                 }
+    //             },
+    //             processResults(data) {
+    //                 console.log(data)
+    //                 return {
+    //                     results: $.map(data, function (item){
+    //                         return {
+    //                             text: item.name,
+    //                             id: item.branchId,
+    //                         }
+    //                     })
+    //                 }
+    //             }
+    //         }
+    //     })
+    // });
+    // $('#branchName').on('change', function (){
+    //     $('#branchdId').val($(this).val());
+    // });
+
+
+</script>

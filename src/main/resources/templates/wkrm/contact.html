@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<!--    <title>Title</title>-->
+</head>
+<body>
+<!--<h4> Tutaj będą dane kontaktowe do Kierownictwa Oddziału i szpitala</h4>-->
+<div class="card" th:object="${hospitalConfig}" method="GET">
+    <div class="card-body">
+        <table class="table table-bordered">
+            <tr>
+                <td>Nazwa placówki:</td>
+                <td><span style="color: #0c0c0c; font-weight: bold" th:text="*{hospital.name}"></span></td>
+            </tr>
+            <tr>
+                <td>Adres:</td>
+                <td><span style="color: #0c0c0c; font-weight: bold" th:text="*{hospital.address.postCode} +' '+ *{hospital.address.city} + ', ' + *{hospital.address.street} + ' ' + *{hospital.address.number}"></span></td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: center; font-weight: bold">Kontakt do szpitala:</td>
+            </tr>
+            <tr>
+                <td>Telefon</td>
+               <td ><span style="color: #0c0c0c; font-weight: bold" th:text="*{hospital.phone}"></span></td>
+            </tr>
+            <tr>
+               <td> Fax</td>
+               <td ><span style="color: #0c0c0c; font-weight: bold" th:text="*{hospital.fax}"></span></td>
+            </tr>
+            <tr>
+                <td>Dane kontaktowe - Dyrekcja</td>
+                <td ><span style="color: #0c0c0c; font-weight: bold" th:text="*{hospital.managments}"></span></td>
+            </tr>
+            <tr><td colspan="2" style="text-align: center; font-weight: bold"> Dane Oddziału</td></tr>
+            <tr>
+                <td>Nazwa Oddziału</td>
+                <td ><span style="color: #0c0c0c; font-weight: bold" th:text="*{branch.name}"></span></td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: center; font-weight: bold">Kontakt - Oddział:</td>
+            </tr>
+            <tr>
+                <td>Telefon</td>
+                <td ><span style="color: #0c0c0c; font-weight: bold" th:text="*{branch.phone}"></span></td>
+            </tr>
+            <tr>
+                <td> Fax</td>
+                <td ><span style="color: #0c0c0c; font-weight: bold" th:text="*{branch.fax}"></span></td>
+            </tr>
+            <tr>
+                <td> Adres e-mail</td>
+                <td ><span style="color: #0c0c0c; font-weight: bold" th:text="*{branch.email}"></span></td>
+            </tr>
+            <tr>
+                <td> Dodatkowe informacje</td>
+                <td ><span style="color: #0c0c0c; font-weight: bold" th:text="*{branch.branchDescription}"></span></td>
+            </tr>
+        </table>
+<!--        <div><br><br></div>-->
+<!--        <br><br>-->
+<!--        <div class="pull-right">-->
+<!--            <button class="btn btn-danger"><i class="fa-solid fa-close"></i> Zamknij </button>-->
+<!--        </div>-->
+<!--        <button class="btn btn-danger pull-right"><i class="fa-solid fa-close"></i> Zamknij </button>-->
+    </div>
+<!--    <div class="pull-right">-->
+<!--        <button class="btn btn-danger"><i class="fa-solid fa-close"></i> Zamknij </button>-->
+<!--    </div>-->
+</div>
+</body>
+</html>

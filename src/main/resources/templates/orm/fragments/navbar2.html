@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <!--    <title>Title</title>-->
+</head>
+<body>
+<nav th:fragment="navbar2" class="navbar navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="container-fluid" style="background-color: #2F8D46; padding-top: 5px">
+      <table>
+        <tr>
+          <td rowspan="3"><img src="/images/ratownictwo_logo.png" width="100" height="100"></td>
+        </tr>
+        <tr>
+          <td><h1 style="color: whitesmoke">System informacji o szpitalach v2</h1></td>
+        </tr>
+        <tr>
+          <td><h5 style="color: whitesmoke">Oddział Ratownictwa Medycznego</h5></td>
+
+        </tr>
+      </table>
+    </div>
+    <div class="container-fluid" style="background-color: #4E6CA3; height: 40px">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="col-sm-1">
+            <img src="/images/user.png" width="24" height="24" style="padding-top: 7px">
+          </div>
+          <div class="col-sm-3" style="padding-top: 10px; padding-left: 1px">
+            <span style="font-weight: bold">Jesteś zalogowany jako:</span>
+          </div>
+          <div class="col-sm" style="padding-top: 10px; padding-left: 3px">
+            <span style="font-weight: bold; color: #761c19" th:text="${#authentication.getPrincipal().getUsername()}"></span>
+          </div>
+        </div>
+        <div class="pull-right" style="padding-top: 3px">
+          <a th:href="@{/logout}">
+            <button class="btn btn-danger"><i class="fa-solid fa-sign-out-alt"></i> Wyloguj </button>
+          </a>
+        </div>
+      </div>
+      <div class="row" style="padding-top: 10px;">
+        <div class="container-fluid pull-right" style="padding-right: 5px">
+          <button class="btn btn-info"><i class="fa-solid fa-refresh"></i> Powrót</button>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</nav>
+</body>
+</html>

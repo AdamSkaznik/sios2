@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Title</title>-->
+  <link rel="stylesheet" href="/srb/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/srb/css/bootstrap.css">
+  <link rel="stylesheet" href="/datepicker/css/datepicker.css">
+  <link rel="stylesheet" href="/srb/css/datatables.css">
+  <link rel="stylesheet" href="/srb/css/fixedColumns.dataTables.css">
+  <link rel="stylesheet" href="/srb/css/select.dataTables.css">
+  <script src="/srb/js/jquery-3.6.0.js"></script>
+  <script src="/srb/js/bootstrap.js"></script>
+  <script src="/tinymce/js/tinymce/tinymce.min.js"></script>
+  <script src="/datepicker/js/bootstrap-datepicker.js"></script>
+  <script src="/datepicker/js/locales/bootstrap-datepicker.pl.js"></script>
+  <script src="/srb/js/datatables.js"></script>
+  <script src="/srb/js/dataTables.fixedColumns.js"></script>
+  <script src="/srb/js/fixedColumns.dataTables.js"></script>
+  <script src="/srb/js/dataTables.select.js"></script>
+  <script src="/srb/js/select.dataTables.js"></script>
+</head>
+<body>
+<!--<div class="panel panel-default">-->
+<!--  <div class="panel panel-heading"> Nowy komunikat</div>-->
+<!--  <div class="panel panel-body">-->
+<table style="width: 100%; table-layout: fixed; padding-left: 10px; padding-right: 10px; padding-bottom: 5px" border="2px solid black">
+    <tbody>
+    <tr>
+    <td style="width: 30%; font-weight: bold; padding-left: 15px">Data komunikatu:</td>
+    <td>
+      <div class="input-group date" data-provide="datepicker" style="width: 200px; padding-left: 10px; padding-top: 5px; padding-bottom: 5px">
+        <input type="text" class="form-control" id="dateStart">
+        <div class="input-group-addon">
+          <span class="glyphicon glyphicon-calendar"></span>
+        </div>
+      </div>
+    </td>
+    </tr>
+  <tr>
+    <td style="width: 30%; font-weight: bold">Komunikat aktywny do:</td>
+    <td>
+      <div class="input-group date" data-provide="datepicker" style="width: 200px; padding-left: 10px; padding-top: 5px; padding-bottom: 5px">
+        <input type="text" class="form-control" id="dateEnd">
+        <div class="input-group-addon">
+          <span class="glyphicon glyphicon-calendar"></span>
+        </div>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <td style="width: 30%; font-weight: bold"> Tytuł</td>
+    <td style="padding-bottom: 10px; padding-left: 5px; padding-right: 5px; padding-top: 10px"><input class="form-control" type="text" style="padding-left: 10px; padding-top: 5px; padding-bottom: 5px"></td>
+  </tr>
+  <tr>
+    <td style="width: 30px; font-weight: bold"> Treść wiadomości</td>
+    <td style="padding-bottom: 10px; padding-left: 5px; padding-right: 5px; padding-top: 10px"><textarea id="myTextArea" style="padding-left: 10px; padding-top: 5px; padding-bottom: 5px"></textarea></td>
+  </tr>
+<!--  <tr>-->
+<!--    <td style="width: 30px; font-weight: bold"> Typ komunikatu</td>-->
+<!--    <td>-->
+<!--      <img src="/images/info.png" style="width: 24px; height: 24px"> &nbsp;<input type="radio"> Komunikat informacyjny, ogólny-->
+<!--      <br>-->
+<!--      <img src="/images/warning.png" style="width: 24px; height: 24px"> &nbsp;<input type="radio"> Komunikat ważny, pilny-->
+
+<!--    </td>-->
+<!--  </tr>-->
+  <tr>
+    <td style="width: 30px; font-weight: bold"> Szpitale</td>
+    <td>
+      <table id="glowna">
+        <thead>
+        <tr>
+          <th></th>
+          <th>Powiat</th>
+          <th>Nazwa szpitala</th>
+          <th>Nazwa oddziału</th>
+        </tr>
+        </thead>
+      </table>
+
+    </td>
+  </tr>
+  <tr>
+    <td style="width: 30px; font-weight: bold"> Pliki</td>
+    <td style="padding-bottom: 10px; padding-left: 5px; padding-right: 5px; padding-top: 10px">
+      <form
+              id="uploadForm"
+              method="post"
+              th:action="@{/restrict/files/upload}"
+              enctype="multipart/form-data">
+        <input id="input-file" type="file" name="file" class="btn btn-primary" />
+        <textarea rows="5" name="fileDescription"></textarea>
+        <br>
+        <button class="btn btn-sm btn-outline-success float-right" type="submit">
+          Upload
+        </button>
+      </form>
+
+      <button type="file" class="btn btn-primary"><span class="glyphicon glyphicon-plus-sign"></span> Dodaj plik</button>
+      <br>
+      <br>
+      <textarea class="form-control" id="files" readonly style="resize: none"></textarea>
+      <br>
+    </td>
+  </tr>
+
+    </tbody>
+<!--  </tr>-->
+
+</table>
+<!--  </div>-->
+<!--</div>-->
+</body>
+</html>
+<script type="text/javascript">
+  tinymce.init({
+    selector: '#myTextArea',
+    language: 'pl',
+    width: 600,
+    height: 350,
+    paddingTop: 10,
+    plugins: [
+      'advlist', 'autolink', 'link', 'image', 'lists', 'charmap', 'preview', 'anchor', 'pagebreak',
+      'searchreplace', 'wordcount', 'visualblocks', 'visualchars', 'code', 'fullscreen', 'insertdatetime',
+      'media', 'table', 'emoticons', 'help'
+    ],
+    toolbar: 'source code | undo redo | styles | bold italic | alignleft aligncenter alignright alignjustify | ' +
+            'bullist numlist outdent indent | link image  ',
+    menubar: false,
+    statusbar: false
+          // '| print preview media fullscreen | ',
+            // 'forecolor backcolor emoticons | help',
+    // menubar: 'favs file edit view insert format tools table help',
+    // content_css: 'css/content.css'
+  });
+  $(function (){
+    $('#dateStart').datepicker({
+      format: 'yyyy-mm-dd',
+      autoclose: true,
+      language: 'pl',
+      todayHighlight: true
+    }).datepicker('update', new Date());
+  });
+  $(function (){
+    $('#dateEnd').datepicker({
+      format: 'yyyy-mm-dd',
+      autoclose: true,
+      language: 'pl',
+      todayHighlight: true,
+      // defaultViewDate: new Date()+3,
+      startDate: '+3d',
+      // var d = new Date(),
+    }).datepicker('update', new Date()+3);
+  });
+</script>

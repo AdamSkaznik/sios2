@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pl">
+<html xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" th:fragment="layout(content)">
+<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+<head>
+    <meta charset="UTF-8">
+  <title>System Informacji o Szpitalach v2.0</title>
+  <link rel="icon" type="image/x-icon" href="/images/icon.png">
+  <link rel="stylesheet" href="/srb/css/bootstrap.min.css" th:href="@{/srb/css/bootstrap.min.css}">
+  <link rel="stylesheet" href="/srb/css/bootstrap.css" th:href="@{/srb/css/bootstrap.css}">
+  <link rel="stylesheet" href="/srb/css/datatables.bootstrap.min.css" th:href="@{/srb/css/datatables.bootstrap.min.css}">
+  <link rel="stylesheet" href="/srb/css/datatables.css" th:href="@{/srb/css/datatables.css}">
+  <link rel="stylesheet" href="/srb/css/uikit.min.css" th:href="@{/srb/css/uikit.min.css}">
+  <link rel="stylesheet" href="/srb/css/uikit.css" th:href="@{/srb/css/uikit.css}">
+  <link rel="stylesheet" href="/srb/css/select2.css" th:href="@{/srb/css/select2.css}">
+  <link rel="stylesheet" href="/srb/css/bootstrap-datepicker.min.css" th:href="@{/srb/css/bootstrap-datepicker.min.css}">
+  <link rel="stylesheet" href="/webjars/font-awesome/6.5.1/css/all.css" th:href="@{/webjars/font-awesome/6.5.1/css/all.css}">
+  <!--    	<link rel="stylesheet" href="/css/font-awesome.css" th:href="@{/css/font-awesome.css}">-->
+  <!--    	<link rel="stylesheet" href="/css/font-awesome.min.css" th:href="@{/css/font-awesome.min.css}">-->
+  <link rel="stylesheet" href="/srb/css/toastr.min.css" th:href="@{/srb/css/toastr.min.css}">
+  <script th:src="@{/srb/js/uikit.js}"></script>
+  <script th:src="@{/srb/js/uikit-icons.js}"></script>
+  <script th:src="@{/srb/js/jquery-3.6.0.js}"></script>
+  <script th:src="@{/srb/js/datatables.js}"></script>
+  <script th:src="@{/srb/js/dataTables.bootstrap.min.js}"></script>
+  <!--    <script th:src="@{/js/datatables.sum().js}"></script>-->
+  <!--    <script th:src="@{/srb/js/dataTables.bootstrap.min.js}"></script>-->
+  <script th:src="@{/srb/js/bootstrap.js}"></script>
+  <script th:src="@{/srb/js/select2.min.js}"></script>
+  <script th:src="@{/srb/js/typehead.js}"></script>
+  <script th:src="@{/srb/js/i18n/pl.js}"></script>
+  <script th:src="@{/srb/js/bootstrap-datepicker.min.js}"></script>
+  <script th:src="@{/srb/js/i18n/bootstrap-datepicker.pl.min.js}"></script>
+  <!--    <script th:src="@{/srb/js/moment.js}"></script>-->
+  <!--    	<script th:src="@{/js/fontawesome.js}"></script>-->
+  <script th:src="@{/srb/js/toastr.min.js}"></script>
+  <script th:src="@{/srb/js/sweetalert.min.js}"></script>
+  <script src="/webjars/font-awesome/6.5.1/js/fontawesome.min.js" th:src="@{/webjars/font-awesome/6.5.1/js/fontawesome.min.js}"></script>
+</head>
+<body>
+<div>
+  <div th:replace="~{hospital/fragments/navbar::navbar}"></div>
+</div>
+<!--<div class="container-fluid">-->
+<!--  <div th:insert="${messages}"></div>-->
+<!--</div>-->
+<div class="container-fluid">
+  <div class="container-fluid">
+    <div class="row flex-nowrap">
+      <div class="col py-3">
+        <div th:insert="${content}" style="padding-top: 310px;"></div>
+<!--        <h3>Left Sidebar with Submenus</h3>-->
+<!--        <p class="lead">-->
+<!--          An example 2-level sidebar with collasible menu items. The menu functions like an "accordion" where only a single-->
+<!--          menu is be open at a time. While the sidebar itself is not toggle-able, it does responsively shrink in width on smaller screens.</p>-->
+<!--        <ul class="list-unstyled">-->
+<!--          <li><h5>Responsive</h5> shrinks in width, hides text labels and collapses to icons only on mobile</li>-->
+<!--        </ul>-->
+    </div>
+  </div>
+</div>
+<div>
+  <div th:replace="~{hospital/fragments/footer::footer}"></div>
+</div>
+</body>
+</html>

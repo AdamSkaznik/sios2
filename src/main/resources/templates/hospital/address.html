@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Title</title>-->
+</head>
+<body>
+<div class="card" th:object="${address}" method="get">
+    <table class="table table-bordered">
+      <tr>
+          <td> Miasto</td>
+<!--          <td th:text="*{city}"></td>-->
+          <td><input th:value="*{city}" class="form-control"></td>
+      </tr>
+        <tr>
+        <td> Kod pocztowy</td>
+            <td><input th:value="*{postCode}" class="form-control" ></td>
+<!--        <td th:text="*{postCode}"></td>-->
+        </tr>
+        <tr>
+            <td> Ulica</td>
+<!--            <td th:text="*{street}"></td>-->
+            <td><input th:value="*{street}" class="form-control"></td>
+        </tr>
+        <tr>
+            <td> Nr posesji/nr lokalu</td>
+<!--            <td th:text="*{number}"></td>-->
+            <td><input th:value="*{number}" class="form-control"></td>
+        </tr>
+    </table>
+    <div class="form-group">
+        <button type="submit" class="btn btn-danger float-end"> Aktualizuj</button>
+    </div>
+</div>
+</body>
+</html>

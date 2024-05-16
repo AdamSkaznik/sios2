@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>SIOS v2</title>
+    <link rel="icon" type="image/x-icon" href="/images/icon.png">
+    <link rel="stylesheet" href="/srb/css/bootstrap.min.css" th:href="@{/srb/css/bootstrap.min.css}">
+    <link rel="stylesheet" href="/srb/css/bootstrap.css" th:href="@{/srb/css/bootstrap.css}">
+    <link rel="stylesheet" href="/srb/css/datatables.bootstrap.min.css" th:href="@{/srb/css/datatables.bootstrap.min.css}">
+    <link rel="stylesheet" href="/srb/css/datatables.css" th:href="@{/srb/css/datatables.css}">
+<!--    fixed header and footer-->
+<link rel="stylesheet" href="/srb/css/fixedheader.dataTables.css" th:href="@{/srb/css/fixedheader.dataTables.css}">
+    <link rel="stylesheet" href="/srb/css/uikit.min.css" th:href="@{/srb/css/uikit.min.css}">
+    <link rel="stylesheet" href="/srb/css/uikit.css" th:href="@{/srb/css/uikit.css}">
+    <link rel="stylesheet" href="/srb/css/select2.css" th:href="@{/srb/css/select2.css}">
+    <link rel="stylesheet" href="/srb/css/bootstrap-datepicker.min.css" th:href="@{/srb/css/bootstrap-datepicker.min.css}">
+    <link rel="stylesheet" href="/webjars/font-awesome/6.5.1/css/all.css" th:href="@{/webjars/font-awesome/6.5.1/css/all.css}">
+    <!--    	<link rel="stylesheet" href="/css/font-awesome.css" th:href="@{/css/font-awesome.css}">-->
+    <!--    	<link rel="stylesheet" href="/css/font-awesome.min.css" th:href="@{/css/font-awesome.min.css}">-->
+    <link rel="stylesheet" href="/srb/css/toastr.min.css" th:href="@{/srb/css/toastr.min.css}">
+<!--    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.3/css/dataTables.dataTables.css">-->
+    <script th:src="@{/srb/js/uikit.js}"></script>
+    <script th:src="@{/srb/js/uikit-icons.js}"></script>
+    <script th:src="@{/srb/js/jquery-3.6.0.js}"></script>
+    <script th:src="@{/srb/js/datatables.js}"></script>
+    <script th:src="@{/srb/js/dataTables.bootstrap.min.js}"></script>
+<!--    fixed header and footer-->
+    <script src="/srb/js/dataTables.fixedHeader.js" th:src="@{/srb/js/dataTables.fixedHeader.js}"></script>
+<!--    <script th:src="@{/srb/js/dataTables.fixedHeader.js}"></script>-->
+<!--    <script th:src="@{/srb/js/fixedHeader.dataTables.js}"></script>-->
+    <!--    <script th:src="@{/js/datatables.sum().js}"></script>-->
+    <!--    <script th:src="@{/srb/js/dataTables.bootstrap.min.js}"></script>-->
+    <script th:src="@{/srb/js/bootstrap.js}"></script>
+    <script th:src="@{/srb/js/select2.min.js}"></script>
+    <script th:src="@{/srb/js/typehead.js}"></script>
+    <script th:src="@{/srb/js/i18n/pl.js}"></script>
+    <script th:src="@{/srb/js/bootstrap-datepicker.min.js}"></script>
+    <script th:src="@{/srb/js/i18n/bootstrap-datepicker.pl.min.js}"></script>
+        <script th:src="@{/srb/js/moment.js}"></script>
+    <!--    	<script th:src="@{/js/fontawesome.js}"></script>-->
+    <script th:src="@{/srb/js/toastr.min.js}"></script>
+    <script th:src="@{/srb/js/sweetalert.min.js}"></script>
+    <script src="/webjars/font-awesome/6.5.1/js/fontawesome.min.js" th:src="@{/webjars/font-awesome/6.5.1/js/fontawesome.min.js}"></script>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="modal" tabindex="-1" role="dialog" id="modalInfo" >
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Klauzula informacyjna</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="text-align: center">
+                    <p style="font-weight: bold">UWAGA: Podane na niniejszej stronie dane mają charakter informacyjny i
+                        nie mogą stanowić podstawy do przyjęcia lub odmowy przyjęcia na Oddział.</p>
+                    <p style="font-weight: bold">
+                        Za rzetelność oraz aktualizację danych odpowiada
+                    </p>
+                    <p style="font-weight: bold; color: red">Kierownictwo poszczególnych jednostek systemu Państowe
+                        Ratownictwo Medyczne</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+                    <!--                    <button type="button" class="btn btn-primary">Save changes</button>-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav class="navbar navbar-fixed-top" style="background-color: #3adb76; color: whitesmoke">
+        <div class="container-fluid" style="text-align: center">
+            <h3 style="color: whitesmoke; padding-top: 15px">
+                <img src="/images/suw_logo1.png" style="width: 36px; height: 36px">&nbsp;&nbsp;
+                <img src="/images/cpr_logo1.png" style="width: 36px; height: 36px">&nbsp;&nbsp;
+                System Informacji o Szpitalach - SIOS v2
+                &nbsp;&nbsp;
+                <img src="/images/NFZ_logo.png" style="width: 36px; height: 36px">&nbsp;&nbsp;
+                <img src="/images/ratownictwo_logo.png" style="width: 36px; height: 36px">
+                <a href="login" class="navbar navbar-nav navbar-right" style="padding-right: 20px">
+                    <button class="btn btn-primary" style="background-color: transparent"><i
+                            class="fa-solid fa-lock"></i> Zaloguj
+                    </button>
+                </a>
+            </h3>
+        </div>
+
+    </nav>
+    <br>
+    <br>
+    <br>
+    <br>
+<!--    <div class="container" style="align-content: center; text-align: center">-->
+<!--        <button class="btn btn-primary"><i class="fa-solid fa-map"></i> Powiat</button>-->
+<!--        &nbsp;&nbsp;-->
+<!--        <button class="btn btn-primary"><i class="fa-solid fa-stamp"></i> Nazwa oddziału</button>-->
+<!--        &nbsp;&nbsp;-->
+<!--        <button class="btn btn-primary"><i class="fa-solid fa-times"></i> Daty aktualizacji</button>-->
+<!--    </div>-->
+        <header style="text-align: center; font-weight: bold; color: red; font-size: 1.17em">
+            UWAGA: Podane poniżej dane mają charakter informacyjny i nie mogą stanowić podstawy do przyjęcia lub odmowy przyjęcia na Oddział.
+        </header>
+<!--    <table id="glowna" class="table table-striped table-bordered table-responsive">-->
+    <table id="glowna" class="table table-bordered table-responsive">
+        <thead>
+        <tr>
+            <th>Lp</th>
+            <th> Powiat</th>
+            <th>Nazwa szpitala</th>
+            <th>Nazwa oddziału</th>
+            <th>Stan na godz. 6:00</th>
+            <th>Stan na godz. 14:00</th>
+            <th>Stan na godz. 22:00</th>
+            <th>Czas aktualizacji</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <th>Lp</th>
+            <th> Powiat</th>
+            <th>Nazwa szpitala</th>
+            <th>Nazwa oddziału</th>
+            <th>Stan na godz. 6:00</th>
+            <th>Stan na godz. 14:00</th>
+            <th>Stan na godz. 22:00</th>
+            <th>Czas aktualizacji</th>
+        </tr>
+        </tfoot>
+    </table>
+<br><br>
+    <footer class="footer uk-position-bottom uk-position-fixed uk-position-absolute sticky-bottom"
+            style="background-color: #3adb76; color: whitesmoke; z-index: 999;">
+        <center>
+            <table>
+                <td> System Informacji o Szpitalach - SIOS v2</td>
+                <td> &nbsp; &nbsp;Copyright: &copy; 2024 Śląski Urząd Wojewódzki.</td>
+                <td style="color: red">&nbsp;&nbsp; All right's reserved!</td>
+                <td>&nbsp;&nbsp; Administratorem danych jest Śląski Urząd Wojewódzki w Katowicach</td>
+            </table>
+        </center>
+    </footer>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+    $(document).ready(function (){
+        // new DataTable('#glowna');
+        let table = $('#glowna').DataTable({
+            "bAutoWidth": true,
+            "sAjaxSource" : "/unsecured/api/view/v1",
+            "sAjaxDataProp": "",
+            "aoColumns": [
+                {"mData": "report_id"},
+                {"mData": "powiat"},
+                {"mData": "szpital"},
+                {"mData": "oddzial"},
+                {"mData": "statea_1"},
+                {"mData": "stateb_1"},
+                {"mData": "statec_1"},
+                {"mData": "update_date"},
+                // {"mData": null},
+                // {"mData": null},// {"mData": null},
+                // {"mData": null},
+                // {"mData": null},
+            ],
+            "order": [
+                [1, 'asc'],
+                [2, 'asc']
+            ],
+            "rowGroup": {
+                 dataSrc: ['powiat', 'szpital']
+            },
+            "columnDefs": [
+                {"orderable": false, "targets": [0,3,4,5,6,7]},
+                {"targets": 7,
+                "render": function (data, type, row, meta){
+                    return moment(data).local().format('YYYY-MM-DD HH:mm:ss');
+                }
+                },
+                {
+                    "targets": [4,5,6],
+                    "render": function(data, type, row){
+                        let a = '';
+                        // let color = 'white';
+                        if (data < 0){
+                          a = '<span style = "color: white; font-weight: bold; ">'+ data +'</span>';
+                        }
+                        if (data >= 0){
+                            // color = 'black';
+                            // a = 'bold';
+                            a = '<span style = "color: black; font-weight: bold; ">'+ data +'</span>';
+                        }
+                        if (data > 2){
+                            // color = "green";
+                            // a = 'bold';
+                            a = '<span style = "color: green; font-weight: bold; ">'+ data +'</span>';
+                        }
+                        if (data == null){
+                            data = "bd"
+                            // color = "red"
+                            // a = '';
+                            a = '<span style = "color: red; ">'+ data +'</span>';
+                        }
+                        return a;
+                    }
+                },
+                {
+                    "targets": [4, 5, 6],
+                    "defaultContent": "BRAK DANYCH"
+                },
+
+
+                // {"targets": 1,
+                // "render": function(data, type, row, meta){
+                //     let a = "powiat " + data;
+                //    return a;
+                // }},
+                 {"visible": false, "targets": [0,1,2]}
+            ],
+            // "rowCallback": function (row, data) {
+            //     if (data[4] < 0){
+            //         $('td:eq[4]', row).css('background-color', Red);
+            //     }
+            // },
+            "fixedHeader": {
+                "header": true,
+                "footer": true,
+                "headerOffset": 65
+            },
+            "language": {
+                "processing": "Przetwarzanie...",
+                "search": "Szukaj:",
+                "lengthMenu": "Pokaż _MENU_ pozycji",
+                "info": "Pozycje od _START_ do _END_ z _TOTAL_ łącznie",
+                "infoEmpty": "Pozycji 0 z 0 dostępnych",
+                "infoFiltered": "(filtrowanie spośród _MAX_ dostępnych pozycji)",
+                "infoPostFix": "",
+                "loadingRecords": "Wczytywanie...",
+                "zeroRecords": "Nie znaleziono pasujących pozycji",
+                "emptyTable": "Nie znaleziono rekordów",
+                "paginate": {
+                    "first": "Pierwsza",
+                    "previous": "Poprzednia",
+                    "next": "Następna",
+                    "last": "Ostatnia"
+                },
+                "aria": {
+                    "sortAscending": ": aktywuj, by posortować kolumnę rosnąco",
+                    "sortDescending": ": aktywuj, by posortować kolumnę malejąco"
+                }}
+        }).draw();
+    });
+
+    $(window).on('load', function () {
+        $('#modalInfo').modal('show');
+    });
+</script>

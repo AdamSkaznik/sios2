@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<!--    <title>Title</title>-->
+<!--    <link rel="stylesheet" href="/srb/css/datatables.css">-->
+    <link rel="stylesheet" href="/datepicker/css/datepicker.css">
+    <link rel="stylesheet" href="/srb/css/fixedColumns.dataTables.css">
+<!--    <link rel="stylesheet" href="/srb/css/select.dataTables.css">-->
+    <script src="/ckeditor/ckeditor.js"></script>
+    <script src="/datepicker/js/bootstrap-datepicker.js"></script>
+    <script src="/datepicker/js/locales/bootstrap-datepicker.pl.js"></script>
+
+</head>
+<body>
+<div class="container">
+    <form>
+    <table class="table table-bordered">
+        <tr>
+            <td>
+<!--                <div>-->
+                <b>Data od:</b><br>
+                <small>w formacie : rrrr-mm-dd</small>
+            </td>
+        <td>
+            <div class="input-group date" data-provide="datepicker" style="width: 200px; padding-left: 10px; padding-top: 5px; padding-bottom: 5px">
+                <input type="text" class="form-control" id="dateStart" data-date-format="yyyy-mm-dd">
+                <div class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </div>
+            </div>
+<!--            <div class="form-group mb-4">-->
+<!--                <div class="datepicker date input-group">-->
+<!--                    <input type="text" placeholder="Choose Date" class="form-control" id="dateStart">-->
+<!--                    <div class="input-group-append">-->
+<!--                        <span class="input-group-text"><i class="fa fa-calendar"></i></span>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+            <!-- // Date Picker -->
+        </td>
+        </tr>
+        <tr>
+            <td>
+                <b>Data do:</b><br>
+                <small>w formacie : rrrr-mm-dd</small>
+            </td>
+            <td>
+                <div class="input-group date" data-provide="datepicker" style="width: 200px; padding-left: 10px; padding-top: 5px; padding-bottom: 5px">
+                    <input type="text" class="form-control" id="dateEnd" data-date-format="yyyy-mm-dd">
+                    <div class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td><b>Tytuł</b></td>
+            <td><input class="form-control"></textarea></td>
+        </tr>
+        <tr>
+            <td><b>Treść</b></td>
+            <td > <textarea name="editor1" id="editor1" rows="30" cols="60"></textarea></td>
+        </tr>
+        <tr>
+            <td><b>Szpitale</b></td>
+            <td>
+                <div>
+                    <button id="get-selected"> Pobierz wybrane</button>
+                    <br>
+                    <input id="select-all" type="checkbox">Zaznacz wszystkie
+                    <table id="hospitals" class="table table-bordered table-striped table-responsive" style="width: 100%">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th>ID</th>
+                            <th>Powiat</th>
+                            <th>Nazwa szpitala</th>
+<!--                            <th>Nazwa oddziału</th>-->
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+<!--                            <td></td>-->
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td><b>Dodaj pliki (opcjonalnie)</b></td>
+            <td>
+                <input id="input-file" type="file" name="file" class="btn btn-primary form-control" />
+                <br>
+                Opis pliku (opcjonalny)
+                <br>
+                <textarea class="form-control" rows="2" name="fileDescription"></textarea>
+<!--                <br><br>-->
+<!--                Wybierz plik: <input type="file" name="files" />-->
+            </td>
+        </tr>
+    </table>
+    </form>
+</div>
+<!--<form>-->
+<!--    <textarea name="editor1" id="editor1" rows="30" cols="60"></textarea>-->
+<!--</form>-->
+</body>
+</html>
+<script>
+    CKEDITOR.replace('editor1', {
+        language: 'pl',
+    });
+    $(document).ready(function (){
+        let choiceTable = $('#hospitals').DataTable({
+            "bAutoWidth": true,
+            "sAjaxSource" : "/api/hospitalChoice/v1",
+            "sAjaxDataProp": "",
+            // "select": true,
+            "aoColumns": [
+                // {"mData": "isChecked",
+                    // "class": "cbcell",
+                    // "orderable": false,
+                    // "title": "<input type = 'checkbox' />",
+                    // "render": function (dataItem){
+                    // if(dataItem)
+                    //     return "<input checked type='checkbox' />"
+                    //     else
+                    //         return "<input type='checkbox' />";
+                    // }
+
+                // },
+                {"mData": null,
+                "defaultContent": '<input type="checkbox", name="chkbx", value="col0">',
+                "className": "checks col0"},
+                {"mData": "hospitalId",
+                    "visible": false},
+                {"mData": "powiat",
+                "visible": false},
+                {"mData": "szpital"},
+                // {"mData": "oddzial"},
+            ],
+
+            "order": [
+                // [1, 'asc'],
+                [2, 'asc']
+            ],
+            "rowGroup": {
+                dataSrc: ['powiat']
+            },
+            "fixedHeader": {
+                "header": true,
+                // "footer": true,
+                "headerOffset": 65
+            },
+            "language": {
+                "processing": "Przetwarzanie...",
+                "search": "Szukaj:",
+                "lengthMenu": "Pokaż _MENU_ pozycji",
+                "info": "Pozycje od _START_ do _END_ z _TOTAL_ łącznie",
+                "infoEmpty": "Pozycji 0 z 0 dostępnych",
+                "infoFiltered": "(filtrowanie spośród _MAX_ dostępnych pozycji)",
+                "infoPostFix": "",
+                "loadingRecords": "Wczytywanie...",
+                "zeroRecords": "Nie znaleziono pasujących pozycji",
+                "emptyTable": "Nie znaleziono rekordów",
+                "paginate": {
+                    "first": "Pierwsza",
+                    "previous": "Poprzednia",
+                    "next": "Następna",
+                    "last": "Ostatnia"
+                },
+                "aria": {
+                    "sortAscending": ": aktywuj, by posortować kolumnę rosnąco",
+                    "sortDescending": ": aktywuj, by posortować kolumnę malejąco"
+                }
+            }
+        });
+        // Return checked checkboxes from an array of checkboxes
+        function checkedTargets(checkboxes) {
+            return checkboxes.filter(function (index) {
+                return $(checkboxes[index]).prop('checked');
+            });
+        }
+
+        // Return checked checkboxes from an array of table cells
+        function checkedCells(cells) {
+            return cells.filter(function (cell) {
+                // Get array of checkboxes from the cell and find the checked checkboxes
+                return checkedTargets($(cell).find('input[type=checkbox]')).length;
+            })
+        }
+
+        // Check or uncheck all checkboxes in columnSelector column(s)
+        function checkAll(columnSelector, checked) {
+            table.cells(null, columnSelector).every( function () {
+                var cell = this.node();
+                $(cell).find('input[type=checkbox][name=chkbx]').prop('checked', checked);
+            } );
+        }
+
+        $('#get-selected').on('click', function () {
+            // Get rows with checked checkboxes
+            var rows = choiceTable
+                .rows( function ( idx, data, node ) {
+                    // Get all the checkboxes in the row
+                    var cells = $(node).find('input[type="checkbox"]');
+                    // Keep the rows with checked checkboxes
+                    return checkedTargets(cells).length;
+                } );
+
+            // Get the row's `id` object
+            var rowIds = rows.data().pluck('hospitalId').toArray();
+            console.log(rowIds);
+        });
+
+
+
+        // Process select all
+        $('input[name=select-all]').on('click', function (e) {
+
+            var checked = $(this).prop('checked');
+            var className = '.' + $(this).val();
+
+            // Set Select All Col checkboxes to appropriate state
+            $('input[name=select-col]').prop('checked', checked);
+            $('input[name=select-col]').prop('indeterminate', false);
+
+            checkAll(className, checked);
+        });
+
+        // Process select all column
+        $('input[name=select-col]').on('click', function (e) {
+
+            var checked = $(this).prop('checked');
+            var col = $(this).val();
+            var className = '.' + col;
+
+            // Are both select-all-col checkboxes checked = all chekcboxes in table checked
+            var allColChecked = checkedTargets($('input[name=select-col]')).length === 2;
+
+            // Set Select All and Select All Col checkboxes to appropriate state.
+            $('input[name=select-all][value=checks]').prop('checked', allColChecked);
+            $('input[name=select-col][value=' + col + ']').prop('indeterminate', false);
+
+            checkAll(className, checked);
+        });
+
+
+        // Set intermediate state
+
+
+        $('#hospitals').on('click', 'input[type=checkbox][name=chkbx]', function () {
+
+            var col = $(this).val();
+            var cells = choiceTable.cells(null, '.' + col).nodes();  // Get cell nodes for column
+            var numChecked = checkedCells(cells).length;  // Get number of checked checkboxes
+            var checkbox = $('input[name=select-col][value=' + col + ']');  // Get select-all-col checkbox
+
+            if (numChecked === 0) {  // Nothing checked
+                checkbox.prop('checked', false);
+                checkbox.prop('indeterminate', false);
+            } else if ( numChecked === table.rows().count() ) {  // All rows checked
+                checkbox.prop('checked', true);
+                checkbox.prop('indeterminate', false);
+            } else {  // Some rows checked
+                checkbox.prop('indeterminate', true);
+            }
+
+        })
+
+    });
+    // $('#select-all').on('change', function (){
+    //     var checked = $(this).prop('checked');
+    //     table.cells(null, 0).every(function (){
+    //         var cell = this.node();
+    //         $(cell).find('input[type="checkbox"][name="chkbx"]').prop('checked', checked);
+    //     });
+    // })
+
+    // $(function (){
+    //     $('#dateEnd').datepicker({
+    //         language: 'pl'
+    //     });
+    // });
+    $('#dateEnd').datepicker({
+        language: 'pl-PL',
+        autoclose: 'true',
+        clearBtn: true,
+        <!--        daysOfWeekDisabled: "6,0",-->
+        daysOfWeekHighlighted: "6,0",
+        format: 'yyyy-mm-dd',
+        todayBtn: true,
+        todayHighlight: true
+    }).datepicker();
+
+
+</script>
