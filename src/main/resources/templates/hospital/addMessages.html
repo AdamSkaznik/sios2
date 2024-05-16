@@ -136,7 +136,7 @@
 
                 // },
                 {"mData": null,
-                "defaultContent": '<input type="checkbox", name="chkbx", value="col0">',
+                "defaultContent": '<input type="checkbox", id="chkbx", name="chkbx", value="col0">',
                 "className": "checks col0"},
                 {"mData": "hospitalId",
                     "visible": false},
@@ -274,6 +274,18 @@
 
         })
 
+    });
+    $('#select-all').click(function(event) {
+        if(this.checked) {
+            // Iterate each checkbox
+            $(':checkbox').each(function() {
+                this.checked = true;
+            });
+        } else {
+            $(':checkbox').each(function() {
+                this.checked = false;
+            });
+        }
     });
     // $('#select-all').on('change', function (){
     //     var checked = $(this).prop('checked');
