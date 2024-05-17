@@ -1,10 +1,69 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="https://www.thymeleaf.org" xmlns:sd="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.w3.org/1999/xhtml"
+      th:replace="~{/hospital/fragments/layout::layout(~{::.container-fluid})}">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
 </head>
 <body>
-<he> Tutaj będą raporty</he>
+<div class="container-fluid" >
+  <table id="glowna" class="table table-bordered table-striped">
+      <thead>
+      <tr>
+          <th>Lp</th>
+          <th>Nazwa powiatu</th>
+          <th>Nazwa szpitala</th>
+          <th>Nazwa oddziału</th>
+          <th>Deklarowana ilość łóżek</th>
+          <th>Ilość łóżek w rezerwacji</th>
+          <th>Stan na godz. 6:00</th>
+          <th>Stan na godz. 14:00</th>
+          <th>Stan na godz. 22:00</th>
+          <th>Zadeklarowanych lekarzy</th>
+          <th>Data i czas aktualizacji</th>
+          <th>Akcje</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      </tr>
+      </tbody>
+      <tfoot>
+      <tr>
+          <th>Lp</th>
+          <th>Nazwa powiatu</th>
+          <th>Nazwa szpitala</th>
+          <th>Nazwa oddziału</th>
+          <th>Deklarowana ilość łóżek</th>
+          <th>Ilość łóżek w rezerwacji</th>
+          <th>Stan na godz. 6:00</th>
+          <th>Stan na godz. 14:00</th>
+          <th>Stan na godz. 22:00</th>
+          <th>Zadeklarowanych lekarzy</th>
+          <th>Data i czas aktualizacji</th>
+          <th>Akcje</th>
+      </tr>
+      </tfoot>
+  </table>
+</div>
 </body>
 </html>
+<script type="text/javascript">
+    $(document).ready(function (){
+        let table = $('#glowna').DataTable({
+
+        });
+    })
+</script>

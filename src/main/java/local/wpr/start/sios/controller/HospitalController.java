@@ -109,4 +109,9 @@ public class HospitalController {
     public String goHospitalConfigAdd(HospitalConfig hospitalConfig){
         return "/hospital/hospitalConfig_add";
     }
+
+    @GetMapping("/hospital/hospitalProcedures")
+    public String goHospitalProcedures(){
+        return "/hospital/hospitalProcedures";
+    }
 }

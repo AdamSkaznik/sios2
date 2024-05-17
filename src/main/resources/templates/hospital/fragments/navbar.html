@@ -36,16 +36,7 @@
                   </div>
               </div>
               <div class="pull-right">
-<!--                  <div class="dropdown">-->
-<!--                      <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
-<!--                      Administracja-->
-<!--                      </button>-->
-<!--                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">-->
-<!--                         <a class="dropdown-item" href="#">Zarządzanie użytkownikami</a>-->
-<!--                         <div class="dropdown-divider"></div>-->
-<!--                         <a class="dropdown-item" href="#">Konfiguracja</a>-->
-<!--                     </div>-->
-<!--                  </div>-->
+
               </div>
               <div class="pull-right" style="padding-top: 3px; padding-left: 5px">
                   <a th:href="@{/logout}">
@@ -70,28 +61,6 @@
                   </a>
               </div>
 
-<!--              <div class="pull-right" style="padding-top: 3px">-->
-<!--                  <ul class="nav navbar-nav" sec:authorize="hasAuthority('ADMIN')">-->
-<!--                      <li class="dropdown">-->
-<!--                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="tree" aria-expanded="false"><span class="fa-solid fa-screwdriver-wrench"></span> Administracja <span class="caret"></span> </a>-->
-<!--                          <ul class="dropdown-menu">-->
-<!--                              <li><a href="#" th:href="@{#}"><span class="fa-solid fa-users"></span> Zarządzanie użytkownikami </a> </li>-->
-<!--                              <li class="divider"></li>-->
-<!--                              <li><a href="#"><span class="fa-solid fa-confluence"></span> Konfiguracja </a> </li>-->
-<!--                          </ul>-->
-<!--                      </li>-->
-<!--                  </ul>-->
-<!--                  <div class="dropdown">-->
-<!--                      <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
-<!--                          <i class="fa-solid fa-screwdriver-wrench"></i> Administracja-->
-<!--                      </button>-->
-<!--                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">-->
-<!--                          <a class="dropdown-item" href="#">Zarządzanie użytkownikami</a>-->
-<!--                          <div class="dropdown-divider"></div>-->
-<!--                          <a class="dropdown-item" href="#">Konfiguracja</a>-->
-<!--                      </div>-->
-<!--                  </div>-->
-<!--              </div>-->
               <div class="pull-right" style="padding-top: 3px; padding-left: 5px">
                   <a th:href="@{/hospital/testTable}">
                       <button class="btn btn-danger"><img src="/images/power-off.svg" style="color: white" width="18px" height="18px"> Wyloguj </button>
@@ -118,13 +87,12 @@
               <div class="panel-body">
                   <div class="row">
                 <div class="col-sm-2">
-                    <button class="btn" style="background-color: #0a53be; height: 50px; width: 270px; color: whitesmoke"><img src="/images/chat.png" width="24px" height="24px">&nbsp;&nbsp;&nbsp; Komunikaty dla szpitali</button>
+                    <button class="btn" style="background-color: #0a53be; height: 50px; width: 270px; color: whitesmoke" onclick="window.location.href='/hospital/allMessages'"><img src="/images/chat.png" width="24px" height="24px">&nbsp;&nbsp;&nbsp; Komunikaty dla szpitali</button>
                 </div>
-<!--                      <div class="col-sm-2">-->
-<!--                          <button class="btn btn-danger" style="background-color: green; height: 50px; width: 270px; color: whitesmoke" id="new_report" onclick="window.location.href='/hospital/addReport';"><img src="/images/new.jpg" width="24px" height="24px">&nbsp;&nbsp;&nbsp; Nowy raport</button>-->
-<!--                      </div>-->
+
                   <div class="col-sm-2">
-                      <button class="btn" style="background-color: #0a53be;height: 50px; width: 270px; color: whitesmoke"><img src="/images/stetoskope.png" width="24px" height="24px">&nbsp;&nbsp;&nbsp; Raporty dobowy LKRM</button>
+                      <button class="btn" style="background-color: #0a53be;height: 50px; width: 270px; color: whitesmoke" onclick="javascript: alert('W trakcie realizacji' +
+                       '')"><img src="/images/stetoskope.png" width="24px" height="24px">&nbsp;&nbsp;&nbsp; Raporty dobowy LKRM</button>
                   </div>
 <!--                      <div class="col-sm-2">-->
 <!--                          <button class="btn" style="background-color: #0a53be;height: 50px; width: 270px; color: whitesmoke"><img src="/images/stetoskope.png" width="24px" height="24px">&nbsp;&nbsp;&nbsp; Raporty własne (archiwalne)</button>-->

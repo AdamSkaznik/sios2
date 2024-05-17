@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -23,6 +24,9 @@ public class HospitalProcedures {
     private String description;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH24:mm:ss")
     private LocalDateTime localDateTime;
+    @LastModifiedDate
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH24:mm:ss")
+    private LocalDateTime modifiedDateTime;
     private boolean procedureActive;
     @ManyToOne
     @JoinColumn(name = "hospitalId", nullable = false)
@@ -30,4 +34,7 @@ public class HospitalProcedures {
     @ManyToOne
     @JoinColumn(name = "userId", nullable = false)
     private User user;
+    @ManyToOne
+    @JoinColumn(name = "hospitalProceduresTypesId", nullable = false)
+    private HospitalProceduresType hospitalProceduresType;
 }

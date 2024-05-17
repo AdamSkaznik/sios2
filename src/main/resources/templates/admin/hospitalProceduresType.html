@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" xmlns:sd="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.w3.org/1999/xhtml"
+      th:replace="~{/admin/fragments/layout::layout(~{::.container-fluid})}">
+<head>
+  <meta charset="UTF-8">
+  <!--    <title>Title</title>-->
+</head>
+<body>
+<div class="container-fluid" style="padding-top: 10px">
+  <div class="container" style="text-align: center;">
+    <h3> Typy procedur </h3>
+  </div>
+  <table id="glowna" class="table table-striped table-bordered table-responsive">
+    <thead>
+    <tr>
+      <th>Lp</th>
+      <th>Opis</th>
+      <th>Czy aktywna</th>
+      <th>Akcje</th>
+    </tr>
+    </thead>
+  </table>
+  <br><br>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+  $(document).ready(function (){
+    // new DataTable('#glowna');
+    let table = $('#glowna').DataTable({
+      "bAutoWidth": true,
+      "sAjaxSource" : "/api/hospitalProceduresType/v1",
+      "sAjaxDataProp": "",
+      "aoColumns": [
+        {"mData": "hospitalProceduresTypeId"},
+        {"mData": "hospitalProceduresTypeDesc"},
+        {"mData": "active"},
+        {"mData": null,
+          sWidth: '80px',
+          "render": function (){
+            let a = "";
+            a ='<a href="#"><span style="color: red" class="fa-solid fa-pencil" title="Edycja" id="edit"</a>'+'&nbsp&nbsp'+'<a href="#"><span style="color: orange" class="fa-solid fa-info-circle" title="Szczegóły" id="details"></span></a>';
+            return a;
+          }}
+
+      ],
+      "columnDefs": [
+        {"orderable": false, "targets": 0},
+        // {"orderable": false, "targets": 8}
+      ],
+      "language": {
+        "processing": "Przetwarzanie...",
+        "search": "Szukaj:",
+        "lengthMenu": "Pokaż _MENU_ pozycji",
+        "info": "Pozycje od _START_ do _END_ z _TOTAL_ łącznie",
+        "infoEmpty": "Pozycji 0 z 0 dostępnych",
+        "infoFiltered": "(filtrowanie spośród _MAX_ dostępnych pozycji)",
+        "infoPostFix": "",
+        "loadingRecords": "Wczytywanie...",
+        "zeroRecords": "Nie znaleziono pasujących pozycji",
+        "emptyTable": "Nie znaleziono rekordów",
+        "paginate": {
+          "first": "Pierwsza",
+          "previous": "Poprzednia",
+          "next": "Następna",
+          "last": "Ostatnia"
+        },
+        "aria": {
+          "sortAscending": ": aktywuj, by posortować kolumnę rosnąco",
+          "sortDescending": ": aktywuj, by posortować kolumnę malejąco"
+        }}
+    }).draw();
+  })
+</script>

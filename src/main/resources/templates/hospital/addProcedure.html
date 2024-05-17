@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<!--    <title>Title</title>-->
+</head>
+<body>
+<div class="container-fluid">
+  <form th:object="${hospitalProcedures}" th:action="*{/saveHospitalProcedures}">
+  <div class="table table-bordered">
+    <tr>
+      <td>Typ procedury</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Nazwa procedury</td>
+      <td><input type="text" th:value="*{name}"></td>
+    </tr>
+    <tr>
+      <td>Opis procedury</td>
+      <td><textarea th:value="*{description}"></textarea></td>
+    </tr>
+  </div>
+  </form>
+</div>
+</body>
+</html>
