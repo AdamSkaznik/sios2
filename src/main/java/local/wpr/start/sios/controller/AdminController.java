@@ -1,11 +1,22 @@
 package local.wpr.start.sios.controller;
 
+import local.wpr.start.sios.model.HospitalProceduresType;
+import local.wpr.start.sios.service.impl.HospitalProceduresTypeServiceImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class AdminController {
+    private static final Logger LOG = LoggerFactory.getLogger(AdminController.class);
 //    @GetMapping()
+    @Autowired
+    HospitalProceduresTypeServiceImpl hospitalProceduresTypeServiceImpl;
 
     @GetMapping("/admin/index")
     private String goAdminIndex(){
@@ -47,5 +58,27 @@ public class AdminController {
     @GetMapping("/admin/logs")
     public String goAdminLogs(){
         return "/admin/logs";
+    }
+    @GetMapping("/admin/hospitalProceduresType")
+    public String goHospitalProceduresType(){
+        return "/admin/hospitalProceduresType";
+    }
+
+    @GetMapping("/admin/addHospitalProceduresType")
+    public String goAddHospitalProceduresType(Model model){
+        HospitalProceduresType hospitalProceduresType = new HospitalProceduresType();
+        model.addAttribute("hospitalProceduresType", hospitalProceduresType);
+        return "/admin/addHospitalProceduresType";
+    }
+
+    @PostMapping("/admin/saveHospitalProceduresType")
+    public String saveHospitalProceduresType(@ModelAttribute("hospitalProceduresType")HospitalProceduresType hospitalProceduresType){
+        HospitalProceduresType hospitalProceduresType1 = new HospitalProceduresType();
+        hospitalProceduresType1.setActive(true);
+        hospitalProceduresType1.setHospitalProceduresTypeDesc(hospitalProceduresType.getHospitalProceduresTypeDesc());
+        hospitalProceduresTypeServiceImpl.saveHospitalProceduresType(hospitalProceduresType1);
+        LOG.info("Zapis do bazy danych typu procedur");
+        return "redirect:/admin/index";
+
     }
 }

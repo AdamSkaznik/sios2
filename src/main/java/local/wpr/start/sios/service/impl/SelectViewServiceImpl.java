@@ -21,4 +21,8 @@ public class SelectViewServiceImpl implements SelectViewService {
     public List<SelectView> getAll() {
         return selectViewRepository.findAll();
     }
+
+    public List<SelectView> getByBranchName(Long id, String oddzial){
+        return selectViewRepository.findByOddzialName(id, oddzial);
+    }
 }

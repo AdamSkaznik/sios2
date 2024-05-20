@@ -54,6 +54,8 @@ public class ApiController {
     HospitalFailuresServiceImpl hospitalFailuresServiceImpl;
     @Autowired
     HospitalChoiceServiceImpl hospitalChoiceServiceImpl;
+    @Autowired
+    HospitalProceduresTypeServiceImpl hospitalProceduresTypeServiceImpl;
 
 
 
@@ -212,6 +214,29 @@ public class ApiController {
             return new ResponseEntity<List<HospitalChoice>>(hospitalChoiceServiceImpl.getAll(), HttpStatus.OK);
         }catch (Exception e) {
             LOG.error("Błąd podczas pobierania danych z API /hospitalChoice/v1" + e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @RequestMapping(value = "/hospitalProceduresType/v1", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<HospitalProceduresType>> getAllHospitalkProceduresType(){
+        try {
+            return new ResponseEntity<List<HospitalProceduresType>>(hospitalProceduresTypeServiceImpl.getAllProceruresType(), HttpStatus.OK);
+        }catch (Exception e){
+            LOG.error("Błąd podczas pobierania danych z API /hospitalProceduresType/v1" + e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @RequestMapping(value = "/selectView/search/v1", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<SelectView>> getByName(String term, Principal principal){
+        String name = principal.getName();
+        User user = userService.findUserByUserName(name);
+        Long id = user.getHospital().getHospitalId();
+        try {
+            return new ResponseEntity<List<SelectView>>(selectViewService.getByBranchName(id, term), HttpStatus.OK);
+        } catch (Exception e) {
+            LOG.error("Błąd podczas pobierania danych z API /selectView/search/v1" + e.getMessage());
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }

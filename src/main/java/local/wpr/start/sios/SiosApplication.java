@@ -68,7 +68,7 @@ public class SiosApplication implements CommandLineRunner {
 		LOG.info("Uruchomienie aplikacji " + now);
 		storageService.init();
 	}
-@Scheduled(cron = "0 15 8 ? * *")
+@Scheduled(cron = "0 15 20 ? * *")
 @Async
 	public void newReportJob(){
 	Date da = new Date();

@@ -30,7 +30,7 @@
     <!--modal dodanie nowego komunikatu end-->
     <!--modal dodanie nowego wyłączenia oddziału start-->
     <div class="modal fade" id="add_exclusion">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg" style="width: 80%">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">Dodawanie nowego wyłączenia Oddziału <i class="fa-solid fa-exclamation-circle"
@@ -403,6 +403,7 @@
 
     $('#add_new_exclusion').on('click', function (){
         $('#add_exclusion').modal();
+        show_add_exlusion('/hospital/addExclusion');
     });
 
     $('#add_new_malfunction').on('click', function (){
@@ -429,6 +430,9 @@
 
     function show_add_messages(url){
         $('#modalAddNewMessagesBody').load(url, function (){});
+    }
+    function show_add_exlusion(url){
+       $('#modalAddNewExclusionBody').load(url, function (){});
     }
     function show_details(url){
        $('#modalMessagesDetailsBody').load(url, function (){});

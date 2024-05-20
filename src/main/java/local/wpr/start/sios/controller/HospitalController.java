@@ -61,6 +61,10 @@ public class HospitalController {
         return "/hospital/addMessages";
     }
 
+    @GetMapping("/hospital/addExclusion")
+    public String goAddExclusion(){
+        return "/hospital/addExclusion";
+    }
     @GetMapping("/hospital/testTable")
     public String goTestTable(){
         return "/hospital/testTable";

@@ -2,9 +2,119 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+<!--    <link rel="stylesheet" href="/datepicker/css/datepicker.css">-->
+<!--    <link rel="stylesheet" href="/srb/css/select2.css">-->
+    <!--    <link rel="stylesheet" href="/srb/css/select.dataTables.css">-->
+<!--    <script src="/datepicker/js/bootstrap-datepicker.js"></script>-->
+<!--    <script src="/datepicker/js/locales/bootstrap-datepicker.pl.js"></script>-->
+<!--    <script src="/srb/js/select2.js"></script>-->
+<!--    <title>Title</title>-->
 </head>
 <body>
-
+<div class="container">
+<!--    <div class="card">-->
+        <form class="form">
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <td style="width: 25%"><b>Wprowadź datę początku wyłaczenia Oddziału</b></td>
+                    <td>
+                        <div class="input-group date" data-provide="datepicker" style="width: 200px; padding-left: 10px; padding-top: 5px; padding-bottom: 5px">
+                        <input type="text" class="form-control" id="data1" data-date-format="yyyy-mm-dd">
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </div>
+                    </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>Przewidywana data zakończenia</b>
+                    <br><small>(jeśli nieznana - zostaw puste)</small></td>
+                    <td>
+                        <div class="input-group date" data-provide="datepicker" style="width: 200px; padding-left: 10px; padding-top: 5px; padding-bottom: 5px">
+                            <input type="text" class="form-control" id="data2" data-date-format="yyyy-mm-dd">
+                            <div class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>Wprowadź przyczynę zamknięcia Oddziału</b></td>
+                    <td><textarea class="form-control" rows="5" style="resize: none"></textarea></td>
+                </tr>
+                <tr>
+                    <td><b>Zastępstwo w zakresie</b></td>
+                    <td><textarea class="form-control" rows="5" style="resize: none"></textarea></td>
+                </tr>
+                <tr>
+                    <td><b>Zaznacz, jeśli uzyskano zgodę Wojewody na wyłaczenie Oddziału</b></td>
+                    <td><input type="checkbox"></td>
+                </tr>
+                <tr>
+                    <td><b>Oddział, który będzie nieczynny</b>
+                    <br>
+                    <small style="color: red">* pole wymagane</small></td>
+                    <td><select class="form-control" id="test" style="width: 80%" required></select></td>
+                </tr>
+            </table>
+           <input id="testId">
+        </form>
+</div>
 </body>
 </html>
+<script type="text/javascript">
+ $(document).ready(function (){
+     $(function (){
+         $('#test').select2({
+             language: "pl",
+             minimumInputLength: 2,
+             // placeholder: "Wybierz ...",
+             theme: 'bootstrap',
+             selectionCssClass: 'form-control',
+             ajax: {
+                 url: "/api/selectView/search/v1",
+                 dataType: 'json',
+                 type: 'GET',
+                 data: function (params){
+                     console.log(params)
+                     return {
+                         term: params.term,
+                         page: params.page || 1,
+                     }
+                 },
+                 processResults(data) {
+                     console.log(data)
+                     return{
+                         results: $.map(data, function (item){
+                             return {
+                                 text: item.oddzial,
+                                 id: item.hospital_config_id
+                             }
+                         })
+                     }
+                 }
+             }
+         })
+     });
+     $('#test').on('change', function (){
+         $('#testId').val($(this).val());
+     });
+     $('#data1').datepicker({
+         language: 'pl-PL',
+         autoclose: true,
+         clearBtn: true,
+         format: 'yyyy-mm-dd',
+         todayBtn: true,
+         todayHighlight: true,
+     }).datepicker("setDate", "0");
+     $('#data2').datepicker({
+         language: 'pl-PL',
+         autoclose: true,
+         clearBtn: true,
+         format: 'yyyy-mm-dd',
+         todayBtn: true,
+         todayHighlight: true,
+     }).datepicker();
+
+
+ })
+</script>

@@ -24,4 +24,5 @@ public class SelectView {
     private String oddzial;
 //    @Transient
     private String powiat;
+    private Long hospitalId;
 }
