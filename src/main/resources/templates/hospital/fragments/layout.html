@@ -31,7 +31,7 @@
   <script th:src="@{/srb/js/i18n/pl.js}"></script>
   <script th:src="@{/srb/js/bootstrap-datepicker.min.js}"></script>
   <script th:src="@{/srb/js/i18n/bootstrap-datepicker.pl.min.js}"></script>
-  <!--    <script th:src="@{/srb/js/moment.js}"></script>-->
+      <script th:src="@{/srb/js/moment.js}"></script>
   <!--    	<script th:src="@{/js/fontawesome.js}"></script>-->
   <script th:src="@{/srb/js/toastr.min.js}"></script>
   <script th:src="@{/srb/js/sweetalert.min.js}"></script>
@@ -48,7 +48,7 @@
   <div class="container-fluid">
     <div class="row flex-nowrap">
       <div class="col py-3">
-        <div th:insert="${content}" style="padding-top: 310px;"></div>
+        <div th:insert="${content}" style="padding-top: 370px;"></div>
 <!--        <h3>Left Sidebar with Submenus</h3>-->
 <!--        <p class="lead">-->
 <!--          An example 2-level sidebar with collasible menu items. The menu functions like an "accordion" where only a single-->
@@ -59,8 +59,21 @@
     </div>
   </div>
 </div>
+</div>
 <div>
   <div th:replace="~{hospital/fragments/footer::footer}"></div>
 </div>
 </body>
 </html>
+<script type="text/javascript">
+$(document).ready(function (){
+//   let messBtn = document.getElementById('sessionMessages');
+//  console.log("Mess: " + messBtn);
+// messBtn.onclick = function (){
+//   myfun();
+// };
+// function myfun(){
+//   alert("You are click!");
+// }
+})
+</script>

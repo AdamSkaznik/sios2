@@ -123,12 +123,27 @@ public class ApiController {
         try {
             System.out.println("Wchodzę do reports API");
             LOG.info("Pobrano dane z API /reports/v1");
+            System.out.println("Lista: " + reportService.getAll());
             return new ResponseEntity<List<Report>>(reportService.getAll(), HttpStatus.OK);
         }catch (Exception e){
             LOG.error("Bład pobierania danych z API /reports/v1" + e.getMessage());
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
+
+    @RequestMapping(value = "/reports/v2", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<Report>> getAllReports2(){
+        try {
+            System.out.println("Wchodzę do reports v2 API");
+            LOG.info("Pobrano dane z API /reports/v2");
+            System.out.println("Lista: " + reportService.getAll());
+            return new ResponseEntity<List<Report>>(reportService.getAll(), HttpStatus.OK);
+        }catch (Exception e){
+            LOG.error("Bład pobierania danych z API /reports/v1" + e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
 
     @RequestMapping(value = "/archivedReports/v1", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Report>> getAllArchived(){

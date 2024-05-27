@@ -68,67 +68,67 @@ public class SiosApplication implements CommandLineRunner {
 		LOG.info("Uruchomienie aplikacji " + now);
 		storageService.init();
 	}
-@Scheduled(cron = "0 15 20 ? * *")
-@Async
-	public void newReportJob(){
-	Date da = new Date();
-	SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-	String now = sf.format(da);
-	LOG.info("Uruchomienie zadania w CRON (nowy raport na nowy dzień) " + now);
-	Report report = reportServiceImpl.getByNextDay();
-	System.out.println("Report: " + report);
-	if(report == null) {
-		Date dt = Date.from(DateUtils.addDays(new Date(), + 1).toInstant());
-		System.out.println("Data: " + dt);
-		try {
-			Report rp = new Report();
-			rp.setDate(Date.from(dt.toInstant()));
-			reportServiceImpl.saveReport(rp);
-			System.out.println(".....ZAPISANO rp...");
-		} catch (Exception e) {
-			LOG.error("Błąd podczas zapisu nowego raportu !!! " + e.getMessage());
-			System.out.println("Nie udany zapis głównego raportu: " + e.getMessage());
-		}
-		Report rp = null;
-		rp = reportServiceImpl.getByNextDay();
-		System.out.println("Ostatni raport wynosi: " + rp.getId());
-		List<HospitalConfig> conf = hospitalConfigServiceimpl.getAllActive();
-		System.out.println("Znaleziono: " + conf.size() + " rekordów");
-		int configs = conf.size();
-		if(configs != 0) {
-			try{
-				for(int i=0; i<configs; i++){
-					System.out.println("Rekord nr: " + i + " z: " + configs);
-					HospitalConfig hc = conf.get(i);
-					System.out.println("HC wynosi: " + hc);
-					Long a1 = hc.getHospitalConfigId();
-					Hospital a2 = hc.getHospital();
-					System.out.println("A2 wynosi: " + a2);
-					HospitalReport hr = new HospitalReport();
-					hr.setHospitalConfig(hc);
-					hr.setHospital(a2);
-					hr.setReport(rp);
-					hospitalReportServiceimpl.saveHospitalReport(hr);
-					hc = null;
-				}
-				Date da1 = new Date();
-				SimpleDateFormat sf1 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-				String now1 = sf.format(da1);
-				LOG.info("Uruchomienie aplikacji " + now1);
-				System.out.println("Wykonano wszystkie zadania ....");
-				LOG.info("Wykonao wszystkie zadania ... Czas realizacji : ");
-			} catch (Exception e){
-			LOG.error("Nie udało się utworzyć raportów dla szpitali! " + e.getMessage());
-				System.out.println("Nie udało się utworzyć raportów dla szpitali! " + e.getMessage());
-			}
-
-		} else {
-			System.out.println("Hospital reports jest równe 0. Nie potrzeba tworzyć nowych raportów!");
-		}
-	} else {
-		System.out.println("Raport dla daty został już wygenerowany i nie potrzeba generować nowego!");
-	}
-
-	}
+//@Scheduled(cron = "0 15 20 ? * *")
+//@Async
+//	public void newReportJob(){
+//	Date da = new Date();
+//	SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+//	String now = sf.format(da);
+//	LOG.info("Uruchomienie zadania w CRON (nowy raport na nowy dzień) " + now);
+//	Report report = reportServiceImpl.getByNextDay();
+//	System.out.println("Report: " + report);
+//	if(report == null) {
+//		Date dt = Date.from(DateUtils.addDays(new Date(), + 1).toInstant());
+//		System.out.println("Data: " + dt);
+//		try {
+//			Report rp = new Report();
+//			rp.setDate(Date.from(dt.toInstant()));
+//			reportServiceImpl.saveReport(rp);
+//			System.out.println(".....ZAPISANO rp...");
+//		} catch (Exception e) {
+//			LOG.error("Błąd podczas zapisu nowego raportu !!! " + e.getMessage());
+//			System.out.println("Nie udany zapis głównego raportu: " + e.getMessage());
+//		}
+//		Report rp = null;
+//		rp = reportServiceImpl.getByNextDay();
+//		System.out.println("Ostatni raport wynosi: " + rp.getId());
+//		List<HospitalConfig> conf = hospitalConfigServiceimpl.getAllActive();
+//		System.out.println("Znaleziono: " + conf.size() + " rekordów");
+//		int configs = conf.size();
+//		if(configs != 0) {
+//			try{
+//				for(int i=0; i<configs; i++){
+//					System.out.println("Rekord nr: " + i + " z: " + configs);
+//					HospitalConfig hc = conf.get(i);
+//					System.out.println("HC wynosi: " + hc);
+//					Long a1 = hc.getHospitalConfigId();
+//					Hospital a2 = hc.getHospital();
+//					System.out.println("A2 wynosi: " + a2);
+//					HospitalReport hr = new HospitalReport();
+//					hr.setHospitalConfig(hc);
+//					hr.setHospital(a2);
+//					hr.setReport(rp);
+//					hospitalReportServiceimpl.saveHospitalReport(hr);
+//					hc = null;
+//				}
+//				Date da1 = new Date();
+//				SimpleDateFormat sf1 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+//				String now1 = sf.format(da1);
+//				LOG.info("Uruchomienie aplikacji " + now1);
+//				System.out.println("Wykonano wszystkie zadania ....");
+//				LOG.info("Wykonao wszystkie zadania ... Czas realizacji : ");
+//			} catch (Exception e){
+//			LOG.error("Nie udało się utworzyć raportów dla szpitali! " + e.getMessage());
+//				System.out.println("Nie udało się utworzyć raportów dla szpitali! " + e.getMessage());
+//			}
+//
+//		} else {
+//			System.out.println("Hospital reports jest równe 0. Nie potrzeba tworzyć nowych raportów!");
+//		}
+//	} else {
+//		System.out.println("Raport dla daty został już wygenerowany i nie potrzeba generować nowego!");
+//	}
+//
+//	}
 
 }

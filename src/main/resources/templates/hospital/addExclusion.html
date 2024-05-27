@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+<!--    <link rel="stylesheet" href="/bootstrap-datepicker/css/bootstrap-datepicker.css">-->
+<!--    <script src="/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>-->
 <!--    <link rel="stylesheet" href="/datepicker/css/datepicker.css">-->
 <!--    <link rel="stylesheet" href="/srb/css/select2.css">-->
     <!--    <link rel="stylesheet" href="/srb/css/select.dataTables.css">-->
@@ -56,13 +58,17 @@
                     <td><select class="form-control" id="test" style="width: 80%" required></select></td>
                 </tr>
             </table>
-           <input id="testId">
+           <input id="testId" hidden>
+            <div class="pull-right">
+                <button type="submit" class="btn btn-primary"><i class="fa-solid fa-save"></i> Zapisz</button>
+            </div>
         </form>
 </div>
 </body>
 </html>
 <script type="text/javascript">
  $(document).ready(function (){
+     // console.log($.fn.datepicker.version);
      $(function (){
          $('#test').select2({
              language: "pl",
@@ -87,7 +93,7 @@
                          results: $.map(data, function (item){
                              return {
                                  text: item.oddzial,
-                                 id: item.hospital_config_id
+                                 id: item.hospitalConfigId,
                              }
                          })
                      }
@@ -107,14 +113,25 @@
          todayHighlight: true,
      }).datepicker("setDate", "0");
      $('#data2').datepicker({
-         language: 'pl-PL',
+         language: 'pl',
          autoclose: true,
          clearBtn: true,
          format: 'yyyy-mm-dd',
          todayBtn: true,
          todayHighlight: true,
-     }).datepicker();
+     }).datepicker("endDate", "+3");
+     // $('#data2').datepicker({
+     //     format: "yyyy-mm-dd",
+     //     endDate: +3,
+     //     maxViewMode: 2,
+     //     todayBtn: true,
+     //     clearBtn: true,
+     //     language: "pl",
+     //     autoclose: true,
+     //     todayHighlight: true
+     // })
 
 
  })
+
 </script>

@@ -14,7 +14,8 @@ public interface ReportRepository extends JpaRepository<Report, Long> {
     @Query(value = zap1, nativeQuery = true)
     Report getLastReport();
 
-    String zap2 = "SELECT * FROM tab_reports where date >= (select current_date - make_interval(months => 3)) ORDER BY date DESC";
+    //tutaj ma być (months => 3)
+    String zap2 = "SELECT * FROM tab_reports where date >= (select current_date - make_interval(months => 4)) ORDER BY date DESC";
     @Query(value = zap2, nativeQuery = true)
     List<Report> getAll();
 

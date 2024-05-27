@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.servlet.http.HttpSession;
 import java.security.Principal;
@@ -26,6 +27,8 @@ public class HospitalController {
     BranchServiceImpl branchServiceImpl;
     @Autowired
     PrivateMessageServiceImpl privateMessageService;
+    @Autowired
+    ReportServiceImpl reportServiceImpl;
 
     @GetMapping("/hospital/index")
     public String goHospitalIndex(HttpSession httpSession, Principal principal){
@@ -56,6 +59,11 @@ public class HospitalController {
         return "/hospital/hospitalReports";
     }
 
+    @GetMapping("/hospital/hospitalReportByDay")
+    public String goHospitalReportByDay(){
+        return "/hospital/hospitalReportByDay";
+    }
+
     @GetMapping("/hospital/addMessages")
     public String goAddMessages(){
         return "/hospital/addMessages";
@@ -64,6 +72,11 @@ public class HospitalController {
     @GetMapping("/hospital/addExclusion")
     public String goAddExclusion(){
         return "/hospital/addExclusion";
+    }
+
+    @GetMapping("/hospital/addMailfunctions")
+    public String goAddMailfunction(){
+        return "/hospital/addMailfunctions";
     }
     @GetMapping("/hospital/testTable")
     public String goTestTable(){
@@ -84,8 +97,10 @@ public class HospitalController {
         String name = principal.getName();
         User user = null;
         user = userService.findUserByUserName(name);
-        List<Branch> branches = branchServiceImpl.getAllBranch();
-        model.addAttribute("branches", branches);
+        List<HospitalConfig> hospitalConfigs = hospitalConfigServiceimpl.getAllByHospitalId(user.getHospital().getHospitalId());
+        model.addAttribute("hospitalConfigs", hospitalConfigs);
+//        List<Branch> branches = branchServiceImpl.getAllBranch();
+//        model.addAttribute("branches", branches);
         return "/hospital/addReport";
     }
     @GetMapping("/hospital/address")
@@ -117,5 +132,21 @@ public class HospitalController {
     @GetMapping("/hospital/hospitalProcedures")
     public String goHospitalProcedures(){
         return "/hospital/hospitalProcedures";
+    }
+
+    @GetMapping("/hospital/allMessages")
+    public String goHospitalAllMessages(){
+        return "/hospital/allMessages";
+    }
+
+    @GetMapping("/hospital/hospitalReportDetails/{id}")
+    public String goHospitalReportDetails(Model model, @PathVariable Long id) throws Exception {
+        System.out.println("Id wynosi: " + id);
+        Report report = null;
+        report = reportServiceImpl.getOneReportById(id);
+        model.addAttribute("report", report);
+//        viewController.getByReportId(id);
+//        viewController.getByReportId(id);
+        return "/hospital/hospitalReportDetails";
     }
 }

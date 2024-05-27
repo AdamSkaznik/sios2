@@ -30,8 +30,8 @@ public class HospitalFailures {
     private String security;
     //oddział
     @ManyToOne
-    @JoinColumn(name = "branchId", nullable = false)
-    private Branch branch;
+    @JoinColumn(name = "hospitalConfigId", nullable = false)
+    private HospitalConfig hospitalConfig;
     //szpital
     @ManyToOne
     @JoinColumn(name = "hospitalId", nullable = false)

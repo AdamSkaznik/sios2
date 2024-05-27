@@ -50,7 +50,7 @@
     <!--modal dodanie nowego wyłączenia oddziału end-->
     <!--modal dodanie nowej awarii sprzętu start-->
     <div class="modal fade" id="add_malfunction">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg" style="width: 80%">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">Dodawanie awarii sprzętu <i class="fa-solid fa-exclamation-circle"
@@ -408,6 +408,7 @@
 
     $('#add_new_malfunction').on('click', function (){
         $('#add_malfunction').modal();
+        show_add_malfunction('/hospital/addMailfunctions');
     });
 
     $('#messages tbody').on('click', '#details', function (){
@@ -433,6 +434,10 @@
     }
     function show_add_exlusion(url){
        $('#modalAddNewExclusionBody').load(url, function (){});
+    }
+
+    function show_add_malfunction(url){
+        $('#modalAddNewMalfunctionBody').load(url, function(){});
     }
     function show_details(url){
        $('#modalMessagesDetailsBody').load(url, function (){});
