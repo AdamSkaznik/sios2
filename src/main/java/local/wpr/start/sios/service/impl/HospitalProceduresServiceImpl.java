@@ -18,8 +18,9 @@ public class HospitalProceduresServiceImpl implements HospitalProceduresService 
     }
 
     @Override
-    public void saveHospitalProcedures(HospitalProcedures hospitalProcedures) {
+    public HospitalProcedures saveHospitalProcedures(HospitalProcedures hospitalProcedures) {
         hospitalProceduresRepository.save(hospitalProcedures);
+        return hospitalProcedures;
     }
 
     @Override

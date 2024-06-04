@@ -3,14 +3,25 @@ package local.wpr.start.sios.controller;
 import local.wpr.start.sios.model.*;
 import local.wpr.start.sios.service.UserService;
 import local.wpr.start.sios.service.impl.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.security.Principal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -29,6 +40,16 @@ public class HospitalController {
     PrivateMessageServiceImpl privateMessageService;
     @Autowired
     ReportServiceImpl reportServiceImpl;
+    @Autowired
+    HospitalReportServiceImpl hospitalReportServiceImpl;
+    @Autowired
+    HospitalProceduresServiceImpl hospitalProceduresServiceImpl;
+    @Autowired
+    HospitalProceduresTypeServiceImpl hospitalProceduresTypeServiceImpl;
+    @Autowired
+    HospitalProceduresFileServiceImpl hospitalProceduresFileServiceImpl;
+
+    private static final Logger LOG = LoggerFactory.getLogger(HospitalController.class);
 
     @GetMapping("/hospital/index")
     public String goHospitalIndex(HttpSession httpSession, Principal principal){
@@ -78,6 +99,12 @@ public class HospitalController {
     public String goAddMailfunction(){
         return "/hospital/addMailfunctions";
     }
+    @GetMapping("/hospital/addProcedure")
+    public String goAddProcedure(Model model){
+        HospitalProcedures hospitalProcedures = new HospitalProcedures();
+        model.addAttribute("hospitalProcedures", hospitalProcedures);
+        return "/hospital/addProcedure";
+    }
     @GetMapping("/hospital/testTable")
     public String goTestTable(){
         return "/hospital/testTable";
@@ -97,8 +124,23 @@ public class HospitalController {
         String name = principal.getName();
         User user = null;
         user = userService.findUserByUserName(name);
-        List<HospitalConfig> hospitalConfigs = hospitalConfigServiceimpl.getAllByHospitalId(user.getHospital().getHospitalId());
-        model.addAttribute("hospitalConfigs", hospitalConfigs);
+        Hospital hospital = hospitalServiceImpl.getHospitalById(user.getHospital().getHospitalId());
+        LocalDate date = LocalDate.now();
+        System.out.println("Data: " + date);
+        Report report = reportServiceImpl.getReportByDate(date);
+        System.out.println("Report: " + report);
+        if (report != null){
+            List<HospitalReport> hospitalReports = hospitalReportServiceImpl.getByHospitalIdAndReportId(report.getId(), user.getHospital().getHospitalId());
+            System.out.println("Lista raportów szpitala : " + hospitalReports);
+            model.addAttribute("hospitalReports", hospitalReports);
+            model.addAttribute("hospitalName", hospital.getName());
+        } else {
+            System.out.println("Report wynosiiii nullll");
+            LOG.error("Nie znaleziono raportów dla daty: " + date);
+        }
+//        List<HospitalReport> hospitalReports = hospitalReportServiceImpl.
+//        List<HospitalConfig> hospitalConfigs = hospitalConfigServiceimpl.getAllByHospitalId(user.getHospital().getHospitalId());
+//        model.addAttribute("hospitalConfigs", hospitalConfigs);
 //        List<Branch> branches = branchServiceImpl.getAllBranch();
 //        model.addAttribute("branches", branches);
         return "/hospital/addReport";
@@ -130,9 +172,21 @@ public class HospitalController {
     }
 
     @GetMapping("/hospital/hospitalProcedures")
-    public String goHospitalProcedures(){
+//    public String goHospitalProcedures(){
+    public String goHospitalProcedures(Model model){
+        model.addAttribute("procedures", hospitalProceduresServiceImpl.getAllHospitalProcedures());
         return "/hospital/hospitalProcedures";
     }
+
+//    @GetMapping("/downloadHospitalProcedures")
+//    public void downloadHospitalFile(HttpServletResponse response){
+//        Resource resource = new ClassPathResource("/uploadProcedures");
+//        response.setContentType("text/plain");
+//        response.setHeader("Content-Disposition", "attachment; filename=" + resource.getFilename());
+////        InputStream inputStream = resource.getInputStream();
+//        OutputStream outputStream = response.getOutputStream();
+
+//    }
 
     @GetMapping("/hospital/allMessages")
     public String goHospitalAllMessages(){
@@ -148,5 +202,31 @@ public class HospitalController {
 //        viewController.getByReportId(id);
 //        viewController.getByReportId(id);
         return "/hospital/hospitalReportDetails";
+    }
+
+    @PostMapping("/saveHospitalProcedures")
+    public String saveNewHospitalProcedures(@ModelAttribute("hospitalProcedures") HospitalProcedures hospitalProcedures, Principal principal, @RequestParam("files")MultipartFile[] files){
+
+        User user = userService.findUserByUserName(principal.getName());
+        hospitalProcedures.setUser(user);
+        Hospital hospital = hospitalServiceImpl.getHospitalById(user.getHospital().getHospitalId());
+        hospitalProcedures.setHospital(hospital);
+        Long idHospProc = hospitalProcedures.getHospitalProceduresType().getHospitalProceduresTypeId();
+        HospitalProceduresType hospitalProceduresType = hospitalProceduresTypeServiceImpl.getById(idHospProc);
+        hospitalProcedures.setHospitalProceduresType(hospitalProceduresType);
+        hospitalProcedures.setProcedureActive(true);
+        LocalDateTime ldt = LocalDateTime.now();
+        hospitalProcedures.setLocalDateTime(ldt);
+        hospitalProcedures.setModifiedDateTime(ldt);
+        HospitalProcedures procedures = hospitalProceduresServiceImpl.saveHospitalProcedures(hospitalProcedures);
+        try {
+            for (MultipartFile file: files){
+                hospitalProceduresFileServiceImpl.saveHospitalProceduresFile(file, procedures);
+            }
+
+            } catch (IOException e){
+            e.printStackTrace();
+        }
+        return "redirect:/hospital/hospitalProcedures";
     }
 }

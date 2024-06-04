@@ -45,4 +45,9 @@ public class HospitalReportServiceImpl implements HospitalReportService {
     public List<HospitalReport> getNullByZmiana3(Long id) {
         return hospitalReportRespository.getByNullZmiany3(id);
     }
+
+    @Override
+    public List<HospitalReport> getByHospitalIdAndReportId(Long reportId, Long hospitalId) {
+        return hospitalReportRespository.getAllByHospitalIdAndReportId(reportId, hospitalId);
+    }
 }

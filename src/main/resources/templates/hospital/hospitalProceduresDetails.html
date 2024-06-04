@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<!--    <title>Title</title>-->
+</head>
+<body>
+<div class="container">
+<table class="table table-striped table-bordered">
+    <tr>
+        <td> Typ procedury</td>
+        <td> </td>
+    </tr>
+    <tr>
+        <td> Nazwa procedury</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td> Dodatkowy opis</td>
+    </tr>
+    <tr>
+        <td>
+            Pliki do procedury
+        </td>
+        <table class="table table-bordered table-striped">
+            <tbody>
+            <tr th:each="file : ${hospitalProceduresFiles}">
+                <td th:text = "${hospitalProceduresFileId}"></td>
+                <td th:text></td>
+            </tr>
+            </tbody>
+        </table>
+    </tr>
+    <tr>
+        <td> Data aktualizacji/modyfikacji</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td> Procedurę dodał/modyfikował</td>
+        <td> </td>
+    </tr>
+</table>
+</div>
+</body>
+</html>

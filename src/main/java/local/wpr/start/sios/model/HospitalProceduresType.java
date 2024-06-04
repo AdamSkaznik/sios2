@@ -14,7 +14,7 @@ import javax.persistence.*;
 public class HospitalProceduresType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int hospitalProceduresTypeId;
+    private Long hospitalProceduresTypeId;
     private String hospitalProceduresTypeDesc;
     private boolean active;
 }

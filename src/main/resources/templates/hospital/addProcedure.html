@@ -6,22 +6,75 @@
 </head>
 <body>
 <div class="container-fluid">
-  <form th:object="${hospitalProcedures}" th:action="*{/saveHospitalProcedures}">
-  <div class="table table-bordered">
+  <form th:object="${hospitalProcedures}" th:action="@{/saveHospitalProcedures}" method="post" enctype="multipart/form-data">
+  <table class="table table-bordered table-striped">
     <tr>
-      <td>Typ procedury</td>
-      <td></td>
+      <td>Typ procedury <small style="color: #0d6efd"> (Wybierz wartość ze słownika)</small></td>
+      <td><select class="form-control" id="procedureType" style="width: 100%" required></select>
+<!--      <input  id="procedureTypeId"></td>-->
     </tr>
     <tr>
       <td>Nazwa procedury</td>
-      <td><input type="text" th:value="*{name}"></td>
+      <td><input type="text" class="form-control" th:field="*{name}" required></td>
     </tr>
     <tr>
       <td>Opis procedury</td>
-      <td><textarea th:value="*{description}"></textarea></td>
+      <td><textarea class="form-control" th:field="*{description}" rows="5" style="resize: none"></textarea></td>
     </tr>
-  </div>
+
+    <tr>
+      <td colspan="2">
+        <label for="files"> Załączniki</label>
+        <input type="file" id="files" name="files" multiple>
+      </td>
+    </tr>
+  </table>
+<!--    <input  id="procedureTypeId" th:field="*{hospitalProceduresType.hospitalProceduresTypesId}"></td>-->
+<!--    <input  id="procedureTypeId" th:object="${hospitalProceduresType}" th:field="*{hospitalProceduresTypesId}"></td>-->
+    <input  id="procedureTypeId" th:field="*{hospitalProceduresType.hospitalProceduresTypeId}"></td>
+    <div class="container-fluid pull-right">
+    <button class="btn btn-success float-end" type="submit"><i class="fa-solid fa-save"></i> Zapisz</button>
+    </div>
   </form>
 </div>
 </body>
 </html>
+<script type="text/javascript">
+  $(function () {
+    $("#procedureType").select2({
+      language: "pl",
+      // minimumInputLength: 3,
+      placeholder: "Wybierz ...",
+      theme: 'bootstrap4',
+      selectionCssClass: 'form-control',
+      ajax: {
+        url: "/api/hospitalProceduresType/search/v1",
+        dataType: 'json',
+        type: 'GET',
+        data: function (params) {
+          console.log(params)
+          return {
+            term: params.term,
+            page: params.page || 1,
+          }
+        },
+        processResults(data) {
+          console.log(data)
+          return {
+            results: $.map(data, function (item) {
+              return {
+                text: item.hospitalProceduresTypeDesc,
+                id: item.hospitalProceduresTypeId,
+              }
+            })
+          }
+        }
+
+      }
+    })
+  });
+
+  $("#procedureType").on('change', function () {
+    $("#procedureTypeId").val($(this).val());
+  });
+</script>

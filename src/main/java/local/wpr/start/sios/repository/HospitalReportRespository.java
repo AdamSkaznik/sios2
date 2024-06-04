@@ -29,4 +29,9 @@ public interface HospitalReportRespository extends JpaRepository<HospitalReport,
   @Query(value = zap_zm1, nativeQuery = true)
   List<HospitalReport> getByNullZmiany3(Long reportId);
 
+  String zapByHospitalAndDate = "SELECT * FROM tab_hospital_report WHERE report_id = ?1 AND hospital_id = ?2";
+  @Query(value = zapByHospitalAndDate, nativeQuery = true)
+  List<HospitalReport> getAllByHospitalIdAndReportId(Long reportId, Long hospitalId);
+
+//  String updateById = "UPDATE tab_hospital_report"
 }

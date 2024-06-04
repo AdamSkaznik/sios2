@@ -4,69 +4,54 @@
       th:replace="~{/hospital/fragments/layout2::layout(~{::.container-fluid})}">
 <head>
     <meta charset="UTF-8">
+    <style>
+        .input-error{
+            outline: 1px solid red;
+        }
+    </style>
 </head>
 <body>
-<div class="container-fluid" style="padding-top: 70px">
+<div class="container-fluid" style="padding-top: 150px">
 
-<!--      <div class="panel">-->
-<!--          <div class="panel-heading"> Nowy raport</div>-->
-<!--          <div class="panel-body">-->
-
-<!--              <br>-->
-<!--              <table class="table table-bordered table-striped">-->
-<!--                  <tr>-->
-<!--                      <th> Nazwa Oddziału</th>-->
-<!--                      <th>ID</th>-->
-<!--                      <th> Konfig id</th>-->
-<!--                      <th> Stan na godzinę 06:00</th>-->
-<!--                      <th> Stan na godzinę 14:00</th>-->
-<!--                      <th> Stan na godzinę 22:00</th>-->
-<!--                  </tr>-->
-<!--                  <tr th:each="hospitalConfig : ${hospitalConfigs}">-->
-<!--                      <td th:text="${hospitalConfig.branch.name}"></td>-->
-<!--                      <td><input th:value="${hospitalConfigs.size()}"></td>-->
-<!--                      <td><input th:value="${hospitalConfig.hospitalConfigId}"></td>-->
-<!--                       <td><input class="stan1" id="stan1"></td>-->
-<!--                      <td><input class="stan2" id="stan2"></td>-->
-<!--                      <td><input id="stan3" class="stan3"></td>-->
-<!--                  </tr>-->
-<!--              </table>-->
-<!--          </div>-->
-<!--      </div>-->
-<form action="submit" method="post" th:object="${hospitalReport}">
-    <table class="table table-bordered table-striped">
+<center><h3> Nowy raport dzienny dla : <b style="color: #0d6efd" th:text="${hospitalName}"></b></h3></center>
+<form method="post" th:object="${hospitalReport}">
+    <table class="table table-bordered table-striped" id="reportTable">
         <tr>
             <th> Nazwa oddziału</th>
-            <th> Config ID</th>
-            <th> ID</th>
+            <th style="display: none"> ID</th>
             <th>Stan na godz. 06:00</th>
             <th>Stan na godz. 14:00</th>
             <th>Stan na godz. 22:00</th>
+            <th>Deklarowana ilość lekarzy</th>
+            <th></th>
         </tr>
-    <div th:each="hospitalConfig, i: ${hospitalConfigs}">
-<!--        <table class="table table-bordered table-striped">-->
-<!--            <tr>-->
-<!--                <th> Nazwa oddziału</th>-->
-<!--                <th> Config ID</th>-->
-<!--                <th>Stan na godz. 06:00</th>-->
-<!--                <th>Stan na godz. 14:00</th>-->
-<!--                <th>Stan na godz. 22:00</th>-->
-<!--            </tr>-->
+    <div th:each="hospitalReport: ${hospitalReports}">
             <tr>
-                <td th:text="${hospitalConfig.branch.name}"></td>
-                <td><input th:value="${hospitalConfig.hospitalConfigId}"></td>
-                <td><input th:value="${i.index}"></td>
-                <td><input id="stan1"></td>
-                <td><input id="stan2"></td>
-                <td><input id="stan3"></td>
+                <td th:text="${hospitalReport.hospitalConfig.branch.name}" class="column-data1"></td>
+                <td style="display: none" th:text="${hospitalReport.getHospitalReportId()}" class="column-data2" id="column-data2"></td>
+                <td><input th:value="${hospitalReport.stateA}" class="stan1 column-data3" id="stan1" onkeypress='validate(event)' ></td>
+                <td><input th:value="${hospitalReport.stateB}" class="stan2 column-data4" id="stan2" onkeypress='validate(event)' ></td>
+                <td><input th:value="${hospitalReport.stateC}" class="stan3 column-data5" id="stan3"  onkeypress='validate(event)'></td>
+                <td><input th:value="${hospitalReport.doctorA}" class="column-data6" onkeypress='validate(event)'></td>
+                <td>
+<!--                    <a th:href="@{/hospital/save/(id=${hospitalReport.hospitalReportId})}" th:title="Zapisz" onclick="pop()"></a>-->
+                    <button type="button" class="btn btn-danger" id="saveReport"><i class="fa-solid fa-save"></i> Zapisz</button>
+                </td>
             </tr>
-        </table>
+    </div>
+    </table>
+    <div class="pull-right">
+        <button class="btn btn-success" id="saveAllReport"><img src="/images/save.png" width="24px" height="24px">&nbsp;&nbsp; Zapisz wszystkie</button>
     </div>
 </form>
 </div>
 </body>
 </html>
 <script type="text/javascript">
+    const temps = [];
+    function pop(){
+        alert("Kliknięto. Id wynosi: " + id);
+    }
     // window.onload = function newReport();
     document.addEventListener("DOMContentLoaded", newReport);
     function newReport(){
@@ -74,12 +59,9 @@
         let hour = now.getHours().toString();
         let min = now.getMinutes().toString();
         let sec = now.getSeconds().toString();
-         // let stan1_input = document.getElementsByClassName(".stan1")
-        let stan1_input = document.getElementsByName('stan1');
-        let stan2_input = document.getElementById("stan2");
-        // let stan2_input = document.getElementsByClassName(".stan2");
-        let stan3_input = document.getElementById("stan3");
-        // let stan3_input = document.getElementsByClassName(".stan3");
+        const nodeList1 = document.querySelectorAll(".stan1");
+        const nodeList2 = document.querySelectorAll(".stan2");
+        const nodeList3 = document.querySelectorAll(".stan3");
         console.log("Hour : " + hour);
         console.log("Min: " + min);
         if(hour >= 0 && hour <=9){
@@ -96,67 +78,207 @@
         let blocked = null;
         if ((testTime  >= '22:00:01') && (testTime <= '06:00:00')){
           blocked = 1;
-          stan2_input.readOnly = true;
-          stan2_input.style.backgroundColor = "#d3d3d3";
-          stan3_input.readOnly = true;
-          stan3_input.style.backgroundColor = "#d3d3d3";
-          // document.getElementById("stan2").readOnly = true;
-          // document.getElementById("stan3").readOnly = true;
+            for (let i = 0; i < nodeList1.length; i++){
+                nodeList2[i].style.backgroundColor = "grey";
+                nodeList2[i].setAttribute("readOnly", "true");
+            }
+            for (let j = 0; j <nodeList3.length; j++){
+                nodeList3[j].style.backgroundColor="grey";
+                nodeList3[j].setAttribute("readOnly", "true");
+            }
         }
         if ((testTime  >= '06:00:01') && (testTime <= '14:00:00')){
             blocked = 2;
-            stan1_input.readOnly = true;
-            // stan1_input.style.backgroundColor = "grey";
-            stan3_input.readOnly = true;
-            // stan3_input.style.backgroundColor = "grey";
-            // document.getElementById("stan1").readOnly = true;
-            // document.getElementById("stan3").readOnly = true;
+            for (let i = 0; i < nodeList1.length; i++){
+                nodeList1[i].style.backgroundColor = "grey";
+                nodeList1[i].setAttribute("readOnly", "true");
+            }
+            for (let j = 0; j <nodeList3.length; j++){
+                nodeList3[j].style.backgroundColor="grey";
+                nodeList3[j].setAttribute("readOnly", "true");
+            }
         }
         if ((testTime  >= '14:00:01') && (testTime <= '22:00:00')){
             blocked = 3;
-            stan1_input.readOnly = true;
-            stan1_input.style.backgroundColor = "grey";
-            stan2_input.readOnly = true;
-            stan3_input.style.backgroundColor = "grey";
-            // document.getElementById("stan1").readOnly = true;
-            // document.getElementById("stan2").readOnly = true;
+            for (let i = 0; i < nodeList1.length; i++){
+                nodeList1[i].style.backgroundColor = "grey";
+                nodeList1[i].setAttribute("readOnly", "true");
+            }
+            for (let j = 0; j <nodeList3.length; j++){
+                nodeList2[j].style.backgroundColor="grey";
+                nodeList2[j].setAttribute("readOnly", "true");
+            }
         }
         console.log("Blocked wynosi: " + blocked);
-    };
-    // $(function (){
-    //     $('#branchName').select2({
-    //         language: "pl",
-    //         placeholder: "Wybierz...",
-    //         theme: "bootstrap4",
-    //         selectionCssClass: "form-control",
-    //         ajax: {
-    //             url: "/api/hospitalConfig/search/v1",
-    //             dataType: 'json',
-    //             type: 'GET',
-    //             data: function (params){
-    //                 console.log(params)
-    //                 return {
-    //                     term: params.term,
-    //                     page: params.page || 1,
-    //                 }
-    //             },
-    //             processResults(data) {
-    //                 console.log(data)
-    //                 return {
-    //                     results: $.map(data, function (item){
-    //                         return {
-    //                             text: item.name,
-    //                             id: item.branchId,
-    //                         }
-    //                     })
-    //                 }
-    //             }
-    //         }
-    //     })
-    // });
-    // $('#branchName').on('change', function (){
-    //     $('#branchdId').val($(this).val());
-    // });
+    }
 
+    $('#reportTable tbody').on('click', '#saveReport', function (){
+      let $row = $(this).closest("tr");
+      // let tempId = $row.find(".column-data1").text();
+      let tempId = $row.find(".column-data2").text();
+      let tempValue1 = $row.find(".column-data3").val();
+      let tempValue2 = $row.find(".column-data4").val();
+      let tempValue3 = $row.find(".column-data5").val();
+      let tempValue4 = $row.find(".column-data6").val();
+           console.log("Dane przekazywane: " + tempId +";"+tempValue1+";"+tempValue2+";"+tempValue3+";"+tempValue4);
+           $.ajax({
+               type: "post",
+               contentType: "application/json; charset=UTF-8",
+               url: "/api/hospital/saveOneRaport",
+               data: JSON.stringify({'tempId': tempId, 'tempValue1': tempValue1, 'tempValue2': tempValue2, 'tempValue3': tempValue3, 'tempValue4': tempValue4}),
+               cache: false,
+               success: function (){
+                   toastr.success("Pomyślnie dodano raport");
+                   window.setTimeout(function (){location.reload();}, 3000);
+               },
+               error: function (){
+                   toastr.error("Wystąpił błąd podczas zapisu");
+                   console.log("Błąd");
+               }
+           })
+    });
 
+    $('#saveAllReport').on('click', function (){
+        let temp = [];
+        $('#reportTable tr').each(function (index, row){
+            if(index !== 0){
+                console.log("Index wynosi: " + index);
+                let rowData= {};
+                $(row).find('input').each(function (){
+                    // rowData[$(this).attr('tempId')] = $(this).val();
+                    // console.log("Rowdata: " + rowData);
+                    let tempId = $(row).find(".column-data2").text();
+                    let tempValue1 = $(row).find(".column-data3").val();
+                    let tempValue2 = $(row).find(".column-data4").val();
+                    let tempValue3 = $(row).find(".column-data5").val();
+                    let tempValue4 = $(row).find(".column-data6").val();
+                    console.log(tempId + ";"+ tempValue1);
+                    // rowData.push(tempId, tempValue1, tempValue2, tempValue3, tempValue4);
+                    // rowData.
+                    rowData[$(this).attr('tempId')] = tempId;
+                    rowData[$(this).attr('tempValue1')] = tempValue1;
+                    rowData[$(this).attr('tempValue2')] = tempValue2;
+                    rowData[$(this).attr('tempValue3')] = tempValue3;
+                    rowData[$(this).attr('tempValue4')] = tempValue4;
+                    console.log("RowData: " +rowData.tempId);
+                });
+                // if(rowData.tempId){
+                    temp.push(rowData);
+
+                // }
+            }
+            console.log("Dane w rowData" + temp);
+        })
+        // let table = document.getElementById('reportTable');
+        // for (let i=0, row; row = table.rows[i]; i++){
+        //     for (let j=0, col; col = row.cells[j]; j++){
+        //         alert('col html >>'+col.innerHTML);
+        //         alert('col >>'+col.);
+        //     }
+        // }
+        // let x = document.getElementById("reportTable").rows.length -1;
+        // console.log("Ilość: " + x);
+        // for(i = 0; i<x; i++){
+        //     let $row = $(this.i).closest("tr");
+        //     let tempId = $row.find(".column-data2").text();
+        //     let tempValue1 = $row.find(".column-data3").val();
+        //     let tempValue2 = $row.find(".column-data4").val();
+        //     let tempValue3 = $row.find(".column-data5").val();
+        //     let tempValue4 = $row.find(".column-data6").val();
+        //     console.log("ATAK: "+ $row+ ";");
+        //     // let dane = new Array();
+        //     let dane = {
+        //         tempId : tempId,
+        //         tempValue1 : tempValue1,
+        //         tempValue2 : tempValue2,
+        //         tempValue3 : tempValue3,
+        //         tempValue4 : tempValue4,
+        //     }
+        //     console.log("Wartość x:" + i);
+        //     // console.log(dane.tempId + ";" + dane.tempValue1)
+        //     temps.push(dane);
+        // }
+        // console.log("Object:"  + temps);
+        // $.ajax({
+        //     type: "POST",
+        //     contentType: "application/json",
+        //     accept: 'text/plain',
+        //     url: "/api/hospital/saveAllRaports",
+        //     data: JSON.stringify(temps),
+        //     cache: false,
+        //     success: function (){
+        //         toastr.success("Pomyślnie dodano wszystkie raporty");
+        //         window.setTimeout(function (){location.reload();}, 3000);
+        //     },
+        //     error: function (){
+        //         toastr.error("Wystąpił błąd podczas zapisu");
+        //         console.log("Błąd");
+        //     }
+        // })
+       });
+
+// function setInputFilter(textbox, inputFilter, errMsg){
+//     ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop", "focusout"].forEach(function (event){
+//         textbox.addEventListener(event, function (e){
+//             if(inputFilter(this.value)){
+//                 if(["keydown", "mousedown", "focusout"].indexOf(e.type) >= 0){
+//                     this.classList.remove("input-error");
+//                     this.setCustomValidity("");
+//                 }
+//                 this.oldValue = this.value;
+//                 this.oldSelectionStart = this.selectionStart;
+//                 this.oldSelectionEnd = this.selectionEnd;
+//             } else if(this.hasOwnProperty("oldValue")){
+//                 this.classList.add("input-error");
+//                 this.setCustomValidity(errMsg);
+//                 this.reportValidity();
+//                 this.value=this.oldValue;
+//                 this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+//             } else {
+//                 this.value="";
+//             }
+//         });
+//     });
+// }
+//     (function($) {
+//         $.fn.inputFilter = function(inputFilter) {
+//             return this.on("input keydown keyup mousedown mouseup select contextmenu drop", function() {
+//                 if (inputFilter(this.value)) {
+//                     this.oldValue = this.value;
+//                     this.oldSelectionStart = this.selectionStart;
+//                     this.oldSelectionEnd = this.selectionEnd;
+//                 } else if (this.hasOwnProperty("oldValue")) {
+//                     this.value = this.oldValue;
+//                     this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+//                 } else {
+//                     this.value = "";
+//                 }
+//             });
+//         };
+//     }(jQuery));
+//     let testInput = document.querySelectorAll(".input");
+//     testInput.inputFilter(function (value){
+//         return /^-?\d*$/.test(value);
+//     });
+// setInputFilter(document.querySelectorAll(".input"), function (value){
+//     return /^-?\d*$/.test(value);
+// }, "Wprowadź poprawną wartość - tylko liczba!!!");
+    function validate(evt) {
+        var theEvent = evt || window.event;
+
+        // Handle paste
+        if (theEvent.type === 'paste') {
+            key = event.clipboardData.getData('text/plain');
+        } else {
+            // Handle key press
+            var key = theEvent.keyCode || theEvent.which;
+            key = String.fromCharCode(key);
+        }
+        // var regex = /[0-9]|\./;
+        var regex = /^-?\d*$/;
+        if( !regex.test(key) ) {
+            theEvent.returnValue = false;
+            if(theEvent.preventDefault) theEvent.preventDefault();
+        }
+    }
 </script>

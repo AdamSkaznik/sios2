@@ -23,7 +23,7 @@ public interface ReportRepository extends JpaRepository<Report, Long> {
     @Query(value = zap3, nativeQuery = true)
     List<Report> getById(Report Long);
 
-    String zap4 = "SELECT * FROM tab_reports WHERE date = ?1";
+    String zap4 = "SELECT * FROM tab_reports WHERE date = date(?1)";
     @Query(value = zap4, nativeQuery = true)
     Report getReportByDate(LocalDate date);
 

@@ -46,6 +46,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/images/**").permitAll()
                 .antMatchers("/webjars/**").permitAll()
                 .antMatchers("/datatables/**").permitAll()
+                .antMatchers("/uploadProcedures/**").permitAll()
                 .antMatchers(HttpMethod.GET,"/api/unsecured/**").permitAll()
                 .antMatchers("/restrict/**").fullyAuthenticated()
 //                .antMatchers("/api/**").fullyAuthenticated()
@@ -71,7 +72,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
         web
                 .ignoring()
-                .antMatchers("/resources/**", "/static/**", "/templates/**","/images/**", "/webjars/**", "/datatables/**", "/srb/**", "/unsecured/**", "/assets/**");
+                .antMatchers("/resources/**", "/static/**", "/templates/**","/images/**", "/webjars/**", "/datatables/**", "/srb/**", "/unsecured/**", "/assets/**", "/uploadProcedures/**");
     }
 
 //    public class WebSecurityUnprotected extends WebSecurityConfigurerAdapter{

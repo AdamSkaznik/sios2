@@ -10,7 +10,6 @@ public class FileInfo {
         this.url = url;
         this.fileDescription = fileDescription;
     }
-
     public FileInfo(String name, String url) {
         this.name = name;
         this.url = url;

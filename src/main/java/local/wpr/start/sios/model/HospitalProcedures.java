@@ -9,6 +9,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -17,7 +19,7 @@ import java.time.LocalDateTime;
 @Table(name = "tab_hospital_procedures")
 public class HospitalProcedures {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long hospitalProceduresId;
     private String name;
     @Column(length = 4096)
@@ -34,7 +36,11 @@ public class HospitalProcedures {
     @ManyToOne
     @JoinColumn(name = "userId", nullable = false)
     private User user;
+    @OneToMany(mappedBy = "procedures", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<HospitalProceduresFile> hospitalProceduresFiles = new ArrayList<>();
     @ManyToOne
-    @JoinColumn(name = "hospitalProceduresTypesId", nullable = false)
+    @JoinColumn(name = "hospitalProceduresTypesId", nullable = true)
     private HospitalProceduresType hospitalProceduresType;
+//    @OneToMany(mappedBy = "hospitalProceduresFile", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<Document> documents;
 }

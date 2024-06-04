@@ -15,9 +15,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.stream.Stream;
-
 @Service
-public class FilesStorageServiceImpl  implements FilesStorageService{
+public class FilesStorageServiceImpl implements FilesStorageService{
     private final Path root = Paths.get("./upload");
     private static final Logger LOG = LoggerFactory.getLogger(FilesStorageServiceImpl.class);
     @Override
@@ -26,22 +25,22 @@ public class FilesStorageServiceImpl  implements FilesStorageService{
             Files.createDirectories(root);
         } catch (IOException e) {
             LOG.error("Nie można zainicjować folderu dla upload!");
-            throw new RuntimeException("Nie można zainicjować folderu dla uploadu");
+            throw new RuntimeException("Nie można zainicjować folder dla uploadu");
         }
     }
 
     @Override
     public void saveFile(MultipartFile file) {
-    try {
-       Files.copy(file.getInputStream(), this.root.resolve(file.getOriginalFilename()));
-    }catch (Exception e){
-        if(e instanceof FileAlreadyExistsException){
-            LOG.error("Plik o takiej nazwie już istnieje!");
-            throw new RuntimeException("Plik o takiej nazwie już istnieje!");
+        try {
+            Files.copy(file.getInputStream(), this.root.resolve(file.getOriginalFilename()));
+        }catch (Exception e){
+            if(e instanceof FileAlreadyExistsException){
+                LOG.error("Plik o takiej nazwie już istnieje!");
+                throw new RuntimeException("Plik o takiej nazwie już istnieje!");
+            }
+            LOG.error("Wystąpił błąd: " + e.getMessage());
+            throw new RuntimeException(e.getMessage());
         }
-        LOG.error("Wystąpił błąd: " + e.getMessage());
-        throw new RuntimeException(e.getMessage());
-    }
     }
 
     @Override

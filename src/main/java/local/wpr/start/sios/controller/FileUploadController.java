@@ -18,14 +18,10 @@ import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBui
 
 //import javax.annotation.Resource;
 import javax.servlet.ServletContext;
-import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static org.aspectj.weaver.tools.cache.SimpleCacheFactory.path;
 
 @Controller
 public class FileUploadController {
@@ -53,7 +49,7 @@ public class FileUploadController {
 //            String url = context.getContextPath() + "/files/" + file.getOriginalFilename();
             System.out.println("URL: " + url.toString());
             messagesFiles.setFileUrl(url.toString());
-            System.out.println("File Name: " +messagesFiles.getDescription());
+            System.out.println("File Name: " +file.getOriginalFilename());
             messagesFileService.saveMessageFiles(messagesFiles);
             message = "Pomyślnie wgrano plik o nazwie: "+file.getOriginalFilename();
             model.addAttribute("message", message);

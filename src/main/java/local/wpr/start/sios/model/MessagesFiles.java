@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Table(name = "tab_messages_files")
 public class MessagesFiles {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long messagesFilesId;
     private String messagesFileName;
     private String fileUrl;

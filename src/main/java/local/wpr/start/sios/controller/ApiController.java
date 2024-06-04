@@ -3,16 +3,15 @@ package local.wpr.start.sios.controller;
 import local.wpr.start.sios.model.*;
 import local.wpr.start.sios.service.UserService;
 import local.wpr.start.sios.service.impl.*;
+import local.wpr.start.sios.utils.Temp;
+import local.wpr.start.sios.utils.TempObj;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.MimeTypeUtils;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.time.LocalDate;
@@ -55,7 +54,11 @@ public class ApiController {
     @Autowired
     HospitalChoiceServiceImpl hospitalChoiceServiceImpl;
     @Autowired
+    HospitalProceduresServiceImpl hospitalProceduresServiceImpl;
+    @Autowired
     HospitalProceduresTypeServiceImpl hospitalProceduresTypeServiceImpl;
+    @Autowired
+    HospitalReportServiceImpl hospitalReportServiceImpl;
 
 
 
@@ -144,7 +147,17 @@ public class ApiController {
         }
     }
 
-
+    @RequestMapping(value = "/hospitalNewReport/v1", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<HospitalReport>> getNewHospitalReport(Long reportId, Long hospitalId, Principal principal){
+        User user = userService.findUserByUserName(principal.getName());
+        LocalDate date = LocalDate.now();
+        Report report = reportService.getReportByDate(date);
+        try {
+            return new ResponseEntity<List<HospitalReport>>(hospitalReportServiceImpl.getByHospitalIdAndReportId(report.getId(), user.getHospital().getHospitalId()), HttpStatus.OK);
+        }catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
     @RequestMapping(value = "/archivedReports/v1", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Report>> getAllArchived(){
         try {
@@ -203,6 +216,26 @@ public class ApiController {
         }
     }
 
+    @RequestMapping(value = "/hospital/procedures/v1", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<HospitalProcedures>> getAllProcedures(){
+        try {
+            return new ResponseEntity<List<HospitalProcedures>>(hospitalProceduresServiceImpl.getAllHospitalProcedures(), HttpStatus.OK);
+        }catch (Exception e){
+            LOG.error("Błąd podczas pobierania danych z API /hospital/procedures/v1" + e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @RequestMapping(value = "/hospitalProceduresType/search/v1", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<HospitalProceduresType>> procedureTypeSearch(String term){
+        try {
+            return new ResponseEntity<List<HospitalProceduresType>>(hospitalProceduresTypeServiceImpl.getByNameSearch(term), HttpStatus.OK);
+        }catch (Exception e){
+            LOG.error("Błąd podczas pobierania danych z API /hospitalProceduresType/search/v1" + e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
     @RequestMapping(value = "/hospital/hospitalBranchClosed/v1", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<HospitalBranchClosed>> getAllBranchClosed(){
         try {
@@ -254,6 +287,66 @@ public class ApiController {
             LOG.error("Błąd podczas pobierania danych z API /selectView/search/v1" + e.getMessage());
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
+    }
+
+    @PostMapping("/hospital/saveOneRaport")
+    public ResponseEntity<Void> saveOneHospitalReport(@RequestBody Temp temp, Principal principal){
+        System.out.println("Dane przekazane: " + temp.getTempId()+";"+ temp.getTempValue1()+";"+ temp.getTempValue2()+";"+ temp.getTempValue3()+";"+temp.getTempValue4());
+        User user = userService.findUserByUserName(principal.getName());
+        HospitalReport hospitalReport = hospitalReportServiceImpl.getById(temp.getTempId());
+        int val1 = temp.getTempValue1();
+        int val2 = temp.getTempValue2();
+        int val3 = temp.getTempValue3();
+        int val4 = temp.getTempValue4();
+        hospitalReport.setStateA(val1);
+        hospitalReport.setStateA_1(Integer.toString(val1));
+        hospitalReport.setStateB(val2);
+        hospitalReport.setStateB_1(Integer.toString(val2));
+        hospitalReport.setStateC(val3);
+        hospitalReport.setStateC_1(Integer.toString(val3));
+        hospitalReport.setDoctorA(val4);
+        LocalDateTime LDT = LocalDateTime.now();
+        LocalDateTime LD1 = hospitalReport.getStateADate();
+        LocalDateTime LD2 = hospitalReport.getStateBDate();
+        LocalDateTime LD3 = hospitalReport.getStateCDate();
+        hospitalReport.setUpdateDate(LDT);
+        if(LD1 == null){
+            hospitalReport.setStateADate(LDT);
+        }
+        if(LD2 == null){
+            hospitalReport.setStateBDate(LDT);
+        }
+        if(LD3 == null){
+            hospitalReport.setStateCDate(LDT);
+        }
+        hospitalReport.setUser(user);
+
+        try {
+            hospitalReportServiceImpl.saveHospitalReport(hospitalReport);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e){
+            e.printStackTrace();
+            LOG.error("Błąd podczas dodawania raportu: " + e.getMessage());
+            return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        }
+    }
+
+    @PostMapping("/hospital/saveAllRaports")
+    public ResponseEntity<Void> saveAllReports(@RequestBody List<Temp> temps){
+        int dlugosc = temps.size();
+        System.out.println("Ilość : " + dlugosc);
+        for(int i = 0; i < dlugosc; i++){
+//            Temp temp = tempObjs.get(i);
+            Temp tempObj = temps.get(i);
+            Long a = tempObj.getTempId();
+            int b = tempObj.getTempValue1();
+            int c = tempObj.getTempValue2();
+            int d = tempObj.getTempValue3();
+            int e = tempObj.getTempValue4();
+            System.out.println("Rekord: " + i + " dane : " + a + ";" + b + ";" + c + ";"+ d + ";" + e);
+        }
+        System.out.println("Dane przekazane z API : " + temps);
+        return new  ResponseEntity<>(HttpStatus.OK);
     }
 //    @RequestMapping(value = "/hospitalConfig/v1", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
 //    public ResponseEntity<HospitalConfig> getById(Long hospitalConfigId){

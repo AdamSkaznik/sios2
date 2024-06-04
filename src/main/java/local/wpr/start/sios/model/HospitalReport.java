@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 @Table(name = "tab_hospitalReport")
 public class HospitalReport {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long hospitalReportId;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "hospitalId", nullable = true)

@@ -13,4 +13,5 @@ public interface HospitalReportService {
     List<HospitalReport> getNullByZmiana1(Long id);
     List<HospitalReport> getNullByZmiana2(Long id);
     List<HospitalReport> getNullByZmiana3(Long id);
+    List<HospitalReport> getByHospitalIdAndReportId(Long reportId, Long hospitalId);
 }

@@ -23,6 +23,11 @@ public class HospitalProceduresTypeServiceImpl implements HospitalProceduresType
     }
 
     @Override
+    public List<HospitalProceduresType> getByNameSearch(String description) {
+        return hospitalProceduresTypeRepository.findByIgnoreCase(description);
+    }
+
+    @Override
     public void saveHospitalProceduresType(HospitalProceduresType hospitalProceduresType) {
             hospitalProceduresTypeRepository.save(hospitalProceduresType);
     }

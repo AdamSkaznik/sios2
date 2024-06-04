@@ -14,9 +14,10 @@
                 id="uploadForm"
                 method="post"
                 th:action="@{/restrict/files/upload}"
-                enctype="multipart/form-data">
+                enctype="multipart/form-data"
+        />
             <input id="input-file" type="file" name="file" />
-            <textarea rows="5" name="fileDescription"></textarea>
+            <textarea rows="5" name="fileDescription" ></textarea>
             <button class="btn btn-sm btn-outline-success float-right" type="submit">
                 Upload
             </button>
