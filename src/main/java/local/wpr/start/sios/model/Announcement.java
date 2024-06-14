@@ -28,7 +28,8 @@ public class Announcement {
     private String createdBy;
     @CreatedDate
     private Date createdDate;
-    @ManyToMany(cascade = CascadeType.MERGE)
-    @JoinTable(name = "announcementUser", joinColumns = @JoinColumn(name = "announcementId"), inverseJoinColumns = @JoinColumn(name = "userId"))
-    private Set<User> users;
+    private boolean announcementActive;
+//    @ManyToMany(cascade = CascadeType.MERGE)
+//    @JoinTable(name = "announcementUser", joinColumns = @JoinColumn(name = "announcementId"), inverseJoinColumns = @JoinColumn(name = "userId"))
+//    private Set<User> users;
 }

@@ -26,4 +26,9 @@ public class ViewServiceImpl implements ViewService {
     public List<Views> getById(Long id) {
         return viewRepository.findAllWkrm(id);
     }
+
+    @Override
+    public List<Views> getByIdAndHospitalId(Long id, Long id2) {
+        return viewRepository.findAllByReportIdAndHospitalId(id, id2);
+    }
 }

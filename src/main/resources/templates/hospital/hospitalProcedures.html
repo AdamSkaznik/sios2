@@ -7,7 +7,7 @@
 </head>
 <body>
 <div class="container-fluid" >
-  <center><h3>Procedury/wytyczne</h3></center>
+  <center><h3 style="font-weight: bold">Procedury/wytyczne</h3></center>
 <!--  <br>-->
   <button class="btn btn-success" id="addProcedures"><span class="fa-solid fa-plus-circle"></span></button>
   <br><br>
@@ -24,32 +24,51 @@
       <th>Akcje</th>
     </tr>
     </thead>
-    <tbod>
+    <tbody>
       <tr th:each="hospitalProcedures: ${procedures}">
         <td th:text="${hospitalProcedures.hospitalProceduresType.getHospitalProceduresTypeDesc()}"></td>
         <td th:text="${hospitalProcedures.name}"></td>
         <td th:text="${hospitalProcedures.description}"></td>
         <td>
-          <ul>
-            <li th:each="files: ${hospitalProcedures.hospitalProceduresFiles}" > Załacznik
-              <a th:href="@{/uploadProcedures/{filename}(filename=${files.fileName})}" th:text="${files.fileName}" download></a>
-<!--            <li th:each="files: ${hospitalProcedures.hospitalProceduresFiles}">-->
-<!--              <a th:attr="download=${files.fileName}" th:href="/uploadProcedures/"> Pobierz</a>-->
-<!--                <i class="fa-solid fa-info"> Pobierz</i>-->
-<!--              <a th:href="@{/uploadProcedures/{filename}(filename=${files.filename})}" th:text="${files.fileName}">Załącznik</a>-->
+          <ol>
+            <li th:each="files: ${hospitalProcedures.hospitalProceduresFiles}" >
+              <span th:if="${#strings.endsWith(files.fileName.toLowerCase(), '.pdf')}">
+                <i class="fas fa-file-pdf" style="color: red"></i>
+              </span>
+              <span th:if="${#strings.endsWith(files.fileName.toLowerCase(), '.doc') || #strings.endsWith(files.fileName.toLowerCase(), 'docx')}">
+                <i class="fas fa-file-word" style="color: blue"></i>
+              </span>
+              <span th:if="${#strings.endsWith(files.fileName.toLowerCase(), '.txt')}">
+                <i class="fas fa-file-text" style="color: red"></i>
+              </span>
+              <span th:if="${#strings.endsWith(files.fileName.toLowerCase(), '.xlsx') || #strings.endsWith(files.fileName.toLowerCase(), '.xls') || #strings.endsWith(files.fileName.toLowerCase(), '.csv')}">
+                <i class="fas fa-file-excel" style="color: green"></i>
+              </span>
+              <span th:if="${#strings.endsWith(files.fileName.toLowerCase(), '.msg')}">
+                <i class="fas fa-file-signature"></i>
+              </span>
+              <a th:href="@{/downloadProcedures/{filename}(filename=${files.fileName})}" th:text="${files.fileName}" download></a>
+<!--              &nbsp;&nbsp;&nbsp;-->
+<!--              <button class="btn btn-danger btn-sm" onclick="deleteAttachment(${files.id})">-->
+<!--                <i class="fas fa-trash-alt" style="color: red; padding-right: 10px; float: right"></i>-->
+<!--              </button>-->
+
             </li>
-          </ul>
+          </ol>
         </td>
         <td th:text="${hospitalProcedures.user.getName()}"></td>
 <!--        <td th:text="${hospitalProcedures.modifiedDateTime}"></td>-->
         <td th:text="${#temporals.format(hospitalProcedures.modifiedDateTime, 'yyyy-MM-dd HH:mm:ss')}"></td>
         <td>
-          <a th:href="@{edit/{id}(id=${hospitalProcedures.hospitalProceduresId})}"> Edytuj</a>
-          <a th:href="@{edit/{id}(id=${hospitalProcedures.hospitalProceduresId})}"><i class="fa-solid fa-pencil"></i></a>
+<!--          <a th:href="@{edit/{id}(id=${hospitalProcedures.hospitalProceduresId})}"> Edytuj</a>-->
+          <a th:href="@{detailsProcedures/{id}(id=${hospitalProcedures.hospitalProceduresId})}" th:title="szczegóły"><i class="fa-solid fa-info-circle" style="color: greenyellow" data-tooltip="szczegóły"></i></a>&nbsp;&nbsp;
+          <a th:href="@{edit/{id}(id=${hospitalProcedures.hospitalProceduresId})}" th:title="edycja"><i class="fa-solid fa-pencil"></i></a>&nbsp;&nbsp;
+          <a th:href="@{delete/{id}(id=${hospitalProcedures.hospitalProceduresId})}" th:title="usuń"><i class="fa-solid fa-trash-alt" style="color: red"></i></a>
         </td>
       </tr>
-    </tbod>
+    </tbody>
   </table>
+
   <!--    modal dla dodania procedury - start-->
   <div class="modal fade" id="add_procedures">
     <div class="modal-dialog modal-lg modal-dialog-centered">
@@ -99,73 +118,75 @@
 </body>
 </html>
 <script type="text/javascript">
+
   $(document).ready(function (){
 
-    // table = $("#tableProcedures").DataTable({
-    //   "bAutoWidth": true,
-    //   "bLengthChange": false,
-    //   "pageLength": 5,
-    //   "sAjaxSource": "/api/hospital/procedures/v1",
-    //   "sAjaxDataProp": "",
-    //   "aoColumns": [
-    //     {
-    //       "mData": null,
-    //       sWidth: '20px', "render": function (data, type, full, meta) {
-    //         return meta.index + 1;
-    //       }
-    //     },
-    //     {"mData": "hospitalProceduresType.hospitalProceduresTypeDesc",
-    //     sWidth: '120px'},
-    //     {"mData": "name",
-    //     sWidth: '300px'},
-    //     {"mData": "description"},
-    //     {"mData": "user.name",
-    //     sWidth: '100px'
-    //     },
-    //     {"mData": "modifiedDateTime",
-    //     sWidth: '100px'},
-    //     {
-    //       "mData": null, sWidth: '80px',
-    //       "render": function () {
-    //         let a = "";
-    //         a = a + '&nbsp&nbsp' + '<a href="#"><span style="color: orange" class="fa-solid fa-info-circle" title="Szczegóły komunikatu" id="details"></span></a>';
-    //         return a;
-    //       }
-    //     },
-    //     // {"mData" : "status.statusId"}
-    //   ],
-    //   "columnDefs": [
-    //     {
-    //       "targets": [5],
-    //       "render": function (data, type, row, meta) {
-    //         return moment(data).local().format('YYYY-MM-DD HH:mm:ss');
-    //       }
-    //     },
-    //   ],
-    //   "language": {
-    //     "processing": "Przetwarzanie...",
-    //     "search": "Szukaj:",
-    //     "lengthMenu": "Pokaż _MENU_ pozycji",
-    //     "info": "Pozycje od _START_ do _END_ z _TOTAL_ łącznie",
-    //     "infoEmpty": "Pozycji 0 z 0 dostępnych",
-    //     "infoFiltered": "(filtrowanie spośród _MAX_ dostępnych pozycji)",
-    //     "infoPostFix": "",
-    //     "loadingRecords": "Wczytywanie...",
-    //     "zeroRecords": "Nie znaleziono pasujących pozycji",
-    //     "emptyTable": "Nie znaleziono rekordów",
-    //     "paginate": {
-    //       "first": "Pierwsza",
-    //       "previous": "Poprzednia",
-    //       "next": "Następna",
-    //       "last": "Ostatnia"
-    //     },
-    //     "aria": {
-    //       "sortAscending": ": aktywuj, by posortować kolumnę rosnąco",
-    //       "sortDescending": ": aktywuj, by posortować kolumnę malejąco"
-    //     }
-    //   }
-    //
-    // })
+
+    table = $("#tableProcedures").DataTable({
+      "bAutoWidth": true,
+      "bLengthChange": false,
+      "pageLength": 5,
+      // "sAjaxSource": "/api/hospital/procedures/v1",
+      "sAjaxDataProp": "",
+      // "aoColumns": [
+      //   {
+      //     "mData": null,
+      //     sWidth: '20px', "render": function (data, type, full, meta) {
+      //       return meta.index + 1;
+      //     }
+      //   },
+      //   {"mData": "hospitalProceduresType.hospitalProceduresTypeDesc",
+      //   sWidth: '120px'},
+      //   {"mData": "name",
+      //   sWidth: '300px'},
+      //   {"mData": "description"},
+      //   {"mData": "user.name",
+      //   sWidth: '100px'
+      //   },
+      //   {"mData": "modifiedDateTime",
+      //   sWidth: '100px'},
+      //   {
+      //     "mData": null, sWidth: '80px',
+      //     "render": function () {
+      //       let a = "";
+      //       a = a + '&nbsp&nbsp' + '<a href="#"><span style="color: orange" class="fa-solid fa-info-circle" title="Szczegóły komunikatu" id="details"></span></a>';
+      //       return a;
+      //     }
+      //   },
+      //   // {"mData" : "status.statusId"}
+      // ],
+      // "columnDefs": [
+      //   {
+      //     "targets": [5],
+      //     "render": function (data, type, row, meta) {
+      //       return moment(data).local().format('YYYY-MM-DD HH:mm:ss');
+      //     }
+      //   },
+      // ],
+      "language": {
+        "processing": "Przetwarzanie...",
+        "search": "Szukaj:",
+        "lengthMenu": "Pokaż _MENU_ pozycji",
+        "info": "Pozycje od _START_ do _END_ z _TOTAL_ łącznie",
+        "infoEmpty": "Pozycji 0 z 0 dostępnych",
+        "infoFiltered": "(filtrowanie spośród _MAX_ dostępnych pozycji)",
+        "infoPostFix": "",
+        "loadingRecords": "Wczytywanie...",
+        "zeroRecords": "Nie znaleziono pasujących pozycji",
+        "emptyTable": "Nie znaleziono rekordów",
+        "paginate": {
+          "first": "Pierwsza",
+          "previous": "Poprzednia",
+          "next": "Następna",
+          "last": "Ostatnia"
+        },
+        "aria": {
+          "sortAscending": ": aktywuj, by posortować kolumnę rosnąco",
+          "sortDescending": ": aktywuj, by posortować kolumnę malejąco"
+        }
+      }
+
+    });
     // table.on('order.dt search.dt', function () {
     //   table.column(0, {search: 'applied', order: 'applied'}).nodes().each(function (cell, i) {
     //     cell.innerHTML = i + 1;

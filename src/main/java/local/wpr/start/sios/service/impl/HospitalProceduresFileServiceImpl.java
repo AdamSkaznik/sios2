@@ -20,40 +20,30 @@ public class HospitalProceduresFileServiceImpl {
     @Autowired
     HospitalProceduresFileRepository hospitalProceduresFileRepository;
 
-    public HospitalProceduresFile saveHospitalProceduresFile(MultipartFile file, HospitalProcedures procedures) throws IOException{
+    public HospitalProceduresFile saveHospitalProceduresFile(MultipartFile file, HospitalProcedures procedures) throws IOException {
         Path uploadPath = Paths.get(UPLOAD_DIR);
-        if(!Files.exists(uploadPath)){
+        if (!Files.exists(uploadPath)) {
             Files.createDirectories(uploadPath);
         }
-        if(file.isEmpty()){
-
-        } else {
-            String filename = file.getOriginalFilename();
-            Path filePath = uploadPath.resolve(filename);
-            Files.copy(file.getInputStream(), filePath);
-
-            HospitalProceduresFile proceduresFile = new HospitalProceduresFile();
-            proceduresFile.setProcedures(procedures);
-            proceduresFile.setFileName(filename);
-            proceduresFile.setFileUrl(String.valueOf(filePath));
-//        proceduresFile.setDescription(filename);
-//        proceduresFile.setFileUrl(filePath.toString());
-            proceduresFile.setFileActive(true);
-            proceduresFile.setLocalDateTime(LocalDateTime.now());
-            return hospitalProceduresFileRepository.save(proceduresFile);
+        String filename = file.getOriginalFilename();
+        Path filePatch = uploadPath.resolve(filename);
+        if (Files.exists(filePatch)) {
+            throw new IOException("Plik o takiej nazwie już istnieje na serwerze!");
         }
-//        String filename = file.getOriginalFilename();
-//        Path filePath = uploadPath.resolve(filename);
-//        Files.copy(file.getInputStream(), filePath);
-//
-//        HospitalProceduresFile proceduresFile = new HospitalProceduresFile();
-//        proceduresFile.setProcedures(procedures);
-//        proceduresFile.setFileName(filename);
-//        proceduresFile.setFileUrl(String.valueOf(filePath));
-////        proceduresFile.setDescription(filename);
-////        proceduresFile.setFileUrl(filePath.toString());
-//        proceduresFile.setFileActive(true);
-//        proceduresFile.setLocalDateTime(LocalDateTime.now());
-        return null;
+        Files.copy(file.getInputStream(), filePatch);
+        HospitalProceduresFile proceduresFile = new HospitalProceduresFile();
+        proceduresFile.setFileName(filename);
+        proceduresFile.setProcedures(procedures);
+        proceduresFile.setFileUrl(String.valueOf(filePatch));
+        proceduresFile.setFileActive(true);
+        proceduresFile.setLocalDateTime(LocalDateTime.now());
+        return hospitalProceduresFileRepository.save(proceduresFile);
+    }
+    public Path load(String filename){
+        return Paths.get(UPLOAD_DIR).resolve(filename).normalize();
+    }
+    public boolean fileExists(String filename){
+        Path filePatch = Paths.get(UPLOAD_DIR).resolve(filename).normalize();
+        return Files.exists(filePatch);
     }
 }

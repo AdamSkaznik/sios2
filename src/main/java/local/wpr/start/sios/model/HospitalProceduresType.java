@@ -17,4 +17,5 @@ public class HospitalProceduresType {
     private Long hospitalProceduresTypeId;
     private String hospitalProceduresTypeDesc;
     private boolean active;
+    private int hospitalProceduresReception;
 }

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" xmlns:sd="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.w3.org/1999/xhtml"
+      th:replace="~{/hospital/fragments/layout2::layout(~{::.container-fluid})}">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    .input-error{
+      outline: 1px solid red;
+    }
+  </style>
+</head>
+<body>
+<div class="container-fluid" style="padding-top: 150px">
+  <!--<h3 style="align-content: center"> Szczegóły komunikatu</h3>-->
+  <br>
+  <div class="card bg-info">
+    <div class="card-header" style="text-align: center"><h4>Szczegóły procedury</h4></div>
+    <div class="card-body">
+      <table class="table table-striped table-bordered" th:object="${hospitalProcedures}">
+        <tr>
+          <td>&nbsp;&nbsp; Typ procedury</td>
+          <td th:text="${hospitalProcedures.hospitalProceduresType.getHospitalProceduresTypeDesc()}" style="font-weight: bold"></td>
+        </tr>
+        <tr>
+          <td>&nbsp;&nbsp; Nazwa procedury</td>
+          <td th:text="${hospitalProcedures.name}" style="font-weight: bold"></td>
+        </tr>
+      </table>
+    </div>
+    <div class="card-footer">
+      <div class="pull-right"><button class="btn btn-close"><i class="fas fa-close"></i> Zamknij</button> </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+
+</script>

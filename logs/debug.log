@@ -1,0 +1,756 @@
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `messagesFiles` : value = NOT NULL COLLECTION
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`messagesFiles`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `startDate` : value = 2024-06-13 00:00:00.0
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`startDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `title` : value = 
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`title`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `user` : value = 1
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`user`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [local.wpr.start.sios.model.Messages#23]
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving attributes for [local.wpr.start.sios.model.Messages#24]
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `addDate` : value = 2024-06-13T13:20:22.323805
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`addDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `content` : value = 
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`content`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `endDate` : value = 2024-06-16 00:00:00.0
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`endDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `hospital` : value = 73
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`hospital`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `messagesActive` : value = true
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`messagesActive`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `messagesFiles` : value = NOT NULL COLLECTION
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`messagesFiles`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `startDate` : value = 2024-06-13 00:00:00.0
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`startDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `title` : value = 
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`title`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `user` : value = 1
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`user`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [local.wpr.start.sios.model.Messages#24]
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving attributes for [local.wpr.start.sios.model.Messages#25]
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `addDate` : value = 2024-06-13T13:21:01.713485
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`addDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `content` : value = 
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`content`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `endDate` : value = 2024-06-16 00:00:00.0
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`endDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `hospital` : value = 73
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`hospital`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `messagesActive` : value = true
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`messagesActive`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `messagesFiles` : value = NOT NULL COLLECTION
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`messagesFiles`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `startDate` : value = 2024-06-13 00:00:00.0
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`startDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `title` : value = 
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`title`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `user` : value = 1
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`user`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [local.wpr.start.sios.model.Messages#25]
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving attributes for [local.wpr.start.sios.model.Messages#26]
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `addDate` : value = 2024-06-13T13:21:13.522531
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`addDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `content` : value = g dgdg fcg df 
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`content`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `endDate` : value = 2024-06-16 00:00:00.0
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`endDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `hospital` : value = 73
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`hospital`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `messagesActive` : value = true
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`messagesActive`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `messagesFiles` : value = NOT NULL COLLECTION
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`messagesFiles`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `startDate` : value = 2024-06-13 00:00:00.0
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`startDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `title` : value = fbff 
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`title`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `user` : value = 1
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`user`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [local.wpr.start.sios.model.Messages#26]
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving attributes for [local.wpr.start.sios.model.Messages#27]
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `addDate` : value = 2024-06-13T13:27:46.838712
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`addDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `content` : value = fgbfgbfbg fd
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`content`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `endDate` : value = 2024-06-16 00:00:00.0
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`endDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `hospital` : value = 73
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`hospital`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `messagesActive` : value = true
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`messagesActive`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `messagesFiles` : value = NOT NULL COLLECTION
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`messagesFiles`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `startDate` : value = 2024-06-13 00:00:00.0
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`startDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `title` : value = fgbfdb
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`title`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `user` : value = 1
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`user`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [local.wpr.start.sios.model.Messages#27]
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving attributes for [local.wpr.start.sios.model.Messages#28]
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `addDate` : value = 2024-06-14T11:03:46.484618
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`addDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `content` : value = hfg bvn hgvjmhffgfdgn g 
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`content`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `endDate` : value = 2024-06-17 00:00:00.0
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`endDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `hospital` : value = 73
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`hospital`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `messagesActive` : value = true
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`messagesActive`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `messagesFiles` : value = NOT NULL COLLECTION
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`messagesFiles`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `startDate` : value = 2024-06-14 00:00:00.0
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`startDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `title` : value = tjygnh g 
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`title`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `user` : value = 1
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`user`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [local.wpr.start.sios.model.Messages#28]
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving attributes for [local.wpr.start.sios.model.Messages#29]
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `addDate` : value = 2024-06-14T11:14:40.961485
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`addDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `content` : value = W przeciwieństwie do rozpowszechnionych opinii, Lorem Ipsum nie jest tylko przypadkowym tekstem. Ma ono korzenie w klasycznej łacińskiej literaturze z 45 roku przed Chrystusem, czyli ponad 2000 lat temu! Richard McClintock, wykładowca łaciny na uniwersytecie Hampden-Sydney w Virginii, przyjrzał się uważniej jednemu z najbardziej niejasnych słów w Lorem Ipsum – consectetur – i po wielu poszukiwaniach odnalazł niezaprzeczalne źródło: Lorem Ipsum pochodzi z fragmentów (1.10.32 i 1.10.33) „de Finibus Bonorum et Malorum”, czyli „O granicy dobra i zła”, napisanej właśnie w 45 p.n.e. przez Cycerona. Jest to bardzo popularna w czasach renesansu rozprawa na temat etyki. Pierwszy wiersz Lorem Ipsum, „Lorem ipsum dolor sit amet...” pochodzi właśnie z sekcji 1.10.32.
+
+Standardowy blok Lorem Ipsum, używany od XV wieku, jest odtworzony niżej dla zainteresowanych. Fragmenty 1.10.32 i 1.10.33 z „de Finibus Bonorum et Malorum” Cycerona, są odtworzone w dokładnej, oryginalnej formie, wraz z angielskimi tłumaczeniami H. Rackhama z 1914 roku.
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`content`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `endDate` : value = 2024-06-17 00:00:00.0
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`endDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `hospital` : value = 73
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`hospital`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `messagesActive` : value = true
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`messagesActive`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `messagesFiles` : value = NOT NULL COLLECTION
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`messagesFiles`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `startDate` : value = 2024-06-14 00:00:00.0
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`startDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `title` : value = rthbfgbdfgb dfg dfg dfg 
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`title`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `user` : value = 1
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`user`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [local.wpr.start.sios.model.Messages#29]
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving attributes for [local.wpr.start.sios.model.Messages#30]
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `addDate` : value = 2024-06-14T11:20:18.874873
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`addDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `content` : value = Ogólnie znana teza głosi, iż użytkownika może rozpraszać zrozumiała zawartość strony, kiedy ten chce zobaczyć sam jej wygląd. Jedną z mocnych stron używania Lorem Ipsum jest to, że ma wiele różnych „kombinacji” zdań, słów i akapitów, w przeciwieństwie do zwykłego: „tekst, tekst, tekst”, sprawiającego, że wygląda to „zbyt czytelnie” po polsku. Wielu webmasterów i designerów używa Lorem Ipsum jako domyślnego modelu tekstu i wpisanie w internetowej wyszukiwarce ‘lorem ipsum’ spowoduje znalezienie bardzo wielu stron, które wciąż są w budowie. Wiele wersji tekstu ewoluowało i zmieniało się przez lata, czasem przez przypadek, czasem specjalnie (humorystyczne wstawki itd).
+
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`content`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `endDate` : value = 2024-06-17 00:00:00.0
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`endDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `hospital` : value = 73
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`hospital`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `messagesActive` : value = true
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`messagesActive`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `messagesFiles` : value = NOT NULL COLLECTION
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`messagesFiles`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `startDate` : value = 2024-06-14 00:00:00.0
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`startDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `title` : value = test wielu załaczników
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`title`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `user` : value = 1
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`user`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [local.wpr.start.sios.model.Messages#30]
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving attributes for [local.wpr.start.sios.model.Messages#31]
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `addDate` : value = 2024-06-14T11:45:58.940087
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`addDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `content` : value = est dostępnych wiele różnych wersji Lorem Ipsum, ale większość zmieniła się pod wpływem dodanego humoru czy przypadkowych słów, które nawet w najmniejszym stopniu nie przypominają istniejących. Jeśli masz zamiar użyć fragmentu Lorem Ipsum, lepiej mieć pewność, że nie ma niczego „dziwnego” w środku tekstu. Wszystkie Internetowe generatory Lorem Ipsum mają tendencje do kopiowania już istniejących bloków, co czyni nasz pierwszym prawdziwym generatorem w Internecie. Używamy zawierającego ponad 200 łacińskich słów słownika, w kontekście wielu znanych sentencji, by wygenerować tekst wyglądający odpowiednio. To wszystko czyni „nasz” Lorem Ipsum wolnym od powtórzeń, humorystycznych wstawek czy niecharakterystycznych słów.
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`content`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `endDate` : value = 2024-06-17 00:00:00.0
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`endDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `hospital` : value = 73
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`hospital`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `messagesActive` : value = true
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`messagesActive`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `messagesFiles` : value = NOT NULL COLLECTION
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`messagesFiles`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `startDate` : value = 2024-06-14 00:00:00.0
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`startDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `title` : value = Test z listą plików
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`title`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `user` : value = 1
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`user`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [local.wpr.start.sios.model.Messages#31]
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving attributes for [local.wpr.start.sios.model.Messages#32]
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `addDate` : value = 2024-06-14T11:48:09.452849
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`addDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `content` : value = 
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`content`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `endDate` : value = 2024-06-17 00:00:00.0
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`endDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `hospital` : value = 73
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`hospital`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `messagesActive` : value = true
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`messagesActive`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `messagesFiles` : value = NOT NULL COLLECTION
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`messagesFiles`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `startDate` : value = 2024-06-14 00:00:00.0
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`startDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `title` : value = Kolejny test
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`title`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `user` : value = 1
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`user`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [local.wpr.start.sios.model.Messages#32]
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving attributes for [local.wpr.start.sios.model.Messages#33]
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `addDate` : value = 2024-06-14T11:48:34.634567
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`addDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `content` : value = 
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`content`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `endDate` : value = 2024-06-17 00:00:00.0
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`endDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `hospital` : value = 73
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`hospital`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `messagesActive` : value = true
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`messagesActive`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `messagesFiles` : value = NOT NULL COLLECTION
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`messagesFiles`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `startDate` : value = 2024-06-14 00:00:00.0
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`startDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `title` : value = jeszcze jeden
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`title`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `user` : value = 1
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`user`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [local.wpr.start.sios.model.Messages#33]
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving attributes for [local.wpr.start.sios.model.Messages#34]
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `addDate` : value = 2024-06-14T12:00:07.611484
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`addDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `content` : value = 
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`content`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `endDate` : value = 2024-06-17 00:00:00.0
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`endDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `hospital` : value = 73
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`hospital`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `messagesActive` : value = true
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`messagesActive`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `messagesFiles` : value = NOT NULL COLLECTION
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`messagesFiles`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `startDate` : value = 2024-06-14 00:00:00.0
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`startDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `title` : value = 
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`title`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `user` : value = 1
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`user`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [local.wpr.start.sios.model.Messages#34]
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving attributes for [local.wpr.start.sios.model.Messages#35]
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `addDate` : value = 2024-06-14T12:05:29.139682
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`addDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `content` : value = 
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`content`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `endDate` : value = 2024-06-17 00:00:00.0
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`endDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `hospital` : value = 73
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`hospital`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `messagesActive` : value = true
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`messagesActive`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `messagesFiles` : value = NOT NULL COLLECTION
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`messagesFiles`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `startDate` : value = 2024-06-14 00:00:00.0
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`startDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `title` : value = 
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`title`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `user` : value = 1
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`user`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [local.wpr.start.sios.model.Messages#35]
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving attributes for [local.wpr.start.sios.model.Messages#36]
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `addDate` : value = 2024-06-14T12:06:51.647784
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`addDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `content` : value = 
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`content`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `endDate` : value = 2024-06-17 00:00:00.0
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`endDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `hospital` : value = 73
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`hospital`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `messagesActive` : value = true
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`messagesActive`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `messagesFiles` : value = NOT NULL COLLECTION
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`messagesFiles`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `startDate` : value = 2024-06-14 00:00:00.0
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`startDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `title` : value = 
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`title`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `user` : value = 1
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`user`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [local.wpr.start.sios.model.Messages#36]
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving attributes for [local.wpr.start.sios.model.Messages#37]
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `addDate` : value = 2024-06-14T12:09:01.236023
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`addDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `content` : value = 
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`content`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `endDate` : value = 2024-06-17 00:00:00.0
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`endDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `hospital` : value = 73
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`hospital`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `messagesActive` : value = true
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`messagesActive`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `messagesFiles` : value = NOT NULL COLLECTION
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`messagesFiles`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `startDate` : value = 2024-06-14 00:00:00.0
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`startDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `title` : value = 
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`title`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `user` : value = 1
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`user`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [local.wpr.start.sios.model.Messages#37]
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving attributes for [local.wpr.start.sios.model.Messages#38]
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `addDate` : value = 2024-06-14T12:09:13.164432
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`addDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `content` : value = 
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`content`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `endDate` : value = 2024-06-17 00:00:00.0
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`endDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `hospital` : value = 73
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`hospital`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `messagesActive` : value = true
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`messagesActive`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `messagesFiles` : value = NOT NULL COLLECTION
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`messagesFiles`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `startDate` : value = 2024-06-14 00:00:00.0
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`startDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `title` : value = 
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`title`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `user` : value = 1
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`user`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [local.wpr.start.sios.model.Messages#38]
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving attributes for [local.wpr.start.sios.model.Messages#39]
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `addDate` : value = 2024-06-14T12:30:47.914969
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`addDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `content` : value = 
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`content`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `endDate` : value = 2024-06-17 00:00:00.0
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`endDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `hospital` : value = 73
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`hospital`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `messagesActive` : value = true
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`messagesActive`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `messagesFiles` : value = NOT NULL COLLECTION
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`messagesFiles`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `startDate` : value = 2024-06-14 00:00:00.0
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`startDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `title` : value = 
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`title`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `user` : value = 1
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`user`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [local.wpr.start.sios.model.Messages#39]
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving attributes for [local.wpr.start.sios.model.Messages#40]
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `addDate` : value = 2024-06-14T12:31:49.038512
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`addDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `content` : value = 
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`content`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `endDate` : value = 2024-06-17 00:00:00.0
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`endDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `hospital` : value = 73
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`hospital`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `messagesActive` : value = true
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`messagesActive`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `messagesFiles` : value = NOT NULL COLLECTION
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`messagesFiles`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `startDate` : value = 2024-06-14 00:00:00.0
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`startDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `title` : value = 
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`title`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `user` : value = 1
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`user`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [local.wpr.start.sios.model.Messages#40]
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving attributes for [local.wpr.start.sios.model.Messages#41]
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `addDate` : value = 2024-06-14T12:31:58.738160
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`addDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `content` : value = 
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`content`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `endDate` : value = 2024-06-17 00:00:00.0
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`endDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `hospital` : value = 73
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`hospital`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `messagesActive` : value = true
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`messagesActive`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `messagesFiles` : value = NOT NULL COLLECTION
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`messagesFiles`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `startDate` : value = 2024-06-14 00:00:00.0
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`startDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `title` : value = 
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`title`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `user` : value = 1
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`user`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [local.wpr.start.sios.model.Messages#41]
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving attributes for [local.wpr.start.sios.model.Messages#42]
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `addDate` : value = 2024-06-14T12:32:06.910033
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`addDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `content` : value = 
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`content`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `endDate` : value = 2024-06-17 00:00:00.0
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`endDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `hospital` : value = 73
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`hospital`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `messagesActive` : value = true
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`messagesActive`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `messagesFiles` : value = NOT NULL COLLECTION
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`messagesFiles`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `startDate` : value = 2024-06-14 00:00:00.0
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`startDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `title` : value = 
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`title`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `user` : value = 1
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`user`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [local.wpr.start.sios.model.Messages#42]
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving attributes for [local.wpr.start.sios.model.Messages#43]
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `addDate` : value = 2024-06-14T12:32:39.123240
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`addDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `content` : value = 
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`content`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `endDate` : value = 2024-06-17 00:00:00.0
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`endDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `hospital` : value = 73
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`hospital`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `messagesActive` : value = true
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`messagesActive`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `messagesFiles` : value = NOT NULL COLLECTION
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`messagesFiles`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `startDate` : value = 2024-06-14 00:00:00.0
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`startDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `title` : value = 
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`title`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `user` : value = 1
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`user`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [local.wpr.start.sios.model.Messages#43]
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving attributes for [local.wpr.start.sios.model.Messages#44]
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `addDate` : value = 2024-06-14T12:34:53.291382
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`addDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `content` : value = 
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`content`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `endDate` : value = 2024-06-17 00:00:00.0
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`endDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `hospital` : value = 73
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`hospital`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `messagesActive` : value = true
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`messagesActive`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `messagesFiles` : value = NOT NULL COLLECTION
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`messagesFiles`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `startDate` : value = 2024-06-14 00:00:00.0
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`startDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `title` : value = 
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`title`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `user` : value = 1
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`user`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [local.wpr.start.sios.model.Messages#44]
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving attributes for [local.wpr.start.sios.model.Messages#45]
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `addDate` : value = 2024-06-14T12:36:03.474967
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`addDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `content` : value = 
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`content`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `endDate` : value = 2024-06-17 00:00:00.0
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`endDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `hospital` : value = 73
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`hospital`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `messagesActive` : value = true
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`messagesActive`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `messagesFiles` : value = NOT NULL COLLECTION
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`messagesFiles`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `startDate` : value = 2024-06-14 00:00:00.0
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`startDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `title` : value = 
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`title`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `user` : value = 1
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`user`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [local.wpr.start.sios.model.Messages#45]
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving attributes for [local.wpr.start.sios.model.Messages#46]
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `addDate` : value = 2024-06-14T12:39:41.876044
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`addDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `content` : value = 
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`content`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `endDate` : value = 2024-06-17 00:00:00.0
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`endDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `hospital` : value = 73
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`hospital`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `messagesActive` : value = true
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`messagesActive`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `messagesFiles` : value = NOT NULL COLLECTION
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`messagesFiles`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `startDate` : value = 2024-06-14 00:00:00.0
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`startDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `title` : value = 
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`title`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `user` : value = 1
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`user`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [local.wpr.start.sios.model.Messages#46]
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving attributes for [local.wpr.start.sios.model.Messages#47]
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `addDate` : value = 2024-06-14T12:39:56.786913
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`addDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `content` : value = 
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`content`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `endDate` : value = 2024-06-17 00:00:00.0
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`endDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `hospital` : value = 73
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`hospital`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `messagesActive` : value = true
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`messagesActive`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `messagesFiles` : value = NOT NULL COLLECTION
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`messagesFiles`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `startDate` : value = 2024-06-14 00:00:00.0
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`startDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `title` : value = 
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`title`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `user` : value = 1
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`user`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [local.wpr.start.sios.model.Messages#47]
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving attributes for [local.wpr.start.sios.model.Messages#48]
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `addDate` : value = 2024-06-14T12:44:04.691755
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`addDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `content` : value = erfgdfvdsfvsdvds
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`content`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `endDate` : value = 2024-06-17 00:00:00.0
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`endDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `hospital` : value = 73
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`hospital`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `messagesActive` : value = true
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`messagesActive`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `messagesFiles` : value = NOT NULL COLLECTION
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`messagesFiles`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `startDate` : value = 2024-06-14 00:00:00.0
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`startDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `title` : value = Test komunikatu o błędzie
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`title`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `user` : value = 1
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`user`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [local.wpr.start.sios.model.Messages#48]
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving attributes for [local.wpr.start.sios.model.Messages#49]
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `addDate` : value = 2024-06-14T12:49:00.820681
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`addDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `content` : value = sdvcsdcvdvcdvds
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`content`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `endDate` : value = 2024-06-17 00:00:00.0
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`endDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `hospital` : value = 73
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`hospital`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `messagesActive` : value = true
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`messagesActive`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `messagesFiles` : value = NOT NULL COLLECTION
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`messagesFiles`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `startDate` : value = 2024-06-14 00:00:00.0
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`startDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `title` : value = Test
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`title`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `user` : value = 1
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`user`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [local.wpr.start.sios.model.Messages#49]
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving attributes for [local.wpr.start.sios.model.Messages#50]
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `addDate` : value = 2024-06-14T12:49:35.501382
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`addDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `content` : value = sdvcsdcvdvcdvds
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`content`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `endDate` : value = 2024-06-17 00:00:00.0
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`endDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `hospital` : value = 73
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`hospital`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `messagesActive` : value = true
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`messagesActive`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `messagesFiles` : value = NOT NULL COLLECTION
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`messagesFiles`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `startDate` : value = 2024-06-14 00:00:00.0
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`startDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `title` : value = Test
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`title`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `user` : value = 1
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`user`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [local.wpr.start.sios.model.Messages#50]
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Resolving attributes for [local.wpr.start.sios.model.Messages#51]
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `addDate` : value = 2024-06-14T12:51:34.458777
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`addDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `content` : value = 
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`content`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `endDate` : value = 2024-06-17 00:00:00.0
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`endDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `hospital` : value = 73
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`hospital`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `messagesActive` : value = true
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`messagesActive`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `messagesFiles` : value = NOT NULL COLLECTION
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`messagesFiles`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `startDate` : value = 2024-06-14 00:00:00.0
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`startDate`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `title` : value = test Id
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`title`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Processing attribute `user` : value = 1
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Attribute (`user`)  - enhanced for lazy-loading? - false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.engine.internal.TwoPhaseLoad - Done materializing entity [local.wpr.start.sios.model.Messages#51]
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.stat.internal.StatisticsImpl - HHH000117: HQL: select generatedAlias0 from Messages as generatedAlias0, time: 54ms, rows: 51
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.s.orm.jpa.JpaTransactionManager - Initiating transaction commit
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.s.orm.jpa.JpaTransactionManager - Committing JPA transaction on EntityManager [SessionImpl(1018687280<open>)]
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.h.e.t.internal.TransactionImpl - committing
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG org.postgresql.jdbc.PgConnection -   setAutoCommit = true
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.s.jdbc.datasource.DataSourceUtils - Resetting read-only flag of JDBC Connection [HikariProxyConnection@1541702369 wrapping org.postgresql.jdbc.PgConnection@7d9d7390]
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG org.postgresql.jdbc.PgConnection -   setReadOnly = false
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.s.orm.jpa.JpaTransactionManager - Not closing pre-bound JPA EntityManager after transaction
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.s.w.s.v.ContentNegotiatingViewResolver - Selected 'text/html' given [text/html, application/xhtml+xml, image/avif, image/webp, application/xml;q=0.9, */*;q=0.8]
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.a.c.loader.WebappClassLoaderBase - getResource(templates//orm/index.html)
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.a.c.loader.WebappClassLoaderBase -   Delegating to parent classloader org.springframework.boot.devtools.restart.classloader.RestartClassLoader@2641bab7
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.a.c.loader.WebappClassLoaderBase -   --> Returning 'file:/E:/projekty/sios/target/classes/templates//orm/index.html'
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.a.c.loader.WebappClassLoaderBase - getResourceAsStream(templates//orm/index.html)
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.a.c.loader.WebappClassLoaderBase -   Delegating to parent classloader org.springframework.boot.devtools.restart.classloader.RestartClassLoader@2641bab7
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.a.c.loader.WebappClassLoaderBase -   --> Returning stream from parent
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.a.c.loader.WebappClassLoaderBase - getResource(templates//orm/index.html)
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.a.c.loader.WebappClassLoaderBase -   Delegating to parent classloader org.springframework.boot.devtools.restart.classloader.RestartClassLoader@2641bab7
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.a.c.loader.WebappClassLoaderBase -   --> Returning 'file:/E:/projekty/sios/target/classes/templates//orm/index.html'
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.a.c.loader.WebappClassLoaderBase - getResourceAsStream(templates//orm/index.html)
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.a.c.loader.WebappClassLoaderBase -   Delegating to parent classloader org.springframework.boot.devtools.restart.classloader.RestartClassLoader@2641bab7
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.a.c.loader.WebappClassLoaderBase -   --> Returning stream from parent
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.a.c.loader.WebappClassLoaderBase - getResource(templates//orm/fragments/layout.html)
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.a.c.loader.WebappClassLoaderBase -   Delegating to parent classloader org.springframework.boot.devtools.restart.classloader.RestartClassLoader@2641bab7
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.a.c.loader.WebappClassLoaderBase -   --> Returning 'file:/E:/projekty/sios/target/classes/templates//orm/fragments/layout.html'
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.a.c.loader.WebappClassLoaderBase - getResourceAsStream(templates//orm/fragments/layout.html)
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.a.c.loader.WebappClassLoaderBase -   Delegating to parent classloader org.springframework.boot.devtools.restart.classloader.RestartClassLoader@2641bab7
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.a.c.loader.WebappClassLoaderBase -   --> Returning stream from parent
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.a.c.loader.WebappClassLoaderBase - getResource(templates/orm/fragments/navbar.html)
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.a.c.loader.WebappClassLoaderBase -   Delegating to parent classloader org.springframework.boot.devtools.restart.classloader.RestartClassLoader@2641bab7
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.a.c.loader.WebappClassLoaderBase -   --> Returning 'file:/E:/projekty/sios/target/classes/templates/orm/fragments/navbar.html'
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.a.c.loader.WebappClassLoaderBase - getResourceAsStream(templates/orm/fragments/navbar.html)
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.a.c.loader.WebappClassLoaderBase -   Delegating to parent classloader org.springframework.boot.devtools.restart.classloader.RestartClassLoader@2641bab7
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.a.c.loader.WebappClassLoaderBase -   --> Returning stream from parent
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.a.c.loader.WebappClassLoaderBase - getResource(templates/orm/fragments/footer.html)
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.a.c.loader.WebappClassLoaderBase -   Delegating to parent classloader org.springframework.boot.devtools.restart.classloader.RestartClassLoader@2641bab7
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.a.c.loader.WebappClassLoaderBase -   --> Returning 'file:/E:/projekty/sios/target/classes/templates/orm/fragments/footer.html'
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.a.c.loader.WebappClassLoaderBase - getResourceAsStream(templates/orm/fragments/footer.html)
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.a.c.loader.WebappClassLoaderBase -   Delegating to parent classloader org.springframework.boot.devtools.restart.classloader.RestartClassLoader@2641bab7
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.a.c.loader.WebappClassLoaderBase -   --> Returning stream from parent
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.s.o.j.s.OpenEntityManagerInViewInterceptor - Closing JPA EntityManager in OpenEntityManagerInViewInterceptor
+2024-06-14 14:32:28 [http-nio-9085-exec-8] INFO  o.h.e.i.StatisticalLoggingSessionEventListener - Session Metrics {
+    592300 nanoseconds spent acquiring 1 JDBC connections;
+    0 nanoseconds spent releasing 0 JDBC connections;
+    714000 nanoseconds spent preparing 5 JDBC statements;
+    2652800 nanoseconds spent executing 5 JDBC statements;
+    0 nanoseconds spent executing 0 JDBC batches;
+    0 nanoseconds spent performing 0 L2C puts;
+    0 nanoseconds spent performing 0 L2C hits;
+    0 nanoseconds spent performing 0 L2C misses;
+    0 nanoseconds spent executing 0 flushes (flushing a total of 0 entities and 0 collections);
+    2200 nanoseconds spent executing 1 partial-flushes (flushing a total of 0 entities and 0 collections)
+}
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.s.web.servlet.DispatcherServlet - Completed 200 OK
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.s.s.w.c.SecurityContextPersistenceFilter - Cleared SecurityContextHolder to complete request
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.a.coyote.http11.Http11InputBuffer - Before fill(): parsingHeader: [true], parsingRequestLine: [true], parsingRequestLinePhase: [0], parsingRequestLineStart: [0], byteBuffer.position(): [0], byteBuffer.limit(): [0], end: [538]
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.a.t.util.net.SocketWrapperBase - Socket: [org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper@dbe21f0:org.apache.tomcat.util.net.NioChannel@3dfe6dac:java.nio.channels.SocketChannel[connected local=/127.0.0.1:9085 remote=/127.0.0.1:52729]], Read from buffer: [0]
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.apache.tomcat.util.net.NioEndpoint - Socket: [org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper@dbe21f0:org.apache.tomcat.util.net.NioChannel@3dfe6dac:java.nio.channels.SocketChannel[connected local=/127.0.0.1:9085 remote=/127.0.0.1:52729]], Read direct from socket: [0]
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.a.coyote.http11.Http11InputBuffer - Received []
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.a.coyote.http11.Http11Processor - Socket: [org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper@dbe21f0:org.apache.tomcat.util.net.NioChannel@3dfe6dac:java.nio.channels.SocketChannel[connected local=/127.0.0.1:9085 remote=/127.0.0.1:52729]], Status in: [OPEN_READ], State out: [OPEN]
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.a.coyote.http11.Http11NioProtocol - Pushed Processor [org.apache.coyote.http11.Http11Processor@5dcbfc91]
+2024-06-14 14:32:28 [http-nio-9085-exec-8] DEBUG o.apache.tomcat.util.net.NioEndpoint - Registered read interest for [org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper@dbe21f0:org.apache.tomcat.util.net.NioChannel@3dfe6dac:java.nio.channels.SocketChannel[connected local=/127.0.0.1:9085 remote=/127.0.0.1:52729]]
+2024-06-14 14:32:33 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2024-06-14 14:32:33 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool is at sufficient level.
+2024-06-14 14:32:34 [quartzScheduler_QuartzSchedulerThread] DEBUG o.quartz.core.QuartzSchedulerThread - batch acquisition of 0 triggers
+2024-06-14 14:32:58 [quartzScheduler_QuartzSchedulerThread] DEBUG o.quartz.core.QuartzSchedulerThread - batch acquisition of 0 triggers
+2024-06-14 14:33:03 [Catalina-utility-2] DEBUG o.a.catalina.session.ManagerBase - Start expire sessions StandardManager at 1718368383144 sessioncount 1
+2024-06-14 14:33:03 [Catalina-utility-2] DEBUG o.a.catalina.session.ManagerBase - End expire sessions StandardManager processingTime 1 expired sessions: 0
+2024-06-14 14:33:03 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2024-06-14 14:33:03 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool is at sufficient level.
+2024-06-14 14:33:28 [http-nio-9085-exec-5] DEBUG o.a.coyote.http11.Http11NioProtocol - Processing socket [org.apache.tomcat.util.net.NioChannel@3dfe6dac:java.nio.channels.SocketChannel[connected local=/127.0.0.1:9085 remote=/127.0.0.1:52729]] with status [ERROR]
+2024-06-14 14:33:28 [http-nio-9085-exec-5] DEBUG o.a.coyote.http11.Http11NioProtocol - Found processor [null] for socket [org.apache.tomcat.util.net.NioChannel@3dfe6dac:java.nio.channels.SocketChannel[connected local=/127.0.0.1:9085 remote=/127.0.0.1:52729]]
+2024-06-14 14:33:28 [http-nio-9085-exec-5] DEBUG o.a.tomcat.util.threads.LimitLatch - Counting down[http-nio-9085-exec-5] latch=1
+2024-06-14 14:33:28 [http-nio-9085-exec-5] DEBUG o.apache.tomcat.util.net.NioEndpoint - Calling [org.apache.tomcat.util.net.NioEndpoint@2b602b83].closeSocket([org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper@dbe21f0:org.apache.tomcat.util.net.NioChannel@3dfe6dac:java.nio.channels.SocketChannel[connected local=/127.0.0.1:9085 remote=/127.0.0.1:52729]])
+2024-06-14 14:33:28 [quartzScheduler_QuartzSchedulerThread] DEBUG o.quartz.core.QuartzSchedulerThread - batch acquisition of 0 triggers
+2024-06-14 14:33:33 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2024-06-14 14:33:33 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool is at sufficient level.
+2024-06-14 14:33:57 [quartzScheduler_QuartzSchedulerThread] DEBUG o.quartz.core.QuartzSchedulerThread - batch acquisition of 0 triggers
+2024-06-14 14:34:03 [Catalina-utility-2] DEBUG o.a.catalina.session.ManagerBase - Start expire sessions StandardManager at 1718368443153 sessioncount 1
+2024-06-14 14:34:03 [Catalina-utility-2] DEBUG o.a.catalina.session.ManagerBase - End expire sessions StandardManager processingTime 0 expired sessions: 0
+2024-06-14 14:34:03 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2024-06-14 14:34:03 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool is at sufficient level.
+2024-06-14 14:34:25 [quartzScheduler_QuartzSchedulerThread] DEBUG o.quartz.core.QuartzSchedulerThread - batch acquisition of 0 triggers
+2024-06-14 14:34:33 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2024-06-14 14:34:33 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool is at sufficient level.
+2024-06-14 14:34:51 [quartzScheduler_QuartzSchedulerThread] DEBUG o.quartz.core.QuartzSchedulerThread - batch acquisition of 0 triggers
+2024-06-14 14:35:03 [Catalina-utility-2] DEBUG o.a.catalina.session.ManagerBase - Start expire sessions StandardManager at 1718368503157 sessioncount 1
+2024-06-14 14:35:03 [Catalina-utility-2] DEBUG o.a.catalina.session.ManagerBase - End expire sessions StandardManager processingTime 0 expired sessions: 0
+2024-06-14 14:35:03 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2024-06-14 14:35:03 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool is at sufficient level.
+2024-06-14 14:35:15 [quartzScheduler_QuartzSchedulerThread] DEBUG o.quartz.core.QuartzSchedulerThread - batch acquisition of 0 triggers
+2024-06-14 14:35:33 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2024-06-14 14:35:33 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool is at sufficient level.
+2024-06-14 14:35:42 [quartzScheduler_QuartzSchedulerThread] DEBUG o.quartz.core.QuartzSchedulerThread - batch acquisition of 0 triggers
+2024-06-14 14:36:03 [Catalina-utility-2] DEBUG o.a.catalina.session.ManagerBase - Start expire sessions StandardManager at 1718368563166 sessioncount 1
+2024-06-14 14:36:03 [Catalina-utility-2] DEBUG o.a.catalina.session.ManagerBase - End expire sessions StandardManager processingTime 0 expired sessions: 0
+2024-06-14 14:36:03 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2024-06-14 14:36:03 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool is at sufficient level.
+2024-06-14 14:36:09 [quartzScheduler_QuartzSchedulerThread] DEBUG o.quartz.core.QuartzSchedulerThread - batch acquisition of 0 triggers
+2024-06-14 14:36:32 [quartzScheduler_QuartzSchedulerThread] DEBUG o.quartz.core.QuartzSchedulerThread - batch acquisition of 0 triggers
+2024-06-14 14:36:33 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2024-06-14 14:36:33 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool is at sufficient level.
+2024-06-14 14:37:00 [quartzScheduler_QuartzSchedulerThread] DEBUG o.quartz.core.QuartzSchedulerThread - batch acquisition of 0 triggers
+2024-06-14 14:37:03 [Catalina-utility-2] DEBUG o.a.catalina.session.ManagerBase - Start expire sessions StandardManager at 1718368623174 sessioncount 1
+2024-06-14 14:37:03 [Catalina-utility-2] DEBUG o.a.catalina.session.ManagerBase - End expire sessions StandardManager processingTime 0 expired sessions: 0
+2024-06-14 14:37:03 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2024-06-14 14:37:03 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool is at sufficient level.
+2024-06-14 14:37:28 [quartzScheduler_QuartzSchedulerThread] DEBUG o.quartz.core.QuartzSchedulerThread - batch acquisition of 0 triggers
+2024-06-14 14:37:33 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2024-06-14 14:37:33 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool is at sufficient level.
+2024-06-14 14:37:56 [quartzScheduler_QuartzSchedulerThread] DEBUG o.quartz.core.QuartzSchedulerThread - batch acquisition of 0 triggers
+2024-06-14 14:38:03 [Catalina-utility-1] DEBUG o.a.catalina.session.ManagerBase - Start expire sessions StandardManager at 1718368683181 sessioncount 1
+2024-06-14 14:38:03 [Catalina-utility-1] DEBUG o.a.catalina.session.ManagerBase - End expire sessions StandardManager processingTime 1 expired sessions: 0
+2024-06-14 14:38:03 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2024-06-14 14:38:03 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool is at sufficient level.
+2024-06-14 14:38:25 [quartzScheduler_QuartzSchedulerThread] DEBUG o.quartz.core.QuartzSchedulerThread - batch acquisition of 0 triggers
+2024-06-14 14:38:33 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2024-06-14 14:38:33 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool is at sufficient level.
+2024-06-14 14:38:54 [quartzScheduler_QuartzSchedulerThread] DEBUG o.quartz.core.QuartzSchedulerThread - batch acquisition of 0 triggers
+2024-06-14 14:39:03 [Catalina-utility-2] DEBUG o.a.catalina.session.ManagerBase - Start expire sessions StandardManager at 1718368743216 sessioncount 1
+2024-06-14 14:39:03 [Catalina-utility-2] DEBUG o.a.catalina.session.ManagerBase - End expire sessions StandardManager processingTime 1 expired sessions: 0
+2024-06-14 14:39:03 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2024-06-14 14:39:03 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool is at sufficient level.
+2024-06-14 14:39:21 [quartzScheduler_QuartzSchedulerThread] DEBUG o.quartz.core.QuartzSchedulerThread - batch acquisition of 0 triggers
+2024-06-14 14:39:33 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2024-06-14 14:39:33 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool is at sufficient level.
+2024-06-14 14:39:47 [quartzScheduler_QuartzSchedulerThread] DEBUG o.quartz.core.QuartzSchedulerThread - batch acquisition of 0 triggers
+2024-06-14 14:40:03 [Catalina-utility-1] DEBUG o.a.catalina.session.ManagerBase - Start expire sessions StandardManager at 1718368803226 sessioncount 1
+2024-06-14 14:40:03 [Catalina-utility-1] DEBUG o.a.catalina.session.ManagerBase - End expire sessions StandardManager processingTime 0 expired sessions: 0
+2024-06-14 14:40:03 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2024-06-14 14:40:03 [HikariPool-1 housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Fill pool skipped, pool is at sufficient level.
+2024-06-14 14:40:15 [quartzScheduler_QuartzSchedulerThread] DEBUG o.quartz.core.QuartzSchedulerThread - batch acquisition of 0 triggers
+2024-06-14 14:40:15 [SpringApplicationShutdownHook] DEBUG o.s.b.a.ApplicationAvailabilityBean - Application availability state ReadinessState changed from ACCEPTING_TRAFFIC to REFUSING_TRAFFIC
+2024-06-14 14:40:15 [SpringApplicationShutdownHook] DEBUG o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@16510157, started on Fri Jun 14 14:32:01 CEST 2024
+2024-06-14 14:40:15 [SpringApplicationShutdownHook] DEBUG o.s.b.c.p.s.ConfigurationPropertySourcesPropertyResolver$DefaultResolver - Found key 'spring.liveBeansView.mbeanDomain' in PropertySource 'systemProperties' with value of type String
+2024-06-14 14:40:15 [SpringApplicationShutdownHook] DEBUG o.s.c.s.DefaultLifecycleProcessor - Stopping beans in phase 2147483647
+2024-06-14 14:40:15 [SpringApplicationShutdownHook] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2024-06-14 14:40:15 [SpringApplicationShutdownHook] DEBUG o.s.c.s.DefaultLifecycleProcessor - Bean 'quartzScheduler' completed its stop procedure
+2024-06-14 14:40:15 [SpringApplicationShutdownHook] DEBUG o.s.c.s.DefaultLifecycleProcessor - Bean 'webServerGracefulShutdown' completed its stop procedure
+2024-06-14 14:40:15 [SpringApplicationShutdownHook] DEBUG o.s.c.s.DefaultLifecycleProcessor - Stopping beans in phase 2147483646
+2024-06-14 14:40:15 [SpringApplicationShutdownHook] DEBUG o.s.c.s.DefaultLifecycleProcessor - Bean 'webServerStartStop' completed its stop procedure
+2024-06-14 14:40:15 [SpringApplicationShutdownHook] DEBUG o.s.c.s.DefaultLifecycleProcessor - Stopping beans in phase -2147483647
+2024-06-14 14:40:15 [SpringApplicationShutdownHook] DEBUG o.s.c.s.DefaultLifecycleProcessor - Bean 'springBootLoggingLifecycle' completed its stop procedure
+2024-06-14 14:40:15 [SpringApplicationShutdownHook] DEBUG o.s.s.c.ThreadPoolTaskScheduler - Shutting down ExecutorService 'taskScheduler'
+2024-06-14 14:40:15 [SpringApplicationShutdownHook] DEBUG o.s.b.a.e.jmx.JmxEndpointExporter - Unregister endpoint with ObjectName 'org.springframework.boot:type=Endpoint,name=Beans' from the JMX domain
+2024-06-14 14:40:15 [SpringApplicationShutdownHook] DEBUG o.s.b.a.e.jmx.JmxEndpointExporter - Unregister endpoint with ObjectName 'org.springframework.boot:type=Endpoint,name=Caches' from the JMX domain
+2024-06-14 14:40:15 [SpringApplicationShutdownHook] DEBUG o.s.b.a.e.jmx.JmxEndpointExporter - Unregister endpoint with ObjectName 'org.springframework.boot:type=Endpoint,name=Health' from the JMX domain
+2024-06-14 14:40:15 [SpringApplicationShutdownHook] DEBUG o.s.b.a.e.jmx.JmxEndpointExporter - Unregister endpoint with ObjectName 'org.springframework.boot:type=Endpoint,name=Info' from the JMX domain
+2024-06-14 14:40:15 [SpringApplicationShutdownHook] DEBUG o.s.b.a.e.jmx.JmxEndpointExporter - Unregister endpoint with ObjectName 'org.springframework.boot:type=Endpoint,name=Conditions' from the JMX domain
+2024-06-14 14:40:15 [SpringApplicationShutdownHook] DEBUG o.s.b.a.e.jmx.JmxEndpointExporter - Unregister endpoint with ObjectName 'org.springframework.boot:type=Endpoint,name=Configprops' from the JMX domain
+2024-06-14 14:40:15 [SpringApplicationShutdownHook] DEBUG o.s.b.a.e.jmx.JmxEndpointExporter - Unregister endpoint with ObjectName 'org.springframework.boot:type=Endpoint,name=Env' from the JMX domain
+2024-06-14 14:40:15 [SpringApplicationShutdownHook] DEBUG o.s.b.a.e.jmx.JmxEndpointExporter - Unregister endpoint with ObjectName 'org.springframework.boot:type=Endpoint,name=Loggers' from the JMX domain
+2024-06-14 14:40:15 [SpringApplicationShutdownHook] DEBUG o.s.b.a.e.jmx.JmxEndpointExporter - Unregister endpoint with ObjectName 'org.springframework.boot:type=Endpoint,name=Threaddump' from the JMX domain
+2024-06-14 14:40:15 [SpringApplicationShutdownHook] DEBUG o.s.b.a.e.jmx.JmxEndpointExporter - Unregister endpoint with ObjectName 'org.springframework.boot:type=Endpoint,name=Metrics' from the JMX domain
+2024-06-14 14:40:15 [SpringApplicationShutdownHook] DEBUG o.s.b.a.e.jmx.JmxEndpointExporter - Unregister endpoint with ObjectName 'org.springframework.boot:type=Endpoint,name=Quartz' from the JMX domain
+2024-06-14 14:40:15 [SpringApplicationShutdownHook] DEBUG o.s.b.a.e.jmx.JmxEndpointExporter - Unregister endpoint with ObjectName 'org.springframework.boot:type=Endpoint,name=Scheduledtasks' from the JMX domain
+2024-06-14 14:40:15 [SpringApplicationShutdownHook] DEBUG o.s.b.a.e.jmx.JmxEndpointExporter - Unregister endpoint with ObjectName 'org.springframework.boot:type=Endpoint,name=Mappings' from the JMX domain
+2024-06-14 14:40:15 [SpringApplicationShutdownHook] DEBUG o.s.j.e.a.AnnotationMBeanExporter - Unregistering JMX-exposed beans on shutdown
+2024-06-14 14:40:15 [SpringApplicationShutdownHook] DEBUG o.s.j.e.a.AnnotationMBeanExporter - Unregistering JMX-exposed beans
+2024-06-14 14:40:15 [SpringApplicationShutdownHook] INFO  o.s.s.quartz.SchedulerFactoryBean - Shutting down Quartz Scheduler
+2024-06-14 14:40:15 [SpringApplicationShutdownHook] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED shutting down.
+2024-06-14 14:40:15 [SpringApplicationShutdownHook] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED paused.
+2024-06-14 14:40:15 [SpringApplicationShutdownHook] DEBUG org.quartz.simpl.SimpleThreadPool - Shutting down threadpool...
+2024-06-14 14:40:15 [SpringApplicationShutdownHook] DEBUG org.quartz.simpl.SimpleThreadPool - Shutdown of threadpool complete.
+2024-06-14 14:40:15 [SpringApplicationShutdownHook] INFO  org.quartz.core.QuartzScheduler - Scheduler quartzScheduler_$_NON_CLUSTERED shutdown complete.
+2024-06-14 14:40:15 [SpringApplicationShutdownHook] DEBUG o.s.s.c.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2024-06-14 14:40:15 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-06-14 14:40:15 [SpringApplicationShutdownHook] DEBUG o.h.internal.SessionFactoryImpl - HHH000031: Closing
+2024-06-14 14:40:15 [SpringApplicationShutdownHook] DEBUG o.h.type.spi.TypeConfiguration$Scope - Un-scoping TypeConfiguration [org.hibernate.type.spi.TypeConfiguration$Scope@5bc2d0ca] from SessionFactory [org.hibernate.internal.SessionFactoryImpl@4276d4e3]
+2024-06-14 14:40:15 [SpringApplicationShutdownHook] DEBUG o.h.s.i.AbstractServiceRegistryImpl - Implicitly destroying ServiceRegistry on de-registration of all child ServiceRegistries
+2024-06-14 14:40:15 [SpringApplicationShutdownHook] DEBUG o.h.b.r.i.BootstrapServiceRegistryImpl - Implicitly destroying Boot-strap registry on de-registration of all child ServiceRegistries
+2024-06-14 14:40:15 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-06-14 14:40:15 [SpringApplicationShutdownHook] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Before shutdown stats (total=10, active=0, idle=10, waiting=0)
+2024-06-14 14:40:15 [HikariPool-1 connection closer] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Closing connection org.postgresql.jdbc.PgConnection@7d9d7390: (connection evicted)
+2024-06-14 14:40:15 [HikariPool-1 connection closer] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Closing connection org.postgresql.jdbc.PgConnection@c89decb: (connection evicted)
+2024-06-14 14:40:15 [HikariPool-1 connection closer] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Closing connection org.postgresql.jdbc.PgConnection@498b513e: (connection evicted)
+2024-06-14 14:40:15 [HikariPool-1 connection closer] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Closing connection org.postgresql.jdbc.PgConnection@3ab51ab8: (connection evicted)
+2024-06-14 14:40:15 [HikariPool-1 connection closer] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Closing connection org.postgresql.jdbc.PgConnection@29a4ae71: (connection evicted)
+2024-06-14 14:40:15 [HikariPool-1 connection closer] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Closing connection org.postgresql.jdbc.PgConnection@c1388bd: (connection evicted)
+2024-06-14 14:40:15 [HikariPool-1 connection closer] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Closing connection org.postgresql.jdbc.PgConnection@33c33a07: (connection evicted)
+2024-06-14 14:40:15 [HikariPool-1 connection closer] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Closing connection org.postgresql.jdbc.PgConnection@21b1961d: (connection evicted)
+2024-06-14 14:40:15 [HikariPool-1 connection closer] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Closing connection org.postgresql.jdbc.PgConnection@2dea737c: (connection evicted)
+2024-06-14 14:40:15 [HikariPool-1 connection closer] DEBUG com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Closing connection org.postgresql.jdbc.PgConnection@3d2c401c: (connection evicted)
+2024-06-14 14:40:15 [SpringApplicationShutdownHook] DEBUG com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - After shutdown stats (total=0, active=0, idle=0, waiting=0)
+2024-06-14 14:40:15 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.

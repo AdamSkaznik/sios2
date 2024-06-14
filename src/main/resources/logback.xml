@@ -2,7 +2,7 @@
 <configuration>
 
     <property name="DEV_HOME" value="logs" />
-    <property name="LOG_FILE_MAX_HISTORY" value="5" />
+    <property name="LOG_FILE_MAX_HISTORY" value="1" />
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <layout class="ch.qos.logback.classic.PatternLayout">
@@ -25,7 +25,7 @@
             <!-- rollover daily -->
             <fileNamePattern>${DEV_HOME}/archived/debug.%d{yyyy-MM-dd}.%i.log
             </fileNamePattern>
-            <maxHistory>${LOG_FILE_MAX_HISTORY:-5}</maxHistory>
+            <maxHistory>${LOG_FILE_MAX_HISTORY}</maxHistory>
             <timeBasedFileNamingAndTriggeringPolicy
                     class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <maxFileSize>5MB</maxFileSize>
@@ -34,7 +34,6 @@
         </rollingPolicy>
 
     </appender>
-
     <appender name="FILE-INFO"
               class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${DEV_HOME}/info.log</file>
@@ -48,21 +47,51 @@
             <!-- rollover daily -->
             <fileNamePattern>${DEV_HOME}/archived/info.%d{yyyy-MM-dd}.%i.log
             </fileNamePattern>
-            <maxHistory>${LOG_FILE_MAX_HISTORY:-5}</maxHistory>
+            <maxHistory>${LOG_FILE_MAX_HISTORY}</maxHistory>
             <timeBasedFileNamingAndTriggeringPolicy
                     class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <maxFileSize>5MB</maxFileSize>
             </timeBasedFileNamingAndTriggeringPolicy>
         </rollingPolicy>
-
     </appender>
+    <appender name="FILE-FATAL"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>FATAL</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <file>${DEV_HOME}/fatal_error.log</file>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>
+                %d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n
+<!--                %d{yyyy-MM-dd HH:mm:ss} [%thread] %logger{36} - %msg%n-->
+            </Pattern>
+        </encoder>
 
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- rollover daily -->
+            <fileNamePattern>${DEV_HOME}/archived/fatal_error.%d{yyyy-MM-dd}.%i.log
+            </fileNamePattern>
+            <maxHistory>14</maxHistory>
+            <timeBasedFileNamingAndTriggeringPolicy
+                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>3MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+    </appender>
     <appender name="FILE-ERROR"
               class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
         <file>${DEV_HOME}/error.log</file>
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
             <Pattern>
                 %d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n
+<!--                %d{yyyy-MM-dd HH:mm:ss} [%thread] %logger{36} - %msg%n-->
             </Pattern>
         </encoder>
 
@@ -70,13 +99,58 @@
             <!-- rollover daily -->
             <fileNamePattern>${DEV_HOME}/archived/error.%d{yyyy-MM-dd}.%i.log
             </fileNamePattern>
-            <maxHistory>${LOG_FILE_MAX_HISTORY:-5}</maxHistory>
+            <maxHistory>5</maxHistory>
             <timeBasedFileNamingAndTriggeringPolicy
                     class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <maxFileSize>5MB</maxFileSize>
             </timeBasedFileNamingAndTriggeringPolicy>
         </rollingPolicy>
+    </appender>
+<!--    <appender name="FILE-FATAL"-->
+<!--              class="ch.qos.logback.core.rolling.RollingFileAppender">-->
+<!--        <file>${DEV_HOME}/fatal_error.log</file>-->
+<!--        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">-->
+<!--            <Pattern>-->
+<!--                %d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n-->
+<!--            </Pattern>-->
+<!--        </encoder>-->
+<!--        -->
+<!--        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">-->
+<!--            &lt;!&ndash; rollover daily &ndash;&gt;-->
+<!--            <fileNamePattern>${DEV_HOME}/archived/fatal_error.%d{yyyy-MM-dd}.%i.log-->
+<!--            </fileNamePattern>-->
+<!--            <maxHistory>14</maxHistory>-->
+<!--            <timeBasedFileNamingAndTriggeringPolicy-->
+<!--                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">-->
+<!--                <maxFileSize>3MB</maxFileSize>-->
+<!--            </timeBasedFileNamingAndTriggeringPolicy>-->
+<!--        </rollingPolicy>-->
 
+<!--    </appender>-->
+    <appender name="FILE-WARN"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>WARN</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    <file>${DEV_HOME}/warn.log</file>
+    <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+        <Pattern>
+            %d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n
+        </Pattern>
+    </encoder>
+
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+        <!-- rollover daily -->
+        <fileNamePattern>${DEV_HOME}/archived/warn.%d{yyyy-MM-dd}.%i.log
+        </fileNamePattern>
+        <maxHistory>5</maxHistory>
+        <timeBasedFileNamingAndTriggeringPolicy
+                class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+            <maxFileSize>3MB</maxFileSize>
+        </timeBasedFileNamingAndTriggeringPolicy>
+    </rollingPolicy>
     </appender>
     <appender name="SQL-INFO"
               class="ch.qos.logback.core.rolling.RollingFileAppender">
@@ -91,41 +165,38 @@
             <!-- rollover daily -->
             <fileNamePattern>${DEV_HOME}/archived/sql.%d{yyyy-MM-dd}.%i.log
             </fileNamePattern>
-            <maxHistory>${LOG_FILE_MAX_HISTORY:-5}</maxHistory>
+            <maxHistory>${LOG_FILE_MAX_HISTORY}</maxHistory>
             <timeBasedFileNamingAndTriggeringPolicy
                     class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <maxFileSize>5MB</maxFileSize>
             </timeBasedFileNamingAndTriggeringPolicy>
         </rollingPolicy>
-
     </appender>
 
     <!-- Send logs to both console and file audit -->
     <logger name="local.wpr.start.sios.app" level="debug" additivity="false">
         <appender-ref ref="FILE-AUDIT" />
-<!--        <appender-ref ref="STDOUT" />-->
     </logger>
-<!--    <logger name="local.wpr.start.sios.app" level="info" additivity="false">-->
-<!--        <appender-ref ref="FILE-INFO" />-->
-<!--&lt;!&ndash;        <appender-ref ref="STDOUT" />&ndash;&gt;-->
-<!--    </logger>-->
+
     <logger name="org.hibernate.SQL" additivity="false">
         <level value="TRACE" />
         <appender-ref ref="SQL-INFO" />
-<!--        <appender-ref ref="STDOUT" />-->
     </logger>
-
+    <root level="fatal">
+        <appender-ref ref="FILE-FATAL" />
+    </root>
     <root level="error">
         <appender-ref ref="FILE-ERROR" />
-<!--        <appender-ref ref="STDOUT" />-->
-        <appender-ref ref="SQL-INFO" />
+    </root>
+    <root level="warn">
+        <appender-ref ref="FILE-WARN" />
     </root>
     <root level="trace">
         <appender-ref ref="FILE-INFO" />
-<!--        <appender-ref ref = "SQL-INFO" />-->
     </root>
-<!--    <root level = "debug">-->
-<!--        <appender-ref ref = "FILE-DEBUG" />-->
-<!--    </root>-->
+    <root level="debug">
+        <appender-ref ref="FILE-AUDIT" />
+    </root>
+
 
 </configuration>

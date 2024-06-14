@@ -7,7 +7,109 @@
 </head>
 <body>
 <div class="container-fluid" >
-    <h3>Test</h3>
+    <!--    panel komunikatów-->
+    <div class="panel panel-danger">
+        <div class="panel-heading"> Komunikaty</div>
+        <div class="panel-body">
+
+            <button class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Dodaj nowy komunikat" id="add_new_messages" ><i class="fa-solid fa-plus-circle"></i>&nbsp;&nbsp;Nowy komunikat</button>
+            <table id="messages" class="table table-bordered table-striped display" style="width: 100%">
+                <thead>
+                <!--        <button class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Dodaj nowy komunikat"><i class="fa-solid fa-plus-circle"></i></button>-->
+                <tr>
+                    <th style="width: 20px">Lp.</th>
+                    <th style="width: 80px">Data dodania</th>
+                    <th style="width: 230px">Termin</th>
+                    <th>Szpital</th>
+                    <th>Temat</th>
+                    <!--            <th style="width: 50%">Opis</th>-->
+                    <!--            <th>Załączniki</th>-->
+                    <th style="width: 80px"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="messages, lp: ${messagesList}" class="clicable-row" title="Kliknij ikonę szczegółów, aby zobaczyć więcej informacji">
+                    <td th:text="${lp.index + 1}"></td>
+                    <td th:text="${#temporals.format(messages.addDate, 'yyyy-MM-dd')}"></td>
+<!--                                <td th:text="${messages.hospital.getShortName}"></td>-->
+                    <td th:text="'od:  ' + ${#dates.format(messages.startDate, 'yyyy-MM-dd')} + ' do ' + ${#dates.format(messages.endDate, 'yyyy-MM-dd')}" style="font-weight: bold; color: red"></td>
+                    <td th:text="${messages.hospital.getShortName}"></td>
+                    <td th:text="${messages.title}"></td>
+                    <!--            <td th:text="${messages.content}"></td>-->
+                    <!--            <td>-->
+                    <!--                <ol>-->
+                    <!--                    <li th:each="files: ${messages.messagesFiles}" >-->
+                    <!--              <span th:if="${#strings.endsWith(files.fileName.toLowerCase(), '.pdf')}">-->
+                    <!--                <i class="fas fa-file-pdf" style="color: red"></i>-->
+                    <!--              </span>-->
+                    <!--                        <span th:if="${#strings.endsWith(files.fileName.toLowerCase(), '.doc') || #strings.endsWith(files.fileName.toLowerCase(), 'docx')}">-->
+                    <!--                <i class="fas fa-file-word" style="color: blue"></i>-->
+                    <!--              </span>-->
+                    <!--                        <span th:if="${#strings.endsWith(files.fileName.toLowerCase(), '.txt')}">-->
+                    <!--                <i class="fas fa-file-text" style="color: red"></i>-->
+                    <!--              </span>-->
+                    <!--                        <span th:if="${#strings.endsWith(files.fileName.toLowerCase(), '.xlsx') || #strings.endsWith(files.fileName.toLowerCase(), '.xls') || #strings.endsWith(files.fileName.toLowerCase(), '.csv')}">-->
+                    <!--                <i class="fas fa-file-excel" style="color: green"></i>-->
+                    <!--              </span>-->
+                    <!--                        <span th:if="${#strings.endsWith(files.fileName.toLowerCase(), '.msg')}">-->
+                    <!--                <i class="fas fa-file-signature"></i>-->
+                    <!--              </span>-->
+                    <!--                        <a th:href="@{/downloadAttachment/{filename}(filename=${files.fileName})}" th:text="${files.fileName}" download></a>-->
+                    <!--                                            </li>-->
+                    <!--                </ol>-->
+                    <!--            </td>-->
+                    <td>
+                        <a th:href="@{detailsMessage/{id}(id=${messages.messagesId})}" th:title="szczegóły"><i class="fa-solid fa-info-circle"></i></a>
+                        <a th:if="${messages.hospital.hospitalId == user.hospital.hospitalId}" th:href="@{editMessage/{id}(id=${messages.messagesId})}" th:title="edytuj"><i class="fa-solid fa-pencil" style="color: #2dc26b; padding-left: 10px"></i></a>
+                        <a th:if="${messages.hospital.hospitalId == user.hospital.hospitalId}" th:href="@{deleteMessage/{id}(id=${messages.messagesId})}" th:title="usuń"><i class="fa-solid fa-trash-alt" style="color: red; padding-left: 10px"></i></a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!--    koniec panela komunikatów-->
 </div>
 </body>
 </html>
+<script type="text/javascript">
+    table = $("#messages").DataTable({
+        "bAutoWidth": true,
+        "bLengthChange": false,
+        "pageLength": 5,
+        "ordering": false,
+        "sAjaxDataProp": "",
+
+        "language": {
+            "processing": "Przetwarzanie...",
+            "search": "Szukaj:",
+            "lengthMenu": "Pokaż _MENU_ pozycji",
+            "info": "Pozycje od _START_ do _END_ z _TOTAL_ łącznie",
+            "infoEmpty": "Pozycji 0 z 0 dostępnych",
+            "infoFiltered": "(filtrowanie spośród _MAX_ dostępnych pozycji)",
+            "infoPostFix": "",
+            "loadingRecords": "Wczytywanie...",
+            "zeroRecords": "Nie znaleziono pasujących pozycji",
+            "emptyTable": "Nie znaleziono rekordów",
+            "paginate": {
+                "first": "Pierwsza",
+                "previous": "Poprzednia",
+                "next": "Następna",
+                "last": "Ostatnia"
+            },
+            "aria": {
+                "sortAscending": ": aktywuj, by posortować kolumnę rosnąco",
+                "sortDescending": ": aktywuj, by posortować kolumnę malejąco"
+            }
+        }
+
+    });
+
+    $('#add_new_messages').on('click', function (){
+        window.location='/hospital/addMessages';
+        // $('#add_messages').modal();
+        // show_add_messages('/hospital/addMessages');
+    });
+
+
+</script>

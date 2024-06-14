@@ -76,6 +76,16 @@ public class AdminController {
         HospitalProceduresType hospitalProceduresType1 = new HospitalProceduresType();
         hospitalProceduresType1.setActive(true);
         hospitalProceduresType1.setHospitalProceduresTypeDesc(hospitalProceduresType.getHospitalProceduresTypeDesc());
+//        hospitalProceduresType1.setHospitalProceduresReception(0);
+        String test = "góln";
+        String por = hospitalProceduresType.getHospitalProceduresTypeDesc();
+        boolean isContains = por.toLowerCase().contains(test.toLowerCase());
+        System.out.println("Porównanie: czy jest ogóln - " + isContains);
+        if(isContains == true){
+            hospitalProceduresType1.setHospitalProceduresReception(0);
+        } else {
+            hospitalProceduresType1.setHospitalProceduresReception(1);
+        }
         hospitalProceduresTypeServiceImpl.saveHospitalProceduresType(hospitalProceduresType1);
         LOG.info("Zapis do bazy danych typu procedur");
         return "redirect:/admin/index";

@@ -7,5 +7,6 @@ import java.util.List;
 public interface AnnouncementService {
     List<Announcement> getAllAnnouncement();
     Announcement getAnnouncementById(Long announcementId);
+    Announcement getLast();
     void saveAnnouncement(Announcement announcement);
 }

@@ -11,7 +11,12 @@
     </style>
 </head>
 <body>
-<div class="container-fluid" style="padding-top: 150px">
+<div class="container-fluid" style="padding-top: 100px">
+    <div class="row" style="padding-top: 10px;">
+        <div class="container-fluid pull-right" style="padding-right: 5px">
+            <button class="btn btn-info" onclick="window.location.href='/hospital/index'"><i class="fa-solid fa-refresh"></i> Powrót</button>
+        </div>
+    </div>
 
 <center><h3> Nowy raport dzienny dla : <b style="color: #0d6efd" th:text="${hospitalName}"></b></h3></center>
 <form method="post" th:object="${hospitalReport}">
@@ -40,9 +45,7 @@
             </tr>
     </div>
     </table>
-    <div class="pull-right">
-        <button class="btn btn-success" id="saveAllReport"><img src="/images/save.png" width="24px" height="24px">&nbsp;&nbsp; Zapisz wszystkie</button>
-    </div>
+
 </form>
 </div>
 </body>

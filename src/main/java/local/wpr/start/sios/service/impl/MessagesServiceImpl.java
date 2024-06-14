@@ -1,5 +1,6 @@
 package local.wpr.start.sios.service.impl;
 
+import local.wpr.start.sios.model.HospitalProcedures;
 import local.wpr.start.sios.model.Messages;
 import local.wpr.start.sios.repository.MessagesRepository;
 import local.wpr.start.sios.service.MessagesService;
@@ -28,7 +29,8 @@ public class MessagesServiceImpl implements MessagesService {
     }
 
     @Override
-    public void saveMessages(Messages messages) {
+    public Messages saveMessages(Messages messages) {
         messagesRepository.save(messages);
+        return messages;
     }
 }

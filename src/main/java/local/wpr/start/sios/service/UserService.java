@@ -9,10 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class UserService {
@@ -43,6 +40,9 @@ public class UserService {
         return userRepository.findAll();
     }
 
+    public List<User> getByHospital(Long id){
+        return userRepository.findByHospitalId(id);
+    }
     public List<Role> getRole() {
         return roleRepository.findAll();
     }
@@ -55,5 +55,12 @@ public class UserService {
         Role userRole = roleRepository.findByRole("USER");
         user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
         return userRepository.save(user);
+    }
+
+    public void changePassword(User user, String newPassword){
+        String encodedPassword = bCryptPasswordEncoder.encode(newPassword);
+        user.setPassword(encodedPassword);
+        user.setPasswordChangedTime(new Date());
+        userRepository.save(user);
     }
 }

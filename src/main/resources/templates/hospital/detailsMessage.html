@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" xmlns:sd="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.w3.org/1999/xhtml"
+      th:replace="~{/hospital/fragments/layout2::layout(~{::.container-fluid})}">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        .input-error{
+            outline: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+<div class="container-fluid" style="padding-top: 150px">
+<!--<h3 style="align-content: center"> Szczegóły komunikatu</h3>-->
+    <br>
+    <div class="card">
+     <div class="card-header"><h3 style="align-content: center"> Szczegóły komunikatu</h3></div>
+        <div class="card-body">
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <td>Data dodania</td>
+                    <td th:text="${messages.addDate}"></td>
+                </tr>
+                <tr>
+                    <td>Data obowiązywania</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Temat</td>
+                    <td th:text="${messages.title}"></td>
+                </tr>
+                <tr>
+                    <td>Opis/dodatkowe informacje</td>
+                    <td th:text="${messages.content}"></td>
+                </tr>
+                <tr>
+                    <td> Załączniki:</td>
+                    <td>
+                        <ol>
+                            <li th:each="files: ${messages.messagesFiles}" >
+              <span th:if="${#strings.endsWith(files.fileName.toLowerCase(), '.pdf')}">
+                <i class="fas fa-file-pdf" style="color: red"></i>
+              </span>
+                                <span th:if="${#strings.endsWith(files.fileName.toLowerCase(), '.doc') || #strings.endsWith(files.fileName.toLowerCase(), 'docx')}">
+                <i class="fas fa-file-word" style="color: blue"></i>
+              </span>
+                                <span th:if="${#strings.endsWith(files.fileName.toLowerCase(), '.txt')}">
+                <i class="fas fa-file-text" style="color: red"></i>
+              </span>
+                                <span th:if="${#strings.endsWith(files.fileName.toLowerCase(), '.xlsx') || #strings.endsWith(files.fileName.toLowerCase(), '.xls') || #strings.endsWith(files.fileName.toLowerCase(), '.csv')}">
+                <i class="fas fa-file-excel" style="color: green"></i>
+              </span>
+                                <span th:if="${#strings.endsWith(files.fileName.toLowerCase(), '.msg')}">
+                <i class="fas fa-file-signature"></i>
+              </span>
+                                <a th:href="@{/downloadProcedures/{filename}(filename=${files.fileName})}" th:text="${files.fileName}" download></a>
+                            </li>
+                        </ol>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="card-footer">
+            <div class="float-end"><button class="btn btn-close" onclick="location.href='/hospital/index'"><i class="fas fa-close"></i> Zamknij</button> </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+
+</script>

@@ -4,25 +4,13 @@
       th:replace="~{/hospital/fragments/layout::layout(~{::.container-fluid})}">
 <head>
   <meta charset="UTF-8">
-  <!--    <title>Title</title>-->
-  <!--  <style>-->
-  <!--    .modal-lg {-->
-  <!--      max-width: 100% !important;-->
-  <!--    }-->
-  <!--  </style>-->
 </head>
 <body>
 <div class="container-fluid" >
-  <!--  <input th:value="${session.mess}" id="mess" hidden>-->
-  <!--  <input th:value="${session.tick}" id="tick" hidden>-->
-  <!--    <div sec:authorize="isAuthenticated()" style="padding-bottom: 5px">-->
-  <!--        <a href="#" class="btn btn-success"><span class="fa-solid fa-plus-circle"></span> Nowy raport </a>-->
-  <!--    </div>-->
-  <!--  <div class="container" id="komunikat" style="padding-bottom: 5px"></div>-->
   <div class="container-fluid pull-right" style="padding-right: 5px">
     <a href="redirect:/hospital/index" style="align-self: end"><button class="btn btn-info"> powrót </button> </a>
   </div>
-  <h3 style="text-align: center">Zestawienie zawiera raporty do 3 miesięcy wstecz od dnia dzisiejszego </h3>
+  <h3 style="text-align: center">Zestawienie zawiera raporty powyżej 3 miesięcy wstecz TYLKO DLA TWOJEGO SZPITALA! </h3>
   <!--  <a href="redirect:/wkrm/index" style="align-self: end"><button class="btn btn-info"> powrót </button> </a>-->
   <table id="reports" class="table table-bordered table-striped table-responsive">
     <thead>
@@ -44,7 +32,7 @@
     let ttable = $('#reports').DataTable({
 
       "bAutoWidth": true,
-      "sAjaxSource" : "/api/reports/v1",
+      "sAjaxSource" : "/api/archivedReports/v1",
       "sAjaxDataProp": "",
       "aoColumns": [
         {"mData": null,
@@ -56,10 +44,18 @@
         {"mData": "date"},
         {"mData": null,
           sWidth: '50px',
-          "render": function (){
+          "render": function (data, type, row){
             let a = "";
             // a = a + '<a href="#"><span style="color: orange" class="fa-solid fa-info-circle" title="Szczegóły" id="details"></span></a>';
             a = a + '&nbsp;&nbsp;<a href="#"><span style="color: #0a53be" class="fa-solid fa-eye" title="Pokaż" id="show"></span></a>';
+            let d = new Date(new Date().setDate(new Date().getDate() - 7)).toISOString().slice(0,10);
+            let d2 = new Date(new Date().setDate(new Date().getDate())).toISOString().slice(0,10);
+            // let d2 = d.setDate(d.getDate() - 7);
+            // let d3 = d2.toISO
+            console.log("d wynosi: " + d + " natomiast dziś jest: " + d2);
+            if(row.date >= d){
+              a = a+'&nbsp;&nbsp;<a href="#"><span style="color: red" class="fas fa-edit" title="Edycja" id="edit"></span></a>';
+            }
             return a;
           }},
       ],
@@ -103,7 +99,7 @@
       let reportId = data["id"];
       // alert("Raport id wynosi: " + reportId);
       window.location.href='/api/viewsWkrmHospitalReport/v1/'+reportId;
-      window.location.href='/hospital/hospitalReportDetails/'+reportId;
+      window.location.href='/hospital/ownHospitalReportDetails/'+reportId;
     });
 
   });

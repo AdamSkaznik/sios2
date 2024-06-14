@@ -8,5 +8,5 @@ public interface MessagesService {
     List<Messages> getAllMessages();
     Messages getMessagesById(Long messagesId);
 
-    void saveMessages(Messages messages);
+   Messages saveMessages(Messages messages);
 }

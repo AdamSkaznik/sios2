@@ -28,6 +28,11 @@ public class AnnouncementServiceImpl implements AnnouncementService {
     }
 
     @Override
+    public Announcement getLast() {
+        return announcementRepository.getLast();
+    }
+
+    @Override
     public void saveAnnouncement(Announcement announcement) {
         announcementRepository.save(announcement);
     }

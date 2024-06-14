@@ -19,7 +19,9 @@
     </tr>
     <tr>
       <td>Opis procedury</td>
-      <td><textarea class="form-control" th:field="*{description}" rows="5" style="resize: none"></textarea></td>
+      <td><textarea class="form-control" th:field="*{description}" rows="5" style="resize: none" maxlength="4096" id="textDesc"></textarea>
+      <div id="textarea_feedback"></div>
+      </td>
     </tr>
 
     <tr>
@@ -29,10 +31,9 @@
       </td>
     </tr>
   </table>
-<!--    <input  id="procedureTypeId" th:field="*{hospitalProceduresType.hospitalProceduresTypesId}"></td>-->
-<!--    <input  id="procedureTypeId" th:object="${hospitalProceduresType}" th:field="*{hospitalProceduresTypesId}"></td>-->
-    <input  id="procedureTypeId" th:field="*{hospitalProceduresType.hospitalProceduresTypeId}"></td>
+    <input  id="procedureTypeId" th:field="*{hospitalProceduresType.hospitalProceduresTypeId}" hidden></td>
     <div class="container-fluid pull-right">
+      <button type="button" class="btn btn-close" onclick="location.href='/hospital/hospitalProcedures'" formnovalidate><i class="fas fa-close"></i> Zamknij</button>
     <button class="btn btn-success float-end" type="submit"><i class="fa-solid fa-save"></i> Zapisz</button>
     </div>
   </form>
@@ -77,4 +78,23 @@
   $("#procedureType").on('change', function () {
     $("#procedureTypeId").val($(this).val());
   });
+  $(document).ready(function (){
+    let text_max = 4096;
+    $('#textarea_feedback').html( 'Pozostało : ' + text_max + ' znaków do wprowadzenia z 4096');
+    $('#textDesc').keyup(function (){
+      let text_length = $('#textDesc').val().length;
+      let text_remaining = text_max - text_length;
+      $('#textarea_feedback').html( 'Pozostało : ' + text_remaining + ' znaków do wprowadzenia z 4096');
+    });
+  });
+  // document.addEventListener('DOMContentLoaded', function (){
+  //   let errorMessage = /*[[${errorMessage}]]*/ 'null';
+  //   if (errorMessage){
+  //     Swal.fire({
+  //       icon: 'error',
+  //       title: 'Błąd',
+  //       text: errorMessage
+  //     });
+  //   }
+  // });
 </script>

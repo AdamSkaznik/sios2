@@ -10,12 +10,13 @@ import java.util.List;
 
 @Repository
 public interface ReportRepository extends JpaRepository<Report, Long> {
-    String zap1 = "SELECT * FROM tab_reports ORDER BY date DESC LIMIT 1";
+//    String zap1 = "SELECT * FROM tab_reports ORDER BY date DESC LIMIT 1";
+    String zap1 = "SELECT * FROM tab_reports where date = (select current_date)";
     @Query(value = zap1, nativeQuery = true)
     Report getLastReport();
 
     //tutaj ma być (months => 3)
-    String zap2 = "SELECT * FROM tab_reports where date >= (select current_date - make_interval(months => 4)) ORDER BY date DESC";
+    String zap2 = "SELECT * FROM tab_reports where date >= (select current_date - make_interval(months => 4)) AND date <= (select current_date) ORDER BY date DESC";
     @Query(value = zap2, nativeQuery = true)
     List<Report> getAll();
 
@@ -31,6 +32,7 @@ public interface ReportRepository extends JpaRepository<Report, Long> {
     @Query(value = zap5, nativeQuery = true)
     List<Report> getAllArchived();
 
+//    String zap6 = "SELECT * FROM tab_reports where date <= (select current_date - make_interval(months => 3)) ORDER BY date DESC and "
     String zapByDateNow = "SELECT * FROM tab_reports WHERE date(date) = date(current_timestamp)";
     @Query(value = zapByDateNow, nativeQuery = true)
     Report getReportByActualDate();

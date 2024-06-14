@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.Set;
 
 @Entity
@@ -14,6 +15,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Table(name = "tab_users")
 public class User {
+    private static final long PASSWORD_EXPIRATION_TIME = 90L * 24L * 60L * 1000L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "user_id")
@@ -30,6 +32,8 @@ public class User {
     private Boolean active;
     private String firstName;
     private String lastName;
+    @Column(name = "password_changed_time")
+    private Date passwordChangedTime;
     @Transient
     private int role_tmp;
     @Transient
@@ -43,4 +47,11 @@ public class User {
     @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(name = "user_branch", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "branch_id"))
     private Set<Branch> branches;
+
+    public boolean isPasswordExpired(){
+        if(this.passwordChangedTime == null) return false;
+        long currentTime = System.currentTimeMillis();
+        long lastChangedTime = this.passwordChangedTime.getTime();
+        return currentTime > lastChangedTime + PASSWORD_EXPIRATION_TIME;
+    }
 }

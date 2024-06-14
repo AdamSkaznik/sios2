@@ -7,6 +7,7 @@ import local.wpr.start.sios.utils.FilesStorageService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,7 @@ import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBui
 
 //import javax.annotation.Resource;
 import javax.servlet.ServletContext;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
@@ -44,13 +46,13 @@ public class FileUploadController {
         try {
             storageService.saveFile(file);
             MessagesFiles messagesFiles = new MessagesFiles();
-            messagesFiles.setMessagesFileName(file.getOriginalFilename());
+            messagesFiles.setFileName(file.getOriginalFilename());
             Path url = Paths.get(context.getRealPath("upload/") + file.getOriginalFilename());
 //            String url = context.getContextPath() + "/files/" + file.getOriginalFilename();
             System.out.println("URL: " + url.toString());
             messagesFiles.setFileUrl(url.toString());
             System.out.println("File Name: " +file.getOriginalFilename());
-            messagesFileService.saveMessageFiles(messagesFiles);
+//            messagesFileService.saveMessageFiles(messagesFiles);
             message = "Pomyślnie wgrano plik o nazwie: "+file.getOriginalFilename();
             model.addAttribute("message", message);
         } catch (Exception e) {
@@ -81,62 +83,19 @@ public class FileUploadController {
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"").body(file);
     }
 
-//    @GetMapping("/files/delete/{filename:.+}")
-//    public String deleteFile(@PathVariable String filename, Model model, RedirectAttributes redirectAttributes) {
-//        try {
-//            boolean existed = storageService.delete(filename);
-//
-//            if (existed) {
-//                redirectAttributes.addFlashAttribute("message", "Delete the file successfully: " + filename);
-//            } else {
-//                redirectAttributes.addFlashAttribute("message", "The file does not exist!");
-//            }
-//        } catch (Exception e) {
-//            redirectAttributes.addFlashAttribute("message",
-//                    "Could not delete the file: " + filename + ". Error: " + e.getMessage());
-//        }
-//
-//        return "redirect:/files";
-//    }
+    @GetMapping("downloadProcedures/{filename:.+}")
+    @ResponseBody
+    public ResponseEntity<Resource> downloadFile(@PathVariable String filename){
+        try {
+            Path file = Paths.get("uploadProcedures").resolve(filename).normalize();
+            Resource resource = new ByteArrayResource(Files.readAllBytes(file));
+            return ResponseEntity.ok()
+                    .header(HttpHeaders.CONTENT_DISPOSITION, "uploadProcedures; filename=\""+file.getFileName().toString()+"\"")
+                    .body(resource);
+        }catch (Exception e){
+            LOG.error("Błąd podczas pobierania pliku: "+filename, e);
+            return ResponseEntity.badRequest().build();
+        }
+    }
 
-
-//    private final String UPLOAD_FOLDER = "/upload";
-//    @Autowired
-//    MessagesFileServiceImpl messagesFileService;
-//
-//    @PostMapping("/uploadFiles")
-//    public String handleFileUpload(@RequestParam("files")MultipartFile files[], Model map, MessagesFiles messagesFiles){
-//       StringBuilder sb = new StringBuilder();
-//       for (MultipartFile file: files){
-//           if(!file.isEmpty()){
-//               try {
-//                   if(!Files.exists(Paths.get(UPLOAD_FOLDER))){
-//                       try {
-//                           Files.createDirectories(Paths.get(UPLOAD_FOLDER));
-//                       } catch (IOException ioe) {
-//                           LOG.error(ioe.getMessage());
-//                       }
-//                   }
-//                   Files.copy(file.getInputStream(), Paths.get(UPLOAD_FOLDER, file.getOriginalFilename()));
-//                   String URL = String.valueOf(Paths.get(UPLOAD_FOLDER, file.getOriginalFilename()));
-//                   String description = messagesFiles.getDescription();
-//                   messagesFiles.setFileUrl(URL);
-//                   messagesFiles.setDescription(description);
-//                   messagesFileService.saveMessageFiles(messagesFiles);
-//                   sb.append("Pomyślnie dodano plik" +file.getOriginalFilename() + "!\n");
-//                   LOG.info("Pomyślnie dodano plik " + file.getOriginalFilename());
-//                   map.addAttribute("msg", sb.toString());
-//               } catch (IOException | RuntimeException e){
-//                   sb.append("Wgranie pliku nie powiodło się "+ (file != null ? file.getOriginalFilename() : "") + "=>" + e.getMessage() + String.valueOf(e) + "\n");
-//                   LOG.error("Nie wgrano pliku: " + file.getOriginalFilename() + " z powodu następującego błędu: " + e.getMessage() + String.valueOf(e));
-//                   map.addAttribute("msg", sb.toString());
-//               }
-//
-//               } else {
-//               sb.append("Nie udało się wgrać pliku\n");
-//               map.addAttribute("msg", sb.toString());
-//           }
-//       }
-//       return "uploadFiles";
-//    }
 }

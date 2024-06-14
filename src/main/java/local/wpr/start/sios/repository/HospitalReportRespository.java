@@ -10,9 +10,6 @@ import java.util.List;
 @Repository
 public interface HospitalReportRespository extends JpaRepository<HospitalReport, Long> {
 
-//    String zap = "SELECT * FROM tab_hospital_report WHERE hospital_config_id = ?1";
-//    @Query(value = zap, nativeQuery = true)
-//    HospitalReport getReportByHospitalConfigId(Long id);
   String zap = "SELECT * FROM tab_hospital_report WHERE report_id = ?1";
   @Query(value = zap, nativeQuery = true)
     List<HospitalReport> getByReportId(Long reportId);

@@ -1,7 +1,9 @@
 package local.wpr.start.sios.controller;
 
 import local.wpr.start.sios.model.Report;
+import local.wpr.start.sios.model.User;
 import local.wpr.start.sios.model.Views;
+import local.wpr.start.sios.service.UserService;
 import local.wpr.start.sios.service.impl.ReportServiceImpl;
 import local.wpr.start.sios.service.impl.ViewServiceImpl;
 import org.slf4j.Logger;
@@ -12,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.security.Principal;
 import java.util.List;
 
 @CrossOrigin
@@ -22,6 +25,8 @@ public class ViewController {
     ReportServiceImpl reportServiceImpl;
     @Autowired
     ViewServiceImpl viewServiceImpl;
+    @Autowired
+    UserService userService;
 
 //    public ViewController(ViewServiceImpl viewServiceImpl) {
 //        this.viewServiceImpl = viewServiceImpl;
@@ -52,6 +57,22 @@ public class ViewController {
         }
 
     }
+
+    @GetMapping("/api/viewsWkrmHospitalReport/v2")
+    public ResponseEntity<List<Views>> getByReportIdAndHospitalId(@RequestParam Long id, Principal principal) throws Exception{
+        System.out.println("ID z API wynosi: " + id);
+        User user = userService.findUserByUserName(principal.getName());
+        try {
+            Long hId = user.getHospital().getHospitalId();
+            return new ResponseEntity<List<Views>>(viewServiceImpl.getByIdAndHospitalId(id, hId), HttpStatus.OK);
+        } catch (Exception e) {
+            LOG.error("Błąd podczas pobierania danych z API viewsWkrmHospitalReports/v2 " + e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
+    }
+
+
 
 //    @GetMapping("/wkrm/reportDetails/{id}")
 //    public ModelAndView getReportDetails(ModelAndView mvc, @PathVariable Long id){

@@ -74,6 +74,17 @@ public class ApiController {
         }
     }
 
+    @RequestMapping(value = "/usersByHospital/v1", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<User>> getUserByHospital(Principal principal){
+        User user = userService.findUserByUserName(principal.getName());
+        try {
+            return new ResponseEntity<List<User>>(userService.getByHospital(user.getHospital().getHospitalId()), HttpStatus.OK);
+        }catch (Exception e){
+            LOG.error("Błąd podczas pobierania danych z API /usersByHospital/v1 : " + e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
     @RequestMapping(value = "/address/v1", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Address>> getAllAddress(){
         try {
@@ -348,33 +359,5 @@ public class ApiController {
         System.out.println("Dane przekazane z API : " + temps);
         return new  ResponseEntity<>(HttpStatus.OK);
     }
-//    @RequestMapping(value = "/hospitalConfig/v1", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
-//    public ResponseEntity<HospitalConfig> getById(Long hospitalConfigId){
-//        try {
-//
-//        }
-//    }
-
-//    @RequestMapping(value = "/newReport/v1", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
-//    public ResponseEntity<List<Report>> newReport(Principal principal){
-//        String userName = principal.getName();
-//        User user = userService.findUserByUserName(userName);
-//        Long hospitalId = user.getHospital().getHospitalId();
-//        LocalDateTime localDateTime = LocalDateTime.now();
-//        LocalDate localDate = localDateTime.toLocalDate();
-//        LocalTime localTime = localDateTime.toLocalTime();
-//        Date lastDate = reportService.getReportByDate(localDate).getDate();
-//        System.out.println("Data z report service : " + lastDate);
-////        if(lastDate == null) {
-////            Report report = new Report();
-////            reportService.
-////        }
-//        if ((hospitalId == null) || (hospitalId == 0)){
-//
-//        }
-////        try {
-////
-////        }
-//    }
 
 }

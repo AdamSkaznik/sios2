@@ -2,101 +2,170 @@
 <html xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-<!--    <title>Title</title>-->
+    <!--    <title>Title</title>-->
+    <script src="/srb/js/hospital_menu.js"></script>
 </head>
 <body>
-<nav th:fragment="navbar" class="navbar navbar-fixed-top">
-  <div class="container-fluid">
-      <div class="container-fluid" style="background-color: #2F8D46; padding-top: 5px">
-          <table>
-              <tr>
-                  <td rowspan="3"><img src="/images/ratownictwo_logo.png" width="100" height="100"></td>
-              </tr>
-              <tr>
-                  <td><h1 style="color: whitesmoke">System informacji o szpitalach v2</h1></td>
-              </tr>
-              <tr>
-                  <td><h5 style="color: whitesmoke">Oddział Ratownictwa Medycznego</h5></td>
+<!--navbar-fixed-top-->
+<nav th:fragment="navbar" class="navbar">
+    <div class="container-fluid" id="menu_glowne">
+        <div class="container-fluid" style="background-color: #2F8D46; padding-top: 5px" onclick="window.location.href='/hospital/index'">
+            <table>
+                <tr>
+                    <td rowspan="3"><img src="/images/ratownictwo_logo.png" width="100" height="100"></td>
+                </tr>
+                <tr>
+                    <td><h1 style="color: whitesmoke">System informacji o szpitalach v2</h1></td>
+                </tr>
+                <tr>
+                    <td><h5 style="color: whitesmoke">Oddział Ratownictwa Medycznego</h5></td>
 
-              </tr>
-          </table>
-      </div>
-      <div class="container-fluid" style="background-color: #4E6CA3; height: 40px">
-          <div class="row">
-              <div class="col-sm-6">
-                  <div class="col-sm-1">
-                      <img src="/images/user.png" width="24" height="24" style="padding-top: 7px">
-                  </div>
-                  <div class="col-sm-3" style="padding-top: 10px; padding-left: 1px">
-                      <span style="font-weight: bold">Jesteś zalogowany jako:</span>
-                  </div>
-                  <div class="col-sm" style="padding-top: 10px; padding-left: 3px">
-                      <span style="font-weight: bold; color: #761c19" th:text="${#authentication.getPrincipal().getUsername()}"></span>
-                  </div>
-              </div>
-              <div class="pull-right" style="padding-top: 3px">
-                  <a th:href="@{/logout}">
-                  <button class="btn btn-danger"><i class="fa fa-sign-out-alt"></i> Wyloguj </button>
-                  </a>
-              </div>
-          </div>
-
-      </div>
-<!--      <div sec:authorize="hasRole('GLOBAL_ADMIN')">-->
-      <div class="container-fluid" style="padding-top: 10px; padding-left: 50px; padding-right: 50px">
-       <div class="panel panel-danger">
-           <div class="panel-heading" style="height: 50px">
-               <h4 color="red"> Moduł administracyjny</h4>
-           </div>
-           <div class="panel-body">
-               <div class="row">
-                   <div class="col-sm-2">
-                       <button class="btn btn-danger" style="height: 50px; width: 270px; color: whitesmoke"><img src="/images/users.png" width="24px" height="24px"></img>&nbsp;&nbsp;&nbsp; Zarządzanie użytkownikami </button>
-                   </div>
-               </div>
-           </div>
-       </div>
-      </div>
-<!--      </div>-->
-      <div class="container-fluid" style="padding-top: 10px; padding-left: 50px; padding-right: 50px">
-          <div class="panel panel-success">
-              <div class="panel-heading" style="height: 50px">
-                  <h4> Moduły danych</h4>
-              </div>
-              <div class="panel-body">
-                  <div class="row">
-                <div class="col-sm-2">
-                    <button class="btn" style="background-color: #0a53be; height: 50px; width: 270px; color: whitesmoke"><img src="/images/chat.png" width="24px" height="24px">&nbsp;&nbsp;&nbsp; Komunikaty dla szpitali</button>
+                </tr>
+            </table>
+        </div>
+        <div class="container-fluid" style="background-color: #4E6CA3; height: 40px">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="col-sm-1">
+                        <img src="/images/user.png" width="24" height="24" style="padding-top: 7px" onclick="window.location.href='/hospital/index'">
+                    </div>
+                    <div class="col-sm-3" style="padding-top: 10px; padding-left: 1px">
+                        <span style="font-weight: bold">Jesteś zalogowany jako:</span>
+                    </div>
+                    <div class="col-sm" style="padding-top: 10px; padding-left: 3px">
+                        <span style="font-weight: bold; color: #761c19" th:text="${#authentication.getPrincipal().getUsername()}"></span>
+                    </div>
                 </div>
-                  <div class="col-sm-2">
-                      <button class="btn" style="background-color: #0a53be;height: 50px; width: 270px; color: whitesmoke"><img src="/images/stetoskope.png" width="24px" height="24px">&nbsp;&nbsp;&nbsp; Raport dla WKRM</button>
-                  </div>
-                      <div class="col-sm-2">
-                          <button class="btn" style="background-color: #0a53be;height: 50px; width: 270px; color: whitesmoke"><img src="/images/stetoskope.png" width="24px" height="24px">&nbsp;&nbsp;&nbsp; Raport dobowy dla WKRM</button>
-                      </div>
-                      <div class="col-sm-2">
-                          <button class="btn" style="background-color: #0a53be;height: 50px; width: 270px; color: whitesmoke"><img src="/images/hospital-ico2.png" width="24px" height="24px">&nbsp;&nbsp;&nbsp; Raporty szpitali</button>
-                      </div>
-                      <div class="col-sm-2">
-                          <button class="btn" style="background-color: #0a53be;height: 50px; width: 270px; color: whitesmoke"><img src="/images/hospital-ico2.png" width="24px" height="24px">&nbsp;&nbsp;&nbsp; Raporty szpitali (archiwalne)</button>
-                      </div>
-                      <div class="col-sm-2">
-                          <button class="btn" style="background-color: #0a53be;height: 50px; width: 270px; color: whitesmoke" onclick="window.location.href='/orm/analize';"><img src="/images/analize.png" width="24px" height="24px">&nbsp;&nbsp;&nbsp; Analiza </button>
-                      </div>
-              </div>
-                  <div class="row">
+                <div class="col-sm">
 
+                </div>
+                <div class="pull-right">
 
-                  </div>
-              </div>
-          </div>
-      </div>
-      <div class="container-fluid">
-          <div class="panel panel-default">
-              <div class="panel-heading"><h4></h4></div>
-          </div>
-      </div>
-  </div>
+                </div>
+                <div class="pull-right" style="padding-top: 3px; padding-left: 5px">
+                    <a th:href="@{/logout}">
+                        <button class="btn btn-danger"><img src="/images/power-off.svg" style="color: white" width="18px" height="18px"> Wyloguj </button>
+                    </a>
+                </div>
+                <div class="pull-right">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="tree" aria-expanded="false"><span class="fa-solid fa-screwdriver-wrench"></span> Administracja <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/orm/users"><span class="fa-solid fa-user"></span> Użytkownicy</a></li>
+                                <li class="divider"></li>
+                                <li><a href="/orm/config"><span class="fa-solid fa-wrench"></span> Konfiguracja </a> </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="pull-right" style="padding-top: 3px; padding-left: 5px">
+                    <a th:href="@{/restrict/account}">
+                        <button class="btn btn-default"><img src="/images/profile.png" style="color: white" width="18px" height="18px"> Twoje konto </button>
+                    </a>
+                </div>
+                <div class="pull-right" style="padding-top: 3px; padding-left: 5px">
+                    <a href="#">
+                        <button class="btn"><img src="/images/instrukcja.png" style="color: white" width="18px" height="18px">&nbsp;Instrukcja</button>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+        <div th:if="${announcement}" class="alert alert-danger" role="alert" style="align-items: center">
+            <table class="table">
+                <tr>
+                    <td>
+                        <img src="/images/alarm2.gif" class="text-left" style="width: 64px; height: 64px">
+                    </td>
+                    <td><p th:text="${announcement.announcementTitle}" class="text-center"></p></td>
+                </tr>
+                <td>
+                    <div style="color: red; font-weight: bold" th:text="${announcement.announcementContent}" class="text-center"></div>
+                </td>
+                <!--              <tr>-->
+                <!--                  <p th:text="${announcement.announcementTitle}" class="text-center"></p>-->
+                <!--              </tr>-->
+                <!--              <br>-->
+                <!--              <tr>-->
+                <!--                  <div style="color: red; font-weight: bold" th:text="${announcement.announcementContent}" class="text-center"></div>-->
+                <!--              </tr>-->
+                <tr>
+                    <div class="text-right" th:text="'Komunikat wystawił: ' + ${announcement.createdBy} + 'w dniu: ' + ${#dates.format(announcement.createdDate, 'yyyy-MM-dd')}"></div>
+                </tr>
+            </table>
+            <!--          <img src="/images/alarm2.gif" class="text-left">-->
+            <!--          <p th:text="${announcement.announcementTitle}" class="text-center"></p>-->
+            <!--          <div style="color: red; font-weight: bold" th:text="${announcement.announcementContent}" class="text-center"></div>-->
+            <!--          <p style="color: red; font-weight: bold" th:text="${announcement.announcementContent}"></p>-->
+        </div>
+        <div class="container-fluid" style="padding-top: 10px; padding-left: 50px; padding-right: 50px">
+            <div class="panel panel-success">
+                <div class="panel-heading" style="height: 40px">
+                    <h4> Moduł danych</h4>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <button class="btn" style="background-color: #0a53be; height: 50px; width: 270px; color: whitesmoke" onclick="window.location.href='/orm/allMessages'"><img src="/images/chat.png" width="24px" height="24px">&nbsp;&nbsp;&nbsp; Komunikaty szpitali</button>
+                        </div>
+                        <div class="col-sm-2">
+                            <button class="btn" style="background-color: #0a53be;height: 50px; width: 270px; color: whitesmoke" onclick="window.location.href='/hospital/hospitalExclusion';"><img src="/images/emergency_procedures.png" width="24px" height="24px" >&nbsp;&nbsp;&nbsp; Wyłączenia Oddziałów</button>
+                        </div>
+                        <div class="col-sm-2">
+                            <button class="btn" style="background-color: #0a53be;height: 50px; width: 270px; color: whitesmoke" onclick="window.location.href='/hospital/hospitalMailfunctions';"><img src="/images/emergency_procedures.png" width="24px" height="24px" >&nbsp;&nbsp;&nbsp; Awarie</button>
+                        </div>
+                        <div class="col-sm-2">
+                            <button class="btn" style="background-color: #0a53be;height: 50px; width: 270px; color: whitesmoke" onclick="window.location.href='/hospital/hospitalProcedures';"><img src="/images/emergency_procedures.png" width="24px" height="24px" >&nbsp;&nbsp;&nbsp; Wskazówki/Zalecenia</button>
+                        </div>
+<!--                        <div class="col-sm-2">-->
+<!--                            <button class="btn" style="background-color: green; height: 50px; width: 270px; color: whitesmoke" onclick="window.location.href='/hospital/addReport'"><img src="/images/addReport.png" width="24px" height="24px">&nbsp;&nbsp;&nbsp; Nowy raport</button>-->
+<!--                        </div>-->
+
+<!--                        <div class="col-sm-2">-->
+<!--                            <button class="btn" style="background-color: #0a53be;height: 50px; width: 270px; color: whitesmoke" onclick="window.location.href='/hospital/ownHospitalReports';"><img src="/images/report.png" width="24px" height="24px">&nbsp;&nbsp;&nbsp; Raporty własne</button>-->
+<!--                        </div>-->
+<!--                        <div class="col-sm-2">-->
+<!--                            <button class="btn" style="background-color: #0a53be;height: 50px; width: 270px; color: whitesmoke" onclick="window.location.href='/hospital/ownHospitalReports';"><img src="/images/report.png" width="24px" height="24px">&nbsp;&nbsp;&nbsp; Raporty własne (archiwalne)</button>-->
+<!--                        </div>-->
+                        <div class="col-sm-2">
+                            <button class="btn" style="background-color: #0a53be;height: 50px; width: 270px; color: whitesmoke" onclick="window.location.href='/hospital/hospitalReports';"><img src="/images/reports.png" width="24px" height="24px">&nbsp;&nbsp;&nbsp; Raporty szpitali</button>
+                        </div>
+                    </div>
+<!--                    <div class="row">-->
+<!--                        <div class="divider"><br></div>-->
+<!--                    </div>-->
+<!--                    <div class="row">-->
+<!--&lt;!&ndash;                        <div class="col-sm-2">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <button class="btn" style="background-color: #0a53be; height: 50px; width: 270px; color: whitesmoke" onclick="window.location.href='/hospital/allMessages'"><img src="/images/chat.png" width="24px" height="24px">&nbsp;&nbsp;&nbsp; Komunikaty szpitali</button>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <div class="col-sm-2">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <button class="btn" style="background-color: #0a53be;height: 50px; width: 270px; color: whitesmoke" onclick="window.location.href='/hospital/hospitalExclusion';"><img src="/images/emergency_procedures.png" width="24px" height="24px" >&nbsp;&nbsp;&nbsp; Wyłączenia Oddziałów</button>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <div class="col-sm-2">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <button class="btn" style="background-color: #0a53be;height: 50px; width: 270px; color: whitesmoke" onclick="window.location.href='/hospital/hospitalMailfunctions';"><img src="/images/emergency_procedures.png" width="24px" height="24px" >&nbsp;&nbsp;&nbsp; Awarie</button>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <div class="col-sm-2">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <button class="btn" style="background-color: #0a53be;height: 50px; width: 270px; color: whitesmoke" onclick="window.location.href='/hospital/hospitalProcedures';"><img src="/images/emergency_procedures.png" width="24px" height="24px" >&nbsp;&nbsp;&nbsp; Wskazówki/Zalecenia</button>&ndash;&gt;-->
+<!--                        </div>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--    <th:block th:if="${annotation}">-->
+    <!--        <div class="alert" role="alert"><h3> JEAHHHHHH!!!!!</h3></div>-->
+    <!--    </th:block>-->
 </nav>
+<br><br><br>
+</div>
+
+<!--</script>-->
 </body>
 </html>
+<script type="text/javascript">
+    let s1 = document.getElementById('#messageRead');
+    s1.addEventListener('click', function (){
+        alert("ASBBBBBBBBBBBAAAAAAAAAAA");
+    })
+</script>

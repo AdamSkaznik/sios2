@@ -19,10 +19,12 @@
                 </div>
                 <div class="modal-body justify-content-center">
                     <div id="modalAddNewMessagesBody"></div>
-
+<!--                        <div th:replace="addMessages :: addMessages"></div>-->
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Zamknij</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">
+                        <i class="fas fa-close"></i>&nbsp;
+                        Zamknij</button>
                 </div>
             </div>
         </div>
@@ -42,7 +44,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Zamknij</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-close"></i>&nbsp;Zamknij</button>
                 </div>
             </div>
         </div>
@@ -62,7 +64,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Zamknij</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-close"></i>&nbsp;Zamknij</button>
                 </div>
             </div>
         </div>
@@ -73,71 +75,109 @@
 <div class="panel panel-danger">
     <div class="panel-heading"> Komunikaty</div>
     <div class="panel-body">
-<!--        <div>-->
-            <button class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Dodaj nowy komunikat" id="add_new_messages"><i class="fa-solid fa-plus-circle"></i></button>
-<!--        </div>-->
-<!--        <br>-->
+
+            <button class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Dodaj nowy komunikat" id="add_new_messages" ><i class="fa-solid fa-plus-circle"></i>&nbsp;&nbsp;Nowy komunikat</button>
     <table id="messages" class="table table-bordered table-striped display" style="width: 100%">
         <thead>
 <!--        <button class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Dodaj nowy komunikat"><i class="fa-solid fa-plus-circle"></i></button>-->
         <tr>
-            <th>Lp.</th>
-<!--            <th>Rodzaj</th>-->
-            <th>Data dodania</th>
-            <th>Data obowiązywania</th>
+            <th style="width: 20px">Lp.</th>
+            <th style="width: 80px">Data dodania</th>
+            <th style="width: 230px">Termin</th>
+<!--            <th>Szpital</th>-->
             <th>Temat</th>
-            <th>Akcje</th>
+<!--            <th style="width: 50%">Opis</th>-->
+<!--            <th>Załączniki</th>-->
+            <th style="width: 80px"></th>
         </tr>
         </thead>
+        <tbody>
+        <tr th:each="messages, lp: ${messagesList}" class="clicable-row" title="Kliknij ikonę szczegółów, aby zobaczyć więcej informacji">
+            <td th:text="${lp.index + 1}"></td>
+            <td th:text="${#temporals.format(messages.addDate, 'yyyy-MM-dd')}"></td>
+<!--            <td th:text="${messages.startDate}"></td>-->
+            <td th:text="'od:  ' + ${#dates.format(messages.startDate, 'yyyy-MM-dd')} + ' do ' + ${#dates.format(messages.endDate, 'yyyy-MM-dd')}" style="font-weight: bold; color: red"></td>
+<!--            <td th:text="${#dates.format(messages.endDate, 'yyyy-MM-dd')}"></td>-->
+            <td th:text="${messages.title}"></td>
+<!--            <td th:text="${messages.content}"></td>-->
+<!--            <td>-->
+<!--                <ol>-->
+<!--                    <li th:each="files: ${messages.messagesFiles}" >-->
+<!--              <span th:if="${#strings.endsWith(files.fileName.toLowerCase(), '.pdf')}">-->
+<!--                <i class="fas fa-file-pdf" style="color: red"></i>-->
+<!--              </span>-->
+<!--                        <span th:if="${#strings.endsWith(files.fileName.toLowerCase(), '.doc') || #strings.endsWith(files.fileName.toLowerCase(), 'docx')}">-->
+<!--                <i class="fas fa-file-word" style="color: blue"></i>-->
+<!--              </span>-->
+<!--                        <span th:if="${#strings.endsWith(files.fileName.toLowerCase(), '.txt')}">-->
+<!--                <i class="fas fa-file-text" style="color: red"></i>-->
+<!--              </span>-->
+<!--                        <span th:if="${#strings.endsWith(files.fileName.toLowerCase(), '.xlsx') || #strings.endsWith(files.fileName.toLowerCase(), '.xls') || #strings.endsWith(files.fileName.toLowerCase(), '.csv')}">-->
+<!--                <i class="fas fa-file-excel" style="color: green"></i>-->
+<!--              </span>-->
+<!--                        <span th:if="${#strings.endsWith(files.fileName.toLowerCase(), '.msg')}">-->
+<!--                <i class="fas fa-file-signature"></i>-->
+<!--              </span>-->
+<!--                        <a th:href="@{/downloadAttachment/{filename}(filename=${files.fileName})}" th:text="${files.fileName}" download></a>-->
+<!--                                            </li>-->
+<!--                </ol>-->
+<!--            </td>-->
+            <td>
+                <a th:href="@{detailsMessage/{id}(id=${messages.messagesId})}" th:title="szczegóły"><i class="fa-solid fa-info-circle"></i></a>
+                <a th:if="${messages.hospital.hospitalId == user.hospital.hospitalId}" th:href="@{editMessage/{id}(id=${messages.messagesId})}" th:title="edytuj"><i class="fa-solid fa-pencil" style="color: #2dc26b; padding-left: 10px"></i></a>
+                <a th:if="${messages.hospital.hospitalId == user.hospital.hospitalId}" th:href="@{deleteMessage/{id}(id=${messages.messagesId})}" th:title="usuń"><i class="fa-solid fa-trash-alt" style="color: red; padding-left: 10px"></i></a>
+            </td>
+        </tr>
+        </tbody>
     </table>
     </div>
 </div>
 <!--    koniec panela komunikatów-->
     <!--    panel awarii-->
-    <div class="panel panel-info">
-        <div class="panel-heading"> Wyłączenia Oddziałów </div>
-        <div class="panel-body">
-<!--            <div>-->
-                <button class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Dodaj nowe wyłączenie" id="add_new_exclusion"><i class="fa-solid fa-plus-circle"></i></button>
-<!--            </div>-->
-<!--            <br>-->
-            <table id="exclusion" class="table table-bordered table-striped display" style="width: 100%">
-                <thead>
-                <tr>
-                    <th>Lp.</th>
-<!--                    <th>Rodzaj</th>-->
-                    <th>Data dodania</th>
-                    <th>Data obowiązywania</th>
-                    <th>Temat</th>
-                    <th>Akcje</th>
-                </tr>
-                </thead>
-            </table>
-        </div>
-    </div>
+<!--    <div class="panel panel-info">-->
+<!--        <div class="panel-heading"> Wyłączenia Oddziałów </div>-->
+<!--        <div class="panel-body">-->
+<!--&lt;!&ndash;            <div>&ndash;&gt;-->
+<!--                <button class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Dodaj nowe wyłączenie" id="add_new_exclusion"><i class="fa-solid fa-plus-circle"></i></button>-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;            <br>&ndash;&gt;-->
+<!--            <table id="exclusion" class="table table-bordered table-striped display" style="width: 100%">-->
+<!--                <thead>-->
+<!--                <tr>-->
+<!--                    <th>Lp.</th>-->
+<!--&lt;!&ndash;                    <th>Rodzaj</th>&ndash;&gt;-->
+<!--                    <th>Data dodania</th>-->
+<!--                    <th>Data obowiązywania</th>-->
+<!--                    <th>Temat</th>-->
+<!--                    <th>Akcje</th>-->
+<!--                </tr>-->
+<!--                </thead>-->
+<!--            </table>-->
+<!--        </div>-->
+<!--    </div>-->
     <!--    koniec panela komunikatów o awarii-->
 <!--    panel awarii-->
-    <div class="panel panel-info">
-        <div class="panel-heading"> Awarie sprzętu</div>
-        <div class="panel-body">
-<!--            <div>-->
-                <button class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Dodaj nową awarię" id="add_new_malfunction"><i class="fa-solid fa-plus-circle"></i></button>
-<!--            </div>-->
-<!--            <br>-->
-            <table id="malfunction" class="table table-bordered table-striped display" style="width: 100%">
-                <thead>
-                <tr>
-                    <th>Lp.</th>
-                    <!--                    <th>Rodzaj</th>-->
-                    <th>Data dodania</th>
-                    <th>Data obowiązywania</th>
-                    <th>Temat</th>
-                    <th>Akcje</th>
-                </tr>
-                </thead>
-            </table>
-        </div>
-    </div>
+<!--    <div class="panel panel-info">-->
+<!--        <div class="panel-heading"> Awarie sprzętu</div>-->
+<!--        <div class="panel-body">-->
+<!--&lt;!&ndash;            <div>&ndash;&gt;-->
+<!--                <button class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Dodaj nową awarię" id="add_new_malfunction"><i class="fa-solid fa-plus-circle"></i></button>-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;            <br>&ndash;&gt;-->
+<!--            <table id="malfunction" class="table table-bordered table-striped display" style="width: 100%">-->
+<!--                <thead>-->
+<!--                <tr>-->
+<!--                    <th>Lp.</th>-->
+<!--                    &lt;!&ndash;                    <th>Rodzaj</th>&ndash;&gt;-->
+<!--                    <th>Data dodania</th>-->
+<!--                    <th>Data obowiązywania</th>-->
+<!--                    <th>Temat</th>-->
+<!--                    <th>Akcje</th>-->
+<!--                </tr>-->
+<!--                </thead>-->
+<!--            </table>-->
+<!--        </div>-->
+<!--    </div>-->
 <!--    koniec panela komunikatów o awarii-->
     <!--modal detale komunikatu start-->
     <div class="modal fade" id="details_messages_modal">
@@ -160,44 +200,44 @@
     </div>
     <!--modal detale komunikatu end-->
     <!--modal detale wyłaczenia oddziału start-->
-    <div class="modal fade" id="details_exclusion_modal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Szczegóły komunikatu <i class="fa fa-exclamation-circle"
-                                                                    style="color: blue"></i></h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body justify-content-center">
-                    <div id="modalExclusionDetailsBody"></div>
+<!--    <div class="modal fade" id="details_exclusion_modal">-->
+<!--        <div class="modal-dialog">-->
+<!--            <div class="modal-content">-->
+<!--                <div class="modal-header">-->
+<!--                    <h4 class="modal-title">Szczegóły komunikatu <i class="fa fa-exclamation-circle"-->
+<!--                                                                    style="color: blue"></i></h4>-->
+<!--                    <button type="button" class="close" data-dismiss="modal">&times;</button>-->
+<!--                </div>-->
+<!--                <div class="modal-body justify-content-center">-->
+<!--                    <div id="modalExclusionDetailsBody"></div>-->
 
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Zamknij</button>
-                </div>
-            </div>
-        </div>
-    </div>
+<!--                </div>-->
+<!--                <div class="modal-footer">-->
+<!--                    <button type="button" class="btn btn-danger" data-dismiss="modal">Zamknij</button>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
     <!--modal detale wyłaczenia oddziału end-->
     <!--modal detale awarii sprzętu start-->
-    <div class="modal fade" id="details_malfunction_modal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Szczegóły komunikatu <i class="fa fa-exclamation-circle"
-                                                                    style="color: blue"></i></h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body justify-content-center">
-                    <div id="modalMalfunctionDetailsBody"></div>
+<!--    <div class="modal fade" id="details_malfunction_modal">-->
+<!--        <div class="modal-dialog">-->
+<!--            <div class="modal-content">-->
+<!--                <div class="modal-header">-->
+<!--                    <h4 class="modal-title">Szczegóły komunikatu <i class="fa fa-exclamation-circle"-->
+<!--                                                                    style="color: blue"></i></h4>-->
+<!--                    <button type="button" class="close" data-dismiss="modal">&times;</button>-->
+<!--                </div>-->
+<!--                <div class="modal-body justify-content-center">-->
+<!--                    <div id="modalMalfunctionDetailsBody"></div>-->
 
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Zamknij</button>
-                </div>
-            </div>
-        </div>
-    </div>
+<!--                </div>-->
+<!--                <div class="modal-footer">-->
+<!--                    <button type="button" class="btn btn-danger" data-dismiss="modal">Zamknij</button>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
     <!--modal detale awarii sprzętu end-->
 </div>
 </body>
@@ -207,36 +247,9 @@
         "bAutoWidth": true,
         "bLengthChange": false,
         "pageLength": 5,
-        "sAjaxSource": "/api/hospital/messages/v1",
+        "ordering": false,
         "sAjaxDataProp": "",
-        "aoColumns": [
-            {
-                "mData": null,
-                sWidth: '20px', "render": function (data, type, full, meta) {
-                    return meta.index + 1;
-                }
-            },
-            {"mData": "addDate"},
-            {"mData": "endDate"},
-            {"mData": "title"},
-            {
-                "mData": null, sWidth: '80px',
-                "render": function () {
-                    let a = "";
-                    a = a + '&nbsp&nbsp' + '<a href="#"><span style="color: orange" class="fa fa-info-circle" title="Szczegóły komunikatu" id="details"></span></a>';
-                    return a;
-                }
-            },
-            // {"mData" : "status.statusId"}
-        ],
-        "columnDefs": [
-            {
-                "targets": [1, 2],
-                "render": function (data, type, row, meta) {
-                    return moment(data).local().format('YYYY-MM-DD HH:mm:ss');
-                }
-            },
-        ],
+
         "language": {
             "processing": "Przetwarzanie...",
             "search": "Szukaj:",
@@ -260,411 +273,13 @@
             }
         }
 
-    })
-    table.on('order.dt search.dt', function () {
-        table.column(0, {search: 'applied', order: 'applied'}).nodes().each(function (cell, i) {
-            cell.innerHTML = i + 1;
-        });
-    }).draw();
-    table1 = $("#exclusion").DataTable({
-        "bAutoWidth": true,
-        "bLengthChange": false,
-        "pageLength": 5,
-        "sAjaxSource": "/api/hospital/hospitalBranchClosed/v1",
-        "sAjaxDataProp": "",
-        "aoColumns": [
-            {
-                "mData": null,
-                sWidth: '20px', "render": function (data, type, full, meta) {
-                    return meta.index + 1;
-                }
-            },
-            {"mData": "dateFrom"},
-            {"mData": "dateTo"},
-            {"mData": "title"},
-            {
-                "mData": null, sWidth: '80px',
-                "render": function () {
-                    let a = "";
-                    a = a + '&nbsp&nbsp' + '<a href="#"><span style="color: orange" class="fa fa-info-circle" title="Szczegóły wyłaczenia oddziału" id="details1"></span></a>';
-                    return a;
-                }
-            },
-        ],
-        "columnDefs": [
-            {
-                "targets": [1, 2],
-                "render": function (data, type, row, meta) {
-                    return moment(data).local().format('YYYY-MM-DD HH:mm:ss');
-                }
-            },
-        ],
-        "language": {
-            "processing": "Przetwarzanie...",
-            "search": "Szukaj:",
-            "lengthMenu": "Pokaż _MENU_ pozycji",
-            "info": "Pozycje od _START_ do _END_ z _TOTAL_ łącznie",
-            "infoEmpty": "Pozycji 0 z 0 dostępnych",
-            "infoFiltered": "(filtrowanie spośród _MAX_ dostępnych pozycji)",
-            "infoPostFix": "",
-            "loadingRecords": "Wczytywanie...",
-            "zeroRecords": "Nie znaleziono pasujących pozycji",
-            "emptyTable": "Nie znaleziono rekordów",
-            "paginate": {
-                "first": "Pierwsza",
-                "previous": "Poprzednia",
-                "next": "Następna",
-                "last": "Ostatnia"
-            },
-            "aria": {
-                "sortAscending": ": aktywuj, by posortować kolumnę rosnąco",
-                "sortDescending": ": aktywuj, by posortować kolumnę malejąco"
-            }
-        }
-
-    })
-    table1.on('order.dt search.dt', function () {
-        table1.column(0, {search: 'applied', order: 'applied'}).nodes().each(function (cell, i) {
-            cell.innerHTML = i + 1;
-        });
-    }).draw();
-    table2 = $("#malfunction").DataTable({
-        "bAutoWidth": true,
-        "bLengthChange": false,
-        "pageLength": 5,
-        "sAjaxSource": "/api/hospital/hospitalFailures/v1",
-        "sAjaxDataProp": "",
-        "aoColumns": [
-            {
-                "mData": null,
-                sWidth: '20px', "render": function (data, type, full, meta) {
-                    return meta.index + 1;
-                }
-            },
-            {"mData": "dataOd"},
-            {"mData": "dataDo"},
-            {"mData": "description"},
-            {
-                "mData": null, sWidth: '80px',
-                "render": function () {
-
-                    let a = "";
-                    a = a + '&nbsp&nbsp' + '<a href="#"><span style="color: orange" class="fa fa-info-circle" title="Szczegóły awarii sprzętu" id="details2"></span></a>';
-                    return a;
-                }
-            },
-        ],
-        "columnDefs": [
-            {
-                "targets": [1, 2],
-                "render": function (data, type, row, meta) {
-                    return moment(data).local().format('YYYY-MM-DD HH:mm:ss');
-                }
-            },
-            // {
-            //     "targets": 8,
-            //     "visible": false
-            // }
-        ],
-        "language": {
-            "processing": "Przetwarzanie...",
-            "search": "Szukaj:",
-            "lengthMenu": "Pokaż _MENU_ pozycji",
-            "info": "Pozycje od _START_ do _END_ z _TOTAL_ łącznie",
-            "infoEmpty": "Pozycji 0 z 0 dostępnych",
-            "infoFiltered": "(filtrowanie spośród _MAX_ dostępnych pozycji)",
-            "infoPostFix": "",
-            "loadingRecords": "Wczytywanie...",
-            "zeroRecords": "Nie znaleziono pasujących pozycji",
-            "emptyTable": "Nie znaleziono rekordów",
-            "paginate": {
-                "first": "Pierwsza",
-                "previous": "Poprzednia",
-                "next": "Następna",
-                "last": "Ostatnia"
-            },
-            "aria": {
-                "sortAscending": ": aktywuj, by posortować kolumnę rosnąco",
-                "sortDescending": ": aktywuj, by posortować kolumnę malejąco"
-            }
-        }
-
-    })
-    table2.on('order.dt search.dt', function () {
-        table2.column(0, {search: 'applied', order: 'applied'}).nodes().each(function (cell, i) {
-            cell.innerHTML = i + 1;
-        });
-    }).draw();
+    });
 
     $('#add_new_messages').on('click', function (){
-        $('#add_messages').modal();
-        show_add_messages('/hospital/addMessages');
-    });;
-
-    $('#add_new_exclusion').on('click', function (){
-        $('#add_exclusion').modal();
-        show_add_exlusion('/hospital/addExclusion');
+        window.location='/hospital/addMessages';
+        // $('#add_messages').modal();
+        // show_add_messages('/hospital/addMessages');
     });
 
-    $('#add_new_malfunction').on('click', function (){
-        $('#add_malfunction').modal();
-        show_add_malfunction('/hospital/addMailfunctions');
-    });
 
-    $('#messages tbody').on('click', '#details', function (){
-        let data = table.row($(this).parents('tr')).data();
-        $('#details_messages_modal').modal();
-        show_details('/restrict/messages_details/'+data["messagesId"]);
-    });
-
-    $('#exclusion tbody').on('click', '#details1', function (){
-        let data = table1.row($(this).parents('tr')).data();
-        $('#details_exclusion_modal').modal();
-        show_details1('/restrict/exclusion_details'+data["id"]);
-    });
-
-    $('#malfunction tbody').on('click', '#details2', function (){
-        let data = table2.row($(this).parents('tr')).data();
-        $('#details_malfunction_modal').modal();
-        show_details2('/restrict/malfunction_details'+data["hospitalFailuresId"]);
-    });
-
-    function show_add_messages(url){
-        $('#modalAddNewMessagesBody').load(url, function (){});
-    }
-    function show_add_exlusion(url){
-       $('#modalAddNewExclusionBody').load(url, function (){});
-    }
-
-    function show_add_malfunction(url){
-        $('#modalAddNewMalfunctionBody').load(url, function(){});
-    }
-    function show_details(url){
-       $('#modalMessagesDetailsBody').load(url, function (){});
-    }
-    function show_details1(url){
-       $('#modalExclusionDetailsBody').load(url, function (){});
-    }
-    function show_details2(url){
-        $('#modalMalfunctionDetailsBody').load(url, function (){});
-    }
-    // $(document).ready(function () {
-    //     let table = $("#messages").DataTable({
-    //
-    //         "bAutoWidth": true,
-    //         "bLengthChange": false,
-    //         "pageLength": 5,
-    //         "sAjaxSource": "/api/hospital/messages/v1",
-    //         "sAjaxDataProp": "",
-    //         "aoColumns": [
-    //             {
-    //                 "mData": null,
-    //                 sWidth: '20px', "render": function (data, type, full, meta) {
-    //                     return meta.index + 1;
-    //                 }
-    //             },
-    //             {"mData": "addDate"},
-    //             {"mData": "endDate"},
-    //             {"mData": "title"},
-    //             {
-    //                 "mData": null, sWidth: '80px',
-    //                 "render": function () {
-    //                     // let x = table.cell(6).data();
-    //                     let a = "";
-    //                     // a = '<a href="#"><span style="color: red" class="fa fa-pencil" title="Edycja" id="edit"</a>';
-    //                     a = a + '&nbsp&nbsp' + '<a href="#"><span style="color: orange" class="fa fa-info-circle" title="Szczegóły" id="details"></span></a>';
-    //
-    //                     // a=a+'&nbsp&nbsp'+'<a href="#"><span style="color: blue" class="fa fa-comment" title="Wiadomość" id="mess"</a>';
-    //
-    //                     return a;
-    //                 }
-    //             },
-    //             // {"mData" : "status.statusId"}
-    //         ],
-    //         "columnDefs": [
-    //             {
-    //                 "targets": [1, 2],
-    //                 "render": function (data, type, row, meta) {
-    //                     return moment(data).local().format('YYYY-MM-DD HH:mm:ss');
-    //                 }
-    //             },
-    //             // {
-    //             //     "targets": 8,
-    //             //     "visible": false
-    //             // }
-    //         ],
-    //         "language": {
-    //             "processing": "Przetwarzanie...",
-    //             "search": "Szukaj:",
-    //             "lengthMenu": "Pokaż _MENU_ pozycji",
-    //             "info": "Pozycje od _START_ do _END_ z _TOTAL_ łącznie",
-    //             "infoEmpty": "Pozycji 0 z 0 dostępnych",
-    //             "infoFiltered": "(filtrowanie spośród _MAX_ dostępnych pozycji)",
-    //             "infoPostFix": "",
-    //             "loadingRecords": "Wczytywanie...",
-    //             "zeroRecords": "Nie znaleziono pasujących pozycji",
-    //             "emptyTable": "Nie znaleziono rekordów",
-    //             "paginate": {
-    //                 "first": "Pierwsza",
-    //                 "previous": "Poprzednia",
-    //                 "next": "Następna",
-    //                 "last": "Ostatnia"
-    //             },
-    //             "aria": {
-    //                 "sortAscending": ": aktywuj, by posortować kolumnę rosnąco",
-    //                 "sortDescending": ": aktywuj, by posortować kolumnę malejąco"
-    //             }
-    //         }
-    //
-    //     })
-    //     table.on('order.dt search.dt', function () {
-    //         table.column(0, {search: 'applied', order: 'applied'}).nodes().each(function (cell, i) {
-    //             cell.innerHTML = i + 1;
-    //         });
-    //     }).draw();
-    // });
-    // $(document).ready(function (){
-    //     let table1 = $("exclusion").DataTable({
-    //         "bAutoWidth" : true,
-    //         "bLengthChange" : false,
-    //         "pageLength": 5,
-    //         "sAjaxSource" : "/api/hospital/hospitalBranchClosed/v1",
-    //         "sAjaxDataProp" : "",
-    //         "aoColumns" : [
-    //             {"mData": null,
-    //                 sWidth: '20px', "render" : function (data, type, full, meta){
-    //                     return meta.index+1;
-    //                 }},
-    //             {"mData" : "dateFrom"},
-    //             {"mData" : "dateTo"},
-    //             {"mData" : "title"},
-    //             {"mData" : null, sWidth: '80px',
-    //                 "render" : function (){
-    //                     // let x = table.cell(6).data();
-    //                     let a = "";
-    //                     a = a + '&nbsp&nbsp'+'<a href="#"><span style="color: orange" class="fa fa-info-circle" title="Szczegóły" id="details"></span></a>';
-    //                     return a;
-    //                 }
-    //             },
-    //         ],
-    //         "columnDefs" :[
-    //             {
-    //                 "targets": [1,2],
-    //                 "render": function (data, type, row, meta) {
-    //                     return moment(data).local().format('YYYY-MM-DD HH:mm:ss');
-    //                 }
-    //             },
-    //         ],
-    //         "language": {
-    //             "processing": "Przetwarzanie...",
-    //             "search": "Szukaj:",
-    //             "lengthMenu": "Pokaż _MENU_ pozycji",
-    //             "info": "Pozycje od _START_ do _END_ z _TOTAL_ łącznie",
-    //             "infoEmpty": "Pozycji 0 z 0 dostępnych",
-    //             "infoFiltered": "(filtrowanie spośród _MAX_ dostępnych pozycji)",
-    //             "infoPostFix": "",
-    //             "loadingRecords": "Wczytywanie...",
-    //             "zeroRecords": "Nie znaleziono pasujących pozycji",
-    //             "emptyTable": "Nie znaleziono rekordów",
-    //             "paginate": {
-    //                 "first": "Pierwsza",
-    //                 "previous": "Poprzednia",
-    //                 "next": "Następna",
-    //                 "last": "Ostatnia"
-    //             },
-    //             "aria": {
-    //                 "sortAscending": ": aktywuj, by posortować kolumnę rosnąco",
-    //                 "sortDescending": ": aktywuj, by posortować kolumnę malejąco"
-    //             }
-    //         }
-    //
-    //     })
-    //     table1.on('order.dt search.dt', function(){
-    //         table1.column(0, {search: 'applied', order: 'applied'}).nodes().each(function (cell, i){
-    //             cell.innerHTML = i + 1;
-    //         });
-    //     }).draw();
-    // });
-    // $(document).ready(function (){
-    //
-    //     let table2 = $("malfunction").DataTable({
-    //         "bAutoWidth" : true,
-    //         "bLengthChange" : false,
-    //         "pageLength": 5,
-    //         "sAjaxSource" : "/api/hospital/hospitalFailures/v1",
-    //         "sAjaxDataProp" : "",
-    //         "aoColumns" : [
-    //             {"mData": null,
-    //                 sWidth: '20px', "render" : function (data, type, full, meta){
-    //                     return meta.index+1;
-    //                 }},
-    //             {"mData" : "dataOd"},
-    //             {"mData" : "dataDo"},
-    //             {"mData" : "description"},
-    //             {"mData" : null, sWidth: '80px',
-    //                 "render" : function (){
-    //                     // let x = table.cell(6).data();
-    //                     let a = "";
-    //                     a = a + '&nbsp&nbsp'+'<a href="#"><span style="color: orange" class="fa fa-info-circle" title="Szczegóły" id="details"></span></a>';
-    //                     return a;
-    //                 }
-    //             },
-    //         ],
-    //         "columnDefs" :[
-    //             {
-    //                 "targets": [1,2],
-    //                 "render": function (data, type, row, meta) {
-    //                     return moment(data).local().format('YYYY-MM-DD HH:mm:ss');
-    //                 }
-    //             },
-    //         ],
-    //         "language": {
-    //             "processing": "Przetwarzanie...",
-    //             "search": "Szukaj:",
-    //             "lengthMenu": "Pokaż _MENU_ pozycji",
-    //             "info": "Pozycje od _START_ do _END_ z _TOTAL_ łącznie",
-    //             "infoEmpty": "Pozycji 0 z 0 dostępnych",
-    //             "infoFiltered": "(filtrowanie spośród _MAX_ dostępnych pozycji)",
-    //             "infoPostFix": "",
-    //             "loadingRecords": "Wczytywanie...",
-    //             "zeroRecords": "Nie znaleziono pasujących pozycji",
-    //             "emptyTable": "Nie znaleziono rekordów",
-    //             "paginate": {
-    //                 "first": "Pierwsza",
-    //                 "previous": "Poprzednia",
-    //                 "next": "Następna",
-    //                 "last": "Ostatnia"
-    //             },
-    //             "aria": {
-    //                 "sortAscending": ": aktywuj, by posortować kolumnę rosnąco",
-    //                 "sortDescending": ": aktywuj, by posortować kolumnę malejąco"
-    //             }
-    //         }
-    //
-    //     })
-    //     table2.on('order.dt search.dt', function(){
-    //         table2.column(0, {search: 'applied', order: 'applied'}).nodes().each(function (cell, i){
-    //             cell.innerHTML = i + 1;
-    //         });
-    //     }).draw();
-    // });
-
-
-
-
-    // })
-    // let addKom = document.getElementById("addKomunikat");
-    // // let hosReport = document.getElementById("hospitalReport");
-    // addKom.addEventListener("click", function (){
-    //     // alert("Kliknąłeś!!!")
-    //     $('#add_messages').modal();
-    //     show_add_messages('/restrict/messages');
-    // });
-    // function show_add_messages(url){
-    //     $('#modalMessageBody').load(url, function (){});
-    // };
-    // let newReport = document.getElementById("new_report");
-    // newReport.addEventListener("click", function (){
-    //     window.location.href='/hospital/addReport';
-    // })
 </script>

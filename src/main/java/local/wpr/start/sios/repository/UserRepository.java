@@ -15,6 +15,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
     User findByUserName(String userName);
     List<User> findAll();
     User findById(Integer userId);
+    String zap2 = "SELECT * FROM tab_users WHERE hospital_id = ?1";
+    @Query(value = zap2, nativeQuery = true)
+    List<User> findByHospitalId(Long id);
 
 //    String zapHospital = "SELECT * FROM tab_users WHERE "
 

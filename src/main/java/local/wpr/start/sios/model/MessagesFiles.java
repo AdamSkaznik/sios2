@@ -15,9 +15,13 @@ public class MessagesFiles {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long messagesFilesId;
-    private String messagesFileName;
+    private String fileName;
     private String fileUrl;
-    @Column(length = 12288)
-    private String description;
+//    @Column(length = 12288)
+//    private String description;
+    private boolean messageFileActive;
+    @ManyToOne
+    @JoinColumn(name = "messagesId", nullable = true)
+    private Messages messages;
 
 }

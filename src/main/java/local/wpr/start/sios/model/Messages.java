@@ -5,7 +5,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -15,26 +18,27 @@ import java.util.Set;
 @Table(name = "tab_messages")
 public class Messages {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long messagesId;
-    private Date addDate;
+    private LocalDateTime addDate;
+    private Date startDate;
     private Date endDate;
-    private boolean isAll;
+    private boolean messagesActive;
     private String title;
     @Column(length = 12288)
     private String content;
     @ManyToOne
     @JoinColumn(name = "userId", nullable = false)
     private User user;
-//    @ManyToOne
-//    @JoinColumn(name = "messageTypeId", nullable = false)
-//    private MessagesType messagesType;
-    @ManyToMany(cascade = CascadeType.MERGE)
-    @JoinTable(name = "messages_hospitalConfig", joinColumns = @JoinColumn(name = "messages_id"), inverseJoinColumns = @JoinColumn(name = "hospitalConfigId"))
-    private Set<HospitalConfig> hospitalConfigs;
-    @ManyToMany(cascade = CascadeType.MERGE)
-    @JoinTable(name = "messagesFile", joinColumns = @JoinColumn(name = "messagesId"), inverseJoinColumns = @JoinColumn(name = "messagesFileId"))
-    private Set<MessagesFiles> messagesFiles;
-//    @ManyToMany(cascade = CascadeType.MERGE)
-//    @JoinTable(name = "recipentMessages", joinColumns = =@JoinColumn(name = "messagesId"), inverseJoinColumns = )
+    @ManyToOne
+    @JoinColumn(name = "hospitalId", nullable = true)
+    private Hospital hospital;
+    @Transient
+    private String dStart;
+    @Transient
+    private String dEnd;
+    @OneToMany(mappedBy = "messages", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<MessagesFiles> messagesFiles = new ArrayList<>();
+
+
 }
