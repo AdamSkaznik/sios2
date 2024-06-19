@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<!--    <title>Title</title>-->
+</head>
+<body>
+<div class="container">
+ <div class="card">
+   <form class="form" style="margin:auto" th:object="${hospitalProceduresType}" th:action="@{/admin/saveHospitalProceduresType}" method="post">
+     <div class="panel panel-default">
+       <div class="panel-body">
+         <p> Wprowadź tytuł typu procedury</p>
+         <textarea th:field="*{hospitalProceduresTypeDesc}" rows="1" class="form-control" style="resize: none"></textarea>
+       </div>
+       <div class="panel-footer">
+         <button type="submit" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Zapisz</button>
+       </div>
+     </div>
+   </form>
+ </div>
+</div>
+</body>
+</html>
