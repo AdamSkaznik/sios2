@@ -9,20 +9,20 @@ import org.springframework.data.annotation.CreatedDate;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Entity
-@AllArgsConstructor
-@NoArgsConstructor
-@Data
-@Table(name = "tab_admin_messages")
+//@Entity
+//@AllArgsConstructor
+//@NoArgsConstructor
+//@Data
+//@Table(name = "tab_admin_messages")
 public class AdminMessages {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long adminMessagesId;
-    private String adminMessagesTitle;
-    private String adminMessagesDesc;
-    private boolean adminMessagesActive;
-    @CreatedDate
-    private LocalDateTime createDateTime;
-    @CreatedBy
-    private String user;
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    private Long adminMessagesId;
+//    private String adminMessagesTitle;
+//    private String adminMessagesDesc;
+//    private boolean adminMessagesActive;
+//    @CreatedDate
+//    private LocalDateTime createDateTime;
+//    @CreatedBy
+//    private String user;
 }

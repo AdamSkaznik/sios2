@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.security.Principal;
 import java.util.List;
 
 @Service
@@ -62,6 +63,11 @@ public class HospitalConfigServiceimpl implements HospitalConfigService {
     @Override
     public void saveHospitalConfig(HospitalConfig hospitalConfig) {
         hospitalConfigReporitory.save(hospitalConfig);
+    }
+
+    @Override
+    public List<HospitalConfig> getByHospitalAndBranchName(Long hospitalId, String branchName) {
+        return hospitalConfigReporitory.getConfigByNameBranch(hospitalId, branchName);
     }
 
 

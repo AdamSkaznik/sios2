@@ -7,78 +7,79 @@
 </head>
 <body>
 <div class="container-fluid" >
-  <center><h3 style="font-weight: bold">Wyłaczenia oddziałów</h3></center>
+  <center><h3 style="font-weight: bold">Wyłączenia oddziałów</h3></center>
   <!--  <br>-->
-  <button class="btn btn-success" id="addProcedures"><span class="fa-solid fa-plus-circle"></span></button>
+  <button class="btn btn-success" id="addExclusion"><span class="fa-solid fa-plus-circle"></span></button>
   <br><br>
   <table id="tableProcedures" class="table table-bordered table-striped display" style="width: 100%">
     <thead>
     <tr>
-      <!--      <th>Lp.</th>-->
-      <th>Rodzaj procedury</th>
-      <th>Nazwa procedury</th>
-      <th>Opis</th>
-      <th>Załączniki</th>
-      <th>Procedurę umieścił</th>
-      <th>Data aktualizacji</th>
-      <th>Akcje</th>
+      <th>Lp.</th>
+      <th>Wyłaczenie od</th>
+      <th>Wyłaczenie do</th>
+      <th>Temat</th>
+<!--      <th>Załączniki</th>-->
+<!--      <th>Procedurę umieścił</th>-->
+<!--      <th>Data aktualizacji</th>-->
+<!--      <th>Akcje</th>-->
     </tr>
     </thead>
     <tbody>
-    <tr th:each="hospitalProcedures: ${procedures}">
-      <td th:text="${hospitalProcedures.hospitalProceduresType.getHospitalProceduresTypeDesc()}"></td>
-      <td th:text="${hospitalProcedures.name}"></td>
-      <td th:text="${hospitalProcedures.description}"></td>
-      <td>
-        <ol>
-          <li th:each="files: ${hospitalProcedures.hospitalProceduresFiles}" >
-              <span th:if="${#strings.endsWith(files.fileName.toLowerCase(), '.pdf')}">
-                <i class="fas fa-file-pdf" style="color: red"></i>
-              </span>
-            <span th:if="${#strings.endsWith(files.fileName.toLowerCase(), '.doc') || #strings.endsWith(files.fileName.toLowerCase(), 'docx')}">
-                <i class="fas fa-file-word" style="color: blue"></i>
-              </span>
-            <span th:if="${#strings.endsWith(files.fileName.toLowerCase(), '.txt')}">
-                <i class="fas fa-file-text" style="color: red"></i>
-              </span>
-            <span th:if="${#strings.endsWith(files.fileName.toLowerCase(), '.xlsx') || #strings.endsWith(files.fileName.toLowerCase(), '.xls') || #strings.endsWith(files.fileName.toLowerCase(), '.csv')}">
-                <i class="fas fa-file-excel" style="color: green"></i>
-              </span>
-            <span th:if="${#strings.endsWith(files.fileName.toLowerCase(), '.msg')}">
-                <i class="fas fa-file-signature"></i>
-              </span>
-            <a th:href="@{/downloadProcedures/{filename}(filename=${files.fileName})}" th:text="${files.fileName}" download></a>
-            <!--              &nbsp;&nbsp;&nbsp;-->
-            <!--              <button class="btn btn-danger btn-sm" onclick="deleteAttachment(${files.id})">-->
-            <!--                <i class="fas fa-trash-alt" style="color: red; padding-right: 10px; float: right"></i>-->
-            <!--              </button>-->
+    <tr th:each="hospitalBranchClosed, lp: ${listHospitalBranchClosed}">
+      <td th:text="${lp.index + 1}"></td>
+      <td th:text="${hospitalBranchClosed.dateFrom}"></td>
+      <td th:text="${hospitalBranchClosed.dateTo}"></td>
+      <td th:text="${hospitalBranchClosed.title}"></td>
+<!--      <td>-->
+<!--        <ol>-->
+<!--          <li th:each="files: ${hospitalProcedures.hospitalProceduresFiles}" >-->
+<!--              <span th:if="${#strings.endsWith(files.fileName.toLowerCase(), '.pdf')}">-->
+<!--                <i class="fas fa-file-pdf" style="color: red"></i>-->
+<!--              </span>-->
+<!--            <span th:if="${#strings.endsWith(files.fileName.toLowerCase(), '.doc') || #strings.endsWith(files.fileName.toLowerCase(), 'docx')}">-->
+<!--                <i class="fas fa-file-word" style="color: blue"></i>-->
+<!--              </span>-->
+<!--            <span th:if="${#strings.endsWith(files.fileName.toLowerCase(), '.txt')}">-->
+<!--                <i class="fas fa-file-text" style="color: red"></i>-->
+<!--              </span>-->
+<!--            <span th:if="${#strings.endsWith(files.fileName.toLowerCase(), '.xlsx') || #strings.endsWith(files.fileName.toLowerCase(), '.xls') || #strings.endsWith(files.fileName.toLowerCase(), '.csv')}">-->
+<!--                <i class="fas fa-file-excel" style="color: green"></i>-->
+<!--              </span>-->
+<!--            <span th:if="${#strings.endsWith(files.fileName.toLowerCase(), '.msg')}">-->
+<!--                <i class="fas fa-file-signature"></i>-->
+<!--              </span>-->
+<!--            <a th:href="@{/downloadProcedures/{filename}(filename=${files.fileName})}" th:text="${files.fileName}" download></a>-->
+<!--            &lt;!&ndash;              &nbsp;&nbsp;&nbsp;&ndash;&gt;-->
+<!--            &lt;!&ndash;              <button class="btn btn-danger btn-sm" onclick="deleteAttachment(${files.id})">&ndash;&gt;-->
+<!--            &lt;!&ndash;                <i class="fas fa-trash-alt" style="color: red; padding-right: 10px; float: right"></i>&ndash;&gt;-->
+<!--            &lt;!&ndash;              </button>&ndash;&gt;-->
 
-          </li>
-        </ol>
-      </td>
-      <td th:text="${hospitalProcedures.user.getName()}"></td>
-      <!--        <td th:text="${hospitalProcedures.modifiedDateTime}"></td>-->
-      <td th:text="${#temporals.format(hospitalProcedures.modifiedDateTime, 'yyyy-MM-dd HH:mm:ss')}"></td>
-      <td>
-        <!--          <a th:href="@{edit/{id}(id=${hospitalProcedures.hospitalProceduresId})}"> Edytuj</a>-->
-        <a th:href="@{detailsProcedures/{id}(id=${hospitalProcedures.hospitalProceduresId})}" th:title="szczegóły"><i class="fa-solid fa-info-circle" style="color: greenyellow" data-tooltip="szczegóły"></i></a>&nbsp;&nbsp;
-        <a th:href="@{edit/{id}(id=${hospitalProcedures.hospitalProceduresId})}" th:title="edycja"><i class="fa-solid fa-pencil"></i></a>&nbsp;&nbsp;
-        <a th:href="@{delete/{id}(id=${hospitalProcedures.hospitalProceduresId})}" th:title="usuń"><i class="fa-solid fa-trash-alt" style="color: red"></i></a>
-      </td>
+<!--          </li>-->
+<!--        </ol>-->
+<!--      </td>-->
+<!--      <td th:text="${hospitalProcedures.user.getName()}"></td>-->
+<!--      &lt;!&ndash;        <td th:text="${hospitalProcedures.modifiedDateTime}"></td>&ndash;&gt;-->
+<!--      <td th:text="${#temporals.format(hospitalProcedures.modifiedDateTime, 'yyyy-MM-dd HH:mm:ss')}"></td>-->
+<!--      <td>-->
+<!--        &lt;!&ndash;          <a th:href="@{edit/{id}(id=${hospitalProcedures.hospitalProceduresId})}"> Edytuj</a>&ndash;&gt;-->
+<!--        <a th:href="@{detailsProcedures/{id}(id=${hospitalProcedures.hospitalProceduresId})}" th:title="szczegóły"><i class="fa-solid fa-info-circle" style="color: greenyellow" data-tooltip="szczegóły"></i></a>&nbsp;&nbsp;-->
+<!--        <a th:href="@{edit/{id}(id=${hospitalProcedures.hospitalProceduresId})}" th:title="edycja"><i class="fa-solid fa-pencil"></i></a>&nbsp;&nbsp;-->
+<!--        <a th:href="@{delete/{id}(id=${hospitalProcedures.hospitalProceduresId})}" th:title="usuń"><i class="fa-solid fa-trash-alt" style="color: red"></i></a>-->
+<!--      </td>-->
     </tr>
     </tbody>
   </table>
 
   <!--    modal dla dodania procedury - start-->
-  <div class="modal fade" id="add_procedures">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
+  <div class="modal fade" id="add_exclusion">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title"> Dodaj procedurę <i class="glyphicon glyphicon-info-sign" style="color: blue"></i></h4>
+          <h4 class="modal-title"> Dodaj wyłączenie Oddziału <i class="glyphicon glyphicon-info-sign" style="color: blue"></i></h4>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body justify-content-center">
-          <div id="modalAddProceduresBody"></div>
+          <div id="modalAddExclusionBody"></div>
         </div>
       </div>
     </div>
@@ -192,9 +193,9 @@
     //     cell.innerHTML = i + 1;
     //   });
     // }).draw();
-    $('#addProcedures').on('click', function (){
-      show_add_procedures('/hospital/addProcedure');
-      $('#add_procedures').modal();
+    $('#addExclusion').on('click', function (){
+      show_add_exclusion('/hospital/addExclusion');
+      $('#add_exclusion').modal();
     })
 
     $('#tableProcedures tbody').on('click', '#details', function (){
@@ -203,8 +204,8 @@
       $('#showDetails').modal();
     });
 
-    function show_add_procedures(url){
-      $('#modalAddProceduresBody').load(url, function (){});
+    function show_add_exclusion(url){
+      $('#modalAddExclusionBody').load(url, function (){});
     }
     function show_details_procedures(url){
       $('#modalShowDetailsBody').load(url, function (){});

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org" xmlns:sd="http://www.w3.org/1999/xhtml"
       xmlns:sec="http://www.w3.org/1999/xhtml"
-      th:replace="~{/hospital/fragments/layout2::layout(~{::.container-fluid})}">
+      th:replace="~{/hospital/fragments/layout::layout(~{::.container-fluid})}">
 <head>
     <meta charset="UTF-8">
 <style>
@@ -12,7 +12,37 @@
 </head>
 <body>
 <div class="container-fluid">
-<table class="table"></table>
+    <div class="container-fluid pull-right" style="padding-right: 5px">
+        <a href="redirect:/hospital/index" style="align-self: end"><button class="btn btn-info"> powrót </button> </a>
+    </div>
+    <div class="card col-sm-8">
+        <div class="card-header"> Konto użytkownika</div>
+        <div class="card-body">
+            <table class="table table-striped table-bordered" th:object="${user}">
+                <tr>
+                    <td>Login:</td>
+                    <td th:text="*{userName}"></td>
+                </tr>
+                <tr>
+                    <td>Imię</td>
+                    <td th:text="*{firstName}"></td>
+                </tr>
+                <tr>
+                    <td>Nazwisko</td>
+                    <td th:text="*{lastName}"></td>
+                </tr>
+                <tr>
+                    <td> Adres e-mail</td>
+                    <td th:text="*{email}"></td>
+                    <td><i class="fas fa-pencil"></i></td>
+                </tr>
+                <tr>
+                    <td> Ostatnia zmiana hasła</td>
+                    <td th:text="*{passwordChangedTime}"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
 </div>
 </body>
 </html>

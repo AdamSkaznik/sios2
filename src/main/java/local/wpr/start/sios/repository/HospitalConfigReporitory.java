@@ -30,5 +30,9 @@ public interface HospitalConfigReporitory extends JpaRepository<HospitalConfig, 
     @Query(value = zapHospitalSelect, nativeQuery = true)
     List<HospitalConfig>getAllToSelect();
 
+//    String zapSearch = "SELECT * FROM tab_hospital_config c left join tab_branch b on (c.branch_id = b.id) where hospital_id = ?1 and b.name iLIKE %?2%";
+    String zapSearch = "SELECT * FROM tab_hospital_config where hospital_id = ?1 and branch.name iLIKE %?2%";
+    @Query(value = zapSearch, nativeQuery = true)
+    List<HospitalConfig> getConfigByNameBranch(Long id, String term);
 //    String zapHospitalAddress = "select "
 }

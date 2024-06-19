@@ -33,4 +33,9 @@ public class MessagesServiceImpl implements MessagesService {
         messagesRepository.save(messages);
         return messages;
     }
+
+    @Override
+    public List<Messages> getActiveMessages() {
+        return messagesRepository.getActive();
+    }
 }

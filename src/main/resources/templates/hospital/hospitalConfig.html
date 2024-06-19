@@ -190,9 +190,16 @@
     }).draw();
 $('#glowna tbody').on('click', '#edit', function (){
     var data = table.row($(this).parents('tr')).data();
+    console.log("ID: " + data["hospitalConfigId"]);
+    show_edit('/hospital/hospitalConfig_edit/'+data["hospitalConfigId"]);
     $('#editConfig').modal();
-    show_edit('/hospital/hospitalConfig_edit'+data["id"]);
 });
+$('#glowna tbody').on('click', '#details', function (){
+    let data = table.row($(this).parents('tr')).data();
+    console.log("ID: " + data["hospitalConfigId"]);
+    show_details('/hospital/hospitalConfig_details/'+data["hospitalConfigId"]);
+    $('#detailsConfig').modal();
+})
 
 // $(document.getElementById("addConfigure").on('click', function (){
 //     $('#addConfig').modal();
@@ -212,6 +219,10 @@ $('#glowna tbody').on('click', '#edit', function (){
   });
 function show_edit(url){
     $('#modalEditBody').load(url, function (){});
+}
+
+function show_details(url){
+    $('#modalDetailsBody').load(url, function (){});
 }
 
 function show_add(url){

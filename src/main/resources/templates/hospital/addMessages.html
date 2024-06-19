@@ -1,7 +1,4 @@
 <!DOCTYPE html>
-<!--<html xmlns:th="https://www.thymeleaf.org" xmlns:sd="http://www.w3.org/1999/xhtml"-->
-<!--      xmlns:sec="http://www.w3.org/1999/xhtml"-->
-<!--      th:replace="~{/hospital/fragments/layout2::layout(~{::.container-fluid})}">-->
 <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
 <title>System Informacji o Szpitalach v2.0</title>
 <link rel="icon" type="image/x-icon" href="/images/icon.png">
@@ -26,7 +23,6 @@
 <head>
 </head>
 <body>
-
 <div class="container" style="padding-top: 50px">
     <div class="panel panel-success">
         <div class="panel-heading"> Nowy komunikat</div>
@@ -113,7 +109,19 @@
     </div>
 
 </div>
-
+<script th:if = "${error}">
+    // let errorMess = [[${#strings.escapeJavaScript(error)}]];
+    // /* <![CDATA[ */
+    // Swal({
+    //  icon: 'error',
+    //  title: 'Błąd',
+    //  // text: [[${error}]]
+    //  text: /*[[${error}]]*/ 'Plik istnieje - sprawdź błąd znajdujący się poniżej przycisku dodawania plików.'
+    //  // text: [[${#strings.escapeJavaScript(error)}]]
+    // });
+    // /* ]]> */
+    swal('Błąd', 'Plik/pliki o takiej nazwie już istnieją.', 'error');
+</script>
 </body>
 </html>
 <script>
@@ -173,18 +181,5 @@
             $('#textarea_feedback').html( 'Możesz wprowadzić jeszcze : ' + text_remaining + ' znaków');
         });
     });
-    // $(document).ready(function (){
-    // document.addEventListener("DOMContentLoaded", function () {
-    //         let errorMessage = /*[[${errorMessage}]]*/ 'null';
-    //         console.log("error na wejsciu: " + errorMessage)
-    //          if(errorMessage !== null && errorMessage !== ''){
-    //              console.log("error: " + errorMessage)
-    //          Swal.fire({
-    //              icon: 'error',
-    //              title: 'Błąd',
-    //              text: errorMessage
-    //          });
-    //          }
-    // });
 
 </script>

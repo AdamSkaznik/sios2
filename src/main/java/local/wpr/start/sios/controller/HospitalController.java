@@ -1,13 +1,18 @@
 package local.wpr.start.sios.controller;
 
 import local.wpr.start.sios.model.*;
+import local.wpr.start.sios.repository.MessagesFilesRepository;
+import local.wpr.start.sios.repository.RoleRepository;
 import local.wpr.start.sios.service.UserService;
 import local.wpr.start.sios.service.impl.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -17,15 +22,22 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.reflect.Array;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 public class HospitalController {
@@ -57,9 +69,19 @@ public class HospitalController {
     MessagesFileServiceImpl messagesFileServiceImpl;
     @Autowired
     AnnouncementServiceImpl announcementServiceImpl;
+    @Autowired
+    RoleRepository roleRepository;
+    @Autowired
+    MessagesFilesRepository messagesFilesRepository;
+    @Autowired
+    HospitalBranchClosedServiceImpl hospitalBranchClosedServiceImpl;
 
     private static final Logger LOG = LoggerFactory.getLogger(HospitalController.class);
 
+    @Bean
+    PasswordEncoder passwordEncoder(){
+        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+    }
     @GetMapping("/hospital/index")
     public String goHospitalIndex(HttpSession httpSession, Principal principal, Model model){
         String uName = principal.getName();
@@ -75,7 +97,8 @@ public class HospitalController {
         }
         httpSession.setAttribute("privateMess", privateMess);
 //        Messages messages = messagesServiceImpl.getAllMessages();
-        model.addAttribute("messagesList", messagesServiceImpl.getAllMessages());
+//        model.addAttribute("messagesList", messagesServiceImpl.getAllMessages());
+        model.addAttribute("messagesList", messagesServiceImpl.getActiveMessages());
         model.addAttribute("user", user);
         return "/hospital/index";
     }
@@ -84,6 +107,7 @@ public class HospitalController {
     public String goHospitalAccount(Principal principal, Model model){
         User user = userService.findUserByUserName(principal.getName());
         model.addAttribute("user", user);
+        System.out.println("User:" + user);
         return "/hospital/account";
     }
 
@@ -107,6 +131,11 @@ public class HospitalController {
 public String goOwnHospitalReports(){
         return "/hospital/ownHospitalReports";
 }
+
+    @GetMapping("/hospital/ownArchiveHospitalReports")
+    public String goOwnHospitalArchiveHospitalReports(){
+        return "/hospital/ownArchiveHospitalReports";
+}
     @GetMapping("/hospital/hospitalReports")
     public String goHospitalReport(){
         return "/hospital/hospitalReports";
@@ -124,7 +153,8 @@ public String goOwnHospitalReports(){
         return "/hospital/addMessages";
     }
     @GetMapping("/hospital/hospitalExclusion")
-    public String goHospitalExclusion(){
+    public String goHospitalExclusion(Model model){
+       model.addAttribute("listHospitalBranchClosed", hospitalBranchClosedServiceImpl.getAll());
         return "/hospital/hospitalExclusion";
 }
     @GetMapping("/hospital/hospitalMailfunctions")
@@ -132,7 +162,9 @@ public String goOwnHospitalReports(){
         return "/hospital/hospitalMailfunctions";
     }
     @GetMapping("/hospital/addExclusion")
-    public String goAddExclusion(){
+    public String goAddExclusion(Model model){
+        HospitalBranchClosed hospitalBranchClosed = new HospitalBranchClosed();
+        model.addAttribute("hospitalBranchClosed", hospitalBranchClosed);
         return "/hospital/addExclusion";
     }
 
@@ -203,6 +235,11 @@ public String goOwnHospitalReports(){
         return "/hospital/address";
     }
 
+//    @GetMapping("/hospital/hospitalConfig")
+//    public String goHospitalConfig(){
+//        return "/hospital/hospitalConfig";
+//    }
+
     @GetMapping("/hospital/address_add")
     public String goHospitalAddressAdd(){
         return "/hospital/address_add";
@@ -212,6 +249,21 @@ public String goOwnHospitalReports(){
         return "/hospital/hospitalConfig_add";
     }
 
+    @GetMapping("/hospital/hospitalConfig_edit/{id}")
+    public String goHospitalConfigEdit(Model model, @PathVariable Long id) throws Exception{
+        System.out.println("ID config wynosi: " + id);
+        HospitalConfig hospitalConfig = hospitalConfigServiceimpl.getHospitalConfigById(id);
+        model.addAttribute("hospitalConfig", hospitalConfig);
+        return "/hospital/hospitalConfig_edit";
+    }
+
+    @GetMapping("/hospital/hospitalConfig_details/{id}")
+    public String goHospitalConfigDetails(Model model, @PathVariable Long id) throws Exception{
+//        System.out.println("");
+        HospitalConfig hospitalConfig = hospitalConfigServiceimpl.getHospitalConfigById(id);
+        model.addAttribute("hospitalConfig", hospitalConfig);
+        return "/hospital/hospitalConfig_details";
+    }
     @GetMapping("/hospital/hospitalProcedures")
     public String goHospitalProcedures(Model model, Principal principal){
         User user = userService.findUserByUserName(principal.getName());
@@ -221,7 +273,9 @@ public String goOwnHospitalReports(){
         return "/hospital/hospitalProcedures";
     }
         @GetMapping("/hospital/allMessages")
-    public String goHospitalAllMessages(){
+    public String goHospitalAllMessages(Model model, Principal principal){
+        model.addAttribute("messagesList", messagesServiceImpl.getAllMessages());
+        model.addAttribute("user", userService.findUserByUserName(principal.getName()));
         return "/hospital/allMessages";
     }
 
@@ -267,6 +321,7 @@ public String goOwnHospitalReports(){
                     if (messagesFileServiceImpl.fileExists(file.getOriginalFilename())) {
                         System.out.println("Odpowiedź: " + messagesFileServiceImpl.fileExists(file.getOriginalFilename()));
                         model.addAttribute("errorMessage", "Plik o nazwie " + file.getOriginalFilename() + " już istnieje. Zmień nazwę pliku");
+                        model.addAttribute("error", "Plik o takiej nazwie już istnieje w bazie!");
                         model.addAttribute("messages", mess);
                         System.out.println("Plik istnieje....");
 //                        System.out.println(e);
@@ -296,6 +351,11 @@ public String goOwnHospitalReports(){
     public String goHospitalEditMessage(Model model, @PathVariable Long id){
         model.addAttribute("messages", messagesServiceImpl.getMessagesById(id));
         return "/hospital/editMessage";
+    }
+    @GetMapping("hospital/editMessage1/{id}")
+    public String goHospitalEditMessage1(Model model, @PathVariable Long id){
+        model.addAttribute("messages", messagesServiceImpl.getMessagesById(id));
+        return "/hospital/editMessage1";
     }
 
     @GetMapping("/hospital/detailsProcedures/{id}")
@@ -337,4 +397,71 @@ public String goOwnHospitalReports(){
             return "error";
         }
         }
-}
+
+        @GetMapping("/hospital/admin/passChange/{id}")
+    public String goHospitaChangePass(Model model, @PathVariable Integer id){
+        User user = userService.findById(id);
+            System.out.println("User: " + user);
+        model.addAttribute("user", user);
+        return "/hospital/admin/passChange";
+        }
+
+        @GetMapping("/hospital/admin/addUser")
+    public String goHospitalAddUser(Model model){
+        User user = new User();
+        List<Role> roles = roleRepository.findRoleToHospital();
+        model.addAttribute("user", user);
+        model.addAttribute("allRoles", roles);
+        return "/hospital/admin/addUser";
+        }
+
+        @PostMapping("/hospital/admin/saveNewUser")
+    public String goSaveNewUser(@ModelAttribute("user") User user, Principal principal) throws Exception{
+       String adminName = principal.getName();
+       User user1 = userService.findUserByUserName(adminName);
+       Hospital hospital = user1.getHospital();
+       String tempLogin = user.getUserName();
+       if(tempLogin !=null && !"".equals(tempLogin)){
+           try {
+               user.setHospital(hospital);
+               user.setPassword(passwordEncoder().encode(user.getPassword()));
+               user.setRoles(user.getRoles());
+               Set<Role> roles = user.getRoles();
+               System.out.println("Role:" + user.getRoles());
+               Date dt = new Date();
+//               user.setRoles(user.getRoles().);
+               user.setPasswordChangedTime(dt);
+               user.setName(user.getFirstName()+" "+user.getLastName());
+               userService.saveUser(user);
+               return "redirect:/hospital/users";
+           }catch (Exception e){
+               System.out.println("Błąd: " + e.getMessage());
+           }
+
+       }
+            return "/hospital/users";
+//       User user1 = userService.findUserByUserName(adminName);
+//        try {
+//            user.setHospital(user1.getHospital());
+//           userService.saveUser(user);
+//        } catch (Exception e){
+//            System.out.println("Błąd: " + e.getMessage());
+//        }
+//        return "redirect:/hospital/users/";
+        }
+
+       @GetMapping("/hospital/deleteMessageFile/{id}")
+    public String goDeleteMessageFile(@PathVariable Long id, Model model){
+           System.out.println("fileId:" + id);
+        MessagesFiles messagesFiles = messagesFilesRepository.getReferenceById(id);
+        try {
+            messagesFileServiceImpl.deleteFile(messagesFiles.getFileName());
+            messagesFilesRepository.delete(messagesFiles);
+
+        } catch (Exception e){
+            LOG.error("Błąd podczas usuwania pliku", e);
+            model.addAttribute("errorMessage", "Błąd podczas usuwania pliku");
+        }
+        return "redirect:/hospital/editMessage/" + messagesFiles.getMessages().getMessagesId();
+        }
+        }

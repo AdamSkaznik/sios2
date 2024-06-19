@@ -2,216 +2,183 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/bootstrap-datepicker/css/bootstrap-datepicker.css">
-    <script src="/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-    <script src="/bootstrap-datepicker/locales/bootstrap-datepicker.pl.min.js"></script>
-    <script src="/srb/js/select2.js"></script>
-<!--    <title>Title</title>-->
+    <!--    <title>Title</title>-->
 </head>
 <body>
-<div class="container">
-<!--    <div class="card">-->
-        <form class="form" th:object="${hospitalBranchClosed}" th:action="@{saveHospitalBranchClosed}">
-            <table class="table table-bordered table-striped">
-                <tr>
-                    <td style="width: 25%"><b>Wprowadź temat/tytuł</b></td>
-                    <td><input class="form-control" th:field="${title}"></td>
-                </tr>
-                <tr>
-                    <td style="width: 25%"><b>Wprowadź datę początku wyłaczenia Oddziału</b></td>
-                    <td>
-<!--                        <div class="input-group date" data-provide="datepicker" style="width: 200px; padding-left: 10px; padding-top: 5px; padding-bottom: 5px">-->
-<!--                        <input type="text" class="form-control" id="data1" data-date-format="yyyy-mm-dd">-->
-<!--                        <div class="input-group-addon">-->
-<!--                            <span class="glyphicon glyphicon-calendar"></span>-->
-<!--                        </div>-->
-<!--                    </div>-->
-                        <div>
-                            <div class="input-group date" id="nameDataOd">
-                                <input class="form-inline form-control" data-provide="datepicker" type="text" id="dataOd" th:field="*{dateFrom}">
-                                <!--                   <div class="input-group-append">-->
-                                <label class="input-group-btn" for="dataOd">
-                                    <span class="btn btn-default"><i class="fa-solid fa-calendar"></i></span>
-                                </label>
-
-                            </div>
+<div class="container-fluid">
+    <form th:object="${hospitalBranchClosed}" th:action="@{/saveHospitalBranchClosed}" method="post" enctype="multipart/form-data">
+        <table class="table table-bordered table-striped">
+<!--            <tr>-->
+<!--                <td>Typ procedury <small style="color: #0d6efd"> (Wybierz wartość ze słownika)</small></td>-->
+<!--                <td><select class="form-control" id="procedureType" style="width: 100%" required></select>-->
+<!--                    &lt;!&ndash;      <input  id="procedureTypeId"></td>&ndash;&gt;-->
+<!--            </tr>-->
+            <tr>
+                <td>Temat</td>
+                <td><input type="text" class="form-control" th:field="*{title}" required></td>
+            </tr>
+            <tr>
+                <td style="width: 25%"><b>Data rozpoczęcia wyłaczenia</b></td>
+                <td>
+                    <div class="input-group date" data-provide="datepicker" style="width: 200px; padding-left: 10px; padding-top: 5px; padding-bottom: 5px">
+                        <input type="text" class="form-control" id="data1" th:field="*{dateFrom}" data-date-format="yyyy-mm-dd">
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
                         </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td><b>Przewidywana data zakończenia</b>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td><b>Przewidywana data ponownego właczenia</b>
                     <br><small>(jeśli nieznana - zostaw puste)</small></td>
-                    <td>
-<!--                        <div class="input-group date" data-provide="datepicker" style="width: 200px; padding-left: 10px; padding-top: 5px; padding-bottom: 5px">-->
-<!--                            <input type="text" class="form-control" id="data2" data-date-format="yyyy-mm-dd">-->
-<!--                            <div class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>-->
-<!--                            </div>-->
-<!--                        </div>-->
-                        <div>
-                            <div class="input-group date" id="nameDataDo">
-                                <input class="form-inline form-control" data-provide="datepicker" type="text" id="dataDo" th:field="*{dateTo}">
-                                <!--                   <div class="input-group-append">-->
-                                <label class="input-group-btn" for="dataOd">
-                                    <span class="btn btn-default"><i class="fa-solid fa-calendar"></i></span>
-                                </label>
-
-                            </div>
+                <td>
+                    <div class="input-group date" data-provide="datepicker" style="width: 200px; padding-left: 10px; padding-top: 5px; padding-bottom: 5px">
+                        <input type="text" class="form-control" id="data2" th:field="*{dateTo}" data-date-format="yyyy-mm-dd">
+                        <div class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
                         </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td><b>Wprowadź przyczynę zamknięcia Oddziału</b></td>
-                    <td><textarea class="form-control" rows="5" style="resize: none"></textarea></td>
-                </tr>
-                <tr>
-                    <td><b>Zastępstwo w zakresie</b></td>
-                    <td><textarea class="form-control" rows="5" style="resize: none"></textarea></td>
-                </tr>
-                <tr>
-                    <td><b>Zaznacz, jeśli uzyskano zgodę Wojewody na wyłaczenie Oddziału</b></td>
-                    <td><input type="checkbox"></td>
-                </tr>
-                <tr>
-                    <td><b>Oddział, który będzie nieczynny</b>
-                    <br>
-                    <small style="color: red">* pole wymagane</small></td>
-                    <td><select class="form-control" id="test" style="width: 80%" required></select></td>
-                </tr>
-            </table>
-           <input id="testId" hidden>
-            <div class="pull-right">
-                <button type="submit" class="btn btn-primary"><i class="fa-solid fa-save"></i> Zapisz</button>
-            </div>
-        </form>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>Dodatkowy opis</td>
+                <td><textarea class="form-control" th:field="*{cause}" rows="5" style="resize: none" maxlength="4096" id="textDesc"></textarea>
+                    <div id="textarea_feedback"></div>
+                </td>
+            </tr>
+            <tr>
+                <td>Zastępstwo w zakresie</td>
+                <td><textarea class="form-control" th:field="*{replacement}" rows="5" style="resize: none" maxlength="4096" id="textDesc1"></textarea>
+                    <div id="textarea_feedback1"></div>
+                </td>
+            </tr>
+            <tr>
+                <td>Zaznacz, jeśli Wojewoda wyraził zgodę</td>
+                <td><input type="checkbox"></td>
+            </tr>
+            <tr>
+                <td>Oddział, którego dotyczy zgłoszenie <small style="color: #0d6efd"> (Wybierz wartość ze słownika)</small></td>
+                <td><select class="form-control" id="hospitalConfig" style="width: 100%" required></select>
+                <input  id="hospitalConfigId" hidden required></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <label for="files"> Załączniki</label>
+                    <smal>*pole nieobowiązkowe</smal>
+                    <input type="file" id="files" name="files" multiple>
+                </td>
+            </tr>
+        </table>
+<!--        <input  id="procedureTypeId" th:field="*{hospitalProceduresType.hospitalProceduresTypeId}" hidden></td>-->
+        <div class="container-fluid pull-right">
+            <button type="button" class="btn btn-close" onclick="location.href='/hospital/hospitalProcedures'" formnovalidate><i class="fas fa-close"></i> Zamknij</button>
+            <button class="btn btn-success float-end" type="submit"><i class="fa-solid fa-save"></i> Zapisz</button>
+        </div>
+    </form>
 </div>
 </body>
 </html>
 <script type="text/javascript">
- $(document).ready(function () {
-     // console.log($.fn.datepicker.version);
-     $(function () {
-         $('#test').select2({
-             language: "pl",
-             minimumInputLength: 2,
-             // placeholder: "Wybierz ...",
-             theme: 'bootstrap',
-             selectionCssClass: 'form-control',
-             ajax: {
-                 url: "/api/selectView/search/v1",
-                 dataType: 'json',
-                 type: 'GET',
-                 data: function (params) {
-                     console.log(params)
-                     return {
-                         term: params.term,
-                         page: params.page || 1,
-                     }
-                 },
-                 processResults(data) {
-                     console.log(data)
-                     return {
-                         results: $.map(data, function (item) {
-                             return {
-                                 text: item.oddzial,
-                                 id: item.hospitalConfigId,
-                             }
-                         })
-                     }
-                 }
-             }
-         })
-     });
-     $('#test').on('change', function () {
-         $('#testId').val($(this).val());
-     });
-     // $('#data1').datepicker({
-     //     language: 'pl-PL',
-     //     autoclose: true,
-     //     clearBtn: true,
-     //     format: 'yyyy-mm-dd',
-     //     todayBtn: true,
-     //     todayHighlight: true,
-     // }).datepicker("setDate", "0");
-     // $('#data2').datepicker({
-     //     language: 'pl',
-     //     autoclose: true,
-     //     clearBtn: true,
-     //     format: 'yyyy-mm-dd',
-     //     todayBtn: true,
-     //     todayHighlight: true,
-     // }).datepicker("endDate", "+3d");
-     // $(function () {
-     //     $('#dataOd').datepicker({
-     //         language: "pl",
-     //         today: true,
-     //         autoclose: true,
-     //         showOtherMonths: true,
-     //         selectOtherMonths: true,
-     //         changeMonth: true,
-     //         changeYear: true,
-     //         format: "yyyy-mm-dd",
-     //         orientation: "bottom auto",
-     //         clearBtn: true,
-     //         todayBtn: true,
-     //         daysOfWeekHighlighted: "6,0",
-     //         todayHighlight: true,
-     //         // setDate: new Date()
-     //     }).datepicker("setDate", "0");
-     // });
-     // $(function () {
-     //     $('#dataDo').datepicker({
-     //         language: "pl",
-     //         today: true,
-     //         autoclose: true,
-     //         showOtherMonths: true,
-     //         selectOtherMonths: true,
-     //         changeMonth: true,
-     //         changeYear: true,
-     //         format: "yyyy-mm-dd",
-     //         orientation: "bottom auto",
-     //         clearBtn: true,
-     //         todayBtn: true,
-     //         daysOfWeekHighlighted: "6,0",
-     //         todayHighlight: true,
-     //         // setDate: new Date()
-     //     }).datepicker();
-     // });
- });
- $(function () {
-     $('#dataOd').datepicker({
-         language: "pl",
-         today: true,
-         autoclose: true,
-         showOtherMonths: true,
-         selectOtherMonths: true,
-         changeMonth: true,
-         changeYear: true,
-         format: "yyyy-mm-dd",
-         orientation: "bottom auto",
-         clearBtn: true,
-         todayBtn: true,
-         daysOfWeekHighlighted: "6,0",
-         todayHighlight: true,
-         // setDate: new Date()
-     }).datepicker("setDate", "0");
- });
- $(function () {
-     $('#dataDo').datepicker({
-         language: "pl",
-         today: true,
-         autoclose: true,
-         showOtherMonths: true,
-         selectOtherMonths: true,
-         changeMonth: true,
-         changeYear: true,
-         format: "yyyy-mm-dd",
-         orientation: "bottom auto",
-         clearBtn: true,
-         todayBtn: true,
-         daysOfWeekHighlighted: "6,0",
-         todayHighlight: true,
-         // setDate: new Date()
-     }).datepicker();
- });
-
+    $(document).ready(function (){
+        $('#hospitalConfig').select2({
+            allowClear: true,
+            placeholder: {
+                id: '-1',
+                text: '...',
+                // selected: 'selected'
+            },
+            // allowClear: true
+        });
+        $.ajax({
+            url: '/api/hospitalConfig/search/v3',
+            method: 'GET',
+            dataType: 'json',
+            success: function (data){
+                let options = [];
+                    $.each(data, function(index, item){
+                        options.push({
+                            id:item.hospitalConfigId,
+                            text: item.name
+                        });
+                    });
+                  $('#hospitalConfig').select2({
+                      data: options
+                  });
+            },
+            error: function (xhr, status, error){
+                console.log('Wystąpił błąd podczas pobierania danych: ', error);
+            }
+        });
+    });
+    $('#hospitalConfig').trigger("wybierz");
+    // $(function () {
+    //     $("#hospitalConfig").select2({
+    //         language: "pl",
+    //         // minimumInputLength: 3,
+    //         placeholder: "Wybierz ...",
+    //         theme: 'bootstrap4',
+    //         selectionCssClass: 'form-control',
+    //         ajax: {
+    //             url: "/api/hospitalConfig/search/v2",
+    //             dataType: 'json',
+    //             type: 'GET',
+    //             data: function (params) {
+    //                 console.log(params)
+    //                 return {
+    //                     term: params.term,
+    //                     page: params.page || 1,
+    //                 }
+    //             },
+    //             processResults(data) {
+    //                 console.log(data)
+    //                 return {
+    //                     results: $.map(data, function (item) {
+    //                         return {
+    //                             text: item.numberOfBeds,
+    //                             id: item.hospitalConfigId,
+    //                         }
+    //                     })
+    //                 }
+    //             }
+    //
+    //         }
+    //     })
+    // });
+    //
+    $("#hospitalConfig").on('change', function () {
+        $("#hospitalConfigId").val($(this).val());
+    });
+    $(document).ready(function (){
+        let text_max = 4096;
+        $('#textarea_feedback').html( 'Pozostało : ' + text_max + ' znaków do wprowadzenia z 4096');
+        $('#textDesc').keyup(function (){
+            let text_length = $('#textDesc').val().length;
+            let text_remaining = text_max - text_length;
+            $('#textarea_feedback').html( 'Pozostało : ' + text_remaining + ' znaków do wprowadzenia z 4096');
+        });
+    });
+    $(document).ready(function (){
+        let text_max = 4096;
+        $('#textarea_feedback1').html( 'Pozostało : ' + text_max + ' znaków do wprowadzenia z 4096');
+        $('#textDesc1').keyup(function (){
+            let text_length = $('#textDesc1').val().length;
+            let text_remaining = text_max - text_length;
+            $('#textarea_feedback1').html( 'Pozostało : ' + text_remaining + ' znaków do wprowadzenia z 4096');
+        });
+    });
+    $('#data1').datepicker({
+        language: 'pl-PL',
+        autoclose: true,
+        clearBtn: true,
+        format: 'yyyy-mm-dd',
+        todayBtn: true,
+        todayHighlight: true,
+    }).datepicker("setDate", "0");
+    $('#data2').datepicker({
+        language: 'pl-PL',
+        autoclose: true,
+        clearBtn: true,
+        format: 'yyyy-mm-dd',
+        todayBtn: true,
+        todayHighlight: true,
+    }).datepicker();
 </script>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<!--    <title>Title</title>-->
+</head>
+<body>
+<div class="card">
+  <form class="form" style="margin: auto" th:object="${user}" th:action="@{/changePassword}" method="post">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <p> Zmieniasz hasło dla użytkownika : <b th:text = "${name}"></b></p>
+        <br>
+        <label for="newPass"> Wprowadź nowe hasło:</label>
+        <input id="newPass" name="newPass" th:field="*{password_tmp}">
+        <br>
+      </div>
+      <div class="panel-footer">
+        <button type="button" class="btn btn-danger" formnovalidate onclick="location.href='/hospital/users/'"><i class="fas fa-close"></i> Anuluj </button>
+        <button type="submit" class="btn btn-primary float-end"><i class="fas fa-save"></i> Zapisz</button>
+      </div>
+    </div>
+    <input type="text" th:value="${userId}">
+  </form>
+</div>
+
+</body>
+</html>

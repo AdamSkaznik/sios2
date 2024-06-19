@@ -15,9 +15,9 @@ import java.util.Set;
 @NoArgsConstructor
 @Table(name = "tab_users")
 public class User {
-    private static final long PASSWORD_EXPIRATION_TIME = 90L * 24L * 60L * 1000L;
+    private static final long PASSWORD_EXPIRATION_TIME = 30L * 24L * 60L * 1000L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     private int id;
     @Column(name = "user_name")
@@ -44,9 +44,9 @@ public class User {
     @ManyToOne
     @JoinColumn(name = "hospitalId", nullable = true)
     private Hospital hospital;
-    @ManyToMany(cascade = CascadeType.MERGE)
-    @JoinTable(name = "user_branch", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "branch_id"))
-    private Set<Branch> branches;
+//    @ManyToMany(cascade = CascadeType.MERGE)
+//    @JoinTable(name = "user_branch", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "branch_id"))
+//    private Set<Branch> branches;
 
     public boolean isPasswordExpired(){
         if(this.passwordChangedTime == null) return false;

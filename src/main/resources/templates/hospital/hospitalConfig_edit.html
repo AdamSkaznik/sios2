@@ -6,22 +6,22 @@
 </head>
 <body>
 <div class="card">
-    <div class="card-header">Edycja oddziału</div>
+    <div class="card-header"><p th:text="${hospitalConfig.hospital.name + ' Oddział: ' + hospitalConfig.branch.name}" style="align-content: center; font-weight: bold"></p></div>
     <div class="card-body">
         <form class="form" th:object="${hospitalConfig}" th:action="@{/hospital/updateHospitalConfig}" method="post">
             <div class="panel panel-danger">
                 <div class="panel-body">
                     <div class="col-sm-12">
                         <label>Ilość deklarowanych łóżek na Oddziele</label>
-                        <input type="number" class="form-control" th:field="*{}">
+                        <input type="text" class="form-control" th:field="*{numberOfBeds}">
                     </div>
                     <div class="col-sm-12">
                         <label>Ilość łóżek zarezerowanych przez Kierownictwo (OIOM, Oper.)</label>
-                        <input type="number" class="form-control" th:field="*{}">
+                        <input type="text" class="form-control" th:field="*{numberOfBedsLocked}">
                     </div>
                     <div class="col-sm-12">
                         <label>Dodatkowe informacje</label>
-                        <textarea class="form-control" rows="5"></textarea>
+                        <textarea class="form-control" rows="5" th:field="*{hospitalConfigDescription}"></textarea>
                     </div>
                 </div>
             </div>

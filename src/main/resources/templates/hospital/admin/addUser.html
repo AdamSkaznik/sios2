@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!--    <title>Title</title>-->
+</head>
+<body>
+<div class="card">
+  <form class="form" style="margin: auto" th:object="${user}" th:action="@{/hospital/admin/saveNewUser}" method="post">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="col-sm">
+          <label>Login</label>
+          <input type="text" class="form-control" th:field="*{userName}">
+
+        </div>
+        <div class="col-sm">
+          <label>Hasło</label>
+          <input type="text" class="form-control" th:field="*{password}">
+        </div>
+        <div class="col-sm">
+          <label>Imię</label>
+          <input type="text" class="form-control" th:field="*{firstName}">
+        </div>
+        <div class="col-sm">
+          <label>Nazwisko</label>
+          <input type="text" class="form-control" th:field="*{LastName}">
+        </div>
+        <div class="col-sm">
+          <label>Adres e-mail</label>
+          <input type="text" class="form-control" th:field="*{email}">
+        </div>
+        <p>
+          <label>Rola w aplikacji:<br>
+            <input style="padding-left: 10px; padding-right: 10px; margin-left: 10px; margin-right: 10px" type="checkbox" name="roles"
+                   th:each="role : ${allRoles}"
+                   th:text="${role.role}"
+                   th:value="${role.id}"
+                   th:field="*{roles}"
+            />
+            <br>
+          </label>
+        </p>
+      </div>
+      <div class="panel-footer">
+        <button type="button" class="btn btn-danger" formnovalidate onclick="location.href='/hospital/users/'"><i class="fas fa-close"></i> Anuluj </button>
+        <button type="submit" class="btn btn-primary pull-right"><i class="fas fa-save"></i> Zapisz</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+</body>
+</html>

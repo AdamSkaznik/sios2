@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org" xmlns:sd="http://www.w3.org/1999/xhtml"
-      xmlns:sec="http://www.w3.org/1999/xhtml"
+<html xmlns:th="https://www.thymeleaf.org"
       th:replace="~{/hospital/fragments/layout::layout(~{::.container-fluid})}">
 <head>
     <meta charset="UTF-8">
@@ -73,7 +72,7 @@
 
 <!--    panel komunikatów-->
 <div class="panel panel-danger">
-    <div class="panel-heading"> Komunikaty</div>
+    <div class="panel-heading"> Komunikaty - TYLKO komunikaty o statusie "AKTYWNY" oraz datą zakończenia większą niż dzień dzisiejszy</div>
     <div class="panel-body">
 
             <button class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Dodaj nowy komunikat" id="add_new_messages" ><i class="fa-solid fa-plus-circle"></i>&nbsp;&nbsp;Nowy komunikat</button>

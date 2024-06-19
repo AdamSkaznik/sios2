@@ -5,32 +5,52 @@
   <!--    <title>Title</title>-->
 </head>
 <body>
+<div class="container-fluid">
 <div class="card">
-  <div class="card-header">Dodanie konfiguracji oddziału</div>
-  <div class="card-body">
-    <form class="form" th:object="${hospitalConfig}" th:action="@{/hospital/saveHospitalConfig}" method="post">
-      <div class="panel panel-danger">
-        <div class="panel-body">
-          <div class="col-sm-12">
-            <label>Ilość deklarowanych łóżek na Oddziele</label>
-            <input type="number" class="form-control" th:field="*{}">
-          </div>
-          <div class="col-sm-12">
-            <label>Ilość łóżek zarezerowanych przez Kierownictwo (OIOM, Oper.)</label>
-            <input type="number" class="form-control" th:field="*{}">
-          </div>
-          <div class="col-sm-12">
-            <label>Dodatkowe informacje</label>
-            <textarea class="form-control" rows="5"></textarea>
-          </div>
-        </div>
+<!--  <div class="card-header">Dodanie konfiguracji oddziału</div>-->
+  <div class="card-body" th:object="${hospitalConfig}">
+      <div class="col">
+          <label>Szpital</label>
+          <p th:text="*{hospital.name}" style="color: #0d6efd; font-weight: bold"></p>
       </div>
-    </form>
+      <div class="col">
+          <label>Adres</label>
+<!--          <input type="text" class="form-control" th:field="*{hospital.address.postCode +' '+hospital.address.city+' '+hospital.address.street+' '+hospital.address.number}">-->
+      </div>
+      <div class="col">
+          <label>Nazwa oddziału</label>
+          <input type="text" class="form-control" th:field="*{branch.name}">
+      </div>
+      <div class="col">
+          <label>Nr telefonu</label>
+          <input type="text" class="form-control" th:field="*{hospital.phone}">
+      </div>
+      <div class="col">
+          <label>Fax</label>
+          <input type="text" class="form-control" th:field="*{hospital.fax}">
+      </div>
+          <div class="col">
+            <label>Ilość deklarowanych łóżek na Oddziele</label>
+            <input type="text" class="form-control" th:field="*{numberOfBeds}">
+          </div>
+          <div class="col">
+            <label>Ilość łóżek zarezerowanych przez Kierownictwo (OIOM, Oper.)</label>
+            <input type="text" class="form-control" th:field="*{numberOfBedsLocked}">
+          </div>
+          <div class="col">
+            <label>Dodatkowe informacje</label>
+            <textarea class="form-control" rows="5" style="resize: none" th:field="*{hospitalConfigDescription}"></textarea>
+          </div>
+<!--        </div>-->
+<!--        <div class="panel-footer">-->
+          <button type="button" class="btn btn-danger pull-right" style="margin-top: 10px" formnovalidate onclick="location.href='/hospital/hospitalConfig'"><i class="fa-solid fa-remove"></i> Zamknij</button>
+<!--        </div>-->
+<!--      </div>-->
+<!--      <button type="button" class="btn btn-danger pull-right" style="margin-top: 10px" formnovalidate onclick="location.href='/hospital/hospitalConfig'"><i class="fa-solid fa-remove"></i> Zamknij</button>-->
+<!--    </form>-->
   </div>
-  <div>
-    <button type="submit" id="save" class="btn btn-primary pull-right" style="margin-left: 10px; margin-right: 10px; margin-top: 10px"><i class="fa-solid fa-save"></i> Zapisz </button>
-    <button type="button" class="btn btn-danger pull-right" style="margin-top: 10px" formnovalidate onclick="location.href='/hospital/hospitalConfig'"><i class="fa-solid fa-remove"></i> Anuluj</button>
-  </div>
+
+</div>
 </div>
 </body>
 </html>

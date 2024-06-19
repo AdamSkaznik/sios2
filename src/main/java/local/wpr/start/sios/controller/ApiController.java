@@ -2,6 +2,7 @@ package local.wpr.start.sios.controller;
 
 import local.wpr.start.sios.model.*;
 import local.wpr.start.sios.service.UserService;
+import local.wpr.start.sios.service.ViewHospitalBranchSearchService;
 import local.wpr.start.sios.service.impl.*;
 import local.wpr.start.sios.utils.Temp;
 import local.wpr.start.sios.utils.TempObj;
@@ -59,8 +60,8 @@ public class ApiController {
     HospitalProceduresTypeServiceImpl hospitalProceduresTypeServiceImpl;
     @Autowired
     HospitalReportServiceImpl hospitalReportServiceImpl;
-
-
+    @Autowired
+    ViewHospitalBranchSearchServiceImpl viewHospitalBranchSearchService;
 
     @RequestMapping(value = "/users/v1", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<User>> getAllUser(){
@@ -193,6 +194,18 @@ public class ApiController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
+//    @RequestMapping(value = "/hospitalConfig/v1", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+//    public ResponseEntity<List<HospitalConfig>> getHospitalConfigByHispitalId(Principal principal){
+//        try {
+//            String name = principal.getName();
+//            User user = userService.findUserByUserName(name);
+//            Long hospId = user.getHospital().getHospitalId();
+//            return new ResponseEntity<List<HospitalConfig>>(hospitalConfigServiceimpl.getAllByHospitalId(hospId), HttpStatus.OK);
+//        } catch (Exception e){
+//            LOG.error("Błąd podczas pobierania danych z API /hospitalConfig/v1" + e.getMessage());
+//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//        }
+//    }
 
     @RequestMapping(value = "/hospitalConfig/select/v1")
     public ResponseEntity<List<SelectView>> getHospitalToSelect(){
@@ -213,6 +226,32 @@ public class ApiController {
             return new ResponseEntity<List<HospitalConfig>>(hospitalConfigServiceimpl.getByBranchName(hospitalId, term), HttpStatus.OK);
         }catch (Exception e){
             LOG.error("Błąd podczas pobierania danych z API /hospitalConfig/search/v1" + e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @RequestMapping(value = "/hospitalConfig/search/v2", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<HospitalConfig>> getHospitalConfigSearchHospitalAndBranchName(Principal principal, String term){
+        try {
+            String name = principal.getName();
+            User user = userService.findUserByUserName(name);
+            Long hospitalId = user.getHospital().getHospitalId();
+            return new ResponseEntity<List<HospitalConfig>>(hospitalConfigServiceimpl.getByHospitalAndBranchName(hospitalId, term), HttpStatus.OK);
+        }catch (Exception e) {
+            LOG.error("Błąd podczas pobierania danych z API /hospitalConfig/search/v2" + e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @RequestMapping(value = "/hospitalConfig/search/v3", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<ViewHospitalBranchSearch>> getSearchConfig(Principal principal){
+        try {
+            String name = principal.getName();
+            User user = userService.findUserByUserName(name);
+            Long hospitalId = user.getHospital().getHospitalId();
+            return new ResponseEntity<List<ViewHospitalBranchSearch>>(viewHospitalBranchSearchService.getAllBranchSearch(hospitalId), HttpStatus.OK);
+        } catch (Exception e){
+            LOG.error("Błąd podczas pobierania danych z API /hospitalConfig/search/v3" + e.getMessage());
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }

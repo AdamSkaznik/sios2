@@ -21,7 +21,7 @@
   <input th:value="${session.mess}" id="mess" hidden>
   <input th:value="${session.tick}" id="tick" hidden>
   <form th:action="@{/api/viewsWkrmHospitalReport/v1}" method="get">
-    <input type="text" th:object="${report}" th:field="*{id}" id="id1">
+    <input type="text" th:object="${report}" th:field="*{id}" id="id1" hidden>
   </form>
   <!--    <input type="text" th:object="${report}" th:field="*{id}">-->
   <!--    <div sec:authorize="isAuthenticated()" style="padding-bottom: 5px">-->

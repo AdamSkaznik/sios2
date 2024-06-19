@@ -19,4 +19,5 @@ public interface HospitalConfigService {
     HospitalConfig getHospitalConfigById(Long hospitalConfigId);
 
     void saveHospitalConfig(HospitalConfig hospitalConfig);
+    List<HospitalConfig> getByHospitalAndBranchName(Long hospitalId, String branchName);
 }

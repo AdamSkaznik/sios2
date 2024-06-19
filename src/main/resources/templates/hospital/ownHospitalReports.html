@@ -10,7 +10,7 @@
   <div class="container-fluid pull-right" style="padding-right: 5px">
     <a href="redirect:/hospital/index" style="align-self: end"><button class="btn btn-info"> powrót </button> </a>
   </div>
-  <h3 style="text-align: center">Zestawienie zawiera raporty powyżej 3 miesięcy wstecz TYLKO DLA TWOJEGO SZPITALA! </h3>
+  <h3 style="text-align: center">Zestawienie zawiera raporty do 3 miesięcy wstecz TYLKO DLA TWOJEGO SZPITALA! </h3>
   <!--  <a href="redirect:/wkrm/index" style="align-self: end"><button class="btn btn-info"> powrót </button> </a>-->
   <table id="reports" class="table table-bordered table-striped table-responsive">
     <thead>
@@ -32,7 +32,7 @@
     let ttable = $('#reports').DataTable({
 
       "bAutoWidth": true,
-      "sAjaxSource" : "/api/archivedReports/v1",
+      "sAjaxSource" : "/api/reports/v2",
       "sAjaxDataProp": "",
       "aoColumns": [
         {"mData": null,

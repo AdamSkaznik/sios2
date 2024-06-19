@@ -43,4 +43,29 @@ public class MessagesFileServiceImpl {
         return Files.exists(filePath);
     }
 
+    public boolean deleteFile(String filename){
+        Path uploadPath = Paths.get(UPLOAD_DIR);
+        try {
+            Path file = uploadPath.resolve(filename);
+            return Files.deleteIfExists(file);
+        } catch (IOException e){
+            throw new RuntimeException("Error: " + e.getMessage());
+        }
+    }
+
+//    public MessagesFiles deleteFileServer(MessagesFiles messagesFiles, Messages messages) throws IOException{
+//        Path uploadPath = Paths.get(UPLOAD_DIR);
+//        String fileName = messagesFiles.getFileName();
+//        try {
+//            Files.delete(Paths.get(fileName));
+//        }catch (IOException e){
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
+//    public MessagesFiles findById(Long id){
+//        MessagesFiles messagesFiles = messagesFilesRepository.findById(id);
+//        return messagesFiles;
+//    }
+
 }

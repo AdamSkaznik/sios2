@@ -2,17 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <!--    <title>Title</title>-->
 </head>
 <body>
-<div class="container">
-    <!--    <div class="card">-->
-    <form class="form">
+<div class="container-fluid">
+    <form th:object="${hospitalFailures}" th:action="@{/saveHospitalFailures}" method="post" enctype="multipart/form-data">
         <table class="table table-bordered table-striped">
+            <!--            <tr>-->
+            <!--                <td>Typ procedury <small style="color: #0d6efd"> (Wybierz wartość ze słownika)</small></td>-->
+            <!--                <td><select class="form-control" id="procedureType" style="width: 100%" required></select>-->
+            <!--                    &lt;!&ndash;      <input  id="procedureTypeId"></td>&ndash;&gt;-->
+            <!--            </tr>-->
+<!--            <tr>-->
+<!--                <td>Temat</td>-->
+<!--                <td><input type="text" class="form-control" th:field="*{title}" required></td>-->
+<!--            </tr>-->
             <tr>
-                <td style="width: 25%"><b>Wprowadź datę awarii</b></td>
+                <td style="width: 25%"><b>Data awarii</b></td>
                 <td>
                     <div class="input-group date" data-provide="datepicker" style="width: 200px; padding-left: 10px; padding-top: 5px; padding-bottom: 5px">
-                        <input type="text" class="form-control" id="data1" data-date-format="yyyy-mm-dd">
+                        <input type="text" class="form-control" id="data1" th:field="*{dataOd}" data-date-format="yyyy-mm-dd">
                         <div class="input-group-addon">
                             <span class="glyphicon glyphicon-calendar"></span>
                         </div>
@@ -24,86 +33,120 @@
                     <br><small>(jeśli nieznana - zostaw puste)</small></td>
                 <td>
                     <div class="input-group date" data-provide="datepicker" style="width: 200px; padding-left: 10px; padding-top: 5px; padding-bottom: 5px">
-                        <input type="text" class="form-control" id="data2" data-date-format="yyyy-mm-dd">
+                        <input type="text" class="form-control" id="data2" th:field="*{dataDo}" data-date-format="yyyy-mm-dd">
                         <div class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
                         </div>
                     </div>
                 </td>
             </tr>
             <tr>
-                <td><b>Wprowadź opis</b></td>
-                <td><textarea class="form-control" rows="5" style="resize: none"></textarea></td>
+                <td>Opis awarii</td>
+                <td><textarea class="form-control" th:field="*{description}" rows="5" style="resize: none" maxlength="4096" id="textDesc"></textarea>
+                    <div id="textarea_feedback"></div>
+                </td>
             </tr>
             <tr>
-                <td><b>Zabezpieczenie w zakresie</b></td>
-                <td><textarea class="form-control" rows="5" style="resize: none"></textarea></td>
+                <td>Zabezpieczenie w zakresie</td>
+                <td><textarea class="form-control" th:field="*{security}" rows="2" style="resize: none" maxlength="255" id="textDesc1"></textarea>
+                    <div id="textarea_feedback1"></div>
+                </td>
             </tr>
+<!--            <tr>-->
+<!--                <td>Zaznacz, jeśli Wojewoda wyraził zgodę</td>-->
+<!--                <td><input type="checkbox"></td>-->
+<!--            </tr>-->
+            <!--            <tr>-->
+            <!--                <td>Oddział, którego dotyczy zgłoszenie <small style="color: #0d6efd"> (Wybierz wartość ze słownika)</small></td>-->
+            <!--                <td><select class="form-control" id="hospitalConfig" style="width: 100%" required></select>-->
+            <!--                <input  id="hospitalConfigId"></td>-->
+            <!--            </tr>-->
             <tr>
-                <td><b>Oddział, który będzie nieczynny</b>
-                    <br>
-                    <small style="color: red">* pole wymagane</small></td>
-                <td><select class="form-control" id="test" style="width: 80%" required></select></td>
+                <td colspan="2">
+                    <label for="files"> Załączniki</label>
+                    <smal>*pole nieobowiązkowe</smal>
+                    <input type="file" id="files" name="files" multiple>
+                </td>
             </tr>
         </table>
-        <input id="testId">
+        <!--        <input  id="procedureTypeId" th:field="*{hospitalProceduresType.hospitalProceduresTypeId}" hidden></td>-->
+        <div class="container-fluid pull-right">
+            <button type="button" class="btn btn-close" onclick="location.href='/hospital/hospitalProcedures'" formnovalidate><i class="fas fa-close"></i> Zamknij</button>
+            <button class="btn btn-success float-end" type="submit"><i class="fa-solid fa-save"></i> Zapisz</button>
+        </div>
     </form>
 </div>
 </body>
 </html>
 <script type="text/javascript">
+    // $(function () {
+    //     $("#hospitalConfig").select2({
+    //         language: "pl",
+    //         // minimumInputLength: 3,
+    //         placeholder: "Wybierz ...",
+    //         theme: 'bootstrap4',
+    //         selectionCssClass: 'form-control',
+    //         ajax: {
+    //             url: "/api/hospitalConfig/search/v2",
+    //             dataType: 'json',
+    //             type: 'GET',
+    //             data: function (params) {
+    //                 console.log(params)
+    //                 return {
+    //                     term: params.term,
+    //                     page: params.page || 1,
+    //                 }
+    //             },
+    //             processResults(data) {
+    //                 console.log(data)
+    //                 return {
+    //                     results: $.map(data, function (item) {
+    //                         return {
+    //                             text: item.numberOfBeds,
+    //                             id: item.hospitalConfigId,
+    //                         }
+    //                     })
+    //                 }
+    //             }
+    //
+    //         }
+    //     })
+    // });
+    //
+    // $("#hospitalConfig").on('change', function () {
+    //     $("#hospitalConfigId").val($(this).val());
+    // });
     $(document).ready(function (){
-        $(function (){
-            $('#test').select2({
-                language: "pl",
-                minimumInputLength: 2,
-                // placeholder: "Wybierz ...",
-                theme: 'bootstrap',
-                selectionCssClass: 'form-control',
-                ajax: {
-                    url: "/api/selectView/search/v1",
-                    dataType: 'json',
-                    type: 'GET',
-                    data: function (params){
-                        console.log(params)
-                        return {
-                            term: params.term,
-                            page: params.page || 1,
-                        }
-                    },
-                    processResults(data) {
-                        console.log(data)
-                        return{
-                            results: $.map(data, function (item){
-                                return {
-                                    text: item.oddzial,
-                                    id: item.hospitalConfigId,
-                                }
-                            })
-                        }
-                    }
-                }
-            })
+        let text_max = 4096;
+        $('#textarea_feedback').html( 'Pozostało : ' + text_max + ' znaków do wprowadzenia z 4096');
+        $('#textDesc').keyup(function (){
+            let text_length = $('#textDesc').val().length;
+            let text_remaining = text_max - text_length;
+            $('#textarea_feedback').html( 'Pozostało : ' + text_remaining + ' znaków do wprowadzenia z 4096');
         });
-        $('#test').on('change', function (){
-            $('#testId').val($(this).val());
+    });
+    $(document).ready(function (){
+        let text_max = 255;
+        $('#textarea_feedback1').html( 'Pozostało : ' + text_max + ' znaków do wprowadzenia z 4096');
+        $('#textDesc1').keyup(function (){
+            let text_length = $('#textDesc1').val().length;
+            let text_remaining = text_max - text_length;
+            $('#textarea_feedback1').html( 'Pozostało : ' + text_remaining + ' znaków do wprowadzenia z 4096');
         });
-        $('#data1').datepicker({
-            language: 'pl-PL',
-            autoclose: true,
-            clearBtn: true,
-            format: 'yyyy-mm-dd',
-            todayBtn: true,
-            todayHighlight: true,
-        }).datepicker("setDate", "0");
-        $('#data2').datepicker({
-            language: 'pl-PL',
-            autoclose: true,
-            clearBtn: true,
-            format: 'yyyy-mm-dd',
-            todayBtn: true,
-            todayHighlight: true,
-        }).datepicker();
-
-
-    })
+    });
+    $('#data1').datepicker({
+        language: 'pl-PL',
+        autoclose: true,
+        clearBtn: true,
+        format: 'yyyy-mm-dd',
+        todayBtn: true,
+        todayHighlight: true,
+    }).datepicker("setDate", "0");
+    $('#data2').datepicker({
+        language: 'pl-PL',
+        autoclose: true,
+        clearBtn: true,
+        format: 'yyyy-mm-dd',
+        todayBtn: true,
+        todayHighlight: true,
+    }).datepicker();
 </script>

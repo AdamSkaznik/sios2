@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" xmlns:sd="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.w3.org/1999/xhtml"
+      th:replace="~{/hospital/fragments/layout::layout(~{::.container-fluid})}">
+<head>
+  <meta charset="UTF-8">
+</head>
+<body>
+<div class="container-fluid" >
+  <div class="container-fluid pull-right" style="padding-right: 5px">
+    <a href="redirect:/hospital/index" style="align-self: end"><button class="btn btn-info"> powrót </button> </a>
+  </div>
+  <h3 style="text-align: center">Zestawienie zawiera archiwalne raporty (powyżej 3 miesięcy) TYLKO DLA TWOJEGO SZPITALA! </h3>
+  <!--  <a href="redirect:/wkrm/index" style="align-self: end"><button class="btn btn-info"> powrót </button> </a>-->
+  <table id="reports" class="table table-bordered table-striped table-responsive">
+    <thead>
+    <tr>
+      <th>Lp</th>
+      <th> Numer raportu </th>
+      <th> Data raportu </th>
+      <th> Akcja </th>
+    </tr>
+    </thead>
+  </table>
+
+  <br><br>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+  $(document).ready(function(){
+    let ttable = $('#reports').DataTable({
+
+      "bAutoWidth": true,
+      "sAjaxSource" : "/api/archivedReports/v1",
+      "sAjaxDataProp": "",
+      "aoColumns": [
+        {"mData": null,
+          sWidth: '20px',
+          "render" : function(data, type, full, meta){
+            return meta.index+1;
+          }},
+        {"mData": "id"},
+        {"mData": "date"},
+        {"mData": null,
+          sWidth: '50px',
+          "render": function (data, type, row){
+            let a = "";
+            // a = a + '<a href="#"><span style="color: orange" class="fa-solid fa-info-circle" title="Szczegóły" id="details"></span></a>';
+            a = a + '&nbsp;&nbsp;<a href="#"><span style="color: #0a53be" class="fa-solid fa-eye" title="Pokaż" id="show"></span></a>';
+            let d = new Date(new Date().setDate(new Date().getDate() - 7)).toISOString().slice(0,10);
+            let d2 = new Date(new Date().setDate(new Date().getDate())).toISOString().slice(0,10);
+            // let d2 = d.setDate(d.getDate() - 7);
+            // let d3 = d2.toISO
+            console.log("d wynosi: " + d + " natomiast dziś jest: " + d2);
+            if(row.date >= d){
+              a = a+'&nbsp;&nbsp;<a href="#"><span style="color: red" class="fas fa-edit" title="Edycja" id="edit"></span></a>';
+            }
+            return a;
+          }},
+      ],
+      "columnDefs": [
+        {
+          "targets": 2,
+          "render": function(data, type, row, meta){
+            return moment(data).local().format('YYYY-MM-DD');
+          }
+        }
+      ],
+      "language": {
+        "processing": "Przetwarzanie...",
+        "search": "Szukaj:",
+        "lengthMenu": "Pokaż _MENU_ pozycji",
+        "info": "Pozycje od _START_ do _END_ z _TOTAL_ łącznie",
+        "infoEmpty": "Pozycji 0 z 0 dostępnych",
+        "infoFiltered": "(filtrowanie spośród _MAX_ dostępnych pozycji)",
+        "infoPostFix": "",
+        "loadingRecords": "Wczytywanie...",
+        "zeroRecords": "Nie znaleziono pasujących pozycji",
+        "emptyTable": "Nie znaleziono rekordów",
+        "paginate": {
+          "first": "Pierwsza",
+          "previous": "Poprzednia",
+          "next": "Następna",
+          "last": "Ostatnia"
+        },
+        "aria": {
+          "sortAscending": ": aktywuj, by posortować kolumnę rosnąco",
+          "sortDescending": ": aktywuj, by posortować kolumnę malejąco"
+        }}
+    })
+    ttable.on('order.dt', function (){
+      ttable.column(0, {search: 'applied', order: 'applied'}).nodes().each(function (cell, i){
+        cell.innerHTML = i + 1;
+      })
+    }).draw();
+    $('#reports tbody').on('click', '#show', function (){
+      let data = ttable.row($(this).parents('tr')).data();
+      let reportId = data["id"];
+      // alert("Raport id wynosi: " + reportId);
+      window.location.href='/api/viewsWkrmHospitalReport/v1/'+reportId;
+      window.location.href='/hospital/ownHospitalReportDetails/'+reportId;
+    });
+
+  });
+
+</script>

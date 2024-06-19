@@ -9,4 +9,6 @@ public interface MessagesService {
     Messages getMessagesById(Long messagesId);
 
    Messages saveMessages(Messages messages);
+
+   List<Messages> getActiveMessages();
 }
