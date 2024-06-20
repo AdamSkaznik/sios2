@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org" xmlns:sd="http://www.w3.org/1999/xhtml"
-      xmlns:sec="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html"
       th:replace="~{/hospital/fragments/layout::layout(~{::.container-fluid})}">
 <head>
     <meta charset="UTF-8">
@@ -15,34 +15,80 @@
     <div class="container-fluid pull-right" style="padding-right: 5px">
         <a href="redirect:/hospital/index" style="align-self: end"><button class="btn btn-info"> powrót </button> </a>
     </div>
-    <div class="card col-sm-8">
-        <div class="card-header"> Konto użytkownika</div>
-        <div class="card-body">
-            <table class="table table-striped table-bordered" th:object="${user}">
-                <tr>
-                    <td>Login:</td>
-                    <td th:text="*{userName}"></td>
-                </tr>
-                <tr>
-                    <td>Imię</td>
-                    <td th:text="*{firstName}"></td>
-                </tr>
-                <tr>
-                    <td>Nazwisko</td>
-                    <td th:text="*{lastName}"></td>
-                </tr>
-                <tr>
-                    <td> Adres e-mail</td>
-                    <td th:text="*{email}"></td>
-                    <td><i class="fas fa-pencil"></i></td>
-                </tr>
-                <tr>
-                    <td> Ostatnia zmiana hasła</td>
-                    <td th:text="*{passwordChangedTime}"></td>
-                </tr>
-            </table>
+    <br><br>
+    <div class="panel panel-info" style="padding-bottom: 50px">
+        <div class="panel-heading">Edytuj swoje konto</div>
+         <div class="panel-body">
+    <form th:action="@{users/save}" th:object="${user}" method="post" style="max-width: 600px; margin: 0 auto;">
+        <input type="hidden" th:field="*{id}">
+        <div class="m-3>">
+            <div class="form-group row">
+                <label class="col-4 col-form-label"> Imię</label>
+                <div class="col-8">
+                    <input type="text" th:field="*{firstName}" class="form-control" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-4 col-form-label"> Nazwisko</label>
+                <div class="col-8">
+                    <input type="text" th:field="*{lastName}" class="form-control" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-4 col-form-label"> Adres e-mail</label>
+                <div class="col-8">
+                    <input type="text" th:field="*{email}" class="form-control" required>
+                </div>
+            </div>
+            <div class="divider"></div>
+
+            <div class="form-group row">
+                <label class="col-4 col-form-label"> Hasło</label>
+                <div class="col-8">
+                    <input type="text" th:field="*{password_tmp}" class="form-control" required>
+                </div>
+            </div>
         </div>
-    </div>
+        <div class="form-group row" hidden>
+            <th:block th:each="role: ${listRoles}">
+
+            </th:block>
+        </div>
+        <div>
+            <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i>  Aktualizuj</button>
+        </div>
+    </form>
+</div>
+</div>
+</div>
+<!--    <div class="card col-sm-8">-->
+<!--        <div class="card-header"> Konto użytkownika</div>-->
+<!--        <div class="card-body">-->
+<!--            <table class="table table-striped table-bordered" th:object="${user}">-->
+<!--                <tr>-->
+<!--                    <td>Login:</td>-->
+<!--                    <td th:text="*{userName}"></td>-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                    <td>Imię</td>-->
+<!--                    <td th:text="*{firstName}"></td>-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                    <td>Nazwisko</td>-->
+<!--                    <td th:text="*{lastName}"></td>-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                    <td> Adres e-mail</td>-->
+<!--                    <td th:text="*{email}"></td>-->
+<!--                    <td><i class="fas fa-pencil"></i></td>-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                    <td> Ostatnia zmiana hasła</td>-->
+<!--                    <td th:text="*{passwordChangedTime}"></td>-->
+<!--                </tr>-->
+<!--            </table>-->
+<!--        </div>-->
+<!--    </div>-->
 </div>
 </body>
 </html>
