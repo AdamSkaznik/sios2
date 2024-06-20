@@ -17,7 +17,7 @@
 <body>
 <div class="container-fluid" >
     <div class="container-fluid pull-right" style="padding-right: 5px">
-        <a href="redirect:/hospital/index" style="align-self: end"><button class="btn btn-info"> powrót </button> </a>
+        <a href="/hospital/index" style="align-self: end"><button class="btn btn-info"> Powrót </button> </a>
     </div>
     <h3 style="text-align: center">Zestawienie zawiera użytkowników z Twojego szpitala </h3>
     <button class="btn btn-success" id="addNewUser"><span class="fa-solid fa-plus-circle"></span> Nowy użytkownik</button>
@@ -148,6 +148,7 @@
             let data = ttable.row($(this).parents('tr')).data();
             let usersId = data["id"];
              alert("user id wynosi: " + usersId);
+            window.location.href="/hospital/admin/editUser/" + data["id"];
             // window.location.href='/api/viewsWkrmHospitalReport/v1/'+reportId;
             // window.location.href='/hospital/hospitalReportDetails/'+reportId;
         });

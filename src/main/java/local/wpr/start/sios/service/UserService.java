@@ -34,7 +34,7 @@ public class UserService {
     public User findUserByUserName(String userName) {
         return userRepository.findByUserName(userName);
     }
-    public User findById(Integer id){ return userRepository.findById(id);}
+    public User findById(Long id){ return userRepository.findById(id).get();}
 
     public List<User> all() {
         return userRepository.findAll();
@@ -46,20 +46,21 @@ public class UserService {
     public List<Role> getRole() {
         return roleRepository.findAll();
     }
-    public User findById(int userId) {
-        return userRepository.findById(userId);
-    }
-    public User saveUser(User user) {
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        user.setActive(true);
-        int count = user.getRoles().size();
-        Set<Role> roleSet = new HashSet<>();
-        for(int i = 0; i<count; i++){
-
-        }
-        Role userRole = roleRepository.findByRole("USER");
-        user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
-        return userRepository.save(user);
+//    public User findById(long userId) {
+//        return userRepository.findById(userId);
+//    }
+    public void saveUser(User user) {
+        userRepository.save(user);
+//        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+//        user.setActive(true);
+//        int count = user.getRoles().size();
+//        Set<Role> roleSet = new HashSet<>();
+//        for(int i = 0; i<count; i++){
+//
+//        }
+//        Role userRole = roleRepository.findByRole("USER");
+//        user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
+//        return userRepository.save(user);
     }
 
     public void changePassword(User user, String newPassword){

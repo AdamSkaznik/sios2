@@ -87,15 +87,15 @@ public class HospitalController {
         String uName = principal.getName();
         User user = userService.findUserByUserName(uName);
         System.out.println("User Id: " + user.getId());
-        Long uId = Long.valueOf(user.getId());
-        Integer privateMess = privateMessageService.countPrivateMessages(uId);
-        Announcement announcement = announcementServiceImpl.getLast();
-        if(announcement != null){
-            model.addAttribute("announcement", announcement);
-            System.out.println("Jest ogłoszenie");
-            System.out.println("Ogłoszenie : " + announcement);
-        }
-        httpSession.setAttribute("privateMess", privateMess);
+//        Long uId = Long.valueOf(user.getId());
+//        Integer privateMess = privateMessageService.countPrivateMessages(uId);
+//        Announcement announcement = announcementServiceImpl.getLast();
+//        if(announcement != null){
+//            model.addAttribute("announcement", announcement);
+//            System.out.println("Jest ogłoszenie");
+//            System.out.println("Ogłoszenie : " + announcement);
+//        }
+//        httpSession.setAttribute("privateMess", privateMess);
 //        Messages messages = messagesServiceImpl.getAllMessages();
 //        model.addAttribute("messagesList", messagesServiceImpl.getAllMessages());
         model.addAttribute("messagesList", messagesServiceImpl.getActiveMessages());
@@ -399,9 +399,11 @@ public String goOwnHospitalReports(){
         }
 
         @GetMapping("/hospital/admin/passChange/{id}")
-    public String goHospitaChangePass(Model model, @PathVariable Integer id){
+    public String goHospitaChangePass(Model model, @PathVariable Long id){
         User user = userService.findById(id);
-            System.out.println("User: " + user);
+        List<Role> allRoles = roleRepository.findRoleToHospital();
+        System.out.println("User: " + user);
+            System.out.println("Role: " + allRoles);
         model.addAttribute("user", user);
         return "/hospital/admin/passChange";
         }
@@ -415,39 +417,56 @@ public String goOwnHospitalReports(){
         return "/hospital/admin/addUser";
         }
 
+        @GetMapping("/hospital/admin/editUser/{id}")
+        public String goEditHospitalUser(Model model, @PathVariable Long id){
+        User user = userService.findById(id);
+        List<Role> roles = roleRepository.findRoleToHospital();
+        model.addAttribute("user", user);
+        model.addAttribute("allRoles", roles);
+        return "/hospital/admin/editUser";
+        }
         @PostMapping("/hospital/admin/saveNewUser")
-    public String goSaveNewUser(@ModelAttribute("user") User user, Principal principal) throws Exception{
+    public String goSaveNewUser(User user, Principal principal) throws Exception{
        String adminName = principal.getName();
        User user1 = userService.findUserByUserName(adminName);
        Hospital hospital = user1.getHospital();
-       String tempLogin = user.getUserName();
-       if(tempLogin !=null && !"".equals(tempLogin)){
-           try {
-               user.setHospital(hospital);
-               user.setPassword(passwordEncoder().encode(user.getPassword()));
-               user.setRoles(user.getRoles());
-               Set<Role> roles = user.getRoles();
-               System.out.println("Role:" + user.getRoles());
-               Date dt = new Date();
-//               user.setRoles(user.getRoles().);
-               user.setPasswordChangedTime(dt);
-               user.setName(user.getFirstName()+" "+user.getLastName());
-               userService.saveUser(user);
-               return "redirect:/hospital/users";
-           }catch (Exception e){
-               System.out.println("Błąd: " + e.getMessage());
-           }
-
-       }
-            return "/hospital/users";
-//       User user1 = userService.findUserByUserName(adminName);
-//        try {
-//            user.setHospital(user1.getHospital());
-//           userService.saveUser(user);
-//        } catch (Exception e){
-//            System.out.println("Błąd: " + e.getMessage());
-//        }
-//        return "redirect:/hospital/users/";
+       user.setHospital(hospital);
+       Date dt = new Date();
+       user.setPasswordChangedTime(dt);
+       user.setName(user.getFirstName()+" "+user.getLastName());
+       user.setActive(true);
+       userService.saveUser(user);
+       return "redirect:/hospital/users";
+//       String tempLogin = user.getUserName();
+//       if(tempLogin !=null && !"".equals(tempLogin)){
+//           try {
+//               user.setHospital(hospital);
+////               user.setPassword(passwordEncoder().encode(user.getPassword()));
+////               user.setRoles(user.getRoles());
+////               Set<Role> roles = user.getRoles();
+//               System.out.println("Role:" + user.getRoles());
+//               Date dt = new Date();
+////               user.setRoles(user.getRoles().);
+//               user.setPasswordChangedTime(dt);
+//               user.setName(user.getFirstName()+" "+user.getLastName());
+//               userService.saveUser(user);
+//               System.out.println("Z redirect - zapisano");
+//               return "redirect:/hospital/users";
+//           }catch (Exception e){
+//               System.out.println("Błąd: " + e.getMessage());
+//           }
+//
+//       }
+//            System.out.println("Bez redirect = nie zapisano");
+//            return "/hospital/users";
+////       User user1 = userService.findUserByUserName(adminName);
+////        try {
+////            user.setHospital(user1.getHospital());
+////           userService.saveUser(user);
+////        } catch (Exception e){
+////            System.out.println("Błąd: " + e.getMessage());
+////        }
+////        return "redirect:/hospital/users/";
         }
 
        @GetMapping("/hospital/deleteMessageFile/{id}")
