@@ -22,7 +22,7 @@ public class HospitalBranchClosedFilesServiceImpl {
 //    public HospitalBranchClosedFilesServiceImpl(HospitalBranchClosedFilesRepository hospitalBranchClosedFilesRepository) {
 //        this.hospitalBranchClosedFilesRepository = hospitalBranchClosedFilesRepository;
 //    }
-    public HospitalBranchClosedFiles saveFile(MultipartFile file, HospitalBranchClosed hospitalBranchClosed) throws Exception{
+    public HospitalBranchClosedFiles saveFile(MultipartFile file, HospitalBranchClosed hospitalBranchClosed) throws IOException{
         Path uploadPath = Paths.get(UPLOAD_DIR);
         if(!Files.exists(uploadPath)){
             Files.createDirectories(uploadPath);
@@ -38,13 +38,19 @@ public class HospitalBranchClosedFilesServiceImpl {
         hospitalBranchClosedFiles.setHospitalBranchClosed(hospitalBranchClosed);
         hospitalBranchClosedFiles.setFileUrl(String.valueOf(filePath));
         hospitalBranchClosedFiles.setLocalDateTime(LocalDateTime.now());
+        hospitalBranchClosedFiles.setFileActive(true);
         return hospitalBranchClosedFilesRepository.save(hospitalBranchClosedFiles);
     }
     public Path load(String fileName){
         return Paths.get(UPLOAD_DIR).resolve(fileName).normalize();
     }
     public boolean fileExists(String fileName){
-        Path filePath = Paths.get(UPLOAD_DIR).resolve(fileName).normalize();
-        return Files.exists(filePath);
+        int count = hospitalBranchClosedFilesRepository.countFiles(fileName);
+        if(count > 0){
+            Path filePath = Paths.get(UPLOAD_DIR).resolve(fileName).normalize();
+            return Files.exists(filePath);
+        }
+        return Boolean.parseBoolean(null);
+
     }
 }

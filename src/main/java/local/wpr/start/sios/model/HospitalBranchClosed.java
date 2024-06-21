@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.Set;
 
 @Entity
@@ -15,12 +16,14 @@ import java.util.Set;
 @Table(name = "tab_hospital_branch_closed")
 public class HospitalBranchClosed {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     //data od
-    private LocalDateTime dateFrom;
+    private Date dateFrom;
     // data do
-    private LocalDateTime dateTo;
+    @Column(nullable = true)
+    @Temporal(TemporalType.DATE)
+    private Date dateTo;
     //temat
     @Column(length = 1024)
     private String title;
@@ -33,6 +36,9 @@ public class HospitalBranchClosed {
     //zgoda wojewody
     private boolean agreement;
     @ManyToOne
+    @JoinColumn(name = "hospitalId", nullable = false)
+    private Hospital hospital;
+    @ManyToOne
     @JoinColumn(name = "hospitalConfigId", nullable = false)
     private HospitalConfig hospitalConfig;
     @ManyToOne
@@ -44,4 +50,10 @@ public class HospitalBranchClosed {
     @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(name="recipentHospitalBranchClosed", joinColumns = @JoinColumn(name = "hospitalBranchClosedId"), inverseJoinColumns = @JoinColumn(name="hospitalId"))
     private Set<Hospital> hospitals;
+    @Transient
+    private String dStart;
+    @Transient
+    private String dEnd;
+    @Transient
+    private boolean attachment;
 }

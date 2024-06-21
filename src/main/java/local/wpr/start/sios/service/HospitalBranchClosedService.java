@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface HospitalBranchClosedService {
     List<HospitalBranchClosed> getAll();
-    void saveHospitalBranchClosed (HospitalBranchClosed hospitalBranchClosed);
+    HospitalBranchClosed saveHospitalBranchClosed (HospitalBranchClosed hospitalBranchClosed);
 }

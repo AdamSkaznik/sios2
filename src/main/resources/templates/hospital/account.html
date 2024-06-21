@@ -12,14 +12,14 @@
 </head>
 <body>
 <div class="container-fluid">
-    <div class="container-fluid pull-right" style="padding-right: 5px">
-        <a href="redirect:/hospital/index" style="align-self: end"><button class="btn btn-info"> powrót </button> </a>
+    <div class="container-fluid pull-right" style="padding-right: 5px; padding-bottom: 20px">
+        <a href="#"style="align-self: end"><button class="btn btn-info" onclick="history_back()"><i class="fa-solid fa-arrows-rotate"></i> Powrót</button> </a>
     </div>
     <br><br>
     <div class="panel panel-info" style="padding-bottom: 50px">
         <div class="panel-heading">Edytuj swoje konto</div>
          <div class="panel-body">
-    <form th:action="@{users/save}" th:object="${user}" method="post" style="max-width: 600px; margin: 0 auto;">
+    <form th:action="@{users/saveAccount}" th:object="${user}" method="post" style="max-width: 600px; margin: 0 auto;">
         <input type="hidden" th:field="*{id}">
         <div class="m-3>">
             <div class="form-group row">
@@ -49,12 +49,12 @@
                 </div>
             </div>
         </div>
-        <div class="form-group row" hidden>
-            <th:block th:each="role: ${listRoles}">
-
-            </th:block>
-        </div>
-        <div>
+<!--        <div class="form-group row">-->
+<!--            <th:block th:each="role: ${listRoles}">-->
+<!--            <input type="checkbox" th:field="*{roles}" th:text="${role.role}" th:value="*{role.roleId}">-->
+<!--            </th:block>-->
+<!--        </div>-->
+        <div class="container-fluid pull-right">
             <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i>  Aktualizuj</button>
         </div>
     </form>
@@ -92,6 +92,11 @@
 </div>
 </body>
 </html>
+<script>
+    function history_back(){
+        window.history.back();
+    }
+</script>
 <!--<script type="text/javascript">-->
 <!--    // <script>-->
 <!--        $('#bologna-list a').on('click', function (e) {-->

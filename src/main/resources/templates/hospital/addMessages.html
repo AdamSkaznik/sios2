@@ -24,11 +24,15 @@
 </head>
 <body>
 <div class="container" style="padding-top: 50px">
+    <div class="container-fluid pull-right" style="padding-right: 5px; padding-bottom: 20px">
+        <a href="#"style="align-self: end"><button class="btn btn-info" onclick="history_back()"><i class="fa-solid fa-arrows-rotate"></i> Powrót</button> </a>
+    </div>
+    <br><br>
     <div class="panel panel-success">
         <div class="panel-heading"> Nowy komunikat</div>
         <div class="panel-body">
             <form th:object="${messages}" th:action="@{/saveMessages}" method="post" enctype="multipart/form-data">
-                <input th:field="*{messagesId}" hidden>
+<!--                <input th:field="*{messagesId}" hidden>-->
                 <!--        <h3 style="text-align: center"> Nowy komunikat</h3>-->
                 <table class="table table-striped table-bordered">
                     <tr>
@@ -181,5 +185,8 @@
             $('#textarea_feedback').html( 'Możesz wprowadzić jeszcze : ' + text_remaining + ' znaków');
         });
     });
+    function history_back(){
+        window.history.back();
+    };
 
 </script>

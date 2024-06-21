@@ -23,7 +23,16 @@ public class HospitalBranchClosedServiceImpl implements HospitalBranchClosedServ
     }
 
     @Override
-    public void saveHospitalBranchClosed(HospitalBranchClosed hospitalBranchClosed) {
+    public HospitalBranchClosed saveHospitalBranchClosed(HospitalBranchClosed hospitalBranchClosed) {
         hospitalBranchClosedRepository.save(hospitalBranchClosed);
+        return hospitalBranchClosed;
     }
+
+//    @Override
+//    public saveHospitalBranchClosed(HospitalBranchClosed hospitalBranchClosed) {
+//        hospitalBranchClosedRepository.save(hospitalBranchClosed);
+//        return hospitalBranchClosed;
+//        hospitalProceduresRepository.save(hospitalProcedures);
+//        return hospitalProcedures;
+//    }
 }

@@ -8,7 +8,7 @@
 <body>
 <div class="container-fluid" >
     <div class="container-fluid pull-right" style="padding-right: 5px">
-        <a href="redirect:/hospital/index" style="align-self: end"><button class="btn btn-info"> powrót </button> </a>
+        <a href="redirect:/hospital/index" style="align-self: end"><button class="btn btn-info" onclick="back_history()"><i class="fa-solid fa-arrows-rotate"></i> Powrót </button> </a>
     </div>
     <h3 style="text-align: center">Zestawienie zawiera raporty do 3 miesięcy wstecz od dnia dzisiejszego </h3>
     <!--  <a href="redirect:/wkrm/index" style="align-self: end"><button class="btn btn-info"> powrót </button> </a>-->
@@ -95,5 +95,9 @@
         });
 
     });
+
+    function back_history(){
+        window.history.back();
+    }
 
 </script>

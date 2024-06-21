@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.File;
@@ -75,6 +76,12 @@ public class HospitalController {
     MessagesFilesRepository messagesFilesRepository;
     @Autowired
     HospitalBranchClosedServiceImpl hospitalBranchClosedServiceImpl;
+    @Autowired
+    HospitalBranchClosedFilesServiceImpl hospitalBranchClosedFilesServiceImpl;
+    @Autowired
+    HospitalFailuresServiceImpl hospitalFailuresServiceImpl;
+    @Autowired
+    HospitalFailresFilesServiceImpl hospitalFailresFilesServiceImpl;
 
     private static final Logger LOG = LoggerFactory.getLogger(HospitalController.class);
 
@@ -104,12 +111,21 @@ public class HospitalController {
     }
 
     @GetMapping("/hospital/account")
+//    @RequestMapping(value = "/hospital/account", method = RequestMethod.GET)
     public String goHospitalAccount(Principal principal, Model model){
         User user = userService.findUserByUserName(principal.getName());
+//        List<Role> listRoles = roleRepository.findAll();
         model.addAttribute("user", user);
+//        model.addAttribute("listRoles", listRoles);
         System.out.println("User:" + user);
         return "/hospital/account";
     }
+
+//    @PostMapping("/hospital/user/saveAccount")
+//    public String goSaveAccountUser(User user, Principal principal) throws Exception{
+//        userService.saveUser(user);
+//        return
+//    }
 
     @GetMapping("/hospital/users")
     public String goHospitalUsers(){
@@ -169,7 +185,10 @@ public String goOwnHospitalReports(){
     }
 
     @GetMapping("/hospital/addMailfunctions")
-    public String goAddMailfunction(){
+    public String goAddMailfunction(Model model)
+    {
+        HospitalFailures hospitalFailures = new HospitalFailures();
+        model.addAttribute("hospitalFailures", hospitalFailures);
         return "/hospital/addMailfunctions";
     }
     @GetMapping("/hospital/addProcedure")
@@ -303,6 +322,7 @@ public String goOwnHospitalReports(){
     public String saveMessages(@ModelAttribute("messages") Messages messages, Principal principal, @RequestParam(value = "files", required = false) MultipartFile[] files, Model model){
         try {
             User user = userService.findUserByUserName(principal.getName());
+//            Messages mess = new Messages();
             messages.setUser(user);
             messages.setHospital(user.getHospital());
             LocalDateTime dt = LocalDateTime.now();
@@ -316,6 +336,7 @@ public String goOwnHospitalReports(){
             System.out.println("Zapisuję message ......");
             Messages mess = messagesServiceImpl.saveMessages(messages);
             System.out.println("Messages : " + mess);
+            System.out.println("Files: " + files);
             if (files != null && files.length > 0) {
                 for (MultipartFile file : files) {
                     if (messagesFileServiceImpl.fileExists(file.getOriginalFilename())) {
@@ -394,6 +415,62 @@ public String goOwnHospitalReports(){
             return "/hospital/addProcedure";
         } catch (Exception e){
             LOG.error("Błąd podczas zapisu procedury", e);
+            return "error";
+        }
+        }
+
+        @PostMapping("/saveHospitalBranchClosed")
+        public String saveHospitalBranchClosed(@ModelAttribute("hospitalBranchClosed") HospitalBranchClosed hospitalBranchClosed, Principal principal, @RequestParam(value = "files", required = false) MultipartFile[] files, Model model){
+        try {
+          User user = userService.findUserByUserName(principal.getName());
+          hospitalBranchClosed.setUser(user);
+          Hospital hospital = hospitalServiceImpl.getHospitalById(user.getHospital().getHospitalId());
+          hospitalBranchClosed.setHospital(hospital);
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            Date d1 = sdf.parse(hospitalBranchClosed.getDStart());
+            System.out.println("Data od z formularza: " + hospitalBranchClosed.getDStart());
+            System.out.println("Po formacie: " + d1);
+            String endDate = hospitalBranchClosed.getDEnd();
+            if(endDate == null){
+                endDate = "0000-00-00";
+            }
+            Date d2 = sdf.parse(endDate);
+            System.out.println("Data do z formularza: " + hospitalBranchClosed.getDEnd());
+            System.out.println("Po formacie: " + d2);
+            hospitalBranchClosed.setDateFrom(d1);
+            hospitalBranchClosed.setDateTo(d2);
+          HospitalBranchClosed closed = hospitalBranchClosedServiceImpl.saveHospitalBranchClosed(hospitalBranchClosed);
+          if(hospitalBranchClosed.isAttachment()){
+              System.out.println("Dołączono jakiś plik ....");
+              for(MultipartFile file: files){
+                  if(hospitalBranchClosedFilesServiceImpl.fileExists(file.getOriginalFilename())){
+//                System.out.println("Błąd - istniejący plik!");
+                model.addAttribute("errorMessage", "Plik o takiej nazwie już istnieje! Zmień nazwę pliku!");
+////                System.out.println("errorMessage" +);
+                return "/hospital/addExclusion";
+                  }
+                  hospitalBranchClosedFilesServiceImpl.saveFile(file, closed);
+              }
+              System.out.println("nie dołączono pliku");
+          }
+
+
+//          for(MultipartFile file: files){
+//            if(hospitalBranchClosedFilesServiceImpl.fileExists(file.getOriginalFilename())){
+////                System.out.println("Błąd - istniejący plik!");
+////                model.addAttribute("errorMessage", "Plik o takiej nazwie już istnieje! Zmień nazwę pliku!");
+//////                System.out.println("errorMessage" +);
+////                return "/hospital/addExclusion";
+//            }
+//            hospitalBranchClosedFilesServiceImpl.saveFile(file, closed);
+//          }
+          return "redirect:/hospital/hospitalExclusion";
+        } catch (IOException e){
+            LOG.error("Błąd podczas zapisu lub wgrywania pliku", e);
+            model.addAttribute("errorMessage", e.getMessage());
+            return "/hospital/addExclusion";
+        }catch (Exception e){
+            LOG.error("Błąd podczas zapisu wyłączonego Oddziału", e);
             return "error";
         }
         }
