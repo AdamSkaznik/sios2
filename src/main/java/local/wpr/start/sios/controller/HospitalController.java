@@ -9,36 +9,22 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.lang.reflect.Array;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Arrays;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 @Controller
 public class HospitalController {
@@ -81,7 +67,7 @@ public class HospitalController {
     @Autowired
     HospitalFailuresServiceImpl hospitalFailuresServiceImpl;
     @Autowired
-    HospitalFailresFilesServiceImpl hospitalFailresFilesServiceImpl;
+    HospitalFailuresFilesServiceImpl hospitalFailresFilesServiceImpl;
 
     private static final Logger LOG = LoggerFactory.getLogger(HospitalController.class);
 
@@ -174,7 +160,8 @@ public String goOwnHospitalReports(){
         return "/hospital/hospitalExclusion";
 }
     @GetMapping("/hospital/hospitalMailfunctions")
-    public String goHospitalMailfunctions(){
+    public String goHospitalMailfunctions(Model model){
+        model.addAttribute("listHospitalFailures", hospitalFailuresServiceImpl.getAllHospitalFailures());
         return "/hospital/hospitalMailfunctions";
     }
     @GetMapping("/hospital/addExclusion")
@@ -384,41 +371,123 @@ public String goOwnHospitalReports(){
         model.addAttribute("hospitalProcedures", hospitalProceduresServiceImpl.getHospitalProceduresById(id));
         return "/hospital/detailsProcedures";
     }
+//    @PostMapping("/saveHospitalProcedures")
+//    public String saveNewHospitalProcedures(@ModelAttribute("hospitalProcedures") HospitalProcedures hospitalProcedures, Principal principal, @RequestParam(value = "files", required = false)MultipartFile[] files, Model model){
+//        try {
+//            User user = userService.findUserByUserName(principal.getName());
+//            hospitalProcedures.setUser(user);
+//            Hospital hospital = hospitalServiceImpl.getHospitalById(user.getHospital().getHospitalId());
+//            hospitalProcedures.setHospital(hospital);
+//            Long idHospProc = hospitalProcedures.getHospitalProceduresType().getHospitalProceduresTypeId();
+//            HospitalProceduresType hospitalProceduresType = hospitalProceduresTypeServiceImpl.getById(idHospProc);
+//            hospitalProcedures.setHospitalProceduresType(hospitalProceduresType);
+//            hospitalProcedures.setProcedureActive(true);
+//            LocalDateTime ldt = LocalDateTime.now();
+//            hospitalProcedures.setLocalDateTime(ldt);
+//            hospitalProcedures.setModifiedDateTime(ldt);
+//            HospitalProcedures procedures = hospitalProceduresServiceImpl.saveHospitalProcedures(hospitalProcedures);
+//            for (MultipartFile file : files){
+//                if(hospitalProceduresFileServiceImpl.fileExists(file.getOriginalFilename())){
+//                    System.out.println("Błąd - istniejący plik!");
+//                    model.addAttribute("errorMessage", "Plik o takiej nazwie już istnieje! Zmień nazwę pliku!");
+//                    System.out.println();
+//                return "redirect:/hospital/addProcedure";
+//                }
+//                hospitalProceduresFileServiceImpl.saveHospitalProceduresFile(file, procedures);
+//            }
+//            return "redirect:/hospital/hospitalProcedures";
+//        } catch (IOException e) {
+//            LOG.error("Błąd podczas zapisu lub wgrywania pliku", e);
+//            model.addAttribute("errorMessage", e.getMessage());
+//            return "/hospital/addProcedure";
+//        } catch (Exception e){
+//            LOG.error("Błąd podczas zapisu procedury", e);
+//            return "error";
+//        }
+//        }
+
     @PostMapping("/saveHospitalProcedures")
-    public String saveNewHospitalProcedures(@ModelAttribute("hospitalProcedures") HospitalProcedures hospitalProcedures, Principal principal, @RequestParam(value = "files", required = false)MultipartFile[] files, Model model){
+    public String saveHospitalProcedures(@ModelAttribute("hospitalProcedures") HospitalProcedures hospitalProcedures, Principal principal, @RequestParam(value = "files", required = false)MultipartFile[] files, Model model) throws IOException{
         try {
-            User user = userService.findUserByUserName(principal.getName());
-            hospitalProcedures.setUser(user);
-            Hospital hospital = hospitalServiceImpl.getHospitalById(user.getHospital().getHospitalId());
-            hospitalProcedures.setHospital(hospital);
-            Long idHospProc = hospitalProcedures.getHospitalProceduresType().getHospitalProceduresTypeId();
-            HospitalProceduresType hospitalProceduresType = hospitalProceduresTypeServiceImpl.getById(idHospProc);
-            hospitalProcedures.setHospitalProceduresType(hospitalProceduresType);
-            hospitalProcedures.setProcedureActive(true);
+           User user = userService.findUserByUserName(principal.getName());
+           Hospital hospital = hospitalServiceImpl.getHospitalById(user.getHospital().getHospitalId());
+           hospitalProcedures.setProcedureActive(true);
+           hospitalProcedures.setHospital(hospital);
+           hospitalProcedures.setUser(user);
+           SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH24:mm:ss");
             LocalDateTime ldt = LocalDateTime.now();
             hospitalProcedures.setLocalDateTime(ldt);
             hospitalProcedures.setModifiedDateTime(ldt);
             HospitalProcedures procedures = hospitalProceduresServiceImpl.saveHospitalProcedures(hospitalProcedures);
-            for (MultipartFile file : files){
-                if(hospitalProceduresFileServiceImpl.fileExists(file.getOriginalFilename())){
-                    System.out.println("Błąd - istniejący plik!");
-                    model.addAttribute("errorMessage", "Plik o takiej nazwie już istnieje! Zmień nazwę pliku!");
-                    System.out.println();
-                return "/hospital/addProcedure";
+            if(files !=null && files.length >0){
+                for (MultipartFile file: files){
+                    if(hospitalProceduresFileServiceImpl.fileExists(file.getOriginalFilename())){
+                        model.addAttribute("error", "Plik o nazwie już istnieje w bazie");
+                        System.out.println("Plik istnieje");
+                        return "/hospital/addProcedure";
+                    }
+                    hospitalProceduresFileServiceImpl.saveHospitalProceduresFile(file, procedures);
                 }
-                hospitalProceduresFileServiceImpl.saveHospitalProceduresFile(file, procedures);
+//                return "redirect:/hospital/hospitalProcedures";
             }
-            return "redirect:/";
-        } catch (IOException e) {
-            LOG.error("Błąd podczas zapisu lub wgrywania pliku", e);
-            model.addAttribute("errorMessage", e.getMessage());
+            return "redirect:/hospital/hospitalProcedures";
+        }catch (IOException e){
+            LOG.error("Błąd podczas wgrywania pliku procedury szpitala: " + e.getMessage());
             return "/hospital/addProcedure";
         } catch (Exception e){
-            LOG.error("Błąd podczas zapisu procedury", e);
             return "error";
         }
-        }
+    }
 
+    @PostMapping("/saveHospitalFailures")
+    public String saveHospitalFailures(@ModelAttribute("hospitalFailures") HospitalFailures hospitalFailures, Principal principal, @RequestParam(value = "files", required = false) MultipartFile[] files, Model model){
+        try {
+            System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+//            System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+            System.out.println("Z formularza: " + hospitalFailures);
+            System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+           User user = userService.findUserByUserName(principal.getName());
+            System.out.println("User: " + user);
+//           Hospital hospital = hospitalServiceImpl.getHospitalById(user.getHospital().getHospitalId());
+            Hospital hospital = hospitalServiceImpl.getHospitalById(user.getHospital().getHospitalId());
+            System.out.println("Hospital: " + hospital);
+           hospitalFailures.setUser(user);
+           hospitalFailures.setHospital(hospital);
+//           String dataOd = hospitalFailures.getDStart();
+//            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH24:mm:ss");
+//            LocalDateTime d1 = LocalDateTime.parse(dataOd, formatter);
+//            System.out.println("Data1: " + d1);
+//            hospitalFailures.setDataOd(d1);
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            Date d1 = sdf.parse(hospitalFailures.getDStart());
+            Date d2 = sdf.parse(hospitalFailures.getDEnd());
+            hospitalFailures.setDataOd(d1);
+            hospitalFailures.setDataDo(d2);
+            System.out.println("*****************************");
+            System.out.println("HospitalFailures: " + hospitalFailures);
+            System.out.println("*****************************");
+           HospitalFailures failures = hospitalFailuresServiceImpl.saveHospitalFailures(hospitalFailures);
+           if(files != null && files.length >0){
+               System.out.println("Dołaczono plik o nazwie: " + files);
+               for (MultipartFile file: files){
+                   if(hospitalFailresFilesServiceImpl.fileExists(file.getOriginalFilename())){
+                       model.addAttribute("error", "Plik o nazwie już istnieje w bazie");
+                       System.out.println("Plik istnieje");
+                       return "/hospital/addMailfunctions";
+                   }
+                   hospitalFailresFilesServiceImpl.saveFiles(file, failures);
+               }
+               System.out.println("nie dołączono pliku");
+//               return "redirect:/hospital/hospitalMailfunctions";
+           }
+            return "/hospital/hospitalMailfunctions";
+        }catch (IOException e){
+            LOG.error("Błąd podczas wgrywania pliku awarii szpitala: " + e.getMessage());
+            return "/hospital/addMailfunctions";
+        }catch (Exception e){
+            return "error";
+        }
+    }
         @PostMapping("/saveHospitalBranchClosed")
         public String saveHospitalBranchClosed(@ModelAttribute("hospitalBranchClosed") HospitalBranchClosed hospitalBranchClosed, Principal principal, @RequestParam(value = "files", required = false) MultipartFile[] files, Model model){
         try {

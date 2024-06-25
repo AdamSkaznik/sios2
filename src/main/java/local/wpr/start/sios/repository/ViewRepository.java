@@ -18,5 +18,9 @@ public interface ViewRepository extends JpaRepository<Views, Long> {
     @Query(value = zap, nativeQuery = true)
     List<Views> findAllByReportIdAndHospitalId(Long id, Long id2);
 
+    String zap_details="SELECT * FROM v_hospital_wkrm where hospital_report_id = ?1";
+    @Query(value = zap_details, nativeQuery = true)
+    Views findOne(Long id);
+
 
 }

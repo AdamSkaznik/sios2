@@ -1,248 +1,200 @@
+
+
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org" xmlns:sd="http://www.w3.org/1999/xhtml"
-      xmlns:sec="http://www.w3.org/1999/xhtml"
+<html xmlns:th="https://www.thymeleaf.org"
       th:replace="~{/wkrm/fragments/layout::layout(~{::.container-fluid})}">
 <head>
     <meta charset="UTF-8">
-    <!--    <title>Title</title>-->
-    <style>
-        .modal-lg {
-            max-width: 100% !important;
-        }
-    </style>
+    <script th:src="@{/srb/js/bootstrap.bundle.js}"></script>
 </head>
 <body>
 <div class="container-fluid" >
-    <input th:value="${session.mess}" id="mess" hidden>
-    <input th:value="${session.tick}" id="tick" hidden>
-<!--    <div sec:authorize="isAuthenticated()" style="padding-bottom: 5px">-->
-<!--        <a href="#" class="btn btn-success"><span class="fa-solid fa-plus-circle"></span> Nowy raport </a>-->
-<!--    </div>-->
-    <div class="container" id="komunikat" style="padding-bottom: 5px"></div>
-    <table id="glowna" class="table table-striped table-bordered table-responsive">
-        <thead>
-        <tr>
-            <th>Lp</th>
-            <th>Nazwa powiatu</th>
-            <th>Nazwa szpitala</th>
-            <th>Nazwa oddziału</th>
-            <th>Deklarowana ilość łóżek</th>
-            <th>Ilość łóżek w rezerwacji</th>
-            <th>Stan na godz. 6:00</th>
-            <th>Stan na godz. 14:00</th>
-            <th>Stan na godz. 22:00</th>
-            <th>Zadeklarowanych lekarzy</th>
-            <th>Data i czas aktualizacji</th>
-            <th>Akcje</th>
-        </tr>
-        </thead>
-        <tbody>
-
-        </tbody>
-        <tfoot>
-        <tr>
-            <th>Lp</th>
-            <th>Nazwa powiatu</th>
-            <th>Nazwa szpitala</th>
-            <th>Nazwa oddziału</th>
-            <th>Deklarowana ilość łóżek</th>
-            <th>Ilość łóżek w rezerwacji</th>
-            <th>Stan na godz. 6:00</th>
-            <th>Stan na godz. 14:00</th>
-            <th>Stan na godz. 22:00</th>
-            <th> Zadeklarowanych lekarzy</th>
-<!--            <th>Ilość łóżek w rezerwacji</th>-->
-            <th>Data i czas aktualizacji</th>
-            <th>Akcje</th>
-        </tr>
-        </tfoot>
-    </table>
-    <br><br>
-<!--    modal dla komunikatów - start-->
+    <!--modal dodanie nowego komunikatu start-->
     <div class="modal fade" id="add_messages">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-dialog modal-lg" style="width: 80%">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title"> Dodaj komunikat <i class="glyphicon glyphicon-check" style="color: blue"></i></h4>
+                    <h4 class="modal-title">Dodawanie nowego komunikatu <i class="fa-solid fa-exclamation-circle"
+                                                                           style="color: blue"></i></h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body justify-content-center">
-                    <div id="modalMessageBody"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-<!--    modal dla komunikatów - end-->
-    <!--    modal dla szczegółów - start-->
-    <div class="modal fade" id="showDetails">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title"> Szczegóły <i class="glyphicon glyphicon-info-sign" style="color: blue"></i></h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body justify-content-center">
-                    <div id="modalShowDetailsBody"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--    modal dla szczegółów - end-->
-    <!--    modal dla kontakt - start-->
-    <div class="modal fade" id="showContact">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title"> Dane kontaktowe <i class="glyphicon glyphicon-earphone" style="color: blue"></i></h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body justify-content-center">
-                    <div id="modalShowContactBody"></div>
+                    <div id="modalAddNewMessagesBody"></div>
+                    <!--                        <div th:replace="addMessages :: addMessages"></div>-->
                 </div>
                 <div class="modal-footer">
-                    <div class="pull-right">
-                        <button class="btn btn-danger" data-dismiss="modal"><i class="fa-solid fa-close"></i> Zamknij </button>
-                    </div>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">
+                        <i class="fas fa-close"></i>&nbsp;
+                        Zamknij</button>
                 </div>
             </div>
         </div>
     </div>
-    <!--    modal dla kontakt - end-->
+    <!--modal dodanie nowego komunikatu end-->
+    <!--modal dodanie nowego wyłączenia oddziału start-->
+    <div class="modal fade" id="add_exclusion">
+        <div class="modal-dialog modal-lg" style="width: 80%">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Dodawanie nowego wyłączenia Oddziału <i class="fa-solid fa-exclamation-circle"
+                                                                                    style="color: blue"></i></h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body justify-content-center">
+                    <div id="modalAddNewExclusionBody"></div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-close"></i>&nbsp;Zamknij</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--modal dodanie nowego wyłączenia oddziału end-->
+    <!--modal dodanie nowej awarii sprzętu start-->
+    <div class="modal fade" id="add_malfunction">
+        <div class="modal-dialog modal-lg" style="width: 80%">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Dodawanie awarii sprzętu <i class="fa-solid fa-exclamation-circle"
+                                                                        style="color: blue"></i></h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body justify-content-center">
+                    <div id="modalAddNewMalfunctionBody"></div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-close"></i>&nbsp;Zamknij</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--modal dodanie nowej awarii sprzętu end-->
+
+    <!--    panel komunikatów-->
+    <div class="panel panel-danger">
+        <div class="panel-heading"> Komunikaty - TYLKO komunikaty o statusie "AKTYWNY" oraz datą zakończenia większą niż dzień dzisiejszy</div>
+        <div class="panel-body">
+
+            <button class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Dodaj nowy komunikat" id="add_new_messages" ><i class="fa-solid fa-plus-circle"></i>&nbsp;&nbsp;Nowy komunikat</button>
+            <table id="messages" class="table table-bordered table-striped display" style="width: 100%">
+                <thead>
+                <!--        <button class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Dodaj nowy komunikat"><i class="fa-solid fa-plus-circle"></i></button>-->
+                <tr>
+                    <th style="width: 20px">Lp.</th>
+                    <th style="width: 80px">Data dodania</th>
+                    <th style="width: 230px">Termin</th>
+                    <!--            <th>Szpital</th>-->
+                    <th>Temat</th>
+                    <!--            <th style="width: 50%">Opis</th>-->
+                    <!--            <th>Załączniki</th>-->
+                    <th style="width: 80px"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="messages, lp: ${messagesList}" class="clicable-row" title="Kliknij ikonę szczegółów, aby zobaczyć więcej informacji">
+                    <td th:text="${lp.index + 1}"></td>
+                    <td th:text="${#temporals.format(messages.addDate, 'yyyy-MM-dd')}"></td>
+                    <!--            <td th:text="${messages.startDate}"></td>-->
+                    <td th:text="'od:  ' + ${#dates.format(messages.startDate, 'yyyy-MM-dd')} + ' do ' + ${#dates.format(messages.endDate, 'yyyy-MM-dd')}" style="font-weight: bold; color: red"></td>
+                    <!--            <td th:text="${#dates.format(messages.endDate, 'yyyy-MM-dd')}"></td>-->
+                    <td th:text="${messages.title}"></td>
+                    <!--            <td th:text="${messages.content}"></td>-->
+                    <!--            <td>-->
+                    <!--                <ol>-->
+                    <!--                    <li th:each="files: ${messages.messagesFiles}" >-->
+                    <!--              <span th:if="${#strings.endsWith(files.fileName.toLowerCase(), '.pdf')}">-->
+                    <!--                <i class="fas fa-file-pdf" style="color: red"></i>-->
+                    <!--              </span>-->
+                    <!--                        <span th:if="${#strings.endsWith(files.fileName.toLowerCase(), '.doc') || #strings.endsWith(files.fileName.toLowerCase(), 'docx')}">-->
+                    <!--                <i class="fas fa-file-word" style="color: blue"></i>-->
+                    <!--              </span>-->
+                    <!--                        <span th:if="${#strings.endsWith(files.fileName.toLowerCase(), '.txt')}">-->
+                    <!--                <i class="fas fa-file-text" style="color: red"></i>-->
+                    <!--              </span>-->
+                    <!--                        <span th:if="${#strings.endsWith(files.fileName.toLowerCase(), '.xlsx') || #strings.endsWith(files.fileName.toLowerCase(), '.xls') || #strings.endsWith(files.fileName.toLowerCase(), '.csv')}">-->
+                    <!--                <i class="fas fa-file-excel" style="color: green"></i>-->
+                    <!--              </span>-->
+                    <!--                        <span th:if="${#strings.endsWith(files.fileName.toLowerCase(), '.msg')}">-->
+                    <!--                <i class="fas fa-file-signature"></i>-->
+                    <!--              </span>-->
+                    <!--                        <a th:href="@{/downloadAttachment/{filename}(filename=${files.fileName})}" th:text="${files.fileName}" download></a>-->
+                    <!--                                            </li>-->
+                    <!--                </ol>-->
+                    <!--            </td>-->
+                    <td>
+                        <a th:href="@{detailsMessage/{id}(id=${messages.messagesId})}" th:title="szczegóły"><i class="fa-solid fa-info-circle"></i></a>
+                        <a th:href="@{editMessage/{id}(id=${messages.messagesId})}" th:title="edytuj"><i class="fa-solid fa-pencil" style="color: #2dc26b; padding-left: 10px"></i></a>
+                        <a th:href="@{deleteMessage/{id}(id=${messages.messagesId})}" th:title="usuń"><i class="fa-solid fa-trash-alt" style="color: red; padding-left: 10px"></i></a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!--modal detale komunikatu start-->
+    <div class="modal fade" id="details_messages_modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Szczegóły komunikatu <i class="fa fa-exclamation-circle"
+                                                                    style="color: blue"></i></h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body justify-content-center">
+                    <div id="modalMessagesDetailsBody"></div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Zamknij</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 </body>
 </html>
 <script type="text/javascript">
-    $(document).ready(function (){
-        // new DataTable('#glowna');
-        let table = $('#glowna').DataTable({
-            "bAutoWidth": true,
-            "sAjaxSource" : "/api/viewsWkrm/v1",
-            "sAjaxDataProp": "",
-            "aoColumns": [
-                {"mData": "reportId"},
-                {"mData": "powiat"},
-                {"mData": "szpital"},
-                {"mData": "oddzial"},
-                {"mData": "numberOfBeds"},
-                {"mData": "numberOfBedsLocked"},
-                {"mData":"statea"},
-                {"mData": "stateb"},
-                {"mData": "statec"},
-                {"mData": "doctora"},
-                {"mData": "update_date"},
-                {"mData": null,
-                sWidth: '50px',
-                "render": function (){
-                    let a = "";
-                    a = a + '<a href="#"><span style="color: orange" class="fa-solid fa-info-circle" title="Szczegóły" id="details"></span></a>';
-                    a = a + '&nbsp;&nbsp;<a href="#"><span style="color: #0a53be" class="fa-solid fa-address-card" title="Kontakt" id="contact"></span></a>';
-                    return a;
-                }},
-            ],
-            "order": [
-                [1, 'asc'],
-                [2, 'asc']
-            ],
-            "rowGroup": {
-                dataSrc: ['powiat', 'szpital']
+    table = $("#messages").DataTable({
+        "bAutoWidth": true,
+        "bLengthChange": false,
+        "pageLength": 5,
+        "ordering": false,
+        "sAjaxDataProp": "",
+
+        "language": {
+            "processing": "Przetwarzanie...",
+            "search": "Szukaj:",
+            "lengthMenu": "Pokaż _MENU_ pozycji",
+            "info": "Pozycje od _START_ do _END_ z _TOTAL_ łącznie",
+            "infoEmpty": "Pozycji 0 z 0 dostępnych",
+            "infoFiltered": "(filtrowanie spośród _MAX_ dostępnych pozycji)",
+            "infoPostFix": "",
+            "loadingRecords": "Wczytywanie...",
+            "zeroRecords": "Nie znaleziono pasujących pozycji",
+            "emptyTable": "Nie znaleziono rekordów",
+            "paginate": {
+                "first": "Pierwsza",
+                "previous": "Poprzednia",
+                "next": "Następna",
+                "last": "Ostatnia"
             },
-            "columnDefs": [
-                {"orderable": false, "targets": [0,3,4,5,6,7,8,9,10,11]},
-                {"targets": 10,
-                    "render": function (data, type, row, meta){
-                        return moment(data).local().format('YYYY-MM-DD HH:mm:ss');
-                    }
-                },
-                // {
-                //     "targets": [4,5,6],
-                //     "render": function(data, type, row){
-                //         let color = 'white';
-                //         if (data < 0){
-                //             color = 'red';
-                //         }
-                //         if (data >= 0){
-                //             color = 'grey';
-                //         }
-                //         if (data > 2){
-                //             color = "green";
-                //         }
-                //         return '<span style = "color:'+color+'; font-weight: bold; ">'+ data +'</span>';
-                //     }
-                // },
-
-
-                // {"targets": 1,
-                // "render": function(data, type, row, meta){
-                //     let a = "powiat " + data;
-                //    return a;
-                // }},
-                {"visible": false, "targets": [0,1,2]}
-            ],
-            // "rowCallback": function (row, data) {
-            //     if (data[4] < 0){
-            //         $('td:eq[4]', row).css('background-color', Red);
-            //     }
-            // },
-            "fixedHeader": {
-                "header": true,
-                "footer": true,
-                "headerOffset": 5,
-                "footerOffset": 12
-            },
-            "language": {
-                "processing": "Przetwarzanie...",
-                "search": "Szukaj:",
-                "lengthMenu": "Pokaż _MENU_ pozycji",
-                "info": "Pozycje od _START_ do _END_ z _TOTAL_ łącznie",
-                "infoEmpty": "Pozycji 0 z 0 dostępnych",
-                "infoFiltered": "(filtrowanie spośród _MAX_ dostępnych pozycji)",
-                "infoPostFix": "",
-                "loadingRecords": "Wczytywanie...",
-                "zeroRecords": "Nie znaleziono pasujących pozycji",
-                "emptyTable": "Nie znaleziono rekordów",
-                "paginate": {
-                    "first": "Pierwsza",
-                    "previous": "Poprzednia",
-                    "next": "Następna",
-                    "last": "Ostatnia"
-                },
-                "aria": {
-                    "sortAscending": ": aktywuj, by posortować kolumnę rosnąco",
-                    "sortDescending": ": aktywuj, by posortować kolumnę malejąco"
-                }}
-        }).draw();
-        let addKom = document.getElementById("addKomunikat");
-        // let hosReport = document.getElementById("hospitalReport");
-        addKom.addEventListener("click", function (){
-            // alert("Kliknąłeś!!!")
-            $('#add_messages').modal();
-            show_add_messages('/restrict/messages');
-        });
-        $('#glowna tbody').on('click', '#details', function (){
-            let data = table.row($(this).parents('tr')).data();
-            console.log("HospitalReportId wynosi: " + data["hospitalReportId"]);
-            show_details('/wkrm/details/'+data["hospitalReportId"])
-            // show_details('/wkrm/details/');
-            $('#showDetails').modal();
-        });
-        $('#glowna tbody').on('click', '#contact', function(){
-            let data = table.row($(this).parents('tr')).data();
-            show_contact('/wkrm/contact/'+data["hospitalConfigId"])
-            // show_contact('/wkrm/contact');
-            $('#showContact').modal();
-        });
-
-        function show_add_messages(url){
-            $('#modalMessageBody').load(url, function (){});
-        };
-
-        function show_details(url){
-            $('#modalShowDetailsBody').load(url, function(){});
-        };
-        function show_contact(url){
-            $('#modalShowContactBody').load(url, function(){});
-        };
+            "aria": {
+                "sortAscending": ": aktywuj, by posortować kolumnę rosnąco",
+                "sortDescending": ": aktywuj, by posortować kolumnę malejąco"
+            }
+        }
 
     });
+
+    $('#add_new_messages').on('click', function (){
+        window.location='/wkrm/addMessages';
+        // $('#add_messages').modal();
+        // show_add_messages('/hospital/addMessages');
+    });
+
 
 </script>

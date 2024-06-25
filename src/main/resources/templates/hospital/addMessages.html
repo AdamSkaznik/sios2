@@ -32,7 +32,7 @@
         <div class="panel-heading"> Nowy komunikat</div>
         <div class="panel-body">
             <form th:object="${messages}" th:action="@{/saveMessages}" method="post" enctype="multipart/form-data">
-<!--                <input th:field="*{messagesId}" hidden>-->
+                <input th:field="*{messagesId}" hidden>
                 <!--        <h3 style="text-align: center"> Nowy komunikat</h3>-->
                 <table class="table table-striped table-bordered">
                     <tr>
@@ -91,9 +91,9 @@
                         <td colspan="2">
                             <label for="files"> Załączniki</label>
                             <input type="file" id="files" name="files" multiple class="form-control" onchange="updateFileList()">
-                            <div th:if="${errorMessage}" class="alert alert-danger" role="alert">
-                                <p style="color: red; font-weight: bold" th:text="${errorMessage}"></p>
-                            </div>
+<!--                            <div th:if="${errorMessage}" class="alert alert-danger" role="alert">-->
+<!--                                <p style="color: red; font-weight: bold" th:text="${errorMessage}"></p>-->
+<!--                            </div>-->
 <!--                            <p th:if="${errorMessage}" style="color: red; font-weight: bold">Plik/pliki o takiej nazwie istnieją już w bazie. Zmień nazwę pliku/plików</p>-->
                             <label for="fileList">Dodane pliki:</label>
                             <ul id="fileList" class="mt-2"></ul>
@@ -103,7 +103,7 @@
                 </table>
                 <!--        <input  id="procedureTypeId" th:field="*{hospitalProceduresType.hospitalProceduresTypeId}" hidden></td>-->
                 <div class="container-fluid pull-right">
-                    <button type="button" class="btn btn-close" onclick="location.href='/hospital/index'" formnovalidate><i class="fas fa-close"></i> Zamknij</button>
+                    <button type="button" class="btn btn-close" onclick="history_back()" formnovalidate><i class="fas fa-close"></i> Zamknij</button>
                     &nbsp;&nbsp;
                     <button class="btn btn-success float-end" type="submit" id="submit"><i class="fa-solid fa-save"></i> Zapisz</button>
                 </div>
@@ -114,16 +114,6 @@
 
 </div>
 <script th:if = "${error}">
-    // let errorMess = [[${#strings.escapeJavaScript(error)}]];
-    // /* <![CDATA[ */
-    // Swal({
-    //  icon: 'error',
-    //  title: 'Błąd',
-    //  // text: [[${error}]]
-    //  text: /*[[${error}]]*/ 'Plik istnieje - sprawdź błąd znajdujący się poniżej przycisku dodawania plików.'
-    //  // text: [[${#strings.escapeJavaScript(error)}]]
-    // });
-    // /* ]]> */
     swal('Błąd', 'Plik/pliki o takiej nazwie już istnieją.', 'error');
 </script>
 </body>

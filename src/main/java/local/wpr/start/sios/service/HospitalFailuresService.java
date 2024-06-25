@@ -9,5 +9,5 @@ public interface HospitalFailuresService {
 
     HospitalFailures getHospitalFailuresById(Long hospitalFailuresId);
 
-    void saveHospitalFailures(HospitalFailures hospitalFailures);
+    HospitalFailures saveHospitalFailures(HospitalFailures hospitalFailures);
 }

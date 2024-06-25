@@ -9,7 +9,7 @@
 <div class="container-fluid" >
   <center><h3 style="font-weight: bold">Procedury/wytyczne</h3></center>
 <!--  <br>-->
-  <button class="btn btn-success" id="addProcedures"><span class="fa-solid fa-plus-circle"></span></button>
+  <button class="btn btn-success" id="addProcedures"><span class="fa-solid fa-plus-circle"></span> Dodaj procedurę</button>
   <br><br>
   <table id="tableProcedures" class="table table-bordered table-striped display" style="width: 100%">
     <thead>
@@ -120,8 +120,6 @@
 <script type="text/javascript">
 
   $(document).ready(function (){
-
-
     table = $("#tableProcedures").DataTable({
       "bAutoWidth": true,
       "bLengthChange": false,
@@ -193,8 +191,9 @@
     //   });
     // }).draw();
     $('#addProcedures').on('click', function (){
-      show_add_procedures('/hospital/addProcedure');
-      $('#add_procedures').modal();
+      // show_add_procedures('/hospital/addProcedure');
+      // $('#add_procedures').modal();
+      window.location='/hospital/addProcedure';
     })
 
     $('#tableProcedures tbody').on('click', '#details', function (){
@@ -203,9 +202,9 @@
       $('#showDetails').modal();
     });
 
-    function show_add_procedures(url){
-      $('#modalAddProceduresBody').load(url, function (){});
-    }
+    // function show_add_procedures(url){
+    //   $('#modalAddProceduresBody').load(url, function (){});
+    // }
     function show_details_procedures(url){
       $('#modalShowDetailsBody').load(url, function (){});
     };

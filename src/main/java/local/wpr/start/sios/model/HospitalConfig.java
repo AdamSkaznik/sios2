@@ -26,6 +26,9 @@ public class HospitalConfig {
     private int numberOfBedsLocked;
     @Column(length = 4096)
     private String hospitalConfigDescription;
+    @ManyToOne
+    @JoinColumn(name = "managmentId", nullable = true)
+    private Managment managment;
 //    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 //    @JoinTable(name = "hospitalConfigManagment", joinColumns = @JoinColumn(name = "hospitalConfigId"), inverseJoinColumns = @JoinColumn(name = "managmentId"))
 //    private Set<Managment> managments;

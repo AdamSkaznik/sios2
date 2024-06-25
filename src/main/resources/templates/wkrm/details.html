@@ -1,27 +1,64 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<html xmlns:th="https://www.thymeleaf.org" xmlns:sd="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.w3.org/1999/xhtml"
+      th:replace="~{/wkrm/fragments/layout::layout(~{::.container-fluid})}">
 <head>
     <meta charset="UTF-8">
-<!--    <title>Title</title>-->
 </head>
 <body>
-<!--<h3> Tutaj będą szczegóły (jeszcze nie wiem jakie)....</h3>-->
-<div class="card" th:object="${hospitalReport}" method="GET">
-    <div class="card-body">
-        <table class="table table-bordered">
-            <tr>
-                <td colspan="2">Dane główne</td>
-            </tr>
-            <tr>
-                <td> Nazwa placówki</td>
-                <td><td><span style="color: #0c0c0c; font-weight: bold" th:text="*{hospitalConfig.hospitalConfigId}"></span></td>
-            </tr>
-<!--            <tr>-->
-<!--                <td> Adres placówki</td>-->
-<!--                <td><td><span style="color: #0c0c0c; font-weight: bold" th:text="*{hospital}"></span></td>-->
-<!--            </tr>-->
-        </table>
+<div class="container-fluid" >
+    <div class="panel panel-success">
+        <div class="panel-heading"> Szczegóły raportu</div>
+        <div class="panel-body">
+            <form th:object="${views}">
+                <table class="table table-bordered table-striped">
+                    <tr>
+                        <td><b> Nazwa placówki medycznej</b></td>
+                        <td th:text="*{szpital}" colspan="3"></td>
+                    </tr>
+                    <tr>
+                        <td><b> Nazwa Oddziału</b></td>
+                        <td th:text="*{oddzial}" colspan="3"></td>
+                    </tr>
+                    <tr>
+                        <td><b> Dane na dzień:</b></td>
+                        <td th:text="*{update_date}" colspan="3"></td>
+                    </tr>
+                    <tr>
+                        <td><b> Ilość deklarowanych łóżek</b></td>
+                        <td th:text="*{numberOfBeds}" colspan="3"></td>
+                    </tr>
+                    <tr>
+                        <td><b> Ilość łóżek zarezerowanych</b></td>
+                        <td th:text="*{numberOfBedsLocked}" colspan="3"></td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2"><b> Stan na godzinę</b></td>
+                        <td>6:00</td>
+                        <td>14:00</td>
+                        <td>22:00</td>
+                    </tr>
+                    <tr>
+                        <td th:text="*{statea}"></td>
+                        <td th:text="*{stateb}"></td>
+                        <td th:text="*{statec}"></td>
+                    </tr>
+                    <tr>
+                        <td><b> Dodatkowe informacje:</b></td>
+                        <td th:text="*{hospitalConfigDescription}" colspan="3"></td>
+                    </tr>
+                </table>
+            </form>
+            <div class="pull-right">
+                <button class="btn btn-success" onclick="history_back()"><i class="fas fa-close"></i> Zamknij</button>
+            </div>
+        </div>
     </div>
 </div>
 </body>
 </html>
+<script>
+    function history_back(){
+        window.history.back();
+    }
+</script>

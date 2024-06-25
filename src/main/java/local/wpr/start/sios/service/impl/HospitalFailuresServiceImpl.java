@@ -28,7 +28,8 @@ public class HospitalFailuresServiceImpl implements HospitalFailuresService {
     }
 
     @Override
-    public void saveHospitalFailures(HospitalFailures hospitalFailures) {
+    public HospitalFailures saveHospitalFailures(HospitalFailures hospitalFailures) {
         hospitalFailuresRepository.save(hospitalFailures);
+        return hospitalFailures;
     }
 }

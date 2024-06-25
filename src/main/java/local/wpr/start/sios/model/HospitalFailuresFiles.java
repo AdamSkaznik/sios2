@@ -20,7 +20,7 @@ public class HospitalFailuresFiles {
     @ManyToOne
     @JoinColumn(name = "hospitalFailuresId")
     private HospitalFailures hospitalFailures;
-    private String filename;
+    private String fileName;
     private String fileUrl;
     private boolean fileActive;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH24:mm:ss")

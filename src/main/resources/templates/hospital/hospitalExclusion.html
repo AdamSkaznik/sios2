@@ -198,9 +198,10 @@
     //     cell.innerHTML = i + 1;
     //   });
     // }).draw();
-    $('#addProcedures').on('click', function (){
-      show_add_procedures('/hospital/addProcedure');
-      $('#add_procedures').modal();
+    $('#addHospitalExclusion').on('click', function (){
+      // show_add_procedures('/hospital/addProcedure');
+      // $('#add_procedures').modal();
+      window.location='/hospital/addExclusion';
     })
 
     $('#tableProcedures tbody').on('click', '#details', function (){

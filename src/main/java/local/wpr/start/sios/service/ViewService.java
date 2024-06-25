@@ -10,5 +10,5 @@ public interface ViewService {
 
     List<Views> getByIdAndHospitalId(Long id, Long id2);
 
-//    Views getOneById(Long id);
+    Views getOneById(Long id);
 }

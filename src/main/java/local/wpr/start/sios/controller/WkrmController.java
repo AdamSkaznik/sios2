@@ -1,9 +1,8 @@
 package local.wpr.start.sios.controller;
 
-import local.wpr.start.sios.model.Report;
-import local.wpr.start.sios.model.Views;
-import local.wpr.start.sios.service.impl.ReportServiceImpl;
-import local.wpr.start.sios.service.impl.ViewServiceImpl;
+import local.wpr.start.sios.model.*;
+import local.wpr.start.sios.service.UserService;
+import local.wpr.start.sios.service.impl.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,6 +22,14 @@ public class WkrmController {
     ViewServiceImpl viewService;
     @Autowired
     ReportServiceImpl reportService;
+    @Autowired
+    MessagesServiceImpl messagesServiceImpl;
+    @Autowired
+    MessagesFileServiceImpl messagesFileServiceImpl;
+    @Autowired
+    UserService userService;
+    @Autowired
+    HospitalConfigServiceimpl hospitalConfigServiceimpl;
 //    @Autowired
 //    ViewController viewController;
 //
@@ -30,8 +38,25 @@ public class WkrmController {
 //    }
 
     @GetMapping("/wkrm/index")
-    public String goIndex(){
+    public String goIndex(Principal principal, Model model)
+    {
+        String uName = principal.getName();
+        User user = userService.findUserByUserName(uName);
+        model.addAttribute("messagesList", messagesServiceImpl.getActiveMessages());
+        model.addAttribute("user", user);
         return "/wkrm/index";
+    }
+
+    @GetMapping("/wkrm/detailsMessage/{id}")
+    public String goWkrmDetailsMessage(Model model, @PathVariable Long id){
+        Messages messages = messagesServiceImpl.getMessagesById(id);
+        model.addAttribute("messages", messages);
+        return "/wkrm/detailsMessage";
+    }
+    @GetMapping("/wkrm/editMessage/{id}")
+    public String goWkrmEditMessage(Model model, @PathVariable Long id){
+        model.addAttribute("messages", messagesServiceImpl.getMessagesById(id));
+        return "/wkrm/editMessage";
     }
 
     @GetMapping("/wkrm/reportHospitalTable")
@@ -55,9 +80,19 @@ public class WkrmController {
         return "/wkrm/reportDetails";
     }
 
-    @GetMapping("/wkrm/details")
-    public String goDetails(){
+    @GetMapping("/wkrm/details/{id}")
+    public String goDetails(Model model, @PathVariable Long id) throws Exception{
+        Views views = viewService.getOneById(id);
+        model.addAttribute("views", views);
         return "/wkrm/details";
+    }
+    @GetMapping("/wkrm/contact/{id}")
+    public String goContactById(@PathVariable Long id, Model model){
+        HospitalConfig hospitalConfig = null;
+        hospitalConfig = hospitalConfigServiceimpl.getHospitalConfigById(id);
+        System.out.println("Hospital config: " + hospitalConfig.getHospitalConfigId()+"; " + hospitalConfig.getHospitalConfigDescription() + "; " + hospitalConfig.getBranch().getName() +"; " + hospitalConfig.getManagment());
+        model.addAttribute("hospitalConfig", hospitalConfig);
+        return "/wkrm/contact";
     }
 
 //    @GetMapping("/wkrm/contact")

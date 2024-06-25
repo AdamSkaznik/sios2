@@ -1,297 +1,3 @@
-<!--<!DOCTYPE html>-->
-<!--<html lang="en">-->
-<!--<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">-->
-<!--&lt;!&ndash;<title>System Informacji o Szpitalach v2.0</title>&ndash;&gt;-->
-<!--&lt;!&ndash;<link rel="icon" type="image/x-icon" href="/images/icon.png">&ndash;&gt;-->
-<!--&lt;!&ndash;<link rel="stylesheet" href="/srb/css/bootstrap.min.css" th:href="@{/srb/css/bootstrap.min.css}">&ndash;&gt;-->
-<!--&lt;!&ndash;<link rel="stylesheet" href="/srb/css/bootstrap.css" th:href="@{/srb/css/bootstrap.css}">&ndash;&gt;-->
-<!--&lt;!&ndash;<link rel="stylesheet" href="/srb/css/bootstrap-datepicker.css" th:href="@{/srb/css/bootstrap-datepicker.css}">&ndash;&gt;-->
-<!--&lt;!&ndash;<link rel="stylesheet" href="/webjars/font-awesome/6.5.1/css/all.css" th:href="@{/webjars/font-awesome/6.5.1/css/all.css}">&ndash;&gt;-->
-<!--&lt;!&ndash;<link rel="stylesheet" href="/srb/css/toastr.min.css" th:href="@{/srb/css/toastr.min.css}">&ndash;&gt;-->
-<!--&lt;!&ndash;<link rel="stylesheet" href="/srb/css/select2.css" th:href="@{/srb/css/select2.css}">&ndash;&gt;-->
-<!--&lt;!&ndash;<script th:src="@{/srb/js/jquery-3.6.0.js}"></script>&ndash;&gt;-->
-<!--&lt;!&ndash;<script th:src="@{/srb/js/bootstrap.js}"></script>&ndash;&gt;-->
-<!--&lt;!&ndash;<script th:src="@{/srb/js/typehead.js}"></script>&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;<script th:src="@{/srb/js/i18n/pl.js}"></script>&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;<script th:src="@{/srb/js/bootstrap-datepicker.js}"></script>&ndash;&gt;-->
-<!--&lt;!&ndash;<script th:src="@{/srb/js/i18n/bootstrap-datepicker.pl.min.js}"></script>&ndash;&gt;-->
-<!--&lt;!&ndash;<script th:src="@{/srb/js/moment.js}"></script>&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;    	<script th:src="@{/js/fontawesome.js}"></script>&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;<script th:src="@{/srb/js/toastr.min.js}"></script>&ndash;&gt;-->
-<!--&lt;!&ndash;<script th:src="@{/srb/js/sweetalert.min.js}"></script>&ndash;&gt;-->
-<!--&lt;!&ndash;<script src="/webjars/font-awesome/6.5.1/js/fontawesome.min.js" th:src="@{/webjars/font-awesome/6.5.1/js/fontawesome.min.js}"></script>&ndash;&gt;-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <meta charset="UTF-8">-->
-<!--    <title>System Informacji o Szpitalach v2.0</title>-->
-<!--    <link rel="icon" type="image/x-icon" href="/images/icon.png">-->
-<!--    <link rel="stylesheet" href="/srb/css/bootstrap.min.css" th:href="@{/srb/css/bootstrap.min.css}">-->
-<!--    <link rel="stylesheet" href="/srb/css/bootstrap.css" th:href="@{/srb/css/bootstrap.css}">-->
-<!--    <link rel="stylesheet" href="/srb/css/datatables.bootstrap.min.css" th:href="@{/srb/css/datatables.bootstrap.min.css}">-->
-<!--    <link rel="stylesheet" href="/srb/css/datatables.css" th:href="@{/srb/css/datatables.css}">-->
-<!--    <link rel="stylesheet" href="/srb/css/uikit.min.css" th:href="@{/srb/css/uikit.min.css}">-->
-<!--    <link rel="stylesheet" href="/srb/css/uikit.css" th:href="@{/srb/css/uikit.css}">-->
-<!--    <link rel="stylesheet" href="/srb/css/select2.css" th:href="@{/srb/css/select2.css}">-->
-<!--    <link rel="stylesheet" href="/srb/css/bootstrap-datepicker.min.css" th:href="@{/srb/css/bootstrap-datepicker.min.css}">-->
-<!--    <link rel="stylesheet" href="/webjars/font-awesome/6.5.1/css/all.css" th:href="@{/webjars/font-awesome/6.5.1/css/all.css}">-->
-<!--    &lt;!&ndash;    	<link rel="stylesheet" href="/css/font-awesome.css" th:href="@{/css/font-awesome.css}">&ndash;&gt;-->
-<!--    &lt;!&ndash;    	<link rel="stylesheet" href="/css/font-awesome.min.css" th:href="@{/css/font-awesome.min.css}">&ndash;&gt;-->
-<!--    <link rel="stylesheet" href="/srb/css/toastr.min.css" th:href="@{/srb/css/toastr.min.css}">-->
-<!--    <script th:src="@{/srb/js/uikit.js}"></script>-->
-<!--    <script th:src="@{/srb/js/uikit-icons.js}"></script>-->
-<!--    <script th:src="@{/srb/js/jquery-3.6.0.js}"></script>-->
-<!--    <script th:src="@{/srb/js/datatables.js}"></script>-->
-<!--    <script th:src="@{/srb/js/dataTables.bootstrap.min.js}"></script>-->
-<!--    &lt;!&ndash;    <script th:src="@{/js/datatables.sum().js}"></script>&ndash;&gt;-->
-<!--    &lt;!&ndash;    <script th:src="@{/srb/js/dataTables.bootstrap.min.js}"></script>&ndash;&gt;-->
-<!--    <script th:src="@{/srb/js/bootstrap.js}"></script>-->
-<!--    <script th:src="@{/srb/js/select2.js}"></script>-->
-<!--    <script th:src="@{/srb/js/typehead.js}"></script>-->
-<!--    <script th:src="@{/srb/js/i18n/pl.js}"></script>-->
-<!--    <script th:src="@{/srb/js/bootstrap-datepicker.min.js}"></script>-->
-<!--    <script th:src="@{/srb/js/i18n/bootstrap-datepicker.pl.min.js}"></script>-->
-<!--    <script th:src="@{/srb/js/moment.js}"></script>-->
-<!--    &lt;!&ndash;    	<script th:src="@{/js/fontawesome.js}"></script>&ndash;&gt;-->
-<!--    <script th:src="@{/srb/js/toastr.min.js}"></script>-->
-<!--    <script th:src="@{/srb/js/sweetalert.min.js}"></script>-->
-<!--    <script src="/webjars/font-awesome/6.5.1/js/fontawesome.min.js" th:src="@{/webjars/font-awesome/6.5.1/js/fontawesome.min.js}"></script>-->
-<!--</head>-->
-<!--<body>-->
-<!--<div class="container-fluid">-->
-<!--    <form th:object="${hospitalBranchClosed}" th:action="@{/saveHospitalBranchClosed}" method="post" enctype="multipart/form-data">-->
-<!--        <table class="table table-bordered table-striped">-->
-<!--&lt;!&ndash;            <tr>&ndash;&gt;-->
-<!--&lt;!&ndash;                <td>Typ procedury <small style="color: #0d6efd"> (Wybierz wartość ze słownika)</small></td>&ndash;&gt;-->
-<!--&lt;!&ndash;                <td><select class="form-control" id="procedureType" style="width: 100%" required></select>&ndash;&gt;-->
-<!--&lt;!&ndash;                    &lt;!&ndash;      <input  id="procedureTypeId"></td>&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;            </tr>&ndash;&gt;-->
-<!--            <tr>-->
-<!--                <td>Temat</td>-->
-<!--                <td><input type="text" class="form-control" th:field="*{title}" required></td>-->
-<!--            </tr>-->
-<!--            <tr>-->
-<!--                <td style="width: 25%"><b>Data rozpoczęcia wyłaczenia</b></td>-->
-<!--                <td>-->
-<!--                    <div class="input-group date" data-provide="datepicker" style="width: 200px; padding-left: 10px; padding-top: 5px; padding-bottom: 5px">-->
-<!--                        <input type="text" class="form-control" id="data1" th:field="*{dStart}" required>-->
-<!--                        <div class="input-group-addon">-->
-<!--                            <span class="glyphicon glyphicon-calendar"></span>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </td>-->
-<!--            </tr>-->
-<!--            <tr>-->
-<!--                <td><b>Przewidywana data ponownego właczenia</b>-->
-<!--                    <br><small>(jeśli nieznana - zostaw puste)</small></td>-->
-<!--                <td>-->
-<!--                    <div class="input-group date" data-provide="datepicker" style="width: 200px; padding-left: 10px; padding-top: 5px; padding-bottom: 5px">-->
-<!--                        <input type="text" class="form-control" id="data2" th:field="*{dEnd}">-->
-<!--                        <div class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </td>-->
-<!--            </tr>-->
-<!--            <tr>-->
-<!--                <td>Dodatkowy opis</td>-->
-<!--                <td><textarea class="form-control" th:field="*{cause}" rows="5" style="resize: none" maxlength="4096" id="textDesc"></textarea>-->
-<!--                    <div id="textarea_feedback"></div>-->
-<!--                </td>-->
-<!--            </tr>-->
-<!--            <tr>-->
-<!--                <td>Zastępstwo w zakresie</td>-->
-<!--                <td><textarea class="form-control" th:field="*{replacement}" rows="5" style="resize: none" maxlength="4096" id="textDesc1"></textarea>-->
-<!--                    <div id="textarea_feedback1"></div>-->
-<!--                </td>-->
-<!--            </tr>-->
-<!--            <tr>-->
-<!--                <td>Zaznacz, jeśli Wojewoda wyraził zgodę</td>-->
-<!--                <td><input type="checkbox"></td>-->
-<!--            </tr>-->
-<!--            <tr>-->
-<!--                <td>Oddział, którego dotyczy zgłoszenie <small style="color: #0d6efd"> (Wybierz wartość ze słownika)</small></td>-->
-<!--                <td><select class="form-control" id="hospitalConfig" style="width: 100%" required></select>-->
-<!--                <input  id="hospitalConfigId" hidden required></td>-->
-<!--            </tr>-->
-<!--            <tr>-->
-<!--&lt;!&ndash;                <td colspan="2">&ndash;&gt;-->
-<!--&lt;!&ndash;                    <label for="files"> Załączniki</label>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <smal>*pole nieobowiązkowe</smal>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <input type="file" id="files" name="files" multiple>&ndash;&gt;-->
-<!--&lt;!&ndash;                </td>&ndash;&gt;-->
-<!--                <td><b>Dołącz pliki</b><br><small> * pole nieobowiązkowe</small></td>-->
-<!--                <td colspan="2">-->
-<!--                    <label for="files"> Załączniki</label>-->
-<!--                    <input type="file" id="files" name="files" multiple class="form-control" onchange="updateFileList()">-->
-<!--                    <div th:if="${errorMessage}" class="alert alert-danger" role="alert">-->
-<!--                        <p style="color: red; font-weight: bold" th:text="${errorMessage}"></p>-->
-<!--                    </div>-->
-<!--                    &lt;!&ndash;                            <p th:if="${errorMessage}" style="color: red; font-weight: bold">Plik/pliki o takiej nazwie istnieją już w bazie. Zmień nazwę pliku/plików</p>&ndash;&gt;-->
-<!--                    <label for="fileList">Dodane pliki:</label>-->
-<!--                    <ul id="fileList" class="mt-2"></ul>-->
-<!--                </td>-->
-<!--            </tr>-->
-<!--        </table>-->
-<!--&lt;!&ndash;        <input  id="procedureTypeId" th:field="*{hospitalProceduresType.hospitalProceduresTypeId}" hidden></td>&ndash;&gt;-->
-<!--        <div class="container-fluid pull-right">-->
-<!--            <button type="button" class="btn btn-close" onclick="location.href='/hospital/hospitalProcedures'" formnovalidate><i class="fas fa-close"></i> Zamknij</button>-->
-<!--            <button class="btn btn-success float-end" type="submit"><i class="fa-solid fa-save"></i> Zapisz</button>-->
-<!--        </div>-->
-<!--    </form>-->
-<!--</div>-->
-<!--</body>-->
-<!--</html>-->
-<!--<script type="text/javascript">-->
-<!--    $(document).ready(function (){-->
-<!--        $('#hospitalConfig').select2({-->
-<!--            allowClear: true,-->
-<!--            placeholder: {-->
-<!--                id: '-1',-->
-<!--                text: '...',-->
-<!--                // selected: 'selected'-->
-<!--            },-->
-<!--            // allowClear: true-->
-<!--        });-->
-<!--        $.ajax({-->
-<!--            url: '/api/hospitalConfig/search/v3',-->
-<!--            method: 'GET',-->
-<!--            dataType: 'json',-->
-<!--            success: function (data){-->
-<!--                let options = [];-->
-<!--                    $.each(data, function(index, item){-->
-<!--                        options.push({-->
-<!--                            id:item.hospitalConfigId,-->
-<!--                            text: item.name-->
-<!--                        });-->
-<!--                    });-->
-<!--                  $('#hospitalConfig').select2({-->
-<!--                      data: options-->
-<!--                  });-->
-<!--            },-->
-<!--            error: function (xhr, status, error){-->
-<!--                console.log('Wystąpił błąd podczas pobierania danych: ', error);-->
-<!--            }-->
-<!--        });-->
-<!--    });-->
-<!--    // $('#hospitalConfig').trigger("wybierz");-->
-<!--    // $(function () {-->
-<!--    //     $("#hospitalConfig").select2({-->
-<!--    //         language: "pl",-->
-<!--    //         // minimumInputLength: 3,-->
-<!--    //         placeholder: "Wybierz ...",-->
-<!--    //         theme: 'bootstrap4',-->
-<!--    //         selectionCssClass: 'form-control',-->
-<!--    //         ajax: {-->
-<!--    //             url: "/api/hospitalConfig/search/v2",-->
-<!--    //             dataType: 'json',-->
-<!--    //             type: 'GET',-->
-<!--    //             data: function (params) {-->
-<!--    //                 console.log(params)-->
-<!--    //                 return {-->
-<!--    //                     term: params.term,-->
-<!--    //                     page: params.page || 1,-->
-<!--    //                 }-->
-<!--    //             },-->
-<!--    //             processResults(data) {-->
-<!--    //                 console.log(data)-->
-<!--    //                 return {-->
-<!--    //                     results: $.map(data, function (item) {-->
-<!--    //                         return {-->
-<!--    //                             text: item.numberOfBeds,-->
-<!--    //                             id: item.hospitalConfigId,-->
-<!--    //                         }-->
-<!--    //                     })-->
-<!--    //                 }-->
-<!--    //             }-->
-<!--    //-->
-<!--    //         }-->
-<!--    //     })-->
-<!--    // });-->
-<!--    //-->
-<!--    $("#hospitalConfig").on('change', function () {-->
-<!--        $("#hospitalConfigId").val($(this).val());-->
-<!--    });-->
-<!--    $(document).ready(function (){-->
-<!--        let text_max = 4096;-->
-<!--        $('#textarea_feedback').html( 'Pozostało : ' + text_max + ' znaków do wprowadzenia z 4096');-->
-<!--        $('#textDesc').keyup(function (){-->
-<!--            let text_length = $('#textDesc').val().length;-->
-<!--            let text_remaining = text_max - text_length;-->
-<!--            $('#textarea_feedback').html( 'Pozostało : ' + text_remaining + ' znaków do wprowadzenia z 4096');-->
-<!--        });-->
-<!--    });-->
-<!--    $(document).ready(function (){-->
-<!--        let text_max = 4096;-->
-<!--        $('#textarea_feedback1').html( 'Pozostało : ' + text_max + ' znaków do wprowadzenia z 4096');-->
-<!--        $('#textDesc1').keyup(function (){-->
-<!--            let text_length = $('#textDesc1').val().length;-->
-<!--            let text_remaining = text_max - text_length;-->
-<!--            $('#textarea_feedback1').html( 'Pozostało : ' + text_remaining + ' znaków do wprowadzenia z 4096');-->
-<!--        });-->
-<!--    });-->
-<!--    function updateFileList(){-->
-<!--        let input = document.getElementById('files');-->
-<!--        let output = document.getElementById('fileList');-->
-<!--        output.innerHTML = '';-->
-<!--        for (let i = 0; i < input.files.length; ++i){-->
-<!--            let li = document.createElement('li');-->
-<!--            li.textContent = input.files[i].name;-->
-<!--            output.appendChild(li);-->
-<!--        }-->
-<!--    };-->
-<!--    $(function (){-->
-<!--        $('#data1').datepicker({-->
-<!--            language: "pl",-->
-<!--            today: true,-->
-<!--            autoclose: true,-->
-<!--            showOtherMonths: true,-->
-<!--            selectOtherMonths: true,-->
-<!--            changeMonth: true,-->
-<!--            changeYear: true,-->
-<!--            format: "yyyy-mm-dd",-->
-<!--            orientation: "bottom auto",-->
-<!--            clearBtn: true,-->
-<!--            todayBtn: true,-->
-<!--            daysOfWeekHighlighted: "6,0",-->
-<!--            todayHighlight: true,-->
-<!--            // setDate: new Date()-->
-<!--        }).datepicker("setDate", "0");-->
-<!--    });-->
-<!--    $(function () {-->
-<!--        $('#data2').datepicker({-->
-<!--            language: "pl",-->
-<!--            today: true,-->
-<!--            autoclose: true,-->
-<!--            showOtherMonths: true,-->
-<!--            selectOtherMonths: true,-->
-<!--            changeMonth: true,-->
-<!--            changeYear: true,-->
-<!--            format: "yyyy-mm-dd",-->
-<!--            orientation: "bottom auto",-->
-<!--            clearBtn: true,-->
-<!--            todayBtn: true,-->
-<!--            daysOfWeekHighlighted: "6,0",-->
-<!--            todayHighlight: true,-->
-<!--            // setDate: new Date()-->
-<!--        }).datepicker();-->
-<!--    });-->
-<!--    // $('#data1').datepicker({-->
-<!--    //     language: 'pl-PL',-->
-<!--    //     autoclose: true,-->
-<!--    //     clearBtn: true,-->
-<!--    //     format: 'yyyy-mm-dd',-->
-<!--    //     todayBtn: true,-->
-<!--    //     todayHighlight: true,-->
-<!--    // }).datepicker("setDate", "0");-->
-<!--    // $('#data2').datepicker({-->
-<!--    //     language: 'pl-PL',-->
-<!--    //     autoclose: true,-->
-<!--    //     clearBtn: true,-->
-<!--    //     format: 'yyyy-mm-dd',-->
-<!--    //     todayBtn: true,-->
-<!--    //     todayHighlight: true,-->
-<!--    // }).datepicker();-->
-<!--</script>-->
-
 <!DOCTYPE html>
 <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
 <title>System Informacji o Szpitalach v2.0</title>
@@ -393,8 +99,10 @@
                                 </tr>
                                 <tr>
                                     <td>Oddział, którego dotyczy zgłoszenie <small style="color: #0d6efd"> (Wybierz wartość ze słownika)</small></td>
-                                    <td><select class="form-control" id="hospitalConfig" style="width: 100%" required></select>
-                                    <input  id="hospitalConfigId" th:field="*{hospitalConfig}" required></td>
+                                    <td><select class="form-control" id="hospitalConfig" style="width: 100%" data-placeholder="Wybierz..." required>
+                                        <option value="" selected>select</option>
+                                    </select>
+                                    <input  id="hospitalConfigId" th:field="*{hospitalConfig}" required hidden></td>
                                 </tr>
                     <tr>
                         <td><b>Dołącz pliki</b><br><small> * pole nieobowiązkowe</small></td>
@@ -414,7 +122,7 @@
                 </table>
                 <!--        <input  id="procedureTypeId" th:field="*{hospitalProceduresType.hospitalProceduresTypeId}" hidden></td>-->
                 <div class="container-fluid pull-right">
-                    <button type="button" class="btn btn-close" onclick="location.href='/hospital/index'" formnovalidate><i class="fas fa-close"></i> Zamknij</button>
+                    <button type="button" class="btn btn-close" onclick="history_back()" formnovalidate><i class="fas fa-close"></i> Zamknij</button>
                     &nbsp;&nbsp;
                     <button class="btn btn-success float-end" type="submit" id="submit"><i class="fa-solid fa-save"></i> Zapisz</button>
                 </div>
@@ -425,16 +133,6 @@
 
 </div>
 <script th:if = "${error}">
-    // let errorMess = [[${#strings.escapeJavaScript(error)}]];
-    // /* <![CDATA[ */
-    // Swal({
-    //  icon: 'error',
-    //  title: 'Błąd',
-    //  // text: [[${error}]]
-    //  text: /*[[${error}]]*/ 'Plik istnieje - sprawdź błąd znajdujący się poniżej przycisku dodawania plików.'
-    //  // text: [[${#strings.escapeJavaScript(error)}]]
-    // });
-    // /* ]]> */
     swal('Błąd', 'Plik/pliki o takiej nazwie już istnieją.', 'error');
 </script>
 </body>
@@ -538,7 +236,7 @@
             daysOfWeekHighlighted: "6,0",
             todayHighlight: true,
             // setDate: new Date()
-        }).datepicker();
+        }).datepicker("setDate", "+3y");
     });
     $(document).ready(function (){
         let text_max = 12288;

@@ -14,10 +14,11 @@ import java.nio.file.Paths;
 import java.time.LocalDateTime;
 
 @Service
-public class HospitalFailresFilesServiceImpl {
+public class HospitalFailuresFilesServiceImpl {
 private static final String UPLOAD_DIR = "uploadFailuresFiles";
 @Autowired
     HospitalFailuresFilesRepository hospitalFailuresFilesRepository;
+
 public HospitalFailuresFiles saveFiles(MultipartFile file, HospitalFailures hospitalFailures)throws IOException {
     Path uploadPath = Paths.get(UPLOAD_DIR);
     if(!Files.exists(uploadPath)){
@@ -30,7 +31,7 @@ public HospitalFailuresFiles saveFiles(MultipartFile file, HospitalFailures hosp
     }
     Files.copy(file.getInputStream(), filePath);
     HospitalFailuresFiles hospitalFailuresFiles = new HospitalFailuresFiles();
-    hospitalFailuresFiles.setFilename(fileName);
+    hospitalFailuresFiles.setFileName(fileName);
     hospitalFailuresFiles.setHospitalFailures(hospitalFailures);
     hospitalFailuresFiles.setFileUrl(String.valueOf(filePath));
     hospitalFailuresFiles.setFileActive(true);
@@ -41,7 +42,11 @@ public Path load(String fileName){
     return Paths.get(UPLOAD_DIR).resolve(fileName).normalize();
 }
 public boolean fileExists(String fileName){
-    Path filePath = Paths.get(UPLOAD_DIR).resolve(fileName).normalize();
-    return Files.exists(filePath);
+    int count = hospitalFailuresFilesRepository.countFiles(fileName);
+    if(count > 0){
+        Path filePath = Paths.get(UPLOAD_DIR).resolve(fileName).normalize();
+        return Files.exists(filePath);
+    }
+    return Boolean.parseBoolean(null);
 }
 }

@@ -23,8 +23,8 @@ public class Managment {
     private String managmentEmail;
     @Column(length = 4096)
     private String managmentDescription;
-    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
-    @JoinTable(name = "managmentHospitals", joinColumns = @JoinColumn(name = "managmentId"), inverseJoinColumns = @JoinColumn(name = "hospitalConfigId"))
-    private Set<HospitalConfig> hospitalConfigs;
+//    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+//    @JoinTable(name = "managmentHospitals", joinColumns = @JoinColumn(name = "managmentId"), inverseJoinColumns = @JoinColumn(name = "hospitalConfigId"))
+//    private Set<HospitalConfig> hospitalConfigs;
 
 }

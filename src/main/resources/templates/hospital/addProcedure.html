@@ -1,58 +1,203 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-<!--    <title>Title</title>-->
-</head>
-<body>
-<div class="container-fluid">
-  <form th:object="${hospitalProcedures}" th:action="@{/saveHospitalProcedures}" method="post" enctype="multipart/form-data">
-  <table class="table table-bordered table-striped">
-    <tr>
-      <td>Typ procedury <small style="color: #0d6efd"> (Wybierz wartość ze słownika)</small></td>
-      <td><select class="form-control" id="procedureType" style="width: 100%" required></select>
-<!--      <input  id="procedureTypeId"></td>-->
-    </tr>
-    <tr>
-      <td>Nazwa procedury</td>
-      <td><input type="text" class="form-control" th:field="*{name}" required></td>
-    </tr>
-    <tr>
-      <td>Opis procedury</td>
-      <td><textarea class="form-control" th:field="*{description}" rows="5" style="resize: none" maxlength="4096" id="textDesc"></textarea>
-      <div id="textarea_feedback"></div>
-      </td>
-    </tr>
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--&lt;!&ndash;    <title>Title</title>&ndash;&gt;-->
+<!--</head>-->
+<!--<body>-->
+<!--<div class="container-fluid">-->
+<!--  <form th:object="${hospitalProcedures}" th:action="@{/saveHospitalProcedures}" method="post" enctype="multipart/form-data">-->
+<!--  <table class="table table-bordered table-striped">-->
+<!--    <tr>-->
+<!--      <td>Typ procedury <small style="color: #0d6efd"> (Wybierz wartość ze słownika)</small></td>-->
+<!--      <td><select class="form-control" id="procedureType" style="width: 100%" required></select>-->
+<!--&lt;!&ndash;      <input  id="procedureTypeId"></td>&ndash;&gt;-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--      <td>Nazwa procedury</td>-->
+<!--      <td><input type="text" class="form-control" th:field="*{name}" required></td>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--      <td>Opis procedury</td>-->
+<!--      <td><textarea class="form-control" th:field="*{description}" rows="5" style="resize: none" maxlength="4096" id="textDesc"></textarea>-->
+<!--      <div id="textarea_feedback"></div>-->
+<!--      </td>-->
+<!--    </tr>-->
 
-    <tr>
-      <td colspan="2">
-        <label for="files"> Załączniki</label>
-        <input type="file" id="files" name="files" multiple>
-      </td>
-    </tr>
-  </table>
-    <input  id="procedureTypeId" th:field="*{hospitalProceduresType.hospitalProceduresTypeId}" hidden></td>
-    <div class="container-fluid pull-right">
-      <button type="button" class="btn btn-close" onclick="location.href='/hospital/hospitalProcedures'" formnovalidate><i class="fas fa-close"></i> Zamknij</button>
-    <button class="btn btn-success float-end" type="submit"><i class="fa-solid fa-save"></i> Zapisz</button>
+<!--    <tr>-->
+<!--      <td colspan="2">-->
+<!--        <label for="files"> Załączniki</label>-->
+<!--        <input type="file" id="files" name="files" multiple>-->
+<!--      </td>-->
+<!--    </tr>-->
+<!--  </table>-->
+<!--    <input  id="procedureTypeId" th:field="*{hospitalProceduresType.hospitalProceduresTypeId}" hidden></td>-->
+<!--    <div class="container-fluid pull-right">-->
+<!--      <button type="button" class="btn btn-close" onclick="location.href='/hospital/hospitalProcedures'" formnovalidate><i class="fas fa-close"></i> Zamknij</button>-->
+<!--    <button class="btn btn-success float-end" type="submit"><i class="fa-solid fa-save"></i> Zapisz</button>-->
+<!--    </div>-->
+<!--  </form>-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->
+<!--<script type="text/javascript">-->
+<!--  $(function () {-->
+<!--    $("#procedureType").select2({-->
+<!--      language: "pl",-->
+<!--      // minimumInputLength: 3,-->
+<!--      placeholder: "Wybierz ...",-->
+<!--      theme: 'bootstrap4',-->
+<!--      selectionCssClass: 'form-control',-->
+<!--      ajax: {-->
+<!--        url: "/api/hospitalProceduresType/search/v1",-->
+<!--        dataType: 'json',-->
+<!--        type: 'GET',-->
+<!--        data: function (params) {-->
+<!--          console.log(params)-->
+<!--          return {-->
+<!--            term: params.term,-->
+<!--            page: params.page || 1,-->
+<!--          }-->
+<!--        },-->
+<!--        processResults(data) {-->
+<!--          console.log(data)-->
+<!--          return {-->
+<!--            results: $.map(data, function (item) {-->
+<!--              return {-->
+<!--                text: item.hospitalProceduresTypeDesc,-->
+<!--                id: item.hospitalProceduresTypeId,-->
+<!--              }-->
+<!--            })-->
+<!--          }-->
+<!--        }-->
+
+<!--      }-->
+<!--    })-->
+<!--  });-->
+
+<!--  $("#procedureType").on('change', function () {-->
+<!--    $("#procedureTypeId").val($(this).val());-->
+<!--  });-->
+<!--  $(document).ready(function (){-->
+<!--    let text_max = 4096;-->
+<!--    $('#textarea_feedback').html( 'Pozostało : ' + text_max + ' znaków do wprowadzenia z 4096');-->
+<!--    $('#textDesc').keyup(function (){-->
+<!--      let text_length = $('#textDesc').val().length;-->
+<!--      let text_remaining = text_max - text_length;-->
+<!--      $('#textarea_feedback').html( 'Pozostało : ' + text_remaining + ' znaków do wprowadzenia z 4096');-->
+<!--    });-->
+<!--  });-->
+<!--  // document.addEventListener('DOMContentLoaded', function (){-->
+<!--  //   let errorMessage = /*[[${errorMessage}]]*/ 'null';-->
+<!--  //   if (errorMessage){-->
+<!--  //     Swal.fire({-->
+<!--  //       icon: 'error',-->
+<!--  //       title: 'Błąd',-->
+<!--  //       text: errorMessage-->
+<!--  //     });-->
+<!--  //   }-->
+<!--  // });-->
+<!--</script>-->
+<!DOCTYPE html>
+<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+<title>System Informacji o Szpitalach v2.0</title>
+<link rel="icon" type="image/x-icon" href="/images/icon.png">
+<link rel="stylesheet" href="/srb/css/bootstrap.min.css" th:href="@{/srb/css/bootstrap.min.css}">
+<link rel="stylesheet" href="/srb/css/bootstrap.css" th:href="@{/srb/css/bootstrap.css}">
+<link rel="stylesheet" href="/srb/css/bootstrap-datepicker.css" th:href="@{/srb/css/bootstrap-datepicker.css}">
+<link rel="stylesheet" href="/webjars/font-awesome/6.5.1/css/all.css" th:href="@{/webjars/font-awesome/6.5.1/css/all.css}">
+<link rel="stylesheet" href="/srb/css/toastr.min.css" th:href="@{/srb/css/toastr.min.css}">
+<link rel="stylesheet" href="/srb/css/select2.css" th:href="@{/srb/css/select2.css}">
+<script th:src="@{/srb/js/jquery-3.6.0.js}"></script>
+<script th:src="@{/srb/js/bootstrap.js}"></script>
+<script th:src="@{/srb/js/typehead.js}"></script>
+<!--<script th:src="@{/srb/js/i18n/pl.js}"></script>-->
+<script th:src="@{/srb/js/bootstrap-datepicker.js}"></script>
+<script th:src="@{/srb/js/i18n/bootstrap-datepicker.pl.min.js}"></script>
+<script th:src="@{/srb/js/moment.js}"></script>
+<!--    	<script th:src="@{/js/fontawesome.js}"></script>-->
+<script th:src="@{/srb/js/toastr.min.js}"></script>
+<script th:src="@{/srb/js/sweetalert.min.js}"></script>
+<script th:src="@{/srb/js/select2.js}"></script>
+<script th:src="@{/srb/js/i18n/pl.js}"></script>
+<script src="/webjars/font-awesome/6.5.1/js/fontawesome.min.js" th:src="@{/webjars/font-awesome/6.5.1/js/fontawesome.min.js}"></script>
+<!--<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>-->
+<head>
+  <head>
+  </head>
+<body>
+<div class="container" style="padding-top: 50px">
+  <div class="container-fluid pull-right" style="padding-right: 5px; padding-bottom: 20px">
+    <a href="#"style="align-self: end"><button class="btn btn-info" onclick="history_back()"><i class="fa-solid fa-arrows-rotate"></i> Powrót</button> </a>
+  </div>
+  <br><br>
+  <div class="panel panel-success">
+    <div class="panel-heading"> Nowy komunikat</div>
+    <div class="panel-body">
+      <form th:object="${hospitalProcedures}" th:action="@{/saveHospitalProcedures}" method="post" enctype="multipart/form-data">
+        <input th:field="*{hospitalProceduresId}" hidden>
+        <!--        <h3 style="text-align: center"> Nowy komunikat</h3>-->
+        <table class="table table-striped table-bordered">
+          <tr>
+            <td><b> Typ procedury </b><small style="color: #0d6efd">(Wybierz wartość ze słownika)</small></td>
+            <td><select class="form-control" id="procedureType" style="width: 100%" required></select></td>
+          </tr>
+          <tr>
+            <td>
+              <b> Nazwa procedury:</b>
+            </td>
+            <td><input class="form-control" th:field="*{name}" required></td>
+          </tr>
+          <tr>
+            <td><b>Opis procedury </b></td>
+            <td><textarea class="form-control" rows="15" style="resize: none" id="textDesc" th:field="*{description}" maxlength="4096"></textarea>
+              <div id="textarea_feedback" style="font-weight: bold; align-content: end; text-align: end"></div>
+            </td>
+          </tr>
+          <tr>
+            <td><b>Dołącz pliki</b><br><small> * pole nieobowiązkowe</small></td>
+            <td colspan="2">
+              <label for="files"> Załączniki</label>
+              <input type="file" id="files" name="files" multiple class="form-control" onchange="updateFileList()">
+              <!--                            <div th:if="${errorMessage}" class="alert alert-danger" role="alert">-->
+              <!--                                <p style="color: red; font-weight: bold" th:text="${errorMessage}"></p>-->
+              <!--                            </div>-->
+              <!--                            <p th:if="${errorMessage}" style="color: red; font-weight: bold">Plik/pliki o takiej nazwie istnieją już w bazie. Zmień nazwę pliku/plików</p>-->
+              <label for="fileList">Dodane pliki:</label>
+              <ul id="fileList" class="mt-2"></ul>
+            </td>
+          </tr>
+
+        </table>
+                <input  id="procedureTypeId" th:field="*{hospitalProceduresType.hospitalProceduresTypeId}" hidden>
+        <div class="container-fluid pull-right">
+          <button type="button" class="btn btn-close" onclick="history_back()" formnovalidate><i class="fas fa-close"></i> Zamknij</button>
+          &nbsp;&nbsp;
+          <button class="btn btn-success float-end" type="submit" id="submit"><i class="fa-solid fa-save"></i> Zapisz</button>
+        </div>
+      </form>
     </div>
-  </form>
+
+  </div>
+
 </div>
+<script th:if = "${error}">
+  swal('Błąd', 'Plik/pliki o takiej nazwie już istnieją.', 'error');
+</script>
 </body>
 </html>
-<script type="text/javascript">
-  $(function () {
-    $("#procedureType").select2({
+<script>
+  $(function (){
+    $('#procedureType').select2({
       language: "pl",
-      // minimumInputLength: 3,
-      placeholder: "Wybierz ...",
+      placeholder: "Wybierz...",
       theme: 'bootstrap4',
       selectionCssClass: 'form-control',
       ajax: {
         url: "/api/hospitalProceduresType/search/v1",
         dataType: 'json',
         type: 'GET',
-        data: function (params) {
+        data: function (params){
           console.log(params)
           return {
             term: params.term,
@@ -62,7 +207,7 @@
         processResults(data) {
           console.log(data)
           return {
-            results: $.map(data, function (item) {
+            results: $.map(data, function (item){
               return {
                 text: item.hospitalProceduresTypeDesc,
                 id: item.hospitalProceduresTypeId,
@@ -70,31 +215,33 @@
             })
           }
         }
-
       }
     })
   });
-
-  $("#procedureType").on('change', function () {
-    $("#procedureTypeId").val($(this).val());
+  $('#procedureType').on('change', function (){
+    $('#procedureTypeId').val($(this).val());
   });
+  function updateFileList(){
+    let input = document.getElementById('files');
+    let output = document.getElementById('fileList');
+    output.innerHTML = '';
+    for (let i = 0; i < input.files.length; ++i){
+      let li = document.createElement('li');
+      li.textContent = input.files[i].name;
+      output.appendChild(li);
+    }
+  };
   $(document).ready(function (){
     let text_max = 4096;
-    $('#textarea_feedback').html( 'Pozostało : ' + text_max + ' znaków do wprowadzenia z 4096');
+    $('#textarea_feedback').html('Możesz wprowadzić jeszcze : ' + text_max + ' znaków ');
     $('#textDesc').keyup(function (){
       let text_length = $('#textDesc').val().length;
       let text_remaining = text_max - text_length;
-      $('#textarea_feedback').html( 'Pozostało : ' + text_remaining + ' znaków do wprowadzenia z 4096');
+      $('#textarea_feedback').html( 'Możesz wprowadzić jeszcze : ' + text_remaining + ' znaków');
     });
   });
-  // document.addEventListener('DOMContentLoaded', function (){
-  //   let errorMessage = /*[[${errorMessage}]]*/ 'null';
-  //   if (errorMessage){
-  //     Swal.fire({
-  //       icon: 'error',
-  //       title: 'Błąd',
-  //       text: errorMessage
-  //     });
-  //   }
-  // });
+  function history_back(){
+    window.history.back();
+  };
+
 </script>
