@@ -62,7 +62,7 @@
         <td>
 <!--          <a th:href="@{edit/{id}(id=${hospitalProcedures.hospitalProceduresId})}"> Edytuj</a>-->
           <a th:href="@{detailsProcedures/{id}(id=${hospitalProcedures.hospitalProceduresId})}" th:title="szczegóły"><i class="fa-solid fa-info-circle" style="color: greenyellow" data-tooltip="szczegóły"></i></a>&nbsp;&nbsp;
-          <a th:href="@{edit/{id}(id=${hospitalProcedures.hospitalProceduresId})}" th:title="edycja"><i class="fa-solid fa-pencil"></i></a>&nbsp;&nbsp;
+          <a th:href="@{editProcedure/{id}(id=${hospitalProcedures.hospitalProceduresId})}" th:title="edycja"><i class="fa-solid fa-pencil"></i></a>&nbsp;&nbsp;
           <a th:href="@{delete/{id}(id=${hospitalProcedures.hospitalProceduresId})}" th:title="usuń"><i class="fa-solid fa-trash-alt" style="color: red"></i></a>
         </td>
       </tr>

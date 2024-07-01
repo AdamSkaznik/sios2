@@ -12,8 +12,12 @@
 </head>
 <body>
 <div class="container-fluid" style="padding-top: 150px">
-
-    <center><h3> Nowy raport dzienny dla : <b style="color: #0d6efd" th:text="${hospitalName}"></b></h3></center>
+    <div class="container-fluid pull-right" style="padding-right: 5px">
+        <a href="#" style="align-self: end"><button class="btn btn-info" onclick="history_back()"><i class="fa-solid fa-arrows-rotate"></i> Powrót </button> </a>
+    </div>
+    <br>
+    <center><h3> Edycja raportu dziennego dla : <b style="color: #0d6efd" th:text="${hospitalName}"></b></h3></center>
+    <center><h3> za dzień : <b style="color: #0d6efd" th:text="${#dates.format(date, 'yyyy-MM-dd')}"></b></h3></center>
     <form method="post" th:object="${hospitalReport}">
         <table class="table table-bordered table-striped" id="reportTable">
             <tr>
@@ -49,65 +53,10 @@
     function pop(){
         alert("Kliknięto. Id wynosi: " + id);
     }
-    // window.onload = function newReport();
-    document.addEventListener("DOMContentLoaded", newReport);
-    function newReport(){
-        const now = new Date();
-        let hour = now.getHours().toString();
-        let min = now.getMinutes().toString();
-        let sec = now.getSeconds().toString();
-        const nodeList1 = document.querySelectorAll(".stan1");
-        const nodeList2 = document.querySelectorAll(".stan2");
-        const nodeList3 = document.querySelectorAll(".stan3");
-        console.log("Hour : " + hour);
-        console.log("Min: " + min);
-        if(hour >= 0 && hour <=9){
-            hour = 0+hour;
-        }
-        if(min >=0 && min <=9){
-            min = 0+min;
-        }
-        if(sec >= 0 && sec <= 9){
-            sec = 0 + sec;
-        }
-        let testTime = hour+":"+min+":"+sec;
-        console.log("testTime: " + testTime );
-        let blocked = null;
-        if ((testTime  >= '22:00:01') && (testTime <= '06:00:00')){
-            blocked = 1;
-            for (let i = 0; i < nodeList1.length; i++){
-                nodeList2[i].style.backgroundColor = "grey";
-                nodeList2[i].setAttribute("readOnly", "true");
-            }
-            for (let j = 0; j <nodeList3.length; j++){
-                nodeList3[j].style.backgroundColor="grey";
-                nodeList3[j].setAttribute("readOnly", "true");
-            }
-        }
-        if ((testTime  >= '06:00:01') && (testTime <= '14:00:00')){
-            blocked = 2;
-            for (let i = 0; i < nodeList1.length; i++){
-                nodeList1[i].style.backgroundColor = "grey";
-                nodeList1[i].setAttribute("readOnly", "true");
-            }
-            for (let j = 0; j <nodeList3.length; j++){
-                nodeList3[j].style.backgroundColor="grey";
-                nodeList3[j].setAttribute("readOnly", "true");
-            }
-        }
-        if ((testTime  >= '14:00:01') && (testTime <= '22:00:00')){
-            blocked = 3;
-            for (let i = 0; i < nodeList1.length; i++){
-                nodeList1[i].style.backgroundColor = "grey";
-                nodeList1[i].setAttribute("readOnly", "true");
-            }
-            for (let j = 0; j <nodeList3.length; j++){
-                nodeList2[j].style.backgroundColor="grey";
-                nodeList2[j].setAttribute("readOnly", "true");
-            }
-        }
-        console.log("Blocked wynosi: " + blocked);
+    function history_back(){
+        window.history.back();
     }
+
 
     $('#reportTable tbody').on('click', '#saveReport', function (){
         let $row = $(this).closest("tr");

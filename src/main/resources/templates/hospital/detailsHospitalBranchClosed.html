@@ -15,26 +15,34 @@
   <!--<h3 style="align-content: center"> Szczegóły komunikatu</h3>-->
   <br>
   <div class="card bg-info">
-    <div class="card-header" style="text-align: center"><h4>Szczegóły procedury</h4></div>
+    <div class="card-header" style="text-align: center"><h4>Szczegóły wyłaczenia oddziału</h4></div>
     <div class="card-body">
-      <table class="table table-striped table-bordered" th:object="${hospitalProcedures}">
+      <table class="table table-striped table-bordered" th:object="${hospitalBranchClosed}">
         <tr>
-          <td>&nbsp;&nbsp; Typ procedury</td>
-          <td th:text="${hospitalProcedures.hospitalProceduresType.getHospitalProceduresTypeDesc()}" style="font-weight: bold"></td>
+          <td>&nbsp;&nbsp;Data wyłaczenia</td>
+          <td th:text="*{#dates.format(dateFrom, 'yyyy-MM-dd')}" style="font-weight: bold"></td>
         </tr>
         <tr>
-          <td>&nbsp;&nbsp; Nazwa procedury</td>
-          <td th:text="${hospitalProcedures.name}" style="font-weight: bold"></td>
+          <td>&nbsp;&nbsp;Planowana data zakończenia wyłaczenia</td>
+          <td th:text="*{#dates.format(dateTo, 'yyyy-MM-dd')}" style="font-weight: bold"></td>
         </tr>
         <tr>
-          <td>&nbsp;&nbsp; Opis procedury</td>
-          <td th:text="${hospitalProcedures.description}" style="font-weight: bold"></td>
+          <td>&nbsp;&nbsp;Dodatkowy opis</td>
+          <td th:text="*{cause}" style="font-weight: bold"></td>
         </tr>
+          <tr>
+              <td>&nbsp;&nbsp;Zastępstwo w zakresie</td>
+              <td th:text="*{replacement}" style="font-weight: bold"></td>
+          </tr><tr>
+          <td>&nbsp;&nbsp;Czy była zgoda Wojewody</td>
+<!--          <td th:text="*{agreement}" style="font-weight: bold"></td>-->
+          <td><input type="checkbox" th:field="*{agreement}"></td>
+      </tr>
         <tr>
           <td> Załączniki:</td>
           <td>
             <ol>
-              <li th:each="files: ${hospitalProcedures.hospitalProceduresFiles}" >
+              <li th:each="files: ${hospitalBranchClosed.hospitalBranchClosedFiles}" >
               <span th:if="${#strings.endsWith(files.fileName.toLowerCase(), '.pdf')}">
                 <i class="fas fa-file-pdf" style="color: red"></i>
               </span>
@@ -50,7 +58,7 @@
                 <span th:if="${#strings.endsWith(files.fileName.toLowerCase(), '.msg')}">
                 <i class="fas fa-file-signature"></i>
               </span>
-                <a th:href="@{/downloadProcedures/{filename}(filename=${files.fileName})}" th:text="${files.fileName}" download></a>
+                <a th:href="@{/downloadHospitalBranchClosedFiles/{filename}(filename=${files.fileName})}" th:text="${files.fileName}" download></a>
               </li>
             </ol>
           </td>

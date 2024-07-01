@@ -16,14 +16,15 @@
 <!--  <input th:value="${session.mess}" id="mess" hidden>-->
 <!--  <input th:value="${session.tick}" id="tick" hidden>-->
   <!--    <div sec:authorize="isAuthenticated()" style="padding-bottom: 5px">-->
-  <!--        <a href="#" class="btn btn-success"><span class="fa-solid fa-plus-circle"></span> Nowy raport </a>-->
+          <a href="#" class="btn btn-success" style="margin-left: 20px" id="showChoice"><span class="fa-solid fa-plus-circle"></span> Nowy raport </a>
   <!--    </div>-->
 <!--  <div class="container" id="komunikat" style="padding-bottom: 5px"></div>-->
   <div class="container-fluid pull-right" style="padding-right: 5px">
-    <a href="redirect:/wkrm/index" style="align-self: end"><button class="btn btn-info"> powrót </button> </a>
+    <a href="history_back()" style="align-self: end"><button class="btn btn-info"> powrót </button> </a>
   </div>
   <h3 style="text-align: center">Zestawienie zawiera raporty do 3 miesięcy wstecz od dnia dzisiejszego </h3>
 <!--  <a href="redirect:/wkrm/index" style="align-self: end"><button class="btn btn-info"> powrót </button> </a>-->
+  <input id="hospitalID" name="hospitalID">
   <table id="reports" class="table table-bordered table-striped table-responsive">
     <thead>
     <tr>
@@ -36,6 +37,30 @@
   </table>
 
   <br><br>
+  <!--modal dodanie nowego komunikatu start-->
+  <div class="modal fade" id="hospitalChoice">
+    <div class="modal-dialog" style="width: 940px">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Wybierz szpital, dla którego będziesz wprowadzał raport <i class="fa-solid fa-exclamation-circle"
+                                                                 style="color: blue"></i></h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body justify-content-center">
+          <div id="modalHospitalChoiceBody"></div>
+          <!--                        <div th:replace="addMessages :: addMessages"></div>-->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" onclick="choice()"><i class="fas fa-save"></i> Wybierz</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">
+            <i class="fas fa-close"></i>&nbsp;
+            Zamknij</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--modal dodanie nowego komunikatu end-->
+<!--  <input id="hospitalID" name="hospitalID">-->
 </div>
 </body>
 </html>
@@ -107,5 +132,25 @@
     });
 
   });
+
+  $('#showChoice').on('click', function (){
+    // window.location.href='/wkrm/hospitalChoice';
+    $('#hospitalChoice').modal();
+    show_choice_modal('/wkrm/hospitalChoice');
+  })
+
+  function show_choice_modal(url){
+   $('#modalHospitalChoiceBody').load(url, function (){});
+  }
+
+  function history_back(){
+    window.history.back();
+  }
+
+  function choice(){
+    let hospitalId = document.getElementById('hospitalID').value;
+    console.log("HospitalID:" + hospitalId);
+    window.location.href = '/wkrm/addReport/'+hospitalId;
+  }
 
 </script>

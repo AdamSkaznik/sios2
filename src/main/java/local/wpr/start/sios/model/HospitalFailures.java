@@ -8,7 +8,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 //model awarii oddziałów szpitalnych
@@ -53,12 +55,14 @@ public class HospitalFailures {
     @ManyToOne
     @JoinColumn(name = "userId", nullable = false)
     private User user;
+    @OneToMany(mappedBy = "hospitalFailures", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<HospitalFailuresFiles> hospitalFailuresFiles = new ArrayList<>();
 //    @ManyToOne
 //    @JoinColumn(name = "statusId", nullable = false)
 //    private Status status;
-    @ManyToMany(cascade = CascadeType.MERGE)
-    @JoinTable(name = "hospitalFailuresFiles", joinColumns = @JoinColumn(name = "hospitalFailuresId"), inverseJoinColumns = @JoinColumn(name = "hospitalFailuresFilesId"))
-    private Set<HospitalFailuresFiles> hospitalFailuresFiles;
+//    @ManyToMany(cascade = CascadeType.MERGE)
+//    @JoinTable(name = "hospitalFailuresFiles", joinColumns = @JoinColumn(name = "hospitalFailuresId"), inverseJoinColumns = @JoinColumn(name = "hospitalFailuresFilesId"))
+//    private Set<HospitalFailuresFiles> hospitalFailuresFiles;
     @Transient
     private boolean attachment;
 //    @ManyToMany(cascade = CascadeType.MERGE)

@@ -7,6 +7,7 @@ import local.wpr.start.sios.service.MessagesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -38,4 +39,12 @@ public class MessagesServiceImpl implements MessagesService {
     public List<Messages> getActiveMessages() {
         return messagesRepository.getActive();
     }
+
+//    @Override
+//    public void updateMessages(String content, Date endDate, Boolean messagesActive, Date startDate, String title, Long hospitalId, Long userId, Long messagesId) {
+//        messagesRepository.updateMessages(content, endDate, messagesActive, startDate, title, hospitalId, userId, messagesId);
+//
+//    }
+
+
 }

@@ -31,4 +31,8 @@ public class HospitalServiceImpl implements HospitalService {
     public void saveHospital(Hospital hospital) {
         hospitalRepository.save(hospital);
     }
+
+    public List<Hospital> getByName(String name){
+        return hospitalRepository.findByName(name);
+    }
 }

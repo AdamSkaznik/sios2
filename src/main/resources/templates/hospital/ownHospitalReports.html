@@ -11,6 +11,7 @@
     <a href="redirect:/hospital/index" style="align-self: end"><button class="btn btn-info" onclick="history_back()"><i class="fa-solid fa-arrows-rotate"></i> Powrót </button> </a>
   </div>
   <h3 style="text-align: center">Zestawienie zawiera raporty do 3 miesięcy wstecz TYLKO DLA TWOJEGO SZPITALA! </h3>
+  <h4 style="color: red; font-weight: bold; text-align: center">Edycja dostępna dla raportów do 5 dni od wprowadzenia</h4>
   <!--  <a href="redirect:/wkrm/index" style="align-self: end"><button class="btn btn-info"> powrót </button> </a>-->
   <table id="reports" class="table table-bordered table-striped table-responsive">
     <thead>
@@ -100,6 +101,11 @@
       // alert("Raport id wynosi: " + reportId);
       window.location.href='/api/viewsWkrmHospitalReport/v1/'+reportId;
       window.location.href='/hospital/ownHospitalReportDetails/'+reportId;
+    });
+
+    $('#reports tbody').on('click', '#edit', function (){
+      let data = ttable.row($(this).parents('tr')).data();
+      window.location.href='/hospital/editReport/'+data["id"];
     });
 
   });

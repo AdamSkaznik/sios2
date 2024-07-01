@@ -4,6 +4,7 @@ import local.wpr.start.sios.model.*;
 import local.wpr.start.sios.service.HospitalReportService;
 import local.wpr.start.sios.service.UserService;
 import local.wpr.start.sios.service.impl.HospitalConfigServiceimpl;
+import local.wpr.start.sios.service.impl.LogServiceImpl;
 import local.wpr.start.sios.service.impl.ReportServiceImpl;
 import local.wpr.start.sios.service.impl.UserViewServiceImpl;
 import org.slf4j.Logger;
@@ -30,6 +31,7 @@ import java.util.List;
 public class LoginController {
     private static final long PASSWORD_EXPIRATION_TIME = 30L * 24L * 60L * 1000L;
     private static final Logger LOG = LoggerFactory.getLogger(LoginController.class);
+    private static final String LOG_TITLE = "Logowanie - LOG";
     @Autowired
     UserService userService;
     @Autowired
@@ -40,12 +42,21 @@ public class LoginController {
     HospitalReportService hospitalReportService;
     @Autowired
     HospitalConfigServiceimpl hospitalConfigServiceimpl;
+    @Autowired
+    LogServiceImpl logServiceImpl;
 
 
     @GetMapping(value = {"/", "/index"})
-    public ModelAndView home(){
+    public ModelAndView home(Principal principal){
         ModelAndView mav = new ModelAndView();
-
+//        User user = userService.findUserByUserName(principal.getName());
+//        Log log = new Log();
+//        log.setLogType(LOG_TITLE);
+//        log.setUser(user);
+//        log.setLogDesc("Logowanie użytkownika " + user.getName());
+//        LocalDateTime ldt = LocalDateTime.now();
+//        log.setCreatedDate(ldt);
+//        logServiceImpl.saveLog(log);
         mav.setViewName("index");
         return mav;
     }
@@ -56,7 +67,15 @@ public class LoginController {
     }
 
     @GetMapping("/logout")
-    public String logout(){
+    public String logout(Principal principal){
+        User user = userService.findUserByUserName(principal.getName());
+        Log log = new Log();
+        log.setLogType(LOG_TITLE);
+        log.setUser(user);
+        log.setLogDesc("Wylogowanie użytkownika " + user.getName());
+        LocalDateTime ldt = LocalDateTime.now();
+        log.setCreatedDate(ldt);
+        logServiceImpl.saveLog(log);
         return "redirect:/index";
     }
 
@@ -74,9 +93,16 @@ public class LoginController {
         System.out.println("****************************");
         System.out.println("ZMiana hasła była : " + lastChangedTime);
         System.out.println("*****************************");
-        System.out.println("Do zmiany hasła pozostało: " + PASSWORD_EXPIRATION_TIME);
+        System.out.println("Do zmiany hasła pozostało: " +PASSWORD_EXPIRATION_TIME);
         System.out.println("*****************************");
         System.out.println("Do zmiany hasła pozostało dni: " + date);
+        Log log = new Log();
+        log.setLogType(LOG_TITLE);
+        log.setUser(user);
+        log.setLogDesc("Logowanie użytkownika " + user.getName());
+        LocalDateTime ldt = LocalDateTime.now();
+        log.setCreatedDate(ldt);
+        logServiceImpl.saveLog(log);
         return "/restrict/index";
     }
 }

@@ -28,29 +28,6 @@ public class SecuredController {
         return "/restrict/messages";
     }
 
-//    @GetMapping("/wkrm/details/{id}")
-//    public String goDetailsById(@PathVariable Long id, Model model){
-//        HospitalReport hospitalReport = null;
-//        hospitalReport = hospitalReportServiceImpl.getById(id);
-//        System.out.println("Przekazane ID raportu wynosi: " + id);
-//        System.out.println("***********************************************");
-//        System.out.println("Pobrane dane z bazy: " + hospitalReport.getHospitalReportId() + hospitalReport.getStateA() + "; " + hospitalReport.getStateB());
-////        HospitalConfig hospitalConfig = null;
-////        hospitalConfig = hospitalConfigServiceimpl.getHospitalConfigById(id);
-////        System.out.println("Hospital config: " + hospitalConfig.getHospitalConfigId()+"; " + hospitalConfig.getHospitalConfigDescription() + "; " + hospitalConfig.getBranch().getName());
-//        model.addAttribute("hospitalReport", hospitalReport);
-//        return "/wkrm/details";
-//    }
-
-//    @GetMapping("/wkrm/contact/{id}")
-//    public String goContactById(@PathVariable Long id, Model model){
-//        HospitalConfig hospitalConfig = null;
-//        hospitalConfig = hospitalConfigServiceimpl.getHospitalConfigById(id);
-//        System.out.println("Hospital config: " + hospitalConfig.getHospitalConfigId()+"; " + hospitalConfig.getHospitalConfigDescription() + "; " + hospitalConfig.getBranch().getName());
-//        model.addAttribute("hospitalConfig", hospitalConfig);
-//        return "/wkrm/contact";
-//    }
-
     @GetMapping("/restrict/account")
     public String goAccount(Principal principal){
         User account = userService.findUserByUserName(principal.getName());

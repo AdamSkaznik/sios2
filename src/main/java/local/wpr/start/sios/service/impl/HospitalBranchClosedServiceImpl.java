@@ -28,6 +28,11 @@ public class HospitalBranchClosedServiceImpl implements HospitalBranchClosedServ
         return hospitalBranchClosed;
     }
 
+    @Override
+    public HospitalBranchClosed getById(Long id) {
+        return hospitalBranchClosedRepository.getReferenceById(id);
+    }
+
 //    @Override
 //    public saveHospitalBranchClosed(HospitalBranchClosed hospitalBranchClosed) {
 //        hospitalBranchClosedRepository.save(hospitalBranchClosed);

@@ -28,6 +28,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query(value = zap2, nativeQuery = true)
     List<User> findByHospitalId(Long id);
 
+//    String zapWkrm = "select * from tab_users "
+
 //    String zapHospital = "SELECT * FROM tab_users WHERE "
 
 }

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!--    <title>Title</title>-->
+</head>
+<body>
+
+</body>
+</html><!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" xmlns:sd="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.w3.org/1999/xhtml"
+      th:replace="~{/wkrm/fragments/layout::layout(~{::.container-fluid})}">
+<head>
+  <meta charset="UTF-8">
+</head>
+<body>
+<div class="container-fluid" >
+  <div class="container-fluid pull-right" style="padding-right: 5px">
+    <a href="/hospital/index" style="align-self: end"><button class="btn btn-info"> Powrót </button> </a>
+  </div>
+  <h3 style="text-align: center">Zestawienie zawiera użytkowników </h3>
+  <button class="btn btn-success" id="addNewUser"><span class="fa-solid fa-plus-circle"></span> Nowy użytkownik</button>
+  <br><br>
+  <!--  <a href="redirect:/wkrm/index" style="align-self: end"><button class="btn btn-info"> powrót </button> </a>-->
+  <table id="users" class="table table-bordered table-striped table-responsive">
+    <thead>
+    <tr>
+      <th>Lp</th>
+      <th> Login </th>
+      <th> Imię i nazwisko </th>
+      <th>Adres e-mail </th>
+      <th>Ostatnia zmiana hasła</th>
+      <th>Konto aktywne?</th>
+      <th></th>
+    </tr>
+    </thead>
+  </table>
+  <br><br>
+  <!--modal addUser start-->
+  <div class="modal fade" id="addUser">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Nowy użytkownik <i class="fa-solid fa-exclamation-circle"
+                                                     style="color: blue"></i></h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body justify-content-center">
+          <div id="modalAddUser"></div>
+        </div>
+        <div class="modal-footer">
+          <!--                    <button type="button" class="btn btn-danger" data-dismiss="modal">Zamknij</button>-->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--modal addUser end-->
+  <!--modal mess start-->
+  <div class="modal fade" id="changePass">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Zmiana hasła dla użytkownika <i class="fa fa-exclamation-circle"
+                                                                  style="color: blue"></i></h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body justify-content-center">
+          <div id="modalChangePass"></div>
+        </div>
+        <div class="modal-footer">
+          <!--                    <button type="button" class="btn btn-danger" data-dismiss="modal">Zamknij</button>-->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--modal mess end-->
+</div>
+</body>
+</html>
+<script type="text/javascript">
+  $(document).ready(function(){
+    let ttable = $('#users').DataTable({
+
+      "bAutoWidth": true,
+      "sAjaxSource" : "/api/users/v1",
+      "sAjaxDataProp": "",
+      "aoColumns": [
+        {"mData": null,
+          sWidth: '20px',
+          "render" : function(data, type, full, meta){
+            return meta.index+1;
+          }},
+        {"mData": "userName"},
+        {"mData": "name"},
+        {"mData": "email"},
+        {"mData": "passwordChangedTime",
+          sWidth: '80px'},
+        {"mData": "active",
+          sWidth: '50px'},
+        {"mData": null,
+          sWidth: '50px',
+          "render": function (){
+            let a = "";
+            // a = a + '<a href="#"><span style="color: orange" class="fa-solid fa-info-circle" title="Szczegóły" id="details"></span></a>';
+            a = a + '&nbsp;&nbsp;<a href="#"><span style="color: green" class="fa-solid fa-pencil" title="Edycja" id="edit"></span></a>';
+            a = a + '&nbsp;&nbsp;<a href="#"><span style="color: blue" class="fa-solid fa-fingerprint" title="Reset hasła" id="resetPass"></span></a>';
+            a = a + '&nbsp;&nbsp;<a href="#"><span style="color: red" class="fa-solid fa-toggle-off" title="Deaktywuj konto" id="deactivate"></span></a>';
+            return a;
+          }},
+      ],
+      "columnDefs": [
+        {
+          "targets": 4,
+          "render": function(data, type, row, meta){
+            return moment(data).local().format('YYYY-MM-DD HH:mm:ss');
+          }
+        }
+      ],
+      "language": {
+        "processing": "Przetwarzanie...",
+        "search": "Szukaj:",
+        "lengthMenu": "Pokaż _MENU_ pozycji",
+        "info": "Pozycje od _START_ do _END_ z _TOTAL_ łącznie",
+        "infoEmpty": "Pozycji 0 z 0 dostępnych",
+        "infoFiltered": "(filtrowanie spośród _MAX_ dostępnych pozycji)",
+        "infoPostFix": "",
+        "loadingRecords": "Wczytywanie...",
+        "zeroRecords": "Nie znaleziono pasujących pozycji",
+        "emptyTable": "Nie znaleziono rekordów",
+        "paginate": {
+          "first": "Pierwsza",
+          "previous": "Poprzednia",
+          "next": "Następna",
+          "last": "Ostatnia"
+        },
+        "aria": {
+          "sortAscending": ": aktywuj, by posortować kolumnę rosnąco",
+          "sortDescending": ": aktywuj, by posortować kolumnę malejąco"
+        }}
+    })
+    ttable.on('order.dt', function (){
+      ttable.column(0, {search: 'applied', order: 'applied'}).nodes().each(function (cell, i){
+        cell.innerHTML = i + 1;
+      })
+    }).draw();
+    $('#users tbody').on('click', '#edit', function (){
+      let data = ttable.row($(this).parents('tr')).data();
+      let usersId = data["id"];
+      alert("user id wynosi: " + usersId);
+      window.location.href="/orm/admin/editUser/" + data["id"];
+      // window.location.href='/api/viewsWkrmHospitalReport/v1/'+reportId;
+      // window.location.href='/hospital/hospitalReportDetails/'+reportId;
+    });
+
+    $('#users tbody').on('click', '#resetPass', function (){
+      let data = ttable.row($(this).parents('tr')).data();
+      let userId = data["id"];
+      // show_passChange("/hospital/admin/passChange" + data["id"]);
+      window.location.href="/orm/admin/passChange/" + data["id"];
+    });
+
+  });
+
+
+  $('#addNewUser').on('click', function (){
+    show_add_new_user('/orm/admin/addUser');
+    $('#addUser').modal();
+  });
+
+  function show_add_new_user(url){
+    $('#modalAddUser').load(url, function(){});
+  }
+  function show_passChange(url){
+    $('#modalChangePass').load(url, function (){});
+  }
+
+</script>

@@ -61,7 +61,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Zmiana hasła dla użytkownika <i class="fa fa-exclamation-circle"
+                    <h4 class="modal-title">Zmiana hasła dla użytkownika <i class="fa-solid fa-exclamation-circle"
                                                                              style="color: blue"></i></h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
@@ -156,8 +156,9 @@
         $('#users tbody').on('click', '#resetPass', function (){
             let data = ttable.row($(this).parents('tr')).data();
             let userId = data["id"];
-            // show_passChange("/hospital/admin/passChange" + data["id"]);
-            window.location.href="/hospital/admin/passChange/" + data["id"];
+            $('#changePass').modal();
+            show_passChange("/hospital/admin/passChange/" + data["id"]);
+            // window.location.href="/hospital/admin/passChange/" + data["id"];
         });
 
     });

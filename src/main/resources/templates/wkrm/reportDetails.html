@@ -76,6 +76,22 @@
             </div>
         </div>
     </div>
+<!--    modal contact - end-->
+    !--    modal szczegóły - start-->
+    <div class="modal modal-xl fade" id="showContact">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title"> Szczegóły raportu <i class="glyphicon glyphicon-check" style="color: blue"></i></h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body justify-content-center">
+                    <div id="modalShowContactBody"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--    modal contact - end-->
 </div>
 </body>
 </html>
@@ -138,12 +154,15 @@
                 {"mData": "statec"},
                 {"mData": "doctora"},
                 {"mData": "update_date"},
+                // {"mData": "managment"},
                 {"mData": null,
                     sWidth: '80px',
                     "render": function (){
                         let a = "";
                         a = a + '<a href="#"><span style="color: orange" class="fa-solid fa-info-circle" title="Szczegóły" id="details"></span></a>';
                         a = a + '&nbsp;&nbsp;<a href="#"><span style="color: #0a53be" class="fa-solid fa-address-card" title="Kontakt" id="contact"></span></a>';
+
+                        // a = a + '&nbsp;&nbsp;<a href="#"><span style="color: #0a53be" class="fa-solid fa-address-card" title="Kontakt" id="contact"></span></a>';
                         a = a+'&nbsp;&nbsp;<a href="#"><span style="color: red" class="fas fa-edit" title="Edycja" id="edit"></span></a>';
                         return a;
                     }},
@@ -220,16 +239,16 @@
                     "sortDescending": ": aktywuj, by posortować kolumnę malejąco"
                 }}
         }).draw();
-        let addKom = document.getElementById("addKomunikat");
-        let hosReport = document.getElementById("hospitalReport");
-        addKom.addEventListener("click", function (){
-            // alert("Kliknąłeś!!!")
-            $('#add_messages').modal();
-            show_add_messages('/restrict/messages');
-        });
-        hosReport.addEventListener("click", function (){
-            window.location.href = '/wkrm/reportHospitalTable';
-        });
+        // let addKom = document.getElementById("addKomunikat");
+        // let hosReport = document.getElementById("hospitalReport");
+        // addKom.addEventListener("click", function (){
+        //     // alert("Kliknąłeś!!!")
+        //     $('#add_messages').modal();
+        //     show_add_messages('/restrict/messages');
+        // });
+        // hosReport.addEventListener("click", function (){
+        //     window.location.href = '/wkrm/reportHospitalTable';
+        // });
         $('#glowna tbody').on('click', '#details', function (){
             let data = table.row($(this).parents('tr')).data();
             // $('#showDetails').modal();
@@ -239,6 +258,8 @@
         });
         $('#glowna tbody').on('click', '#contact', function (){
             let data = table.row($(this).parents('tr')).data();
+            // $('#showContact').modal();
+            // show_contact_details('/wkrm/contact/'+data["hospitalConfigId"]);
             window.location.href='/wkrm/contact/'+data["hospitalConfigId"];
         });
     });
@@ -248,6 +269,8 @@
 //     alert("ReportId: " + data["reportId"]);
 //     // show_details('/wkr/reportSpecificDetails'+data["reportId"]);
 // });
-
+// function show_contact_details(url){
+//   $('#modalShowContactBody').load(url, function(){});
+// }
 
 </script>

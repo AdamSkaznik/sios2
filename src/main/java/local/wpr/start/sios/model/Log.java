@@ -17,17 +17,18 @@ import java.time.LocalDateTime;
 @Table(name = "tab_logi")
 public class Log {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long logId;
     private String logDesc;
+    private String logType;
     @CreatedDate
     @DateTimeFormat(pattern = "yyyy-MM-dd HH24:mm:ss")
     private LocalDateTime createdDate;
     @ManyToOne
     @JoinColumn(name = "userId", nullable = false)
     private User user;
-    @ManyToOne
-    @JoinColumn(name = "logTypeId", nullable = false)
-    private LogType logType;
+//    @ManyToOne
+//    @JoinColumn(name = "logTypeId", nullable = false)
+//    private LogType logType;
 
 }

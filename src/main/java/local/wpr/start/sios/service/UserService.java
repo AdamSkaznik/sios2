@@ -43,6 +43,8 @@ public class UserService {
     public List<User> getByHospital(Long id){
         return userRepository.findByHospitalId(id);
     }
+
+//    public List
     public List<Role> getRole() {
         return roleRepository.findAll();
     }
@@ -50,6 +52,7 @@ public class UserService {
 //        return userRepository.findById(userId);
 //    }
     public void saveUser(User user) {
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         userRepository.save(user);
 //        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 //        user.setActive(true);

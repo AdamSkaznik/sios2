@@ -24,7 +24,12 @@ public class HospitalProceduresServiceImpl implements HospitalProceduresService 
     }
 
     @Override
-    public List<HospitalProcedures> getAllHospitalProcedures() {
+    public List<HospitalProcedures> getAllHospitalProcedures(Long id) {
+        return hospitalProceduresRepository.findAllByHospital(id);
+    }
+
+    @Override
+    public List<HospitalProcedures> getAllProcedures() {
         return hospitalProceduresRepository.findAll();
     }
 
@@ -32,4 +37,5 @@ public class HospitalProceduresServiceImpl implements HospitalProceduresService 
     public HospitalProcedures getHospitalProceduresById(Long hospitalProceduresId) {
         return hospitalProceduresRepository.getReferenceById(hospitalProceduresId);
     }
+
 }

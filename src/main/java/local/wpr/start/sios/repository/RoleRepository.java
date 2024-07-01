@@ -15,4 +15,13 @@ public interface RoleRepository extends JpaRepository<Role, Integer> {
     String zapHospital = "SELECT * FROM tab_role WHERE role iLike 'HOSPITAL%'";
     @Query(value = zapHospital, nativeQuery = true)
     List<Role> findRoleToHospital();
+
+    String zapWkrm = "SELECT * FROM tab_role WHERE role iLike 'HOSPITAL%' OR role iLike 'WKRM%'";
+    @Query(value = zapWkrm, nativeQuery = true)
+    List<Role> findRoleToWkrm();
+
+    String zapOrm = "SELECT * FROM tab_role WHERE role iLike 'HOSPITAL%' OR role iLike 'ORM%'";
+    @Query(value = zapOrm, nativeQuery = true)
+    List<Role> findRoleToOrm();
+
 }

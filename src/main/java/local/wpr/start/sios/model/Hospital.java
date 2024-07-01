@@ -23,6 +23,7 @@ public class Hospital {
     @Column(length = 4096)
     private String hospitalDescription;
     private int kolej;
+    private boolean hospitalActive;
     @ManyToOne
     @JoinColumn(name = "addressId", nullable = true)
     private Address address;

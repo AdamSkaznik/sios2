@@ -86,6 +86,16 @@ public class ApiController {
         }
     }
 
+//    @RequestMapping(value = "/users/v1", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+//    public ResponseEntity<List<User>> getAllUsers(){
+//        try {
+//            return new ResponseEntity<List<User>>(userService.all(), HttpStatus.OK);
+//        }catch (Exception e){
+//            LOG.error("Błąd podczas pobierania danych z API /users/v1 : " + e.getMessage());
+//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//        }
+//    }
+
     @RequestMapping(value = "/address/v1", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Address>> getAllAddress(){
         try {
@@ -105,6 +115,16 @@ public class ApiController {
             return new ResponseEntity<List<Branch>>(branchService.getAllBranch(), HttpStatus.OK);
         } catch (Exception e) {
             LOG.error("Błąd podczas pobierania danych z API /branch/v1 : " + e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @RequestMapping(value = "/hospital/v1", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<Hospital>> getAllHospitals(String term){
+        try {
+            return new ResponseEntity<List<Hospital>>(hospitalService.getByName(term), HttpStatus.OK);
+        }catch (Exception e){
+            LOG.error("Błąd podczas pobierania danych z API /hospital/v1 : " + e.getMessage());
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
@@ -267,9 +287,11 @@ public class ApiController {
     }
 
     @RequestMapping(value = "/hospital/procedures/v1", method = RequestMethod.GET, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<HospitalProcedures>> getAllProcedures(){
+    public ResponseEntity<List<HospitalProcedures>> getAllProcedures(Principal principal){
+        User user = userService.findUserByUserName(principal.getName());
+        Long id1 = user.getHospital().getHospitalId();
         try {
-            return new ResponseEntity<List<HospitalProcedures>>(hospitalProceduresServiceImpl.getAllHospitalProcedures(), HttpStatus.OK);
+            return new ResponseEntity<List<HospitalProcedures>>(hospitalProceduresServiceImpl.getAllHospitalProcedures(id1), HttpStatus.OK);
         }catch (Exception e){
             LOG.error("Błąd podczas pobierania danych z API /hospital/procedures/v1" + e.getMessage());
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -397,6 +419,48 @@ public class ApiController {
         }
         System.out.println("Dane przekazane z API : " + temps);
         return new  ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PostMapping("/wkrm/saveOneReport")
+    public ResponseEntity<Void> saveWkrmOneReport(@RequestBody Temp temp, Principal principal){
+        System.out.println("Dane przekazane: " + temp.getTempId()+";"+ temp.getTempValue1()+";"+ temp.getTempValue2()+";"+ temp.getTempValue3()+";"+temp.getTempValue4());
+        User user = userService.findUserByUserName(principal.getName());
+        HospitalReport hospitalReport = hospitalReportServiceImpl.getById(temp.getTempId());
+        int val1 = temp.getTempValue1();
+        int val2 = temp.getTempValue2();
+        int val3 = temp.getTempValue3();
+        int val4 = temp.getTempValue4();
+        hospitalReport.setStateA(val1);
+        hospitalReport.setStateA_1(Integer.toString(val1));
+        hospitalReport.setStateB(val2);
+        hospitalReport.setStateB_1(Integer.toString(val2));
+        hospitalReport.setStateC(val3);
+        hospitalReport.setStateC_1(Integer.toString(val3));
+        hospitalReport.setDoctorA(val4);
+        LocalDateTime LDT = LocalDateTime.now();
+        LocalDateTime LD1 = hospitalReport.getStateADate();
+        LocalDateTime LD2 = hospitalReport.getStateBDate();
+        LocalDateTime LD3 = hospitalReport.getStateCDate();
+        hospitalReport.setUpdateDate(LDT);
+        if(LD1 == null){
+            hospitalReport.setStateADate(LDT);
+        }
+        if(LD2 == null){
+            hospitalReport.setStateBDate(LDT);
+        }
+        if(LD3 == null){
+            hospitalReport.setStateCDate(LDT);
+        }
+        hospitalReport.setUser(user);
+
+        try {
+            hospitalReportServiceImpl.saveHospitalReport(hospitalReport);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e){
+            e.printStackTrace();
+            LOG.error("Błąd podczas dodawania raportu: " + e.getMessage());
+            return new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
+        }
     }
 
 }

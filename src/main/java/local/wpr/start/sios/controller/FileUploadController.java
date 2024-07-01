@@ -94,8 +94,56 @@ public class FileUploadController {
                     .body(resource);
         }catch (Exception e){
             LOG.error("Błąd podczas pobierania pliku: "+filename, e);
+            LOG.error("Konkretnie chodzi o " + e.getMessage());
             return ResponseEntity.badRequest().build();
         }
     }
+    @GetMapping("downloadMessages/{filename:.+}")
+    @ResponseBody
+    public ResponseEntity<Resource> downloadMessagesFile(@PathVariable String filename){
+        try {
+            Path file = Paths.get("uploadMessages").resolve(filename).normalize();
+            Resource resource = new ByteArrayResource(Files.readAllBytes(file));
+            return ResponseEntity.ok()
+                    .header(HttpHeaders.CONTENT_DISPOSITION, "uploadMessages; filename=\""+file.getFileName().toString()+"\"")
+                    .body(resource);
+        }catch (Exception e){
+            LOG.error("Błąd podczas pobierania pliku: "+filename, e);
+            LOG.error("Konkretnie chodzi o " + e.getMessage());
+            return ResponseEntity.badRequest().build();
+        }
+    }
+    @GetMapping("downloadHospitalBranchClosedFiles/{filename:.+}")
+    @ResponseBody
+    public ResponseEntity<Resource> downloadHospitalBranchClosedFiles(@PathVariable String filename){
+        try {
+            Path file = Paths.get("uploadBranchClosed").resolve(filename).normalize();
+            Resource resource = new ByteArrayResource(Files.readAllBytes(file));
+            return ResponseEntity.ok()
+                    .header(HttpHeaders.CONTENT_DISPOSITION, "uploadBranchClosed; filename=\""+file.getFileName().toString()+"\"")
+                    .body(resource);
+        }catch (Exception e){
+            LOG.error("Błąd podczas pobierania pliku: "+filename, e);
+            LOG.error("Konkretnie chodzi o " + e.getMessage());
+            return ResponseEntity.badRequest().build();
+        }
+    }
+    @GetMapping("downloadHospitalFailures/{filename:.+}")
+    @ResponseBody
+    public ResponseEntity<Resource> downloadHospitalFailures(@PathVariable String filename){
+        try {
+            Path file = Paths.get("uploadFailuresFiles").resolve(filename).normalize();
+            Resource resource = new ByteArrayResource(Files.readAllBytes(file));
+            return ResponseEntity.ok()
+                    .header(HttpHeaders.CONTENT_DISPOSITION, "uploadFailuresFiles; filename=\""+file.getFileName().toString()+"\"")
+                    .body(resource);
+        }catch (Exception e){
+            LOG.error("Błąd podczas pobierania pliku: "+filename, e);
+            LOG.error("Konkretnie chodzi o " + e.getMessage());
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+
 
 }

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" xmlns:sd="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.w3.org/1999/xhtml"
+      th:replace="~{/wkrm/fragments/layout::layout(~{::.container-fluid})}">
+<head>
+  <meta charset="UTF-8">
+</head>
+<body>
+<div class="container-fluid" >
+  <center><h3 style="font-weight: bold">Komunikaty szpitali (wszystkie)</h3></center>
+  <!--  <br>-->
+  <!--  <button class="btn btn-success" id="addProcedures"><span class="fa-solid fa-plus-circle"></span></button>-->
+  <br>
+  <button class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Dodaj nowy komunikat" id="add_new_messages" ><i class="fa-solid fa-plus-circle"></i>&nbsp;&nbsp;Nowy komunikat</button>
+  <br>
+  <table id="messages" class="table table-bordered table-striped display" style="width: 100%">
+    <thead>
+    <tr>
+      <!--      <th>Lp.</th>-->
+      <th style="width: 20px">Lp.</th>
+      <th style="width: 80px">Data dodania</th>
+      <th style="width: 230px">Termin</th>
+      <th style="width: 80px">Aktywna</th>
+      <th>Temat</th>
+      <th style="width: 80px"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="messages, lp: ${messagesList}" class="clicable-row" title="Kliknij ikonę szczegółów, aby zobaczyć więcej informacji">
+      <td th:text="${lp.index + 1}"></td>
+      <td th:text="${#temporals.format(messages.addDate, 'yyyy-MM-dd')}"></td>
+      <td th:text="'od:  ' + ${#dates.format(messages.startDate, 'yyyy-MM-dd')} + ' do ' + ${#dates.format(messages.endDate, 'yyyy-MM-dd')}" style="font-weight: bold; color: red"></td>
+      <!--      <td th:text="${messages.messagesActive}"></td>-->
+      <!--      <td th:if="${messages.messagesActive} == true"></td>-->
+      <td>
+        <div th:if="${messages.messagesActive}"><i class="fa-regular fa-thumbs-up" style="color: green"></i></div>
+        <div th:unless="${messages.messagesActive}"><i class="fa-regular fa-thumbs-down" style="color: red"></i></div>
+      </td>
+      <td th:text="${messages.title}"></td>
+      <td>
+        <a th:href="@{detailsMessage/{id}(id=${messages.messagesId})}" th:title="szczegóły"><i class="fa-solid fa-info-circle"></i></a>
+        <a th:href="@{editMessage1/{id}(id=${messages.messagesId})}" th:title="edytuj"><i class="fa-solid fa-pencil" style="color: #2dc26b; padding-left: 10px"></i></a>
+        <a th:href="@{deleteMessage/{id}(id=${messages.messagesId})}" th:title="usuń"><i class="fa-solid fa-trash-alt" style="color: red; padding-left: 10px"></i></a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+
+</div>
+</body>
+</html>
+<script type="text/javascript">
+  table = $("#messages").DataTable({
+    "bAutoWidth": true,
+    "bLengthChange": false,
+    "pageLength": 10,
+    "ordering": false,
+    "sAjaxDataProp": "",
+
+    "language": {
+      "processing": "Przetwarzanie...",
+      "search": "Szukaj:",
+      "lengthMenu": "Pokaż _MENU_ pozycji",
+      "info": "Pozycje od _START_ do _END_ z _TOTAL_ łącznie",
+      "infoEmpty": "Pozycji 0 z 0 dostępnych",
+      "infoFiltered": "(filtrowanie spośród _MAX_ dostępnych pozycji)",
+      "infoPostFix": "",
+      "loadingRecords": "Wczytywanie...",
+      "zeroRecords": "Nie znaleziono pasujących pozycji",
+      "emptyTable": "Nie znaleziono rekordów",
+      "paginate": {
+        "first": "Pierwsza",
+        "previous": "Poprzednia",
+        "next": "Następna",
+        "last": "Ostatnia"
+      },
+      "aria": {
+        "sortAscending": ": aktywuj, by posortować kolumnę rosnąco",
+        "sortDescending": ": aktywuj, by posortować kolumnę malejąco"
+      }
+    }
+
+  });
+  $('#add_new_messages').on('click', function (){
+    window.location='/wkrm/addMessages';
+
+  });
+
+</script>

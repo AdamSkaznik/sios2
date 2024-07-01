@@ -19,12 +19,20 @@
         <div class="card-body">
             <table class="table table-bordered table-striped">
                 <tr>
+                    <td>Komunikat aktualny?</td>
+                    <td>
+                        <div th:if="${messages.messagesActive}" style="text-align: center"><h3 style="color: green">Komunikat aktualny</h3></div>
+                        <div th:unless="${messages.messagesActive}" style="text-align: center"><h3 style="color: red">UWAGA.Komunikat nieaktualny!!!</h3> </div>
+                    </td>
+
+                </tr>
+                <tr>
                     <td>Data dodania</td>
-                    <td th:text="${messages.addDate}"></td>
+                    <td th:text="${#temporals.format(messages.addDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
                 </tr>
                 <tr>
                     <td>Data obowiązywania</td>
-                    <td></td>
+                    <td th:text="${#dates.format(messages.endDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
                 </tr>
                 <tr>
                     <td>Temat</td>
@@ -54,7 +62,7 @@
                                 <span th:if="${#strings.endsWith(files.fileName.toLowerCase(), '.msg')}">
                 <i class="fas fa-file-signature"></i>
               </span>
-                                <a th:href="@{/downloadProcedures/{filename}(filename=${files.fileName})}" th:text="${files.fileName}" download></a>
+                                <a th:href="@{/downloadMessages/{filename}(filename=${files.fileName})}" th:text="${files.fileName}" download></a>
                             </li>
                         </ol>
                     </td>

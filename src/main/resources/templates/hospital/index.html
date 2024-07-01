@@ -123,7 +123,7 @@
 <!--            </td>-->
             <td>
                 <a th:href="@{detailsMessage/{id}(id=${messages.messagesId})}" th:title="szczegóły"><i class="fa-solid fa-info-circle"></i></a>
-                <a th:if="${messages.hospital.hospitalId == user.hospital.hospitalId}" th:href="@{editMessage/{id}(id=${messages.messagesId})}" th:title="edytuj"><i class="fa-solid fa-pencil" style="color: #2dc26b; padding-left: 10px"></i></a>
+<!--                <a th:if="${messages.hospital.hospitalId == user.hospital.hospitalId}" th:href="@{editMessage/{id}(id=${messages.messagesId})}" th:title="edytuj"><i class="fa-solid fa-pencil" style="color: #2dc26b; padding-left: 10px"></i></a>-->
                 <a th:if="${messages.hospital.hospitalId == user.hospital.hospitalId}" th:href="@{deleteMessage/{id}(id=${messages.messagesId})}" th:title="usuń"><i class="fa-solid fa-trash-alt" style="color: red; padding-left: 10px"></i></a>
             </td>
         </tr>

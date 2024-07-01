@@ -132,17 +132,21 @@
                         <td> Dodatkowe informacje</td>
                         <td ><span style="color: #0c0c0c; font-weight: bold" th:text="*{branch.branchDescription}"></span></td>
                     </tr>
+                    <th:block th:if="*{managment != null}">
                     <tr>
                         <td colspan="2" style="text-align: center; font-weight: bold"> Dane kontaktowe - Kierownictwo</td>
                     </tr>
                     <tr>
                         <td> Stanowisko, Imię i nazwisko</td>
                         <td ><span style="color: #0c0c0c; font-weight: bold" th:text="*{managment.managmentPerson}"></span></td>
+<!--                        <td ><span style="color: #0c0c0c; font-weight: bold" th:text="*{managment.managmentPerson !=null} ? *{managment.managmentPerson} : 'BRAK DANYCH'"></span></td>-->
                     </tr>
                     <tr>
                         <td> Kontaktowe nr telefonów</td>
-                        <td ><span style="color: #0c0c0c; font-weight: bold" th:text="*{managment.managmentPhone}"></span></td>
+                        <td ><span style="color: #0c0c0c; font-weight: bold" th:text="*{managment.managmentPhone +' tel. kom. '+managment.managmentMobilePhone}"></span></td>
+<!--                        <td ><span style="color: #0c0c0c; font-weight: bold" th:text="*{managment.managmentPhone != null && managment.managmentMobilePhone != null} ? *{managment.managmentPhone +' tel. kom. '+managment.managmentMobilePhone} : 'BRAK DANYCH'"></span></td>-->
                     </tr>
+                    </th:block>
                 </table>
                 <div class="pull-right">
                     <button class="btn btn-success" onclick="history_back()"><i class="fas fa-close"></i> Zamknij</button>

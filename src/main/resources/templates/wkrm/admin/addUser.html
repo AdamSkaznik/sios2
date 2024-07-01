@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/x-icon" href="/images/icon.png">
+
+  <link rel="stylesheet" href="/srb/css/bootstrap.min.css" th:href="@{/srb/css/bootstrap.min.css}">
+  <link rel="stylesheet" href="/srb/css/bootstrap.css" th:href="@{/srb/css/bootstrap.css}">
+  <link rel="stylesheet" href="/srb/css/datatables.bootstrap.min.css" th:href="@{/srb/css/datatables.bootstrap.min.css}">
+  <link rel="stylesheet" href="/srb/css/datatables.css" th:href="@{/srb/css/datatables.css}">
+  <!--    fixed header and footer-->
+  <link rel="stylesheet" href="/srb/css/fixedheader.dataTables.css" th:href="@{/srb/css/fixedheader.dataTables.css}">
+  <link rel="stylesheet" href="/srb/css/uikit.min.css" th:href="@{/srb/css/uikit.min.css}">
+  <link rel="stylesheet" href="/srb/css/uikit.css" th:href="@{/srb/css/uikit.css}">
+  <link rel="stylesheet" href="/srb/css/select2.css" th:href="@{/srb/css/select2.css}">
+  <link rel="stylesheet" href="/srb/css/bootstrap-datepicker.min.css" th:href="@{/srb/css/bootstrap-datepicker.min.css}">
+  <link rel="stylesheet" href="/webjars/font-awesome/6.5.1/css/all.css" th:href="@{/webjars/font-awesome/6.5.1/css/all.css}">
+  <!--    	<link rel="stylesheet" href="/css/font-awesome.css" th:href="@{/css/font-awesome.css}">-->
+  <!--    	<link rel="stylesheet" href="/css/font-awesome.min.css" th:href="@{/css/font-awesome.min.css}">-->
+  <link rel="stylesheet" href="/srb/css/toastr.min.css" th:href="@{/srb/css/toastr.min.css}">
+  <!--    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.3/css/dataTables.dataTables.css">-->
+  <script th:src="@{/srb/js/uikit.js}"></script>
+  <script th:src="@{/srb/js/uikit-icons.js}"></script>
+  <script th:src="@{/srb/js/jquery-3.6.0.js}"></script>
+  <script th:src="@{/srb/js/datatables.js}"></script>
+  <script th:src="@{/srb/js/dataTables.bootstrap.min.js}"></script>
+  <!--    fixed header and footer-->
+  <script src="/srb/js/dataTables.fixedHeader.js" th:src="@{/srb/js/dataTables.fixedHeader.js}"></script>
+  <!--    <script th:src="@{/srb/js/dataTables.fixedHeader.js}"></script>-->
+  <!--    <script th:src="@{/srb/js/fixedHeader.dataTables.js}"></script>-->
+  <!--    <script th:src="@{/js/datatables.sum().js}"></script>-->
+  <!--    <script th:src="@{/srb/js/dataTables.bootstrap.min.js}"></script>-->
+  <script th:src="@{/srb/js/bootstrap.js}"></script>
+  <script th:src="@{/srb/js/select2.min.js}"></script>
+  <script th:src="@{/srb/js/typehead.js}"></script>
+  <script th:src="@{/srb/js/i18n/pl.js}"></script>
+  <script th:src="@{/srb/js/bootstrap-datepicker.min.js}"></script>
+  <script th:src="@{/srb/js/i18n/bootstrap-datepicker.pl.min.js}"></script>
+  <script th:src="@{/srb/js/moment.js}"></script>
+  <!--    	<script th:src="@{/js/fontawesome.js}"></script>-->
+  <script th:src="@{/srb/js/toastr.min.js}"></script>
+  <script th:src="@{/srb/js/sweetalert.min.js}"></script>
+  <script src="/webjars/font-awesome/6.5.1/js/fontawesome.min.js" th:src="@{/webjars/font-awesome/6.5.1/js/fontawesome.min.js}"></script>
+  <!--    <title>Title</title>-->
+</head>
+<body>
+<div class="card">
+  <form class="form" style="margin: auto" th:object="${user}" th:action="@{/wkrm/admin/saveNewUser}" method="post">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="col-sm">
+          <label>Login</label>
+          <input type="text" class="form-control" th:field="*{userName}">
+
+        </div>
+        <div class="col-sm">
+          <label>Hasło</label>
+          <input type="text" class="form-control" th:field="*{password}">
+        </div>
+        <div class="col-sm">
+          <label>Imię</label>
+          <input type="text" class="form-control" th:field="*{firstName}">
+        </div>
+        <div class="col-sm">
+          <label>Nazwisko</label>
+          <input type="text" class="form-control" th:field="*{LastName}">
+        </div>
+        <div class="col-sm">
+          <label>Adres e-mail</label>
+          <input type="text" class="form-control" th:field="*{email}">
+        </div>
+        <div class="col-sm">
+          <label> Szpital/Oddział</label>
+          <select class="form-control" id="hospital" style="width: 100%" required></select>
+        </div>
+        <p>
+          <label>Rola w aplikacji:<br>
+            <input style="padding-left: 10px; padding-right: 10px; margin-left: 10px; margin-right: 10px" type="checkbox" name="roles"
+                   th:each="role : ${allRoles}"
+                   th:text="${role.role}"
+                   th:value="${role.id}"
+                   th:field="*{roles}"
+            />
+            <br>
+          </label>
+        </p>
+        <input type="hospitalId" th:field="*{hospital}">
+      </div>
+      <div class="panel-footer">
+        <button type="button" class="btn btn-danger" formnovalidate onclick="history_back()"><i class="fas fa-close"></i> Anuluj </button>
+        <button type="submit" class="btn btn-primary pull-right"><i class="fas fa-save"></i> Zapisz</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+</body>
+</html>
+<script>
+  function history_back(){
+    window.history.back();
+  }
+  $(function (){
+    $('#hospital').select2({
+      language: "pl",
+      placeholder: "Wybierz...",
+      theme: 'bootstrap4',
+      selectionCssClass: 'form-control',
+      ajax: {
+        url: "/api/hospital/v1",
+        dataType: 'json',
+        type: 'GET',
+        data: function (params){
+          console.log(params)
+          return {
+            term: params.term,
+            page: params.page || 1,
+          }
+        },
+        processResults(data) {
+          console.log(data)
+          return {
+            results: $.map(data, function (item){
+              return {
+                text: item.name,
+                id: item.hospitalId,
+              }
+            })
+          }
+        }
+      }
+    })
+  });
+  $('#hospital').on('change', function (){
+    $('#hospitalId').val($(this).val());
+  });
+</script>

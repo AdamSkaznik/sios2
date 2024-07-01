@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" xmlns:sd="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.w3.org/1999/xhtml"
+      th:replace="~{/wkrm/fragments/layout::layout(~{::.container-fluid})}">
+<head>
+  <meta charset="UTF-8">
+</head>
+<body>
+<div class="container-fluid" >
+  <center><h3 style="font-weight: bold">Wyłączenia Oddziałów</h3></center>
+  <!--  <br>-->
+  <button class="btn btn-success" id="addHospitalExclusion"><span class="fa-solid fa-plus-circle"></span> Dodaj wyłączenie</button>
+  <br><br>
+  <table id="tableProcedures" class="table table-bordered table-striped display" style="width: 100%">
+    <thead>
+    <tr>
+      <th>Lp.</th>
+      <th>Szpital</th>
+      <th>Oddział</th>
+      <th>Wyłączenie w okresie</th>
+      <th>Temat</th>
+      <!--      <th>Załączniki</th>-->
+      <!--      <th>Procedurę umieścił</th>-->
+      <!--      <th>Data aktualizacji</th>-->
+      <th>Akcje</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="hospitalBranchClosed, lp: ${listHospitalBranchClosed}">
+      <td th:text="${lp.index + 1}"></td>
+      <td th:text="${hospitalBranchClosed.hospital.name}"></td>
+      <td th:text="${hospitalBranchClosed.hospitalConfig.branch.name}"></td>
+      <td th:text="'od:  ' + ${#dates.format(hospitalBranchClosed.dateFrom, 'yyyy-MM-dd')} + ' do ' + ${#dates.format(hospitalBranchClosed.dateTo, 'yyyy-MM-dd')}"></td>
+      <!--      td th:text="'od:  ' + ${#dates.format(messages.startDate, 'yyyy-MM-dd')} + ' do ' + ${#dates.format(messages.endDate, 'yyyy-MM-dd')}" style="font-weight: bold; color: red"></td>-->
+      <td th:text="${hospitalBranchClosed.title}"></td>
+      <td>
+        <a th:href="@{detailsHospitalBranchClosed/{id}(id=${hospitalBranchClosed.id})}" th:title="szczegóły"><i class="fa-solid fa-info-circle" style="color: greenyellow" data-tooltip="szczegóły"></i></a></td>
+      <!--      <td>-->
+      <!--        <ol>-->
+      <!--          <li th:each="files: ${hospitalProcedures.hospitalProceduresFiles}" >-->
+      <!--              <span th:if="${#strings.endsWith(files.fileName.toLowerCase(), '.pdf')}">-->
+      <!--                <i class="fas fa-file-pdf" style="color: red"></i>-->
+      <!--              </span>-->
+      <!--            <span th:if="${#strings.endsWith(files.fileName.toLowerCase(), '.doc') || #strings.endsWith(files.fileName.toLowerCase(), 'docx')}">-->
+      <!--                <i class="fas fa-file-word" style="color: blue"></i>-->
+      <!--              </span>-->
+      <!--            <span th:if="${#strings.endsWith(files.fileName.toLowerCase(), '.txt')}">-->
+      <!--                <i class="fas fa-file-text" style="color: red"></i>-->
+      <!--              </span>-->
+      <!--            <span th:if="${#strings.endsWith(files.fileName.toLowerCase(), '.xlsx') || #strings.endsWith(files.fileName.toLowerCase(), '.xls') || #strings.endsWith(files.fileName.toLowerCase(), '.csv')}">-->
+      <!--                <i class="fas fa-file-excel" style="color: green"></i>-->
+      <!--              </span>-->
+      <!--            <span th:if="${#strings.endsWith(files.fileName.toLowerCase(), '.msg')}">-->
+      <!--                <i class="fas fa-file-signature"></i>-->
+      <!--              </span>-->
+      <!--            <a th:href="@{/downloadProcedures/{filename}(filename=${files.fileName})}" th:text="${files.fileName}" download></a>-->
+      <!--            &lt;!&ndash;              &nbsp;&nbsp;&nbsp;&ndash;&gt;-->
+      <!--            &lt;!&ndash;              <button class="btn btn-danger btn-sm" onclick="deleteAttachment(${files.id})">&ndash;&gt;-->
+      <!--            &lt;!&ndash;                <i class="fas fa-trash-alt" style="color: red; padding-right: 10px; float: right"></i>&ndash;&gt;-->
+      <!--            &lt;!&ndash;              </button>&ndash;&gt;-->
+
+      <!--          </li>-->
+      <!--        </ol>-->
+      <!--      </td>-->
+      <!--      <td th:text="${hospitalProcedures.user.getName()}"></td>-->
+      <!--      &lt;!&ndash;        <td th:text="${hospitalProcedures.modifiedDateTime}"></td>&ndash;&gt;-->
+      <!--      <td th:text="${#temporals.format(hospitalProcedures.modifiedDateTime, 'yyyy-MM-dd HH:mm:ss')}"></td>-->
+      <!--      <td>-->
+      <!--          <a th:href="@{edit/{id}(id=${hospitalProcedures.hospitalProceduresId})}"> Edytuj</a>-->
+      <!--        <a th:href="@{detailsProcedures/{id}(id=${hospitalProcedures.hospitalProceduresId})}" th:title="szczegóły"><i class="fa-solid fa-info-circle" style="color: greenyellow" data-tooltip="szczegóły"></i></a>&nbsp;&nbsp;-->
+      <!--        <a th:href="@{edit/{id}(id=${hospitalProcedures.hospitalProceduresId})}" th:title="edycja"><i class="fa-solid fa-pencil"></i></a>&nbsp;&nbsp;-->
+      <!--        <a th:href="@{delete/{id}(id=${hospitalProcedures.hospitalProceduresId})}" th:title="usuń"><i class="fa-solid fa-trash-alt" style="color: red"></i></a>-->
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <!--    modal dla dodania procedury - start-->
+  <div class="modal fade" id="add_procedures">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title"> Dodaj procedurę <i class="glyphicon glyphicon-info-sign" style="color: blue"></i></h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body justify-content-center">
+          <div id="modalAddProceduresBody"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--    modal dla dodanie procedury - end-->
+  <!--    modal dla szczegółów - start-->
+  <div class="modal fade" id="showDetails">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title"> Szczegóły <i class="glyphicon glyphicon-info-sign" style="color: blue"></i></h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body justify-content-center">
+          <div id="modalShowDetailsBody"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--    modal dla szczegółów - end-->
+  <!--    modal dla edycji - start-->
+  <div class="modal fade" id="showEdit">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title"> Edycja <i class="glyphicon glyphicon-info-sign" style="color: blue"></i></h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body justify-content-center">
+          <div id="modalShowEditBody"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--    modal dla edycji - end-->
+</div>
+</body>
+</html>
+<script type="text/javascript">
+
+  $(document).ready(function (){
+
+
+    table = $("#tableProcedures").DataTable({
+      "bAutoWidth": true,
+      "bLengthChange": false,
+      "pageLength": 5,
+      // "sAjaxSource": "/api/hospital/procedures/v1",
+      "sAjaxDataProp": "",
+
+      "language": {
+        "processing": "Przetwarzanie...",
+        "search": "Szukaj:",
+        "lengthMenu": "Pokaż _MENU_ pozycji",
+        "info": "Pozycje od _START_ do _END_ z _TOTAL_ łącznie",
+        "infoEmpty": "Pozycji 0 z 0 dostępnych",
+        "infoFiltered": "(filtrowanie spośród _MAX_ dostępnych pozycji)",
+        "infoPostFix": "",
+        "loadingRecords": "Wczytywanie...",
+        "zeroRecords": "Nie znaleziono pasujących pozycji",
+        "emptyTable": "Nie znaleziono rekordów",
+        "paginate": {
+          "first": "Pierwsza",
+          "previous": "Poprzednia",
+          "next": "Następna",
+          "last": "Ostatnia"
+        },
+        "aria": {
+          "sortAscending": ": aktywuj, by posortować kolumnę rosnąco",
+          "sortDescending": ": aktywuj, by posortować kolumnę malejąco"
+        }
+      }
+
+    });
+
+    $('#addHospitalExclusion').on('click', function (){
+      // show_add_procedures('/hospital/addProcedure');
+      // $('#add_procedures').modal();
+      window.location='/hospital/addExclusion';
+    })
+
+    $('#tableProcedures tbody').on('click', '#details', function (){
+      let data = table.row($(this).parents('tr')).data();
+      show_details_procedures('/hospitalProceduresDetails'+data["hospitalProceduresId"]);
+      $('#showDetails').modal();
+    });
+
+    function show_add_procedures(url){
+      $('#modalAddProceduresBody').load(url, function (){});
+    }
+    function show_details_procedures(url){
+      $('#modalShowDetailsBody').load(url, function (){});
+    };
+
+  })
+</script>

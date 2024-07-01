@@ -93,10 +93,7 @@
                             <div id="textarea_feedback1"></div>
                         </td>
                     </tr>
-<!--                    <tr>-->
-<!--                        <td>Zaznacz, jeśli Wojewoda wyraził zgodę</td>-->
-<!--                        <td><input type="checkbox"></td>-->
-<!--                    </tr>-->
+
                     <tr>
                         <td>Oddział, którego dotyczy awaria <small style="color: #0d6efd"> (Wybierz wartość ze słownika)</small></td>
                         <td><select class="form-control" id="hospitalConfig" style="width: 100%" data-placeholder="Wybierz..." required>
@@ -109,7 +106,7 @@
                         <td colspan="2">
                             <label for="files"> Załączniki</label>
                             <input type="file" id="files" name="files" multiple class="form-control" onchange="updateFileList()">
-                            <input type="text" th:field="*{attachment}" value="false" id="attachment">
+                            <input type="text" th:field="*{attachment}" value="false" id="attachment" hidden>
 <!--                            <div th:if="${errorMessage}" class="alert alert-danger" role="alert">-->
 <!--                                <p style="color: red; font-weight: bold" th:text="${errorMessage}"></p>-->
 <!--                            </div>-->

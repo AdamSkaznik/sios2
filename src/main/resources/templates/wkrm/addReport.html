@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" xmlns:sd="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.w3.org/1999/xhtml"
+      th:replace="~{/wkrm/fragments/layout2::layout(~{::.container-fluid})}">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    .input-error{
+      outline: 1px solid red;
+    }
+  </style>
+</head>
+<body>
+<div class="container-fluid" style="padding-top: 100px">
+  <div class="row" style="padding-top: 10px;">
+    <div class="container-fluid pull-right" style="padding-right: 5px">
+      <button class="btn btn-info" onclick="history_back()"><i class="fa-solid fa-refresh"></i> Powrót</button>
+    </div>
+  </div>
+
+  <center><h3> Nowy raport dzienny dla : <b style="color: #0d6efd" th:text="${hospitalName}"></b></h3></center>
+  <form method="post" th:object="${hospitalReport}">
+    <table class="table table-bordered table-striped" id="reportTable">
+      <tr>
+        <th> Nazwa oddziału</th>
+        <th style="display: none"> ID</th>
+        <th>Stan na godz. 06:00</th>
+        <th>Stan na godz. 14:00</th>
+        <th>Stan na godz. 22:00</th>
+        <th>Deklarowana ilość lekarzy</th>
+        <th></th>
+      </tr>
+      <div th:each="hospitalReport: ${hospitalReports}">
+        <tr>
+          <td th:text="${hospitalReport.hospitalConfig.branch.name}" class="column-data1"></td>
+          <td style="display: none" th:text="${hospitalReport.getHospitalReportId()}" class="column-data2" id="column-data2"></td>
+          <td><input th:value="${hospitalReport.stateA}" class="stan1 column-data3" id="stan1" onkeypress='validate(event)' ></td>
+          <td><input th:value="${hospitalReport.stateB}" class="stan2 column-data4" id="stan2" onkeypress='validate(event)' ></td>
+          <td><input th:value="${hospitalReport.stateC}" class="stan3 column-data5" id="stan3"  onkeypress='validate(event)'></td>
+          <td><input th:value="${hospitalReport.doctorA}" class="column-data6" onkeypress='validate(event)'></td>
+          <td>
+            <!--                    <a th:href="@{/hospital/save/(id=${hospitalReport.hospitalReportId})}" th:title="Zapisz" onclick="pop()"></a>-->
+            <button type="button" class="btn btn-danger" id="saveReport"><i class="fa-solid fa-save"></i> Zapisz</button>
+          </td>
+        </tr>
+      </div>
+    </table>
+
+  </form>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+  const temps = [];
+  function pop(){
+    alert("Kliknięto. Id wynosi: " + id);
+  }
+  // window.onload = function newReport();
+  document.addEventListener("DOMContentLoaded", newReport);
+  function newReport(){
+    const now = new Date();
+    let hour = now.getHours().toString();
+    let min = now.getMinutes().toString();
+    let sec = now.getSeconds().toString();
+    const nodeList1 = document.querySelectorAll(".stan1");
+    const nodeList2 = document.querySelectorAll(".stan2");
+    const nodeList3 = document.querySelectorAll(".stan3");
+    console.log("Hour : " + hour);
+    console.log("Min: " + min);
+    if(hour >= 0 && hour <=9){
+      hour = 0+hour;
+    }
+    if(min >=0 && min <=9){
+      min = 0+min;
+    }
+    if(sec >= 0 && sec <= 9){
+      sec = 0 + sec;
+    }
+    let testTime = hour+":"+min+":"+sec;
+    console.log("testTime: " + testTime );
+    let blocked = null;
+    if ((testTime  >= '22:00:01') && (testTime <= '06:00:00')){
+      blocked = 1;
+      for (let i = 0; i < nodeList1.length; i++){
+        nodeList2[i].style.backgroundColor = "grey";
+        nodeList2[i].setAttribute("readOnly", "true");
+      }
+      for (let j = 0; j <nodeList3.length; j++){
+        nodeList3[j].style.backgroundColor="grey";
+        nodeList3[j].setAttribute("readOnly", "true");
+      }
+    }
+    if ((testTime  >= '06:00:01') && (testTime <= '14:00:00')){
+      blocked = 2;
+      for (let i = 0; i < nodeList1.length; i++){
+        nodeList1[i].style.backgroundColor = "grey";
+        nodeList1[i].setAttribute("readOnly", "true");
+      }
+      for (let j = 0; j <nodeList3.length; j++){
+        nodeList3[j].style.backgroundColor="grey";
+        nodeList3[j].setAttribute("readOnly", "true");
+      }
+    }
+    if ((testTime  >= '14:00:01') && (testTime <= '22:00:00')){
+      blocked = 3;
+      for (let i = 0; i < nodeList1.length; i++){
+        nodeList1[i].style.backgroundColor = "grey";
+        nodeList1[i].setAttribute("readOnly", "true");
+      }
+      for (let j = 0; j <nodeList3.length; j++){
+        nodeList2[j].style.backgroundColor="grey";
+        nodeList2[j].setAttribute("readOnly", "true");
+      }
+    }
+    console.log("Blocked wynosi: " + blocked);
+  }
+
+  $('#reportTable tbody').on('click', '#saveReport', function (){
+    let $row = $(this).closest("tr");
+    // let tempId = $row.find(".column-data1").text();
+    let tempId = $row.find(".column-data2").text();
+    let tempValue1 = $row.find(".column-data3").val();
+    let tempValue2 = $row.find(".column-data4").val();
+    let tempValue3 = $row.find(".column-data5").val();
+    let tempValue4 = $row.find(".column-data6").val();
+    console.log("Dane przekazywane: " + tempId +";"+tempValue1+";"+tempValue2+";"+tempValue3+";"+tempValue4);
+    $.ajax({
+      type: "post",
+      contentType: "application/json; charset=UTF-8",
+      url: "/api/wkrm/saveOneReport",
+      data: JSON.stringify({'tempId': tempId, 'tempValue1': tempValue1, 'tempValue2': tempValue2, 'tempValue3': tempValue3, 'tempValue4': tempValue4}),
+      cache: false,
+      success: function (){
+        toastr.success("Pomyślnie dodano raport");
+        window.setTimeout(function (){location.reload();}, 3000);
+      },
+      error: function (){
+        toastr.error("Wystąpił błąd podczas zapisu");
+        console.log("Błąd");
+      }
+    })
+  });
+
+  $('#saveAllReport').on('click', function (){
+    let temp = [];
+    $('#reportTable tr').each(function (index, row){
+      if(index !== 0){
+        console.log("Index wynosi: " + index);
+        let rowData= {};
+        $(row).find('input').each(function (){
+          // rowData[$(this).attr('tempId')] = $(this).val();
+          // console.log("Rowdata: " + rowData);
+          let tempId = $(row).find(".column-data2").text();
+          let tempValue1 = $(row).find(".column-data3").val();
+          let tempValue2 = $(row).find(".column-data4").val();
+          let tempValue3 = $(row).find(".column-data5").val();
+          let tempValue4 = $(row).find(".column-data6").val();
+          console.log(tempId + ";"+ tempValue1);
+          // rowData.push(tempId, tempValue1, tempValue2, tempValue3, tempValue4);
+          // rowData.
+          rowData[$(this).attr('tempId')] = tempId;
+          rowData[$(this).attr('tempValue1')] = tempValue1;
+          rowData[$(this).attr('tempValue2')] = tempValue2;
+          rowData[$(this).attr('tempValue3')] = tempValue3;
+          rowData[$(this).attr('tempValue4')] = tempValue4;
+          console.log("RowData: " +rowData.tempId);
+        });
+        // if(rowData.tempId){
+        temp.push(rowData);
+
+        // }
+      }
+      console.log("Dane w rowData" + temp);
+    })
+
+  });
+
+  function validate(evt) {
+    var theEvent = evt || window.event;
+
+    // Handle paste
+    if (theEvent.type === 'paste') {
+      key = event.clipboardData.getData('text/plain');
+    } else {
+      // Handle key press
+      var key = theEvent.keyCode || theEvent.which;
+      key = String.fromCharCode(key);
+    }
+    // var regex = /[0-9]|\./;
+    var regex = /^-?\d*$/;
+    if( !regex.test(key) ) {
+      theEvent.returnValue = false;
+      if(theEvent.preventDefault) theEvent.preventDefault();
+    }
+  }
+
+  function history_back(){
+    window.history.back();
+  }
+</script>

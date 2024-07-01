@@ -6,7 +6,9 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -44,12 +46,8 @@ public class HospitalBranchClosed {
     @ManyToOne
     @JoinColumn(name = "userId", nullable = true)
     private User user;
-    @ManyToMany(cascade = CascadeType.MERGE)
-    @JoinTable(name = "hospitalBranchClosedFiles", joinColumns = @JoinColumn(name = "hospitalBranchClosedId"), inverseJoinColumns = @JoinColumn(name = "messagesFileId"))
-    private Set<MessagesFiles> messagesFiles;
-    @ManyToMany(cascade = CascadeType.MERGE)
-    @JoinTable(name="recipentHospitalBranchClosed", joinColumns = @JoinColumn(name = "hospitalBranchClosedId"), inverseJoinColumns = @JoinColumn(name="hospitalId"))
-    private Set<Hospital> hospitals;
+    @OneToMany(mappedBy = "hospitalBranchClosed", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<HospitalBranchClosedFiles> hospitalBranchClosedFiles  = new ArrayList<>();
     @Transient
     private String dStart;
     @Transient

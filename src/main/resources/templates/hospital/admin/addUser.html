@@ -16,7 +16,7 @@
         </div>
         <div class="col-sm">
           <label>Hasło</label>
-          <input type="text" class="form-control" th:field="*{password}">
+          <input type="text" class="form-control" th:field="*{password}" id="pass1">
         </div>
         <div class="col-sm">
           <label>Imię</label>
@@ -41,6 +41,7 @@
             <br>
           </label>
         </p>
+        <input type="text" id="tmpPass" th:field="*{password_tmp}" hidden>
       </div>
       <div class="panel-footer">
         <button type="button" class="btn btn-danger" formnovalidate onclick="location.href='/hospital/users/'"><i class="fas fa-close"></i> Anuluj </button>
@@ -52,3 +53,17 @@
 
 </body>
 </html>
+<script type="text/javascript">
+  $(function (){
+    let $src = $('#pass1'), $dst = $('#tmpPass');
+    $src.on('input', function (){
+      $dst.val($src.val());
+    });
+  });
+// window.onload = function (){
+//   let src = document.getElementById("pass1"), dst = document.getElementById("tmpPass");
+//   src.addEventListener('input', function (){
+//     src.value = dst.value;
+//   });
+// };
+</script>
