@@ -1,4 +1,49 @@
 <!--<!DOCTYPE html>-->
+<!--<html xmlns:th="https://www.thymeleaf.org" xmlns:sd="http://www.w3.org/1999/xhtml"-->
+<!--      xmlns:sec="http://www.w3.org/1999/xhtml"-->
+<!--      th:replace="~{/wkrm/fragments/layout2::layout(~{::.container-fluid})}">-->
+<!--<head>-->
+<!--  <meta charset="UTF-8">-->
+<!--</head>-->
+<!--<body>-->
+<!--<div class="container-fluid" >-->
+<!--  <div class="card">-->
+<!--    <form class="form" style="margin: auto" th:object="${user}" th:action="@{/wkrm/admin/changePassword}" method="post">-->
+<!--      <div class="panel panel-default">-->
+<!--        <div class="panel-body">-->
+<!--          <p> Zmieniasz hasło dla użytkownika :</p><p style="font-weight: bold" th:text="*{name}"></p>-->
+<!--          &lt;!&ndash;        <input th:field="*{userName}">&ndash;&gt;-->
+<!--          <div hidden>-->
+<!--            <input th:field="*{id}">-->
+<!--            <input th:field="*{name}">-->
+<!--            <input th:field="*{firstName}">-->
+<!--            <input th:field="*{lastName}">-->
+<!--            <input th:field="*{hospital}">-->
+<!--          </div>-->
+<!--          <br>-->
+<!--          <label for="newPass"> Wprowadź nowe hasło:</label>-->
+<!--          <input id="newPass" name="newPass" th:field="*{password_tmp}" class="form-control">-->
+<!--          <br>-->
+<!--        </div>-->
+<!--        <div class="panel-footer">-->
+<!--          &lt;!&ndash;        <div class="pull-right">&ndash;&gt;-->
+<!--          <button type="button" class="btn btn-danger" formnovalidate onclick="history_back()"><i class="fas fa-close"></i> Anuluj </button>-->
+<!--          <button type="submit" class="btn btn-primary pull-right"><i class="fas fa-save"></i> Zapisz</button>-->
+<!--          &lt;!&ndash;        </div>&ndash;&gt;-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <input type="text" th:value="${id}" hidden>-->
+<!--    </form>-->
+<!--  </div>-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->
+<!--<script>-->
+<!--  function history_back(){-->
+<!--    window.history.back();-->
+<!--  }-->
+<!--</script>-->
+<!--<!DOCTYPE html>-->
 <!--<html lang="en">-->
 <!--<head>-->
 <!--  <meta charset="UTF-8">-->
@@ -199,46 +244,46 @@
 </head>
 <body>
 <div class="container-fluid">
-  <h3 style="text-align: center;"> Edycja użytkownika</h3>
+  <h3 style="text-align: center;"> Zmiana hasła dla użytkownika</h3>
   <div class="card">
-    <form class="form" style="margin: auto" th:object="${user}" th:action="@{/wkrm/admin/updateUser}" method="post">
+    <form class="form" style="margin: auto" th:object="${user}" th:action="@{/wkrm/admin/changePassword}" method="post">
       <div class="panel panel-default">
         <div class="panel-body">
-          <div class="col-sm">
+          <div class="col-sm" hidden>
             <label>Login</label>
-            <input type="text" class="form-control" th:field="*{userName}" required>
+            <input type="text" class="form-control" th:field="*{userName}" required >
             <span th:if="${error_exist}" th:text="${error_exist}" style="color: red; font-weight: bold"> Błąd</span>
           </div>
-<!--          <div class="col-sm">-->
-<!--            <label>Hasło</label>-->
-<!--            <input type="text" class="form-control" th:field="*{password}" id="pass1" required>-->
-<!--          </div>-->
-          <div class="col-sm">
+                    <div class="col-sm">
+                      <label>Nowe hasło</label>
+                      <input type="text" class="form-control" th:field="*{password_tmp}" id="pass1" required>
+                    </div>
+          <div class="col-sm" hidden>
             <label>Imię</label>
             <input type="text" class="form-control" th:field="*{firstName}" required>
           </div>
-          <div class="col-sm">
+          <div class="col-sm" hidden>
             <label>Nazwisko</label>
             <input type="text" class="form-control" th:field="*{LastName}" required>
           </div>
-          <div class="col-sm">
+          <div class="col-sm" hidden>
             <label>Adres e-mail</label>
             <input type="email" class="form-control" th:field="*{email}" required>
           </div>
-          <div class="col-sm">
+          <div class="col-sm" hidden>
             <label> Obecnie przydział do Szpitala/Oddziału</label>
             <input class="form-control" style="font-weight: bold" readonly th:field="*{hospital.name}">
           </div>
-          <div class="col-sm">
+          <div class="col-sm" hidden>
             <label> Szpital/Oddział <small style="color: red"> Zmień wtedy, gdy chcesz zmienić użytkownikowi przydział. W innym przypadku pozostaw puste</small></label>
             <select class="form-control" id="hospital" style="width: 100%"></select>
             <!--            <input type="hospitalId1">-->
           </div>
-          <div class="col-sm">
+          <div class="col-sm" hidden>
             <label> Obecna rola w aplikacji</label>
             <input class="form-control" style="font-weight: bold" readonly th:value="${roleTmp}">
           </div>
-          <p>
+          <p hidden>
             <label>Rola w aplikacji: <small style="color: red"> Zmień wtedy, jeśli chcesz zmienić rolę w aplikacji</small> <br>
               <input style="padding-left: 10px; padding-right: 10px; margin-left: 10px; margin-right: 10px" type="radio" name="roles"
                      th:each="role : ${allRoles}"
@@ -250,12 +295,12 @@
             </label>
           </p>
           <input id="hospitalId" th:field="*{hospital.hospitalId}" hidden>
-          <input type="text" id="tmpPass" th:field="*{password_tmp}" hidden>
+<!--          <input type="text" id="tmpPass" th:field="*{password_tmp}" hidden>-->
           <input th:field="*{id}" hidden>
           <input type="text" th:field="*{password}" hidden>
           <input type="text" th:field="*{name}" hidden>
           <input type="text" th:field="*{active}" hidden>
-<!--          <input th:field="*{passwordChangedTime}" hidden>-->
+          <!--          <input th:field="*{passwordChangedTime}" hidden>-->
         </div>
         <div class="panel-footer">
           <button type="button" class="btn btn-danger" formnovalidate onclick="history_back()"><i class="fas fa-close"></i> Anuluj </button>

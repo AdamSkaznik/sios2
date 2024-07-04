@@ -32,4 +32,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
 //    String zapHospital = "SELECT * FROM tab_users WHERE "
 
+    String updatePassword = "UPDATE tab_users set password = ?1 where id = ?2";
+    @Query(value = updatePassword, nativeQuery = true)
+    User updatePassword(String password, Long id);
+
 }

@@ -4,8 +4,11 @@ package local.wpr.start.sios.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.jpa.repository.Modifying;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -24,6 +27,7 @@ public class User {
     @Column(name = "user_name", nullable = false, unique = true)
     private String userName;
     @Column(name = "email")
+    @Email
     private String email;
     @Column(name = "password")
     private String password;

@@ -20,8 +20,13 @@ public interface RoleRepository extends JpaRepository<Role, Integer> {
     @Query(value = zapWkrm, nativeQuery = true)
     List<Role> findRoleToWkrm();
 
-    String zapOrm = "SELECT * FROM tab_role WHERE role iLike 'HOSPITAL%' OR role iLike 'ORM%'";
+//    String zapOrm = "SELECT * FROM tab_role WHERE role iLike 'HOSPITAL%' OR role iLike 'ORM%'";
+    String zapOrm = "SELECT * FROM tab_role";
     @Query(value = zapOrm, nativeQuery = true)
     List<Role> findRoleToOrm();
+
+    String zapRole = "SELECT * FROM tab_role r left join user_role u ON(r.role_id = u.role_id) where u.user_id = ?1";
+    @Query(value = zapRole, nativeQuery = true)
+    Role findByUserId(Long userId);
 
 }

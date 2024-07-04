@@ -2,6 +2,7 @@ package local.wpr.start.sios.controller;
 
 import local.wpr.start.sios.model.*;
 import local.wpr.start.sios.repository.RoleRepository;
+import local.wpr.start.sios.service.MailService;
 import local.wpr.start.sios.service.UserService;
 import local.wpr.start.sios.service.impl.*;
 import org.slf4j.Logger;
@@ -54,6 +55,8 @@ public class WkrmController {
     LogServiceImpl logServiceImpl;
     @Autowired
     RoleRepository roleRepository;
+    @Autowired
+    MailService mailService;
 //    @Autowired
 //    ViewController viewController;
 //
@@ -243,6 +246,101 @@ public class WkrmController {
         model.addAttribute("user", user);
         model.addAttribute("allRoles", roles);
         return "/wkrm/admin/addUser";
+    }
+
+    @PostMapping("/wkrm/admin/saveNewUser")
+    public String goWkrmSaveNewUser(User user, Model model, Principal principal) throws Exception {
+        System.out.println("Dane przekazane: " + user.getUserName() + user.getHospital());
+        User thereId = userService.findUserByUserName(user.getUserName());
+        if (thereId != null){
+            System.out.println("Użytkownik istnieje!");
+            model.addAttribute("error_exist", "W systemie istnieje użytkownik o takim loginie!");
+            return "/wkrm/admin/addUser";
+        } else {
+          Date dt = new Date();
+          user.setPasswordChangedTime(dt);
+          user.setName(user.getFirstName() + " " + user.getLastName());
+          user.setActive(true);
+          userService.saveUser(user);
+          String emailAddress = user.getEmail();
+//          if(emailAddress != null){
+//              String subject = "SIOS v.2 - nowe konto";
+//              String to = emailAddress;
+//              String content = "";
+//              content = content + "Uprzejmie informuję, iż w serwisie System Informacji o Szpitalach (SIOS v.2.0) Administrator WKRM założył konto dla osoby : <b>" + user.getName() + "</b>";
+//              content = content + "<br><br> Zalogowanie się w systemie nastąpi po podaniu następujących danych autoryzacyjnych: ";
+//              content = content + "<br><br>Login:  <b>" + user.getUserName() + "</b>";
+//              content = content + "<br><br>Hasło: <b>" + user.getPassword_tmp() +"</b>";
+//              System.out.println("Content: " + content);
+//              try {
+//                  mailService.SenDefaultMessage(to, subject, content);
+//              }catch (Exception e){
+//                  e.printStackTrace();
+//                  System.out.println("Nie wysłano - błąd");
+//                  LOG.error("Błąd podczas wysyłania wiadomości e-mail. " + e.getMessage());
+//              }
+//          }
+        }
+        return "redirect:/wkrm/admin/users";
+    }
+
+    @GetMapping("/wkrm/admin/editUser/{id}")
+    public String goWkrmSaveNewUser(@PathVariable Long id, Model model){
+        User user = userService.findById(id);
+        List<Role> roles = roleRepository.findRoleToWkrm();
+        Role role = roleRepository.findByUserId(id);
+        System.out.println("role: " + role);
+        String roleTmp = role.getRole();
+        System.out.println("roleTmp: " + roleTmp);
+        model.addAttribute("user", user);
+        model.addAttribute("allRoles", roles);
+        model.addAttribute("roleTmp", roleTmp);
+        return "/wkrm/admin/editUser";
+    }
+
+    @PostMapping("/wkrm/admin/updateUser")
+    public String goWkrmUpdateUser(User user, Principal principal){
+        User user1 = userService.findById(user.getId());
+        user.setPasswordChangedTime(user1.getPasswordChangedTime());
+        userService.saveUser(user);
+        return "/wkrm/admin/users";
+    }
+
+    @GetMapping("/wkrm/admin/passChange/{id}")
+    public String goWkrmPassChangeToUser(Model model, @PathVariable Long id){
+        User user = userService.findById(id);
+//        List<Role> allRoles = roleRepository.findRoleToWkrm();
+        model.addAttribute("user", user);
+        return "/wkrm/admin/passChange";
+    }
+
+    @PostMapping("/wkrm/admin/changePassword")
+    public String goWkrmChangePassword(User user, Principal principal){
+        System.out.println("User: " + user);
+        System.out.println("New password: " + user.getPassword_tmp());
+        Date dt = new Date();
+        user.setPasswordChangedTime(dt);
+        user.setPassword(user.getPassword_tmp());
+        userService.saveUser(user);
+        return "redirect:/wkrm/admin/users";
+    }
+
+    @GetMapping("/wkrm/admin/deactivate/{id}")
+    public String goWkrmDeactivateAccount(@PathVariable Long id){
+      User user = userService.findById(id);
+      System.out.println("User: " + user);
+      user.setActive(false);
+      userService.saveUser(user);
+      return "redirect:/wkrm/admin/users";
+    }
+
+    @GetMapping("/wkrm/admin/activate/{id}")
+    public String goWkrmActivateAccount(@PathVariable Long id){
+        User user = userService.findById(id);
+        System.out.println("User: " + user);
+        user.setActive(true);
+        userService.saveUser(user);
+        return "redirect:/wkrm/admin/users";
     }
 
     @GetMapping("/wkrm/hospitalChoice")

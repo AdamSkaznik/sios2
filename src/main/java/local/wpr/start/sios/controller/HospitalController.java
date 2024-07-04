@@ -569,8 +569,15 @@ public String goOwnHospitalReports(){
         return "/hospital/admin/editUser";
         }
         @PostMapping("/hospital/admin/saveNewUser")
-    public String goSaveNewUser(User user, Principal principal) throws Exception{
-       String adminName = principal.getName();
+    public String goSaveNewUser(User user, Principal principal, Model model) throws Exception{
+       User thereId = userService.findUserByUserName(user.getUserName());
+       if(thereId !=null){
+           System.out.println("User istnieje!!!!");
+           model.addAttribute("error_exist", "W systemie istnieje użytkownik o takim loginie!!!");
+           LOG.error("W systemie istnieje użytkonik o loginie: " + user.getUserName());
+           return "/hospital/admin/addUser";
+       }
+        String adminName = principal.getName();
        User user1 = userService.findUserByUserName(adminName);
        Hospital hospital = user1.getHospital();
        user.setHospital(hospital);

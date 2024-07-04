@@ -47,7 +47,7 @@
             <!-- rollover daily -->
             <fileNamePattern>${DEV_HOME}/archived/info.%d{yyyy-MM-dd}.%i.log
             </fileNamePattern>
-            <maxHistory>${LOG_FILE_MAX_HISTORY}</maxHistory>
+            <maxHistory>5</maxHistory>
             <timeBasedFileNamingAndTriggeringPolicy
                     class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <maxFileSize>5MB</maxFileSize>
@@ -73,10 +73,10 @@
             <!-- rollover daily -->
             <fileNamePattern>${DEV_HOME}/archived/fatal_error.%d{yyyy-MM-dd}.%i.log
             </fileNamePattern>
-            <maxHistory>14</maxHistory>
+            <maxHistory>5</maxHistory>
             <timeBasedFileNamingAndTriggeringPolicy
                     class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
-                <maxFileSize>3MB</maxFileSize>
+                <maxFileSize>5MB</maxFileSize>
             </timeBasedFileNamingAndTriggeringPolicy>
         </rollingPolicy>
     </appender>

@@ -11,28 +11,28 @@
       <div class="panel-body">
         <div class="col-sm">
           <label>Login</label>
-          <input type="text" class="form-control" th:field="*{userName}">
-
+          <input type="text" class="form-control" th:field="*{userName}" required>
+          <span th:if="${error_exist}" th:text="${error_exist}" style="color: red; font-weight: bold"> Błąd</span>
         </div>
         <div class="col-sm">
           <label>Hasło</label>
-          <input type="text" class="form-control" th:field="*{password}" id="pass1">
+          <input type="text" class="form-control" th:field="*{password}" id="pass1" required>
         </div>
         <div class="col-sm">
           <label>Imię</label>
-          <input type="text" class="form-control" th:field="*{firstName}">
+          <input type="text" class="form-control" th:field="*{firstName}" required>
         </div>
         <div class="col-sm">
           <label>Nazwisko</label>
-          <input type="text" class="form-control" th:field="*{LastName}">
+          <input type="text" class="form-control" th:field="*{LastName}" required>
         </div>
         <div class="col-sm">
           <label>Adres e-mail</label>
-          <input type="text" class="form-control" th:field="*{email}">
+          <input type="email" class="form-control" th:field="*{email}" required>
         </div>
         <p>
           <label>Rola w aplikacji:<br>
-            <input style="padding-left: 10px; padding-right: 10px; margin-left: 10px; margin-right: 10px" type="checkbox" name="roles"
+            <input style="padding-left: 10px; padding-right: 10px; margin-left: 10px; margin-right: 10px" type="radio" name="roles" required
                    th:each="role : ${allRoles}"
                    th:text="${role.role}"
                    th:value="${role.id}"

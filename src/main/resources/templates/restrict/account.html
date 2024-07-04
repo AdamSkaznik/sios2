@@ -1,106 +1,77 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org" xmlns:sd="http://www.w3.org/1999/xhtml"
-      xmlns:sec="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html"
       th:replace="~{/fragments/layout::layout(~{::.container-fluid})}">
 <head>
     <meta charset="UTF-8">
-<style>
-    body{
-        padding: 2rem 0rem;
-    }
-</style>
+    <style>
+        body{
+            padding: 2rem 0rem;
+        }
+    </style>
 </head>
 <body>
 <div class="container-fluid">
-    <div class="container" style="padding-top: 150px">
-        <div class="row">
-            <div class="col-12 col-sm-8 col-md-6 col-lg-4">
-                <div class="card">
-                    <div class="card-header">
-                        <ul class="nav nav-tabs card-header-tabs" id="bologna-list" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" href="#description" role="tab" aria-controls="description" aria-selected="true">Description</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link"  href="#history" role="tab" aria-controls="history" aria-selected="false">History</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#deals" role="tab" aria-controls="deals" aria-selected="false">Deals</a>
-                            </li>
-                        </ul>
+    <div class="container-fluid pull-right" style="padding-right: 5px; padding-bottom: 20px">
+        <a href="#"style="align-self: end"><button class="btn btn-info" onclick="history_back()"><i class="fa-solid fa-arrows-rotate"></i> Powrót</button> </a>
+    </div>
+    <br><br>
+    <div class="panel panel-info" style="padding-bottom: 50px">
+        <div class="panel-heading">Edytuj swoje konto</div>
+        <div class="panel-body">
+            <form th:action="@{/users/saveAccount}" th:object="${user}" method="post" style="max-width: 600px; margin: 0 auto;">
+                <input type="hidden" th:field="*{id}">
+                <input th:field="*{userName}">
+                <input th:field="*{active}">
+<!--                <input th:field="*{passwordChangedTime}">-->
+                <input th:field="*{hospital}">
+                <div class="m-3>">
+                    <div class="form-group row">
+                        <label class="col-4 col-form-label"> Imię</label>
+                        <div class="col-8">
+                            <input type="text" th:field="*{firstName}" class="form-control" required>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <h4 class="card-title">Bologna</h4>
-                        <h6 class="card-subtitle mb-2">Emilia-Romagna Region, Italy</h6>
+                    <div class="form-group row">
+                        <label class="col-4 col-form-label"> Nazwisko</label>
+                        <div class="col-8">
+                            <input type="text" th:field="*{lastName}" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-4 col-form-label"> Adres e-mail</label>
+                        <div class="col-8">
+                            <input type="text" th:field="*{email}" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
 
-                        <div class="tab-content mt-3">
-                            <div class="tab-pane active" id="description" role="tabpanel">
-                                <p class="card-text">It is the seventh most populous city in Italy, at the heart of a metropolitan area of about one million people. </p>
-                                <a href="#" class="card-link text-danger">Read more</a>
-                            </div>
-
-                            <div class="tab-pane" id="history" role="tabpanel" aria-labelledby="history-tab">
-                                <p class="card-text">First settled around 1000 BCE and then founded as the Etruscan Felsina about 500 BCE, it was occupied by the Boii in the 4th century BCE and became a Roman colony and municipium with the name of Bononia in 196 BCE. </p>
-                                <a href="#" class="card-link text-danger">Read more</a>
-                            </div>
-
-                            <div class="tab-pane" id="deals" role="tabpanel" aria-labelledby="deals-tab">
-                                <p class="card-text">Immerse yourself in the colours, aromas and traditions of Emilia-Romagna with a holiday in Bologna, and discover the city's rich artistic heritage.</p>
-                                <a href="#" class="btn btn-danger btn-sm">Get Deals</a>
-                            </div>
+                    <div class="form-group row">
+                        <label class="col-4 col-form-label"> Hasło</label>
+                        <div class="col-8">
+                            <input type="text" th:field="*{password_tmp}" class="form-control">
                         </div>
                     </div>
                 </div>
-            </div>
+                <!--        <div class="form-group row">-->
+                <!--            <th:block th:each="role: ${listRoles}">-->
+                <!--            <input type="checkbox" th:field="*{roles}" th:text="${role.role}" th:value="*{role.roleId}">-->
+                <!--            </th:block>-->
+                <!--        </div>-->
+                <div class="container-fluid pull-right">
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i>  Aktualizuj</button>
+                </div>
+            </form>
         </div>
-
-<!--        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">-->
-<!--            <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Home</a>-->
-<!--            <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Profile</a>-->
-<!--            <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Messages</a>-->
-<!--            <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</a>-->
-<!--        </div>-->
-<!--        <div class="tab-content" id="v-pills-tabContent">-->
-<!--            <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">...</div>-->
-<!--            <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">...</div>-->
-<!--            <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">...</div>-->
-<!--            <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">...</div>-->
-<!--        </div>-->
-<!--        <ul class="nav nav-tabs" role="tablist">-->
-<!--            <li class="nav-item">-->
-<!--                <a class="nav-link active" data-toggle="tab" href="#home">Home</a>-->
-<!--            </li>-->
-<!--            <li class="nav-item">-->
-<!--                <a class="nav-link" data-toggle="tab" href="#menu1">Menu 1</a>-->
-<!--            </li>-->
-<!--            <li class="nav-item">-->
-<!--                <a class="nav-link" data-toggle="tab" href="#menu2">Menu 2</a>-->
-<!--            </li>-->
-<!--        </ul>-->
-
-<!--        &lt;!&ndash; Tab panes &ndash;&gt;-->
-<!--        <div class="tab-content">-->
-<!--            <div id="home" class="container tab-pane active"><br>-->
-<!--                <h3>HOME</h3>-->
-<!--                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>-->
-<!--            </div>-->
-<!--            <div id="menu1" class="container tab-pane fade"><br>-->
-<!--                <h3>Menu 1</h3>-->
-<!--                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>-->
-<!--            </div>-->
-<!--            <div id="menu2" class="container tab-pane fade"><br>-->
-<!--                <h3>Menu 2</h3>-->
-<!--                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>-->
-<!--            </div>-->
-<!--        </div>-->
     </div>
+</div>
+<!--    </div>-->
 </div>
 </body>
 </html>
-<script type="text/javascript">
-    // <script>
-        $('#bologna-list a').on('click', function (e) {
-        e.preventDefault()
-        $(this).tab('show')
-    })
+<script>
+    function history_back(){
+        window.history.back();
+    }
 </script>
+

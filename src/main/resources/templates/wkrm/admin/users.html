@@ -81,7 +81,7 @@
 <script type="text/javascript">
   $(document).ready(function(){
     let ttable = $('#users').DataTable({
-
+      "stateSave": true,
       "bAutoWidth": true,
       "sAjaxSource" : "/api/users/v1",
       "sAjaxDataProp": "",
@@ -100,12 +100,16 @@
           sWidth: '50px'},
         {"mData": null,
           sWidth: '50px',
-          "render": function (){
+          "render": function (data, type, row){
             let a = "";
             // a = a + '<a href="#"><span style="color: orange" class="fa-solid fa-info-circle" title="Szczegóły" id="details"></span></a>';
             a = a + '&nbsp;&nbsp;<a href="#"><span style="color: green" class="fa-solid fa-pencil" title="Edycja" id="edit"></span></a>';
             a = a + '&nbsp;&nbsp;<a href="#"><span style="color: blue" class="fa-solid fa-fingerprint" title="Reset hasła" id="resetPass"></span></a>';
-            a = a + '&nbsp;&nbsp;<a href="#"><span style="color: red" class="fa-solid fa-toggle-off" title="Deaktywuj konto" id="deactivate"></span></a>';
+            if(row.active == true){
+              a = a + '&nbsp;&nbsp;<a href="#"><span style="color: red" class="fa-solid fa-toggle-off" title="Deaktywuj konto" id="deactivate"></span></a>';
+            } else {
+              a = a + '&nbsp;&nbsp;<a href="#"><span style="color: green" class="fa-solid fa-toggle-on" title="Aktywuj konto" id="activate"></span></a>';
+            }
             return a;
           }},
       ],
@@ -148,7 +152,7 @@
       let data = ttable.row($(this).parents('tr')).data();
       let usersId = data["id"];
       alert("user id wynosi: " + usersId);
-      window.location.href="/hospital/admin/editUser/" + data["id"];
+      window.location.href="/wkrm/admin/editUser/" + data["id"];
       // window.location.href='/api/viewsWkrmHospitalReport/v1/'+reportId;
       // window.location.href='/hospital/hospitalReportDetails/'+reportId;
     });
@@ -157,16 +161,55 @@
       let data = ttable.row($(this).parents('tr')).data();
       let userId = data["id"];
       // show_passChange("/hospital/admin/passChange" + data["id"]);
-      window.location.href="/hospital/admin/passChange/" + data["id"];
+      window.location.href="/wkrm/admin/passChange/" + data["id"];
+    });
+
+    $('#users tbody').on('click','#deactivate', function (){
+      let data = ttable.row($(this).parents('tr')).data();
+      swal({
+        title: "Deaktywacja konta",
+        text: "Czy na pewno chcesz wyłaczyć konto: " + data["userName"]+ " ?",
+        icon: "warning",
+        buttons: [
+                'NIE',
+                'TAK-wyłącz'
+        ], dangerMode: true
+      }).then(function (isConfirm){
+        if(isConfirm){
+          window.location = '/wkrm/admin/deactivate/' + data["id"];
+        } else {
+          window.location = 'redirect:/wkrm/admin/users';
+        }
+      });
+
+    });
+    $('#users tbody').on('click','#activate', function (){
+      let data = ttable.row($(this).parents('tr')).data();
+      swal({
+        title: "Aktywacja konta",
+        text: "Czy na pewno chcesz właczyć konto: " + data["userName"]+ " ?",
+        icon: "warning",
+        buttons: [
+          'NIE',
+          'TAK-włącz'
+        ], dangerMode: true
+      }).then(function (isConfirm){
+        if(isConfirm){
+          window.location = '/wkrm/admin/activate/' + data["id"];
+        } else {
+          window.location = 'redirect:/wkrm/admin/users';
+        }
+      });
+
     });
 
   });
 
 
   $('#addNewUser').on('click', function (){
-    // window.location.href='/wkrm/admin/addUser';
-    show_add_new_user('/wkrm/admin/addUser');
-    $('#addUser').modal();
+    window.location.href='/wkrm/admin/addUser';
+    // show_add_new_user('/wkrm/admin/addUser');
+    // $('#addUser').modal();
   });
 
   function show_add_new_user(url){

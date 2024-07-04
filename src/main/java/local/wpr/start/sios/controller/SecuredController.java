@@ -28,12 +28,12 @@ public class SecuredController {
         return "/restrict/messages";
     }
 
-    @GetMapping("/restrict/account")
-    public String goAccount(Principal principal){
-        User account = userService.findUserByUserName(principal.getName());
-        System.out.println("Account: " + account);
-        return ("/restrict/account");
-    }
+//    @GetMapping("/restrict/account")
+//    public String goAccount(Principal principal){
+//        User account = userService.findUserByUserName(principal.getName());
+//        System.out.println("Account: " + account);
+//        return ("/restrict/account");
+//    }
 
 //    @GetMapping()
 }
